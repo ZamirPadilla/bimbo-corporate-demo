@@ -106,7 +106,7 @@ export default function IndiceDemo() {
 
         <Bloque id="decisiones" titulo="Decisiones tomadas">
           <p className="max-w-3xl text-neutral-600">
-            Criterio: cuando las páginas del sitio actual no coinciden, manda el último reporte publicado, el Informe Anual 2025.
+            Criterio: cuando las páginas del sitio actual no coinciden, manda el último reporte publicado: el del 3T26 para las cifras de escala y el Informe Anual 2025 para los resultados y las metas del año.
           </p>
           <ol className="mt-6 space-y-4">
             {decisiones.map((d, i) => (

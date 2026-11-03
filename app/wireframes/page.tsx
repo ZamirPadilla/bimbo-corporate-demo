@@ -29,7 +29,7 @@ export default function IndiceWireframes() {
         <h2 className="text-2xl font-bold">Cifras por confirmar ({porConfirmar.length})</h2>
         {porConfirmar.length === 0 && (
           <p className="mt-4 text-sm text-neutral-600">
-            Ninguna: las cifras que no coincidían se resolvieron con el Informe Anual 2025. Ver{" "}
+            Ninguna: las cifras que no coincidían se resolvieron con el último reporte publicado. Ver{" "}
             <Link href="/demo#decisiones" className="underline underline-offset-4">
               decisiones
             </Link>

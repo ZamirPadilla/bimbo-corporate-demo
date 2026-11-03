@@ -7,7 +7,7 @@ const REPO = "https://github.com/ZamirPadilla/bimbo-corporate-demo/blob/main";
 const IA25 = "https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf";
 
 export const estado = {
-  actualizado: "2 de noviembre de 2026",
+  actualizado: "3 de noviembre de 2026",
   rama: "main",
   pr: "https://github.com/ZamirPadilla/bimbo-corporate-demo/pull/2",
   etapa: "Copy y wireframes listos; sigue el diseño visual.",
@@ -19,7 +19,7 @@ export const documentos = [
   { titulo: "Fuente única de cifras", ruta: "docs/copy/02-fuente-unica-de-cifras.md", descripcion: "Cada cifra con su valor, su fuente y dónde aparece hoy (generado)." },
   { titulo: "Arquitectura y voz", ruta: "docs/copy/03-arquitectura-y-voz.md", descripcion: "Audiencias, mapa del sitio y guía de estilo." },
   { titulo: "Copy deck", ruta: "docs/copy/04-copy-deck.md", descripcion: "El copy de las 8 páginas, sección por sección (generado)." },
-  { titulo: "Decisiones tomadas", ruta: "docs/copy/05-decisiones.md", descripcion: "Las seis decisiones abiertas, resueltas con el Informe Anual 2025." },
+  { titulo: "Decisiones tomadas", ruta: "docs/copy/05-decisiones.md", descripcion: "Las seis decisiones abiertas, resueltas con el reporte del 3T26 y el Informe Anual 2025." },
   { titulo: "Contexto creativo", ruta: "docs/contexto/CONTEXTO.md", descripcion: "Diagnóstico, intención, concepto y lenguaje visual del equipo creativo." },
   { titulo: "Benchmark de referencias", ruta: "docs/benchmark/README.md", descripcion: "Qué tomar de cada sitio de referencia y a qué sección aplica." },
   { titulo: "Banco de ideas", ruta: "docs/ideas/README.md", descripcion: "Ideas de interacción por aprobar; la primera: el pan del hero se vuelve el gorro del osito." },
@@ -34,21 +34,21 @@ export const fuentes = [
 export const decisiones = [
   {
     pregunta: "Países con presencia: ¿96 o 102?",
-    decision: "93: operamos en 39 y atendemos otros 54 con socios estratégicos.",
-    fuente: "Informe Anual 2025, «Nuestra empresa»",
-    efecto: "Ninguna de las dos cifras del sitio era la vigente. Hay que corregir Nosotros (96) e Inversionistas › Quiénes somos (102).",
+    decision: "102: operamos en 39 y servimos a otros 63 a través de socios estratégicos.",
+    fuente: "Reporte de resultados del 3T26 (22 de octubre de 2026), «Acerca de Grupo Bimbo»",
+    efecto: "Inversionistas › Quiénes somos (102) ya estaba al día; Nosotros (96) se corrige. El Informe Anual 2025 dice 93 al cierre de 2025: se cita solo con esa fecha.",
   },
   {
     pregunta: "Panaderías: ¿250 o 251?",
-    decision: "249 panaderías y plantas: 75 en Norteamérica, 38 en México, 94 en EAA y 42 en Latinoamérica.",
-    fuente: "Informe Anual 2025, «Nuestra empresa» y presencia por región",
-    efecto: "La cifra de los metadatos de Prensa y Únete era la correcta; 251, 250 y 214 se corrigen.",
+    decision: "250 panaderías y botaneras.",
+    fuente: "Reporte de resultados del 3T26, «Acerca de Grupo Bimbo»",
+    efecto: "Coincide con Inversionistas › Quiénes somos; 251 y 214 se corrigen. El Informe Anual 2025 dice 249 «panaderías y plantas» al cierre de 2025 y trae el desglose por región.",
   },
   {
     pregunta: "Colaboradores: ¿cuántos y con qué fecha de corte?",
-    decision: "Más de 153,000, al cierre de 2025.",
-    fuente: "Informe Anual 2025",
-    efecto: "La Home y Únete (152 mil) se actualizan. En México, más de 77,000 (las preguntas frecuentes dicen 78,000).",
+    decision: "Más de 152,000, según el reporte del 3T26 (octubre de 2026).",
+    fuente: "Reporte de resultados del 3T26, «Acerca de Grupo Bimbo»",
+    efecto: "La Home y Únete ya dicen 152 mil. El Informe Anual 2025 dice más de 153,000 al cierre de 2025. En México, más de 77,000 (informe; las preguntas frecuentes dicen 78,000).",
   },
   {
     pregunta: "¿Qué dirección corporativa se publica?",
@@ -72,11 +72,15 @@ export const decisiones = [
 
 // Otras correcciones que trajo el informe, además de las seis decisiones.
 export const correccionesDelInforme = [
-  "Centros de ventas: más de 1,700 (el sitio dice 1,600).",
+  "Centros de ventas: más de 1,600 según el 3T26, como dice el sitio (el Informe Anual 2025 dice más de 1,700 al cierre de 2025).",
   "Productos: más de 9,000 (Inversionistas dice «más de 10mil»).",
   "Creencias: «Somos operadores eficaces», «Competimos y ganamos con calidad superior» y «Trascendemos y permanecemos en el tiempo» (el sitio dice «eficientes» y acorta las otras dos).",
   "Misión y propósito: «Alimentos deliciosos y nutritivos en las manos de todos» y «Alimentamos un mundo mejor».",
-  "Energía: el 100% renovable es de la electricidad, no de toda la energía.",
+  "Electricidad: se publica 99% renovable bajo los criterios de RE100 (anexo de Datos de Desempeño, p. 27). La carta dice «100%*», con asterisco «en proceso de validación», porque el 1% restante se respalda con certificados de otros mercados. Es electricidad, no toda la energía.",
+  "Deuda: el informe habla de «certificados bursátiles vinculados a la sustentabilidad» (p. 169); el copy dice «deuda vinculada a la sustentabilidad», nunca «bonos verdes» ni «bonos sustentables».",
+  "Sustentabilidad: la meta de 2025 de emisiones de la cadena de valor no se alcanzó y la validación ante SBTi está en pausa; la meta de ventas con 3.5 estrellas quedó en 48% contra 50%. El copy habla de camino y lo dice abiertamente, como el informe.",
+  "Creencias: se publican solo los siete títulos oficiales; se quitaron las frases de apoyo que habíamos redactado.",
+  "Emisiones: la meta es «cero emisiones de carbono» o «emisiones cero» en 2050; el informe nunca dice «netas».",
   "Las acciones también cotizan en Estados Unidos con ADR Nivel 1 (BMBOY).",
 ];
 
@@ -95,14 +99,18 @@ export const benchmark: { nota: string; filas: FilaBenchmark[]; metas: string } 
 
 // Lo que todavía no se puede cerrar con fuentes públicas.
 export const dudas = [
-  { tema: "Sitio actual", pregunta: "¿Bimbo corregirá en su sitio las cifras que contradicen el informe (96 y 102 países, 1,600 centros, 10 mil productos, 152 mil colaboradores) antes del lanzamiento?", quien: "Comunicación" },
+  { tema: "Cifras", pregunta: "El Informe Anual 2025 (93 países, 249 panaderías, más de 1,700 centros, más de 153,000 colaboradores) y el reporte del 3T26 (102, 250, más de 1,600, más de 152,000) no coinciden. ¿Cuál es el juego vigente? La demo usa el del 3T26.", quien: "Relación con Inversionistas" },
+  { tema: "Sitio actual", pregunta: "¿Bimbo corregirá en su sitio las cifras desactualizadas (96 países en Nosotros, 10 mil productos) antes del lanzamiento?", quien: "Comunicación" },
   { tema: "Contacto", pregunta: "Teléfono corporativo que se publica.", quien: "Comunicación" },
   { tema: "Contacto", pregunta: "Canal para clientes y distribuidores.", quien: "Comercial" },
   { tema: "Prensa", pregunta: "Correo y responsable de prensa.", quien: "Comunicación" },
-  { tema: "Inversionistas", pregunta: "Correo y teléfono de Relación con Inversionistas (migrar de la página actual).", quien: "Relación con Inversionistas" },
+  { tema: "Inversionistas", pregunta: "Teléfono de Relación con Inversionistas (el correo ir@grupobimbo.com sale del Informe Anual 2025).", quien: "Relación con Inversionistas" },
+  { tema: "Inversionistas", pregunta: "¿«Deuda vinculada a la sustentabilidad» es el término correcto para los certificados Bimbo 23L y 23-2L?", quien: "Relación con Inversionistas" },
+  { tema: "Sustentabilidad", pregunta: "Electricidad renovable: ¿se publica 99% (criterio RE100) o «respaldamos el 100%» con la explicación de los certificados? La demo usa 99%.", quien: "Sustentabilidad" },
+  { tema: "Sustentabilidad", pregunta: "¿Se publica la sección «Lo que todavía no logramos» (alcance 3, pausa ante SBTi, meta de nutrición) y con ese tono?", quien: "Sustentabilidad y Comunicación" },
   { tema: "Carreras", pregunta: "Bolsas de trabajo de México, Estados Unidos y Europa.", quien: "Talento" },
-  { tema: "Nosotros", pregunta: "Semblanzas de los fundadores e integrantes del Comité Directivo.", quien: "Comunicación" },
-  { tema: "Nosotros", pregunta: "Frases de apoyo de las siete creencias (propuesta nuestra).", quien: "Cultura" },
+  { tema: "Nosotros", pregunta: "Semblanzas de los fundadores y vigencia del Comité Directivo que publica el Informe Anual 2025.", quien: "Comunicación" },
+  { tema: "Nosotros", pregunta: "¿Quieren una explicación breve por creencia? La demo publica solo los siete títulos oficiales.", quien: "Cultura" },
   { tema: "Reconocimientos", pregunta: "Año del reconocimiento de TIME.", quien: "Comunicación" },
   { tema: "Marcas", pregunta: "Catálogo de marcas con categorías, países y sitio oficial de cada una.", quien: "Marketing" },
   { tema: "Marcas", pregunta: "¿Ricolino sigue en el portafolio? La demo original la incluía y el sitio actual no la muestra.", quien: "Marketing" },

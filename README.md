@@ -16,7 +16,7 @@ Demo pública de una página corporativa para **Grupo Bimbo**, construida con Ne
 | Leer el brief creativo y las referencias visuales | [`docs/contexto/CONTEXTO.md`](docs/contexto/CONTEXTO.md) · [`docs/benchmark/`](docs/benchmark/README.md) |
 | Ver la página principal de la demo | `/` en la app |
 
-**Estado (2 de noviembre de 2026):** el copy y los wireframes de 8 páginas están listos y las cifras están validadas con el Informe Anual 2025 de Grupo Bimbo. Sigue el diseño visual. Las preguntas que siguen abiertas están en `/demo#dudas`.
+**Estado (3 de noviembre de 2026):** el copy y los wireframes de 8 páginas están listos y las cifras están validadas con el reporte del 3T26 y el Informe Anual 2025 de Grupo Bimbo. Sigue el diseño visual. Las preguntas que siguen abiertas están en `/demo#dudas`.
 
 ---
 

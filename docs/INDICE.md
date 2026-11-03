@@ -2,7 +2,7 @@
 
 > Generado por `npm run copy:docs` desde `content/`. No editar a mano: editar `content/paginas.ts` o `content/cifras.ts`.
 
-**Estado:** Copy y wireframes listos; sigue el diseño visual. · Actualizado el 2 de noviembre de 2026 · Rama `main` · [PR](https://github.com/ZamirPadilla/bimbo-corporate-demo/pull/2) · Versión navegable: `npm run dev` y abrir `/demo`.
+**Estado:** Copy y wireframes listos; sigue el diseño visual. · Actualizado el 3 de noviembre de 2026 · Rama `main` · [PR](https://github.com/ZamirPadilla/bimbo-corporate-demo/pull/2) · Versión navegable: `npm run dev` y abrir `/demo`.
 
 > Propuesta de sitio corporativo. No es el sitio oficial ni está afiliada a Grupo Bimbo.
 
@@ -13,7 +13,7 @@
 - [Fuente única de cifras](copy/02-fuente-unica-de-cifras.md): Cada cifra con su valor, su fuente y dónde aparece hoy (generado).
 - [Arquitectura y voz](copy/03-arquitectura-y-voz.md): Audiencias, mapa del sitio y guía de estilo.
 - [Copy deck](copy/04-copy-deck.md): El copy de las 8 páginas, sección por sección (generado).
-- [Decisiones tomadas](copy/05-decisiones.md): Las seis decisiones abiertas, resueltas con el Informe Anual 2025.
+- [Decisiones tomadas](copy/05-decisiones.md): Las seis decisiones abiertas, resueltas con el reporte del 3T26 y el Informe Anual 2025.
 - [Contexto creativo](contexto/CONTEXTO.md): Diagnóstico, intención, concepto y lenguaje visual del equipo creativo.
 - [Benchmark de referencias](benchmark/README.md): Qué tomar de cada sitio de referencia y a qué sección aplica.
 - [Banco de ideas](ideas/README.md): Ideas de interacción por aprobar; la primera: el pan del hero se vuelve el gorro del osito.
@@ -22,20 +22,20 @@
 
 - **Inicio** · `/wireframes/inicio` · 11 secciones
 - **Nosotros** · `/wireframes/nosotros` · 9 secciones
-- **Marcas** · `/wireframes/marcas` · 4 secciones
-- **Sustentabilidad** · `/wireframes/sustentabilidad` · 6 secciones
-- **Inversionistas** · `/wireframes/inversionistas` · 5 secciones
+- **Marcas** · `/wireframes/marcas` · 5 secciones
+- **Sustentabilidad** · `/wireframes/sustentabilidad` · 8 secciones
+- **Inversionistas** · `/wireframes/inversionistas` · 6 secciones
 - **Prensa** · `/wireframes/prensa` · 4 secciones
-- **Carreras** · `/wireframes/carreras` · 5 secciones
+- **Carreras** · `/wireframes/carreras` · 6 secciones
 - **Contacto** · `/wireframes/contacto` · 5 secciones
 
 ## Decisiones tomadas
 
 | Pregunta | Decisión | Fuente |
 |---|---|---|
-| Países con presencia: ¿96 o 102? | 93: operamos en 39 y atendemos otros 54 con socios estratégicos. | Informe Anual 2025, «Nuestra empresa» |
-| Panaderías: ¿250 o 251? | 249 panaderías y plantas: 75 en Norteamérica, 38 en México, 94 en EAA y 42 en Latinoamérica. | Informe Anual 2025, «Nuestra empresa» y presencia por región |
-| Colaboradores: ¿cuántos y con qué fecha de corte? | Más de 153,000, al cierre de 2025. | Informe Anual 2025 |
+| Países con presencia: ¿96 o 102? | 102: operamos en 39 y servimos a otros 63 a través de socios estratégicos. | Reporte de resultados del 3T26 (22 de octubre de 2026), «Acerca de Grupo Bimbo» |
+| Panaderías: ¿250 o 251? | 250 panaderías y botaneras. | Reporte de resultados del 3T26, «Acerca de Grupo Bimbo» |
+| Colaboradores: ¿cuántos y con qué fecha de corte? | Más de 152,000, según el reporte del 3T26 (octubre de 2026). | Reporte de resultados del 3T26, «Acerca de Grupo Bimbo» |
 | ¿Qué dirección corporativa se publica? | Prolongación Paseo de la Reforma 1000, col. Peña Blanca Santa Fe, alcaldía Álvaro Obregón, C.P. 01210, Ciudad de México. | Informe Anual 2025, «Oficinas corporativas» |
 | ¿Las regiones siguen las del informe anual? | Sí: Norteamérica (Estados Unidos y Canadá), México, Latinoamérica (Centro y Sudamérica) y EAA (Europa, Asia y África). | Informe Anual 2025 y reporte 3T26 (notas de segmentos) |
 | Nutrición: ¿página propia o dentro de Para Ti? | Dentro de Sustentabilidad › Para Ti; /nutricion redirige ahí. | Informe Anual 2025: los perfiles nutrimentales se reportan dentro del pilar Para Ti |
@@ -55,18 +55,22 @@ El benchmark de referencias visuales está en [benchmark/README.md](benchmark/RE
 
 Objetivo de la propuesta en móvil: rendimiento de 90 o más y contenido principal en menos de 2.5 s.
 
-## Dudas vigentes (14)
+## Dudas vigentes (18)
 
 | Tema | Pregunta | A quién |
 |---|---|---|
-| Sitio actual | ¿Bimbo corregirá en su sitio las cifras que contradicen el informe (96 y 102 países, 1,600 centros, 10 mil productos, 152 mil colaboradores) antes del lanzamiento? | Comunicación |
+| Cifras | El Informe Anual 2025 (93 países, 249 panaderías, más de 1,700 centros, más de 153,000 colaboradores) y el reporte del 3T26 (102, 250, más de 1,600, más de 152,000) no coinciden. ¿Cuál es el juego vigente? La demo usa el del 3T26. | Relación con Inversionistas |
+| Sitio actual | ¿Bimbo corregirá en su sitio las cifras desactualizadas (96 países en Nosotros, 10 mil productos) antes del lanzamiento? | Comunicación |
 | Contacto | Teléfono corporativo que se publica. | Comunicación |
 | Contacto | Canal para clientes y distribuidores. | Comercial |
 | Prensa | Correo y responsable de prensa. | Comunicación |
-| Inversionistas | Correo y teléfono de Relación con Inversionistas (migrar de la página actual). | Relación con Inversionistas |
+| Inversionistas | Teléfono de Relación con Inversionistas (el correo ir@grupobimbo.com sale del Informe Anual 2025). | Relación con Inversionistas |
+| Inversionistas | ¿«Deuda vinculada a la sustentabilidad» es el término correcto para los certificados Bimbo 23L y 23-2L? | Relación con Inversionistas |
+| Sustentabilidad | Electricidad renovable: ¿se publica 99% (criterio RE100) o «respaldamos el 100%» con la explicación de los certificados? La demo usa 99%. | Sustentabilidad |
+| Sustentabilidad | ¿Se publica la sección «Lo que todavía no logramos» (alcance 3, pausa ante SBTi, meta de nutrición) y con ese tono? | Sustentabilidad y Comunicación |
 | Carreras | Bolsas de trabajo de México, Estados Unidos y Europa. | Talento |
-| Nosotros | Semblanzas de los fundadores e integrantes del Comité Directivo. | Comunicación |
-| Nosotros | Frases de apoyo de las siete creencias (propuesta nuestra). | Cultura |
+| Nosotros | Semblanzas de los fundadores y vigencia del Comité Directivo que publica el Informe Anual 2025. | Comunicación |
+| Nosotros | ¿Quieren una explicación breve por creencia? La demo publica solo los siete títulos oficiales. | Cultura |
 | Reconocimientos | Año del reconocimiento de TIME. | Comunicación |
 | Marcas | Catálogo de marcas con categorías, países y sitio oficial de cada una. | Marketing |
 | Marcas | ¿Ricolino sigue en el portafolio? La demo original la incluía y el sitio actual no la muestra. | Marketing |
@@ -74,7 +78,7 @@ Objetivo de la propuesta en móvil: rendimiento de 90 o más y contenido princip
 | Idiomas | Copy en inglés: se redactará a partir del español una vez aprobado. | Equipo de la propuesta |
 | Media | Logotipos en vector, fotos y video con derechos de uso para el diseño. | Comunicación |
 
-### Marcadores en el copy (14)
+### Marcadores en el copy (12)
 
 - Inicio › reconocimientos: `[año por confirmar]`
 - Nosotros › fundadores: `[semblanza por migrar]`
@@ -83,8 +87,6 @@ Objetivo de la propuesta en móvil: rendimiento de 90 o más y contenido princip
 - Nosotros › fundadores: `[semblanza por migrar]`
 - Nosotros › fundadores: `[semblanza por migrar]`
 - Nosotros › fundadores: `[semblanza por migrar]`
-- Nosotros › liderazgo: `[integrantes por migrar desde Inversionistas › Gobierno corporativo]`
-- Inversionistas › contacto: `[correo y teléfono por migrar desde Inversionistas › Contacto]`
 - Prensa › contacto: `[correo de prensa por confirmar]`
 - Carreras › vacantes: `[enlace pendiente]`
 - Carreras › vacantes: `[enlace pendiente]`

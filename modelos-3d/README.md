@@ -11,11 +11,10 @@ empaquetadas dentro de cada `.blend` (abren solos). Medidas en metros.
 | `trailer-full.blend` | Tractocamión con remolque, modelado a partir de fotos del juguete |
 
 ## Exportar a la página
-La página carga `assets/planta_llegada.glb`: la escena exportada a glTF con la animación horneada (un clip por
-objeto), texturas WebP y mallas comprimidas con Draco. Al exportar, los paneles solares (material procedural en
-Blender) se cambian por una textura de módulo repetida y los tráileres estacionados se vuelven objetos reales.
-Después de regenerar el `.glb`, sube el número de versión `V` en `main.js` para que el navegador no use la copia
-en caché.
+`scripts/llegada_salida.py` arma la escena desde los tres modelos y `scripts/exportar_web.py` la exporta a
+`public/animaciones/planta-llegada/assets/planta_llegada.glb` (glTF con la animación horneada, WebP y Draco).
+El paso a paso, el contenido del `.glb` y las formas de integrarla al sitio están en
+[`docs/animaciones/planta-llegada.md`](../docs/animaciones/planta-llegada.md).
 
 ## Material de referencia
 Las calcas de los camiones salen de fotos de camioncitos de juguete y las fachadas del almacén de una foto aérea

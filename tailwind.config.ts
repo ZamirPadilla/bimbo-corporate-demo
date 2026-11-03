@@ -1,5 +1,28 @@
 import type { Config } from "tailwindcss";
 
+// Globo de presencia (/demo/globo): paleta provisional tomada de las infografías del Informe Anual 2025
+// («Celebramos 80 años de crecimiento» y el mapa de presencia). Se exporta porque la escena 3D la usa en JS.
+export const globo = {
+  noche: "#0E2A4F",
+  oceano: "#123763",
+  tierra: "#56739B",
+  norteamerica: "#3170F7",
+  mexico: "#B9DBFF",
+  latinoamerica: "#4FA3E8",
+  eaa: "#6E7BFF",
+  rotulo: "#5AAEF0",
+  // v2: granos en su color natural sobre el mantel azul (la foto del mapa de trigo del informe).
+  trigo: "#D9A456",
+  trigoTostado: "#A8692B",
+  avena: "#E7D5AF",
+  avenaTostada: "#BFA270",
+  ajonjoli: "#F2E5C6",
+  ajonjoliTostado: "#CFB385",
+  maiz: "#F4C142",
+  maizTostado: "#D98B1E",
+  tierraNatural: "#3D5C88",
+};
+
 const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,9 +37,11 @@ const config: Config = {
           cream: "#FFF8E7",
           dark: "#1A1A1A",
         },
+        globo,
       },
       fontFamily: {
         sans: ["system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
     },
   },

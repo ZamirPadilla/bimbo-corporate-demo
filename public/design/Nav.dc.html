@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+@media (max-width: 1120px){ [data-nav-pills]{display:none !important} [data-nav-burger]{display:flex !important} [data-nav-lang]{display:none !important} }
+@media (max-width: 560px){ [data-nav-cta]{display:none !important} }
+</style>
+</helmet>
+<header ref="{{ barRef }}" onMouseLeave="{{ close }}" style="position:fixed;left:0;right:0;top:0;z-index:100;font-family:Outfit, system-ui, sans-serif;padding:14px 20px {{ barPb }};background:{{ barBg }};box-shadow:{{ barSh }};transition:transform .55s cubic-bezier(.2,.7,.2,1), background .45s, box-shadow .45s, padding .45s;pointer-events:{{ barPe }}">
+  <div style="max-width:1480px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;pointer-events:auto">
+    <a href="Inicio.dc.html" aria-label="Grupo Bimbo, inicio" style="display:flex;align-items:center;height:64px;padding:0 6px;box-shadow:none;text-decoration:none;gap:12px">
+      <img src="https://www.grupobimbo.com/themes/custom/bimbo/logo.svg" alt="Grupo Bimbo" style="height:56px;width:auto;display:block">
+    </a>
+    <nav data-nav-pills="" style="display:flex;align-items:center;background:{{ chipBg }};backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:999px;padding:6px;box-shadow:none;gap:2px">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" onMouseEnter="{{ l.open }}" onFocus="{{ l.open }}" style="text-decoration:none;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;background:{{ l.bg }};color:{{ l.fg }};transition:background .3s, color .3s;display:flex;align-items:center;gap:6px">{{ l.t }}</a>
+      </sc-for>
+    </nav>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button onClick="{{ toggleSearch }}" aria-label="Buscar" style="all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;background:{{ chipBg }};backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;color:{{ chipFg }};box-shadow:none">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+      </button>
+      <div data-nav-lang="" style="display:flex;background:{{ chipBg }};backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:999px;padding:5px;font-size:13px;font-weight:600;color:{{ chipFg }};box-shadow:none">
+        <span style="background:#0F2F51;color:#FBF7F0;border-radius:999px;padding:7px 10px">ES</span><span style="padding:7px 10px">EN</span>
+      </div>
+      <a data-nav-cta="" href="Contacto.dc.html" style="text-decoration:none;background:#EE353A;color:#fff;font-weight:600;font-size:15px;height:44px;padding:0 20px;border-radius:999px;font-size:14px !important;display:flex;align-items:center;gap:8px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-2px);color:#fff">Contacto</a>
+      <button data-nav-burger="" onClick="{{ toggleMenu }}" aria-label="Menú" style="all:unset;cursor:pointer;display:none;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:#0F2F51;color:#fff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 8h16M4 16h16"></path></svg>
+      </button>
+    </div>
+  </div>
+  <sc-if value="{{ megaOn }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1480px;margin:10px auto 0;pointer-events:auto">
+      <div style="background:#FBF7F0;border-radius:28px;box-shadow:0 30px 80px rgba(15,47,81,.22);padding:36px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,1fr);gap:40px;color:#0F2F51">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:{{ mega.color }}">{{ mega.t }}</div>
+          <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.9">{{ mega.titular }}</div>
+          <p style="margin:0;font-size:16px;line-height:1.5;color:#3d4a5c">{{ mega.d }}</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;align-content:start">
+          <sc-for list="{{ mega.items }}" as="i" hint-placeholder-count="5">
+            <a href="{{ i.href }}" style="text-decoration:none;color:#0F2F51;padding:14px 0;border-bottom:1px solid rgba(15,47,81,.12);display:flex;flex-direction:column;gap:3px" style-hover="color:#15359D">
+              <span style="font-size:17px;font-weight:600">{{ i.t }}</span><span style="font-size:13.5px;color:#6E675C">{{ i.d }}</span>
+            </a>
+          </sc-for>
+        </div>
+        <a href="{{ mega.href }}" style="text-decoration:none;color:#fff;position:relative;border-radius:20px;overflow:hidden;min-height:240px;background:#15359D;display:flex;align-items:flex-end;padding:22px">
+          <div style="position:absolute;inset:0;background-image:url({{ mega.img }});background-size:cover;background-position:center"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(15,47,81,.85), rgba(15,47,81,0) 60%)"></div>
+          <div style="position:relative;display:flex;flex-direction:column;gap:6px"><span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#EEB14F">Destacado</span><span style="font-size:21px;font-weight:700;line-height:1.15">{{ mega.feat }}</span></div>
+        </a>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ search }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1480px;margin:10px auto 0;pointer-events:auto">
+      <div style="background:#FBF7F0;border-radius:28px;box-shadow:0 30px 80px rgba(15,47,81,.22);padding:28px 32px;display:flex;flex-direction:column;gap:18px">
+        <input autofocus="" placeholder="Busca una marca, un producto o un reporte" style="font:inherit;font-size:26px;font-weight:500;padding:14px 0;border:0;border-bottom:2px solid #15359D;background:transparent;color:#0F2F51;outline:none">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="font-size:13px;color:#6E675C;margin-right:6px">Lo más buscado</span>
+          <sc-for list="{{ populares }}" as="p" hint-placeholder-count="5"><span style="font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid rgba(15,47,81,.18);color:#0F2F51">{{ p }}</span></sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;background:#15359D;color:#fff;padding:110px 28px 40px;display:flex;flex-direction:column;gap:2px;pointer-events:auto;z-index:-1;overflow:auto">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="6">
+        <a href="{{ l.href }}" style="color:#fff;text-decoration:none;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.18)">{{ l.t }}</a>
+      </sc-for>
+      <a href="Contacto.dc.html" style="color:#fff;margin-top:24px;font-size:18px;font-weight:600">Contacto →</a>
+    </div>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1440px&quot;,&quot;height&quot;:&quot;520px&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;Nosotros&quot;,&quot;Marcas&quot;,&quot;Sustentabilidad&quot;,&quot;Inversionistas&quot;,&quot;Prensa&quot;,&quot;Carreras&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { menu: false, search: false, open: -1, solid: true };
+  barRef = React.createRef();
+  componentDidMount() {
+    this.last = scrollY;
+    this.onS = () => {
+      const y = scrollY, el = this.barRef.current; if (!el) return;
+      const down = y > this.last && y > 160;
+      if (!this.state.menu && this.state.open < 0 && !this.state.search) el.style.transform = down ? 'translateY(-130%)' : 'none';
+      this.last = y;
+      const hero = document.querySelector('[data-screen-label="01 Hero"]'); const solid = true; if (solid !== this.state.solid) this.setState({ solid });
+    };
+    addEventListener('scroll', this.onS, { passive: true }); this.onS(); this.t1 = setTimeout(this.onS, 60); this.t2 = setTimeout(this.onS, 500); this.t3 = setTimeout(this.onS, 1500);
+  }
+  componentWillUnmount() { removeEventListener('scroll', this.onS); [this.t1, this.t2, this.t3].forEach(clearTimeout); }
+  renderVals() {
+    const C = 'https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/';
+    const active = this.props.active ?? '';
+    const M = [
+      { t: 'Nosotros', href: 'Nosotros.dc.html', color: '#15359D', titular: 'Una panadería de 1945', d: 'Quiénes somos, de dónde venimos y quién dirige la empresa.', feat: '80 años de creer y crear', img: C + 'styles/decada_570x370/public/historia/Bimbo_1945-1950.png?VersionId=Pe3tHg8OI_ra5xpLSaxlIYub7ba4xqDn&itok=v_FYrEEo',
+        items: [['Quiénes somos', 'Filosofía, misión y creencias'], ['Historia', 'Ocho eras, de 1945 a hoy'], ['Fundadores', 'Los seis socios'], ['Liderazgo', 'Dirección y comité'], ['Reconocimientos', 'Más de 90 en 2025'], ['Innovación', 'Bimbo Ventures y centros']] },
+      { t: 'Marcas', href: 'Marcas.dc.html', color: '#EE353A', titular: 'Más de 100 marcas', d: 'Encuentra una marca por país, región o categoría.', feat: 'Visita nuestras panaderías', img: C + 'nuestras-panaderias/marinela.jpeg?VersionId=BnWsSdVu0eWc_ywZko_7i.pXcJ1ub.LX',
+        items: [['Directorio de marcas', 'Busca por nombre'], ['Por categoría', 'Pan, pan dulce, botanas…'], ['Por país', 'Las 4 regiones'], ['Productos icónicos', 'Los que nos acompañan'], ['Dónde comprar', 'Tiendas y en línea'], ['Visitas', 'Panaderías abiertas']] },
+      { t: 'Sustentabilidad', href: 'Sustentabilidad.dc.html', color: '#479851', titular: 'Metas públicas', d: 'La estrategia «Alimentamos un mundo mejor» y cuánto hemos avanzado.', feat: 'Más de 500 mil hectáreas regenerativas', img: C + '2026-04/parati.jpg',
+        items: [['Para Ti', 'Nutrición y transparencia'], ['Para la Vida', 'Comunidades y gente'], ['Para la Naturaleza', 'Emisiones, residuos y campo'], ['Cimientos', 'Calidad, derechos y abasto'], ['Reportes y descargas', 'Informe anual y anexos'], ['Indicadores', 'Avance por meta']] },
+      { t: 'Inversionistas', href: 'Inversionistas.dc.html', color: '#0F2F51', titular: 'BMV: BIMBO', d: 'Resultados, reportes y gobierno corporativo.', feat: 'Informe Anual Integrado 2025', img: C + 'styles/reporte_345x460/public/reportes-2026/IA25GB_Cover_1500x1917jpg_2.jpg?VersionId=S5SgX_u0QxUFxJBQ3inABAJzsDqGPj5p&itok=dw_FyVtM',
+        items: [['Resultados 3T26', 'Reporte y conferencia'], ['Informes anuales', 'Cada ejercicio'], ['Reportes BMV', 'Información a la bolsa'], ['Eventos', 'Presentaciones'], ['Gobierno corporativo', 'Consejo y comités'], ['Financiamiento sustentable', 'Marco y bonos']] },
+      { t: 'Prensa', href: 'Prensa.dc.html', color: '#DF8A35', titular: 'Sala de prensa', d: 'Comunicados, noticias y material para medios.', feat: 'Bimbo Global Race 2026', img: C + 'styles/headline_press/public/noticias-2026/Banner_BGR_1280x798.jpg?VersionId=a.oo81et8KwJam_mFT8UcvVa3o4kXSMP&itok=lhf3eOad',
+        items: [['Comunicados', 'Oficiales'], ['Noticias', 'Por categoría'], ['Kit de medios', 'Logos y fotografías'], ['Contacto de prensa', 'Solicitudes de medios']] },
+      { t: 'Carreras', href: 'Carreras.dc.html', color: '#D33D66', titular: 'Haz carrera', d: 'Vacantes en los 39 países donde operamos.', feat: 'Más de 153,000 personas', img: 'https://i.ytimg.com/vi/3Wvdz9tr9ZQ/maxresdefault.jpg',
+        items: [['Vacantes por país', 'Bolsas de trabajo'], ['Vida en Bimbo', 'Cultura y bienestar'], ['Proceso de selección', 'Paso a paso'], ['Aviso de fraude', 'No cobramos nada']] },
+    ];
+    const o = this.state.open;
+    const mg = o >= 0 ? M[o] : M[0];
+    return {
+      barRef: this.barRef, barBg: 'transparent', barPb: '0px', barSh: 'none', barPe: 'none', chipBg: '#fff', chipFg: this.state.solid || this.state.open >= 0 ? '#0F2F51' : '#fff',
+      links: M.map((m, i) => ({ t: m.t, href: m.href, bg: i === o ? '#0F2F51' : m.t === active ? '#15359D' : 'transparent', fg: i === o || m.t === active ? '#fff' : (this.state.solid || o >= 0 ? '#0F2F51' : '#fff'), rot: i === o ? 'rotate(180deg)' : 'none', open: () => this.setState({ open: i, search: false }) })),
+      megaOn: o >= 0, mega: { ...mg, items: mg.items.map(([t, d]) => ({ t, d, href: mg.href })) },
+      populares: ['Informe Anual 2025', 'Gansito', 'Takis', 'Vacantes México', 'Resultados 3T26'],
+      menu: this.state.menu, search: this.state.search,
+      close: () => this.state.open >= 0 && this.setState({ open: -1 }),
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu, open: -1 })),
+      toggleSearch: () => this.setState(s => ({ search: !s.search, open: -1 })),
+    };
+  }
+}
+</script>
+</body>
+</html>

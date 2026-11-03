@@ -54,3 +54,34 @@ golpe en qué casa está.
 - Benchmark de inspiración: [`skills/benchmark-inspiracion`](../../skills/benchmark-inspiracion/SKILL.md) (método y ejemplo de Bimbo).
 - Morph de forma y producto que se arma con el scroll: TÒPAS (https://bar-topas.ch/) y Morpho Water
   (https://morphowater.com/), según el benchmark de Awwwards del 2 de noviembre de 2026.
+
+---
+
+## 02 · El camión que cambia de época al avanzar
+
+**Estado:** prototipo funcional, sin aprobar · **Sección:** Nosotros › historia · **Propuesta:** Marlon, 3 de noviembre de 2026
+
+### La idea
+Un camión de reparto avanza por una carretera conforme el usuario hace scroll. Cada época tiene un arco en el
+camino con su década; mientras el camión lo cruza, la parte que ya pasó el arco es el camión de la época nueva
+y la que no, el anterior. Recorre seis épocas: años 40, 70, 80, 90, 2025 y el tráiler de los 80 años.
+
+### Cómo verla
+Con `npm run dev`, abrir `/prototipos/camiones/index.html`. Es una página estática en
+[`public/prototipos/camiones/`](../../public/prototipos/camiones/) con three.js 0.169 desde CDN; no toca las
+páginas de Next.
+
+### Cómo funciona
+- Seis modelos GLB (1.7 MB en total) con la misma altura y la nariz en `x = 0`; las llantas giran con la distancia.
+- El camión se queda en el origen y el mundo se mueve. Dos planos de recorte por modelo (`clippingPlanes`,
+  `clipShadows`) muestran cada camión solo entre su arco de entrada y el de salida.
+- [`scripts/camiones/exportar_glb.py`](../../scripts/camiones/exportar_glb.py) regenera un GLB desde Blender.
+- Guía para integrarla al sitio: [`docs/integracion/camiones-epocas.md`](../integracion/camiones-epocas.md).
+
+### Qué falta decidir
+- **Material oficial de los camiones.** Los modelos son aproximaciones hechas a partir de fotos de juguetes de
+  colección y sus calcas salen de esas fotos: van contra la regla de marca de `CLAUDE.md` (camiones que no se
+  aproximan, fotos de terceros que no se publican). Se suben para evaluar la interacción; para producción se
+  reemplazan por modelos o renders oficiales o se retiran.
+- Si va en Nosotros (intensidad 5) y cómo se integra como componente de Next.
+- Diseño del arco (hoy un marco blanco con la década) y versión con `prefers-reduced-motion`.

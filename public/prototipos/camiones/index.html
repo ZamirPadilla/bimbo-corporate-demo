@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camiones · Demo Grupo Bimbo</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --fondo: #d6d8dc; --tinta: #1d2a4d; --rojo: #d2232a; --suave: #5b6478; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: auto; }
+  body { margin: 0; background: var(--fondo); color: var(--tinta); font-family: "Outfit", system-ui, sans-serif; }
+  .intro, .cierre { min-height: 70vh; display: grid; place-content: center; text-align: center; padding: 0 16px; }
+  .intro h1 { font-size: clamp(28px, 5vw, 56px); margin: 0 0 8px; letter-spacing: -0.01em; }
+  .intro p, .cierre p { color: var(--suave); margin: 0; }
+  /* el scroll de esta sección mueve el camión; el lienzo queda fijo */
+  .recorrido { height: 700vh; position: relative; }
+  .fijo { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+  canvas { width: 100%; height: 100%; display: block; }
+  .epoca { position: absolute; left: 50%; bottom: 8vh; transform: translateX(-50%); text-align: center; pointer-events: none; }
+  .epoca b { display: block; font-size: clamp(38px, 7vw, 92px); line-height: 1; letter-spacing: -0.02em; }
+  .epoca span { font-size: 14px; color: var(--suave); letter-spacing: .08em; text-transform: uppercase; }
+  .linea { position: absolute; left: 50%; bottom: 4vh; transform: translateX(-50%); display: flex; gap: 10px; }
+  .linea i { width: 9px; height: 9px; border-radius: 50%; background: #a8adb7; transition: background .25s, transform .25s; }
+  .linea i.activa { background: var(--rojo); transform: scale(1.3); }
+  #cargando { position: absolute; inset: 0; display: grid; place-items: center; color: var(--suave); font-size: 14px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<section class="intro"><h1>Del 40 a nuestros días</h1><p>Baja: el camión Bimbo cambia de época cada vez que cruza un arco</p></section>
+<section class="recorrido">
+  <div class="fijo">
+    <canvas id="lienzo" aria-label="Camión Bimbo que se transforma de época en época al avanzar"></canvas>
+    <div class="epoca"><b id="anio">1940s</b><span id="nombre">Camión Super·pan</span></div>
+    <div class="linea" id="linea"></div>
+    <div id="cargando">Cargando camiones…</div>
+  </div>
+</section>
+<section class="cierre"><p>Prototipo de la demo · no es material oficial de Grupo Bimbo · modelos aproximados a partir de juguetes de colección</p></section>
+<script type="module" src="main.js"></script>
+</body>
+</html>

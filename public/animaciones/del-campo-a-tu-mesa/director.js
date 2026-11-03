@@ -44,7 +44,9 @@ function dirigir(p) {
     const o = opacidad(i, p), e = escenas[t.id];
     capas[t.id].style.opacity = String(o);
     if (!e) return;
-    e.fijarAvance(Math.min(Math.max((p - t.inicio) / (t.fin - t.inicio), 0), 1));
+    // el avance propio corre entre los fundidos: durante cada fundido las dos escenas se quedan en el cuadro que casa
+    const desde = TRAMOS[i - 1]?.fin ?? t.inicio, hasta = TRAMOS[i + 1]?.inicio ?? t.fin;
+    e.fijarAvance(Math.min(Math.max((p - desde) / (hasta - desde), 0), 1));
     if (o > 0) e.reanudar(); else e.pausar();
   });
 }

@@ -18,6 +18,87 @@ const VIAJE = { pos: [5.2, 3.6, -12.5], mira: [-2.4, 1.0, 0] }, LARGO_CAMIONES =
 const suave = (x) => x * x * (3 - 2 * x);
 const tramo = (x, [a, b]) => Math.min(Math.max((x - a) / (b - a), 0), 1);
 
+// La escena de la planta termina a 220 m y sus árboles son conos. Como el tractocamión sale por la calle A (x ≈ 19,
+// hacia -z) y la cámara lo sigue, aquí se completa: la calle con sus banquetas y su raya sigue hasta perderse en la
+// bruma, el piso llega al horizonte, y los cipreses se cambian por los árboles del campo (mismo glb y mismos tonos),
+// que además bordean la calle extendida junto con algunas manzanas bajas.
+const TONO_ARBOL = { M_hoja: 0x6f8a46, M_pino: 0x55734a, M_tronco: 0x6b4a35 };
+async function completarEntorno(escena, urlArboles) {
+  escena.updateMatrixWorld(true);
+  const mallas = (re) => { const l = []; escena.traverse((o) => { if (o.isMesh && re.test(o.name)) l.push(o); }); return l; };
+  const caja = (o) => new THREE.Box3().setFromObject(o);
+  const rnd = (() => { let s = 91; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; })();
+  const Z_FIN = -220, Z_INI = 140, LEJOS = -2600, CERCA = 900;   // la calle original va de Z_FIN a Z_INI
+
+  // piso hasta el horizonte (la bruma lo funde con el cielo antes del borde)
+  for (const o of mallas(/^Piso_lejano/)) { o.scale.x *= 10; o.scale.z *= 10; }
+  // calle, banquetas y raya amarilla más allá de sus dos extremos
+  const tiras = [];
+  for (const o of mallas(/^(Calle_A|Banqueta_A)/)) {
+    const b = caja(o), ancho = b.max.x - b.min.x, y = b.max.y + 0.001, x = (b.min.x + b.max.x) / 2;
+    for (const [z0, z1] of [[LEJOS, Z_FIN], [Z_INI, CERCA]]) {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(ancho, z1 - z0).rotateX(-Math.PI / 2), o.material);
+      m.position.set(x, y, (z0 + z1) / 2); m.receiveShadow = true; tiras.push(m);
+    }
+  }
+  const rayas = mallas(/^Raya_A/).sort((a, c) => caja(a).min.z - caja(c).min.z);
+  if (rayas.length > 1) {
+    const r0 = caja(rayas[0]), paso = (caja(rayas[rayas.length - 1]).min.z - r0.min.z) / (rayas.length - 1);
+    const geo = new THREE.PlaneGeometry(r0.max.x - r0.min.x, r0.max.z - r0.min.z).rotateX(-Math.PI / 2);
+    const zs = [];
+    for (let z = r0.min.z - paso; z > LEJOS; z -= paso) zs.push(z);
+    for (let z = caja(rayas[rayas.length - 1]).min.z + paso; z < CERCA; z += paso) zs.push(z);
+    const im = new THREE.InstancedMesh(geo, rayas[0].material, zs.length), m4 = new THREE.Matrix4();
+    zs.forEach((z, i) => im.setMatrixAt(i, m4.makeTranslation((r0.min.x + r0.max.x) / 2, r0.max.y + 0.002, z + (r0.max.z - r0.min.z) / 2)));
+    tiras.push(im);
+  }
+  tiras.forEach((t) => escena.add(t));
+
+  // manzanas bajas a los lados de la calle extendida, del mismo material que las vecinas
+  const vecina = mallas(/^Vecino/)[0];
+  if (vecina) {
+    const lista = [];
+    for (let z = Z_FIN - 20; z > -1400; z -= 22 + rnd() * 18) {
+      for (const lado of [-1, 1]) {
+        if (rnd() < 0.35) continue;
+        const x = lado < 0 ? -12 - rnd() * 40 : 40 + rnd() * 40, h = 4 + rnd() * 6;
+        lista.push([x, z, 10 + rnd() * 14, h, 10 + rnd() * 10]);
+      }
+    }
+    const im = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1).translate(0, 0.5, 0), vecina.material, lista.length), m4 = new THREE.Matrix4();
+    lista.forEach(([x, z, w, h, d], i) => im.setMatrixAt(i, m4.makeScale(w, h, d).setPosition(x, 0, z)));
+    im.castShadow = true; im.receiveShadow = true; escena.add(im);
+  }
+
+  // árboles: los del campo donde estaban los cipreses, y en hileras a los dos lados de la calle
+  const sitios = mallas(/^Cipres/).map((o) => { const b = caja(o); return [(b.min.x + b.max.x) / 2, (b.min.z + b.max.z) / 2, b.max.y]; });
+  mallas(/^(Cipres|Tronco)/).forEach((o) => o.removeFromParent());
+  for (let z = Z_FIN - 8; z > -1500; z -= 14 + rnd() * 10) {
+    sitios.push([29.5 + rnd() * 3, z, 7 + rnd() * 3]);
+    if (rnd() < 0.8) sitios.push([8.5 - rnd() * 3, z + 6 * rnd(), 7 + rnd() * 3]);
+  }
+  for (let z = Z_INI + 10; z < CERCA; z += 16 + rnd() * 10) { sitios.push([29.5 + rnd() * 3, z, 7 + rnd() * 3]); sitios.push([8.5 - rnd() * 3, z, 7 + rnd() * 3]); }
+  const g = await new GLTFLoader().loadAsync(urlArboles);
+  const especies = g.scene.children.filter((o) => o.name.startsWith('esp_'));
+  if (!especies.length) return;
+  g.scene.updateMatrixWorld(true);
+  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler();
+  especies.forEach((nodo, k) => {
+    const mios = sitios.filter((_, i) => i % especies.length === k);
+    if (!mios.length) return;
+    const alto = new THREE.Box3().setFromObject(nodo).getSize(new THREE.Vector3()).y || 1;
+    const inv = new THREE.Matrix4().copy(nodo.matrixWorld).invert();
+    nodo.traverse((o) => {
+      if (!o.isMesh) return;
+      const geo = o.geometry.clone(); geo.applyMatrix4(o.matrixWorld.clone().premultiply(inv));
+      const tono = TONO_ARBOL[o.material.name.replace(/\.\d+$/, '')] ?? TONO_ARBOL.M_hoja;
+      const im = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: tono, roughness: 0.9 }), mios.length);
+      mios.forEach(([x, z, h], i) => { const r = Math.abs(Math.sin(x * 12.9 + z * 78.2) * 43758) % 1; e.set(0, r * 6.28, 0); q.setFromEuler(e); const s = h * (0.85 + 0.3 * r) / alto; m4.compose(new THREE.Vector3(x, 0, z), q, new THREE.Vector3(s, s, s)); im.setMatrixAt(i, m4); });
+      im.castShadow = true; im.receiveShadow = true; escena.add(im);
+    });
+  });
+}
+
 export async function montarPlantaFusion(raiz, opciones = {}) {
   const glb = opciones.glb ?? new URL('./assets/planta_llegada.glb?v=2', import.meta.url).href;
   const canvas = raiz.querySelector('canvas');
@@ -51,6 +132,7 @@ export async function montarPlantaFusion(raiz, opciones = {}) {
     }
   });
   sobrantes.forEach((o) => o.removeFromParent());
+  await completarEntorno(gltf.scene, opciones.arboles ?? new URL('../campo/assets/arboles.glb?v=1', import.meta.url).href);
 
   const dirSol = new THREE.Vector3(0.283, -0.743, 0.606).normalize();
   const centro = new THREE.Vector3(-45, 0, -20);

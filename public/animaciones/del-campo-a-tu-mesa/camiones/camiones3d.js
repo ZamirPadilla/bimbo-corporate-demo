@@ -25,8 +25,15 @@ const LUZ = {
   cielo: [0xc98f5e, 0xdfe7ef], sol: [0xffb878, 0xfff8ef], solI: [2.0, 2.6], hemi: [0xf3c9a0, 0xffffff], hemiI: [1.2, 1.55],
 };
 // cámaras relativas al camión (marco: x adelante, y arriba, z a la izquierda del camión)
-// ENTRADA: el último cuadro del campo (cámara a 10.5 m adelante, 4.4 m a un lado y a 2 m de altura; lente de 40 mm)
-const ENTRADA = { pos: new THREE.Vector3(8.6, 2.0, 4.4), mira: new THREE.Vector3(-1.85, 1.2, 0), fovH: 2 * Math.atan(18 / 40) };
+// ENTRADA: el último cuadro del campo, pasado a este marco. En el campo la cámara queda 10.49 m adelante del origen
+// del camión, 4.43 m a su izquierda y 1.66 m arriba, mirando 1.2 m arriba del origen, con lente de 40 mm. Ese camión
+// mide 4.45 m y tiene el origen a 2.27 m de la nariz; el de aquí mide 3.708 m y tiene el origen en la nariz, así que
+// todo se escala por K y se recorre el origen: el camión queda del mismo tamaño y en el mismo lugar de la pantalla.
+const K = 3.708 / 4.45, ORIGEN_CAMPO = -2.27 * K;
+const ENTRADA = {
+  pos: new THREE.Vector3(ORIGEN_CAMPO + 10.488 * K, 1.6645 * K, 4.4314 * K),
+  mira: new THREE.Vector3(ORIGEN_CAMPO, 1.2 * K, 0), fovH: 2 * Math.atan(18 / 40),
+};
 // VIAJE: 3/4 frontal, como los renders del prototipo
 const VIAJE = { pos: new THREE.Vector3(5.2, 3.6, -12.5), mira: new THREE.Vector3(-2.4, 1.0, 0), fovH: null };
 
@@ -157,14 +164,15 @@ export async function montarCamiones(raiz, opciones = {}) {
     if (techos.length) instanciar(techo, mat(0xffffff), techos);
     if (edificios.length) instanciar(new THREE.BoxGeometry(1, 1, 1), mat(0xffffff, { roughness: 0.8 }), edificios);
   }
-  // arcos sin letrero: el momento del cambio de época
-  const cortina = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.16, depthWrite: false, side: THREE.DoubleSide });
-  for (const x of ARCOS) {
-    const arco = new THREE.Group(); arco.position.x = x; mundo.add(arco);
-    const banda = new THREE.Mesh(new THREE.PlaneGeometry(0.35, 7.2), blanco); banda.rotation.x = -Math.PI / 2; banda.position.y = 0.006; arco.add(banda);
-    const velo = new THREE.Mesh(new THREE.PlaneGeometry(7.2, 3.4), cortina); velo.rotation.y = Math.PI / 2; velo.position.y = 1.7; arco.add(velo);
-    for (const z of [-3.75, 3.75]) { const poste = new THREE.Mesh(new THREE.BoxGeometry(0.16, 3.6, 0.16), mat(0xffffff)); poste.position.set(0, 1.8, z); poste.castShadow = true; arco.add(poste); }
-    const viga = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.16, 7.66), mat(0xffffff)); viga.position.y = 3.6; arco.add(viga);
+  // el cambio de época es un cristal sin marco que cruza todo el paisaje: sus bordes nunca entran a cuadro
+  {
+    const g = new THREE.PlaneGeometry(600, 160, 1, 40).rotateY(Math.PI / 2).translate(0, 80 - 0.5, 0);
+    // más denso abajo y casi invisible arriba, como un vidrio que refleja el piso
+    const p = g.attributes.position, cs = new Float32Array(p.count * 4);
+    for (let i = 0; i < p.count; i++) cs.set([1, 1, 1, 0.22 * Math.exp(-Math.max(p.getY(i), 0) / 9) + 0.05], i * 4);
+    g.setAttribute('color', new THREE.BufferAttribute(cs, 4));
+    const cristal = new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false, side: THREE.DoubleSide, fog: false });
+    for (const x of ARCOS) { const c = new THREE.Mesh(g, cristal); c.position.x = x; c.renderOrder = 2; mundo.add(c); }
   }
 
   // ---------- camiones: todos en el origen, cada uno recortado entre su arco de entrada y el de salida ----------

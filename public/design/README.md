@@ -21,6 +21,20 @@ sobre `public/` (por ejemplo `python3 -m http.server 8818 --directory public`).
 | `Nav.dc.html`, `Footer.dc.html` | Componentes compartidos que Inicio carga con `dc-import` |
 | `support.js` | Runtime de Claude Design (monta la plantilla `<x-dc>`) |
 | `assets/` | Solo las 11 imágenes y videos que Inicio usa |
+| `globo/` | Globo de presencia v2 (sección `07b Mapa`, entre Íconos y la cinta de idiomas) |
+
+## Mapa (globo de presencia)
+
+La sección `07b Mapa` monta el mismo componente de `/demo/globo/v2` (multigrano en color natural, sin el panel
+del laboratorio). No se copia a mano: `components/globo/montar.tsx` lo expone como `window.BimboGlobo` y
+`scripts/globo-estatico.ts` lo empaqueta con three.js en `globo/bimbo-globo.js` y sus estilos de Tailwind,
+acotados a `[data-globo-raiz]`, en `globo/bimbo-globo.css`. Los datos los lee de `public/globo/`.
+
+Cuando cambie el globo (`components/globo/`) o las cifras (`content/`), regenera y sube `?v=` en el `<helmet>`:
+
+```bash
+npx tsx scripts/globo-estatico.ts
+```
 
 Lo que **no** se trajo: `uploads/` (capturas y documentos de contexto del proyecto), `Inicio v1` y `Inicio v2`
 (versiones anteriores) y los assets que Inicio ya no usa.

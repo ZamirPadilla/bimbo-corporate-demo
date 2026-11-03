@@ -12,6 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<link rel="stylesheet" href="globo/bimbo-globo.css?v=1">
+<script src="globo/bimbo-globo.js?v=1" defer></script>
 <style>
 html,body{margin:0;background:#FBF7F0;-webkit-font-smoothing:antialiased;font-synthesis:none}
 html.lenis,html.lenis body{height:auto}
@@ -46,6 +48,7 @@ a:hover{color:#0F2F51}
  [data-ico-line]{position:static !important;max-width:560px}
  [data-ico-word]{position:static !important;transform:none !important;font-size:12.5vw !important}
  [data-hist-stage]{grid-template-columns:1fr !important}
+ [data-screen-label="07b Mapa"]{padding-top:76px !important}
 }
 @media (max-width: 600px){ [data-bento] > *{grid-column:1 / -1 !important} [data-bento]{grid-template-columns:1fr !important} }
 </style>
@@ -145,6 +148,10 @@ a:hover{color:#0F2F51}
       </sc-for>
     </div>
   </div>
+</section>
+
+<section id="presencia-globo" data-screen-label="07b Mapa" data-bg="#0E2A4F" style="position:relative;background:#0E2A4F">
+  <div ref="{{ globoRef }}" data-globo-raiz="" style="min-height:100svh"></div>
 </section>
 
 <section data-screen-label="02 Cinta" data-bg="#15359D" style="overflow:hidden;padding:30px 0 34px;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)">
@@ -551,6 +558,7 @@ class Component extends DCLogic {
   state = { osoIn: false, osoAlt: false, saludo: 0, saludoOp: 1, region: 1, moT: 0, accH: -1, pilarH: -1, dialH: false };
   rootRef = React.createRef(); bgRef = React.createRef(); loaderRef = React.createRef(); loaderVidRef = React.createRef(); loaderBarRef = React.createRef(); progRef = React.createRef();
   heroRef = React.createRef(); donaRef = React.createRef(); osoWrapRef = React.createRef(); mxp = 0; myp = 0; h80Ref = React.createRef(); osoLRef = React.createRef(); osoRRef = React.createRef(); celeRef = React.createRef(); h1WrapRef = React.createRef(); hTagsRef = React.createRef(); cueRef = React.createRef();
+  globoRef = React.createRef();
   marqueeRef = React.createRef(); recoRef = React.createRef(); misionRef = React.createRef(); palabrasRef = React.createRef(); misionExtraRef = React.createRef();
   cifrasRef = React.createRef(); momRef = React.createRef(); relojRef = React.createRef(); icoRef = React.createRef(); momSecRef = React.createRef(); icoBgRef = React.createRef();
   cadRef = React.createRef(); cadTrackRef = React.createRef(); cadBarRef = React.createRef(); susRef = React.createRef(); histRef = React.createRef(); anioRef = React.createRef();
@@ -558,12 +566,15 @@ class Component extends DCLogic {
 
   get reduced() { return !!this.props.reducirMovimiento || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches); }
   get mobile() { return innerWidth <= 960; }
+  lib(name, cb) { const t = () => (window[name] ? cb(window[name]) : (this._lt = setTimeout(t, 40))); t(); }
 
   componentDidMount() {
     const root = this.rootRef.current; if (!root) return;
     const kick = () => root.querySelectorAll('video[data-autoplay]').forEach(v => { v.muted = true; v.defaultMuted = true; v.playsInline = true; if (v.paused) v.play().catch(() => {}); });
     kick(); this._kick = setInterval(kick, 1500); addEventListener('pointerdown', kick, { once: true });
     const R = this.reduced;
+    // Globo de presencia (07b Mapa): librería propia en globo/bimbo-globo.js, generada con scripts/globo-estatico.ts.
+    this.lib('BimboGlobo', G => { if (this.globoRef.current && !this.desmontarGlobo) this.desmontarGlobo = G.montar(this.globoRef.current); });
     const tk = this.props.typekitId;
     if (tk && !document.getElementById('tk-' + tk)) { const l = document.createElement('link'); l.id = 'tk-' + tk; l.rel = 'stylesheet'; l.href = `https://use.typekit.net/${tk}.css`; document.head.appendChild(l); }
     const ld = this.loaderRef.current;
@@ -657,6 +668,7 @@ class Component extends DCLogic {
     cancelAnimationFrame(this.loopId); cancelAnimationFrame(this.lenisId); this.lenis && this.lenis.destroy();
     clearInterval(this.sTimer); clearInterval(this.moTimer); clearInterval(this.osoI); clearTimeout(this.osoT); [this.sT2, this.ldT, this.ldT2].forEach(clearTimeout);
     this.io && this.io.disconnect(); (this.obs || []).forEach(o => o.disconnect());
+    clearTimeout(this._lt); this.desmontarGlobo && this.desmontarGlobo(); this.desmontarGlobo = null;
   }
 
   layout() {
@@ -907,6 +919,7 @@ class Component extends DCLogic {
     return {
       rootRef: this.rootRef, donaRef: this.donaRef, bgRef: this.bgRef, loaderRef: this.loaderRef, loaderVidRef: this.loaderVidRef, loaderBarRef: this.loaderBarRef, progRef: this.progRef,
       heroRef: this.heroRef, h80Ref: this.h80Ref, osoLRef: this.osoLRef, osoRRef: this.osoRRef, celeRef: this.celeRef, h1WrapRef: this.h1WrapRef, hTagsRef: this.hTagsRef, cueRef: this.cueRef,
+      globoRef: this.globoRef,
       marqueeRef: this.marqueeRef, recoRef: this.recoRef, misionRef: this.misionRef, palabrasRef: this.palabrasRef, misionExtraRef: this.misionExtraRef,
       cifrasRef: this.cifrasRef, momRef: this.momRef, relojRef: this.relojRef, icoRef: this.icoRef, icoBgRef: this.icoBgRef,
       cadRef: this.cadRef, cadTrackRef: this.cadTrackRef, cadBarRef: this.cadBarRef, susRef: this.susRef, histRef: this.histRef, anioRef: this.anioRef,

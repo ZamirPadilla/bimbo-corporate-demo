@@ -15,16 +15,17 @@ const R = 10;
 const ORIGEN = { lat: 19.43, lon: -99.13 };           // la planta del tramo anterior
 const FRENTE = { lat: 31, lon: -100 };                // lo que queda al centro de la tierra visible al final
 const DIST_INICIO = R + 2.2;
+const LLEGA = 0.6;                                   // avance en que se llega al encuadre de :8812
+const GIRO_FINAL = -0.4, ALEJA_FINAL = 4.5;          // después: el planeta gira ~23° (la tierra se va a la izquierda) y la cámara se aleja
 // cuándo se enciende cada región (inicio, fin del avance); dentro de cada una, de lo cercano a lo lejano de México
 const OLEADAS = { 2: [0.3, 0.3], 1: [0.42, 0.55], 3: [0.55, 0.75], 4: [0.75, 0.95] };
-// aerogeneradores (lat, lon): parques reales o creíbles; el del Istmo abastece a Bimbo en México
-const ISTMO = [[16.45, -94.95], [16.58, -94.72], [16.36, -94.82], [16.52, -95.18], [16.68, -94.98], [16.3, -95.05], [16.62, -95.35], [16.4, -94.6]];
-const PARQUES = [
-  [25.6, -98.1], [25.9, -97.8], [32.3, -116.0], [26.5, -101.2], [21.2, -101.9], [20.6, -103.6],           // México
-  [32.5, -100.5], [33.1, -101.5], [31.8, -99.8], [35.9, -98.6], [36.4, -99.3], [42.5, -94.1], [41.9, -95.6],
-  [35.1, -118.3], [44.2, -100.5], [40.8, -104.0], [49.6, -112.4],                                        // EUA y Canadá
-  [14.6, -90.5], [12.9, -86.1], [9.9, -84.0], [-5.4, -36.6], [-9.4, -40.3], [-45.2, -68.4], [-34.6, -58.9], // Latinoamérica
-  [42.1, -4.1], [41.5, -1.6], [55.6, -3.6], [49.1, 2.6], [39.1, 28.1], [42.2, 112.9], [40.6, 97.1], [22.6, 70.6], [-33.0, 25.1],
+// aerogeneradores (lat, lon): uno por parque, a 5° o más entre sí para que no se encimen (el rotor mide ~3° de
+// lado a lado a esta escala). El del Istmo de Tehuantepec es el parque que abastece a Bimbo en México
+const AEROGENERADORES = [
+  [16.5, -95.0], [25.7, -98.2], [31.5, -115.5], [27.8, -105.0], [22.0, -103.0],                       // México
+  [32.8, -100.5], [37.4, -97.5], [42.2, -93.0], [41.5, -105.8], [36.2, -120.2], [46.8, -100.8], [51.0, -112.0], // EUA y Canadá
+  [10.5, -85.2], [-5.5, -37.0], [-45.0, -68.5], [-32.5, -57.5],                                       // Latinoamérica
+  [42.0, -4.0], [54.5, -2.5], [39.0, 28.5], [42.0, 113.0], [-32.5, 24.5], [22.5, 71.0],
 ];
 
 const rad = THREE.MathUtils.degToRad;
@@ -84,6 +85,8 @@ export async function montarPlanetaFusion(raiz, opciones = {}) {
   const giro = new THREE.Matrix4().makeBasis(Et, Nt, D).multiply(new THREE.Matrix4().makeBasis(fr.E, fr.N, fr.n).transpose());
 
   const planeta = new THREE.Group(); planeta.quaternion.setFromRotationMatrix(giro); scene.add(planeta);
+  const qBase = planeta.quaternion.clone(), qGiro = new THREE.Quaternion(), EJE = new THREE.Vector3(0, 1, 0);
+  const rn = meta.nubes_rot[1], qNubes = new THREE.Quaternion().setFromEuler(new THREE.Euler(rn[0], rn[2], -rn[1], 'YZX'));   // Blender XYZ → three, como main.js
   const nodos = {}; gltf.scene.updateMatrixWorld(true); gltf.scene.traverse((o) => { if (o.name) nodos[o.name] = o; });
   const { material: matPlaneta } = materialPlaneta(sdfCosta, renderer);
   nodos['planeta_web'].traverse((o) => { if (o.isMesh) { o.material = matPlaneta; o.receiveShadow = true; } });
@@ -106,7 +109,8 @@ export async function montarPlanetaFusion(raiz, opciones = {}) {
       planeta.add(inst);
     });
   });
-  // nubes: giran con el planeta y un poco más con el avance
+  // nubes: en la misma posición que en :8812 (al final de su intro), que las deja en la orilla del encuadre; con el
+  // avance se recorren poco
   const pivoteNubes = new THREE.Group(); scene.add(pivoteNubes);
   const matNube = new THREE.MeshStandardMaterial({ color: 0xf3f4ff, roughness: 0.55, emissive: 0xe9ebff, emissiveIntensity: 0.35, transparent: true });
   for (const [nombre, o] of Object.entries(nodos)) { if (!nombre.startsWith('nube_')) continue; o.traverse((ch) => { if (ch.isMesh) ch.material = matNube; }); pivoteNubes.add(o); }
@@ -120,7 +124,7 @@ export async function montarPlanetaFusion(raiz, opciones = {}) {
   ];
   const piezasRotor = [0, 1, 2].map((k) => new THREE.BoxGeometry(0.022, ASPA, 0.006).translate(0, ASPA / 2 + 0.012, 0).rotateZ(k * Math.PI * 2 / 3))
     .concat(new THREE.SphereGeometry(0.02, 10, 8));                                       // tres aspas y buje
-  const marcos = ISTMO.concat(PARQUES).map(([lat, lon], i) => {
+  const marcos = AEROGENERADORES.map(([lat, lon], i) => {
     const { n, N, E } = base(lat, lon);
     const rumbo = rad(70 + (i * 37) % 40);           // casi todos de cara al mismo viento
     const x = N.clone().multiplyScalar(Math.cos(rumbo)).add(E.clone().multiplyScalar(Math.sin(rumbo)));
@@ -179,12 +183,16 @@ export async function montarPlanetaFusion(raiz, opciones = {}) {
   const qFinal = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().lookAt(posFinal, posFinal.clone().add(fwdFinal), upFinal));
   const dirFinal = posFinal.clone().normalize(), distFinal = posFinal.length(), dir = new THREE.Vector3();
   function dibujar(p, segundos) {
-    const k = suave(tramo(p, 0, 0.85));
+    const k = suave(tramo(p, 0, LLEGA));
     dir.copy(dirInicio).lerp(dirFinal, k).normalize();
     const dist = Math.exp(Math.log(DIST_INICIO) + (Math.log(distFinal) - Math.log(DIST_INICIO)) * k);
     camara.position.copy(dir).multiplyScalar(dist);
-    camara.quaternion.slerpQuaternions(qInicio, qFinal, suave(tramo(p, 0.05, 0.85)));
-    pivoteNubes.quaternion.copy(planeta.quaternion); pivoteNubes.rotateY(p * 0.15);
+    camara.quaternion.slerpQuaternions(qInicio, qFinal, suave(tramo(p, 0.05, LLEGA)));
+    // ya en el encuadre, el scroll sigue moviendo: el planeta gira sobre su eje y la cámara se aleja por su eje de vista
+    const kf = suave(tramo(p, LLEGA - 0.15, 1));
+    planeta.quaternion.copy(qBase).multiply(qGiro.setFromAxisAngle(EJE, GIRO_FINAL * kf));
+    camara.position.addScaledVector(fwdFinal, -ALEJA_FINAL * suave(tramo(p, LLEGA, 1)));
+    pivoteNubes.quaternion.copy(qNubes); pivoteNubes.rotateY(-0.12 * p);
     matNube.opacity = suave(tramo(dist, R + 3, R + 6));   // de cerca, las nubes estorban
     girarRotores(segundos);
     for (const c of paises) {

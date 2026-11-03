@@ -7,6 +7,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { plantarArboles } from '../arboles-campo.js';
 
 const CIELO = 0xdfe7ef;
 const FIN_2025 = 19.4, FIN_TRAILER = 20, DURACION = 20;
@@ -22,7 +23,6 @@ const tramo = (x, [a, b]) => Math.min(Math.max((x - a) / (b - a), 0), 1);
 // hacia -z) y la cámara lo sigue, aquí se completa: la calle con sus banquetas y su raya sigue hasta perderse en la
 // bruma, el piso llega al horizonte, y los cipreses se cambian por los árboles del campo (mismo glb y mismos tonos),
 // que además bordean la calle extendida junto con algunas manzanas bajas.
-const TONO_ARBOL = { M_hoja: 0x6f8a46, M_pino: 0x55734a, M_tronco: 0x6b4a35 };
 async function completarEntorno(escena, urlArboles) {
   escena.updateMatrixWorld(true);
   const mallas = (re) => { const l = []; escena.traverse((o) => { if (o.isMesh && re.test(o.name)) l.push(o); }); return l; };
@@ -78,25 +78,7 @@ async function completarEntorno(escena, urlArboles) {
     if (rnd() < 0.8) sitios.push([8.5 - rnd() * 3, z + 6 * rnd(), 7 + rnd() * 3]);
   }
   for (let z = Z_INI + 10; z < CERCA; z += 16 + rnd() * 10) { sitios.push([29.5 + rnd() * 3, z, 7 + rnd() * 3]); sitios.push([8.5 - rnd() * 3, z, 7 + rnd() * 3]); }
-  const g = await new GLTFLoader().loadAsync(urlArboles);
-  const especies = g.scene.children.filter((o) => o.name.startsWith('esp_'));
-  if (!especies.length) return;
-  g.scene.updateMatrixWorld(true);
-  const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler();
-  especies.forEach((nodo, k) => {
-    const mios = sitios.filter((_, i) => i % especies.length === k);
-    if (!mios.length) return;
-    const alto = new THREE.Box3().setFromObject(nodo).getSize(new THREE.Vector3()).y || 1;
-    const inv = new THREE.Matrix4().copy(nodo.matrixWorld).invert();
-    nodo.traverse((o) => {
-      if (!o.isMesh) return;
-      const geo = o.geometry.clone(); geo.applyMatrix4(o.matrixWorld.clone().premultiply(inv));
-      const tono = TONO_ARBOL[o.material.name.replace(/\.\d+$/, '')] ?? TONO_ARBOL.M_hoja;
-      const im = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: tono, roughness: 0.9 }), mios.length);
-      mios.forEach(([x, z, h], i) => { const r = Math.abs(Math.sin(x * 12.9 + z * 78.2) * 43758) % 1; e.set(0, r * 6.28, 0); q.setFromEuler(e); const s = h * (0.85 + 0.3 * r) / alto; m4.compose(new THREE.Vector3(x, 0, z), q, new THREE.Vector3(s, s, s)); im.setMatrixAt(i, m4); });
-      im.castShadow = true; im.receiveShadow = true; escena.add(im);
-    });
-  });
+  await plantarArboles(escena, sitios, { url: urlArboles });
 }
 
 export async function montarPlantaFusion(raiz, opciones = {}) {
@@ -132,7 +114,15 @@ export async function montarPlantaFusion(raiz, opciones = {}) {
     }
   });
   sobrantes.forEach((o) => o.removeFromParent());
-  await completarEntorno(gltf.scene, opciones.arboles ?? new URL('../campo/assets/arboles.glb?v=1', import.meta.url).href);
+  // calles, banquetas y rayas van pegadas al piso: desde muy alto se pelean con él por la profundidad y se ven huecos.
+  // Se les da prioridad de profundidad por capas (pasto < calle < banqueta < raya)
+  const CAPA = [[/^(Calle|Cruce)/, 2], [/^Banqueta/, 3], [/^Raya/, 4]];
+  gltf.scene.traverse((o) => {
+    if (!o.isMesh) return;
+    const capa = CAPA.find(([re]) => re.test(o.name)); if (!capa) return;
+    o.material.polygonOffset = true; o.material.polygonOffsetFactor = -capa[1]; o.material.polygonOffsetUnits = -4 * capa[1];
+  });
+  await completarEntorno(gltf.scene, opciones.arboles);
 
   const dirSol = new THREE.Vector3(0.283, -0.743, 0.606).normalize();
   const centro = new THREE.Vector3(-45, 0, -20);
@@ -221,6 +211,8 @@ export async function montarPlantaFusion(raiz, opciones = {}) {
     }
     camara.up.set(0, 1 - pc, -pc).normalize();        // al mirar hacia abajo, el norte de la escena queda arriba
     camara.lookAt(mira);
+    // plano cercano proporcional a la altura: desde arriba la precisión de profundidad alcanza para calle y piso
+    camara.near = Math.max(0.1, camara.position.y * 0.04); camara.far = Math.max(2500, camara.position.y * 6);
     camara.fov = fov; camara.updateProjectionMatrix();
     scene.fog.near = 260 + 1400 * pc; scene.fog.far = 760 + 2200 * pc;   // que desde arriba no se borre todo
     renderer.render(scene, camara);

@@ -64,7 +64,9 @@ El primer commit de la rama es la copia sin cambios. Para ver qué cambió la fu
 | Momentos de la planta (llegada, salida, subida) | `planta-fusion.js` → `FASES` |
 | Qué queda al frente del planeta al final | `planeta-fusion.js` → `FRENTE` (el encuadre es el de `escena.json` → `camara.f250`) |
 | Cuándo se enciende cada región | `planeta-fusion.js` → `OLEADAS` |
-| Dónde hay aerogeneradores y su tamaño | `planeta-fusion.js` → `ISTMO`, `PARQUES`, `ALTO`, `ASPA` |
+| Dónde hay aerogeneradores y su tamaño | `planeta-fusion.js` → `AEROGENERADORES` (uno por parque, a 5° o más entre sí), `ALTO`, `ASPA` |
+| Giro y alejamiento del planeta al final del scroll | `planeta-fusion.js` → `LLEGA`, `GIRO_FINAL`, `ALEJA_FINAL` |
+| Árboles (los mismos del campo en la carretera y en la planta) | `arboles-campo.js` |
 | Calle extendida, árboles y manzanas de la planta | `planta-fusion.js` → `completarEntorno` |
 
 ## Probado

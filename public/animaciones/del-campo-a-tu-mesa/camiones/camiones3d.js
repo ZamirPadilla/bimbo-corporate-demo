@@ -12,6 +12,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { plantarArboles } from '../arboles-campo.js';
 
 const CAMIONES = ['c40', 'c70', 'c80', 'c90', 'c2025'];
 const TRAMO = 15, PRIMERO = 24;                      // metros de carretera por época; la primera es más larga para que
@@ -127,7 +128,8 @@ export async function montarCamiones(raiz, opciones = {}) {
     pts.forEach(([x, z], i) => { e.set((rnd() - 0.5) * 0.25, rnd() * 6.3, (rnd() - 0.5) * 0.25); q.setFromEuler(e); s.setScalar(0.8 + 0.4 * rnd()); m4.compose(new THREE.Vector3(x, 0, z), q, s); im.setMatrixAt(i, m4); });
     mundo.add(im);
   }
-  // árboles redondos y pinos, casas con techo de dos aguas y edificios: instanciados, en tonos de juguete
+  // árboles (los mismos del campo), casas con techo de dos aguas y edificios en tonos de juguete
+  const arboles = [];
   {
     const rnd = aleatorio(11), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler();
     const instanciar = (geo, material, lista, sombra = true) => {
@@ -136,10 +138,10 @@ export async function montarCamiones(raiz, opciones = {}) {
       im.castShadow = sombra; im.receiveShadow = true; mundo.add(im); return im;
     };
     const lado = () => 9 + rnd() * 40;               // detrás de la carretera (z > 0), donde no tapa al camión
-    const copas = [], troncos = [], casas = [], techos = [], edificios = [];
+    const casas = [], techos = [], edificios = [];
     for (let x = X0; x < X1; x += 2 + rnd() * 5) {
       const urbano = tramo(x, ZONA.casas - 4, ZONA.ciudad + 10);
-      if (rnd() < 0.55 * (1 - urbano) + 0.12) { const z = lado(), h = 2.5 + rnd() * 3; troncos.push({ x, z, esc: [0.25, h * 0.45, 0.25] }); copas.push({ x, z, y: h * 0.6, esc: [h * 0.42, h * 0.38, h * 0.42], color: rnd() < 0.5 ? 0x6f8a46 : 0x58753f }); }
+      if (rnd() < 0.55 * (1 - urbano) + 0.12) arboles.push([x, lado(), 6 + rnd() * 4]);
     }
     for (let x = ZONA.casas - 10; x < X1; x += 6 + rnd() * 4) {
       const urbano = tramo(x, ZONA.ciudad - 4, ZONA.ciudad + 14);
@@ -158,12 +160,12 @@ export async function montarCamiones(raiz, opciones = {}) {
     // techo de dos aguas: triángulo de 1 × 1 extruido 1 m, con la cumbrera a lo largo de x
     const techo = new THREE.ExtrudeGeometry(new THREE.Shape([new THREE.Vector2(-0.5, 0), new THREE.Vector2(0.5, 0), new THREE.Vector2(0, 1)]), { depth: 1, bevelEnabled: false })
       .translate(0, 0, -0.5).rotateY(Math.PI / 2);
-    instanciar(new THREE.CylinderGeometry(1, 1, 1, 6), mat(0x6b4a35), troncos.map((o) => ({ ...o, y: o.esc[1] / 2 })));
-    instanciar(new THREE.IcosahedronGeometry(1, 1), mat(0xffffff), copas);
     if (casas.length) instanciar(new THREE.BoxGeometry(1, 1, 1), mat(0xffffff), casas);
     if (techos.length) instanciar(techo, mat(0xffffff), techos);
     if (edificios.length) instanciar(new THREE.BoxGeometry(1, 1, 1), mat(0xffffff, { roughness: 0.8 }), edificios);
   }
+  await plantarArboles(mundo, arboles);
+
   // el cambio de época es un cristal sin marco que cruza todo el paisaje: sus bordes nunca entran a cuadro
   {
     const g = new THREE.PlaneGeometry(600, 160, 1, 40).rotateY(Math.PI / 2).translate(0, 80 - 0.5, 0);

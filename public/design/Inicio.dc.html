@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Grupo Bimbo · Alimentamos un mundo mejor (prototipo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<style>
+html,body{margin:0;background:#FBF7F0;-webkit-font-smoothing:antialiased;font-synthesis:none}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
+a{color:#15359D}
+a:hover{color:#0F2F51}
+::selection{background:#EEB14F;color:#0F2F51}
+@media (max-width: 960px){
+ [data-pin]{height:auto !important}
+ [data-pin] > [data-sticky]{position:relative !important;height:auto !important;overflow:visible !important}
+ [data-pin] > [data-sticky][data-hero-sticky]{height:100svh !important;overflow:hidden !important}
+
+ [data-pin] > [data-sticky][data-ico-sticky]{height:auto !important;padding:110px 20px 60px !important}
+ [data-mom-row]{flex-direction:column !important;height:auto !important}
+ [data-mp]{flex:none !important;height:520px}
+ [data-mp-full]{opacity:1 !important}
+ [data-mp-v]{display:none !important}
+ [data-track]{flex-direction:row !important;overflow-x:auto !important;scroll-snap-type:x mandatory;transform:none !important;width:auto !important;padding:0 20px 24px !important}
+ [data-track] > *{width:84vw !important;scroll-snap-align:start}
+ [data-bento]{grid-template-columns:1fr 1fr !important}
+ [data-bento] > *{grid-column:auto / span 2 !important;grid-row:auto !important}
+ [data-g2]{grid-template-columns:1fr !important}
+ [data-g3]{grid-template-columns:1fr !important}
+ [data-idx]{grid-template-columns:1fr !important}
+ [data-idx] > *{grid-column:auto !important}
+ [data-hide-m]{display:none !important}
+ [data-bl]{border-left:0 !important;padding-left:0 !important}
+ [data-ico-line]{display:block !important}
+ [data-oso-l],[data-oso-r]{height:30vh !important;bottom:4vh !important}
+ [data-ico-stage]{position:relative !important;right:auto !important;height:auto !important;flex-direction:column !important}
+ [data-ico-item]{position:relative !important;opacity:1 !important;transform:none !important;inset:auto !important;margin-bottom:60px;flex-direction:column !important;gap:22px}
+ [data-ico-line]{position:static !important;max-width:560px}
+ [data-ico-word]{position:static !important;transform:none !important;font-size:12.5vw !important}
+ [data-hist-stage]{grid-template-columns:1fr !important}
+}
+@media (max-width: 600px){ [data-bento] > *{grid-column:1 / -1 !important} [data-bento]{grid-template-columns:1fr !important} }
+</style>
+</helmet>
+<div ref="{{ bgRef }}" aria-hidden="true" style="position:fixed;inset:0;z-index:0;background:#15359D"></div>
+<div ref="{{ rootRef }}" style="position:relative;z-index:1;font-family:Outfit, system-ui, sans-serif;color:#0F2F51;overflow-x:clip">
+
+<div ref="{{ loaderRef }}" aria-hidden="true" style="position:fixed;inset:0;z-index:500;background:#063AA6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;transition:clip-path 1s cubic-bezier(.77,0,.18,1);clip-path:inset(0 0 0 0)">
+  <div style="width:min(192px, 40vw);overflow:hidden;line-height:0"><video ref="{{ loaderVidRef }}" src="assets/loader.mp4" autoplay="" muted="" playsinline="" preload="auto" style="width:100%;height:auto;display:block;margin-bottom:-6px"></video></div>
+  <div style="position:relative;z-index:1;width:220px;height:6px;margin-top:0;border-radius:6px;background:rgba(255,255,255,.22);overflow:hidden"><div ref="{{ loaderBarRef }}" style="height:100%;width:0%;background:#FFFFFF;border-radius:6px;transition:width 1.1s cubic-bezier(.2,.7,.2,1), background 1.1s"></div></div>
+  <div style="margin-top:22px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#FAE5C5;font-weight:600">Horneando</div>
+</div>
+<div ref="{{ progRef }}" aria-hidden="true" style="position:fixed;left:0;top:0;height:4px;width:0%;z-index:200;background:#EEB14F"></div>
+
+<dc-import name="Nav" active="" hint-size="100%,0px"></dc-import>
+
+<section data-screen-label="01 Hero" data-bg="#15359D" ref="{{ heroRef }}" data-pin="" style="height:220vh;position:relative">
+  <div data-sticky="" data-hero-sticky="" style="position:sticky;top:0;height:100vh;overflow:hidden;color:#fff">
+    <div aria-hidden="true" style="position:absolute;right:38vw;top:-14vh;bottom:6vh;width:min(52vw, 104vh);background-image:url(assets/osito-tono-hd3.png);background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.5;-webkit-mask-image:linear-gradient(to left, transparent 12%, #000 30%, #000 70%, transparent 96%), linear-gradient(to top, transparent 4%, #000 30%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to left, transparent 12%, #000 30%, #000 70%, transparent 96%), linear-gradient(to top, transparent 4%, #000 30%);mask-composite:intersect"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3vh;padding:84px 3vw 24px;box-sizing:border-box">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4vh">
+      <div data-cl="" style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#FAE5C5"><span style="width:8px;height:8px;border-radius:50%;background:#EE353A"></span>Grupo Bimbo · 1945–2025</div>
+      <div data-hero-grid="" style="display:flex;align-items:stretch;justify-content:center;gap:4vw">
+        <div ref="{{ celeRef }}" style="display:flex;flex-direction:column;justify-content:space-between;gap:2.4vh;transform-origin:left center">
+          <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;line-height:.82;font-size:min(22.5vh, 13vw)">
+            <div data-cl=""><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">C</span><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">e</span><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">l</span><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">e</span></div><div data-cl=""><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">b</span><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">r</span><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">a</span></div><div data-cl=""><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">m</span><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">o</span><span style="display:inline-block;transition:transform .45s cubic-bezier(.34,1.8,.64,1), color .3s" style-hover="transform:translateY(-10%) rotate(-7deg);color:#EEB14F">s</span></div>
+          </div>
+          <div data-cl="" style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;line-height:.86;font-size:min(5.8vh, 3.4vw);color:#8FC9E6">Lo que<br>nos une</div>
+        </div>
+        <div ref="{{ h80Ref }}" data-n80="" aria-label="80 años" style="display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;gap:2.4vh;will-change:transform">
+          <div style="display:flex;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;line-height:.8;font-size:min(68vh, 39vw);color:#fff;letter-spacing:-.01em;margin-top:.02em"><span data-cl="" style="display:block">8</span><span data-cl="" role="img" aria-label="0" style="display:block;align-self:center;width:.76em;height:.73em;margin-left:-.14em;position:relative;z-index:2"><span ref="{{ donaRef }}" style="display:block;width:100%;height:100%;background-image:url(assets/dona-0.png);background-size:contain;background-repeat:no-repeat;background-position:center;filter:drop-shadow(-.035em .05em .05em rgba(8,20,70,.55)) drop-shadow(-.01em .015em .012em rgba(8,20,70,.35));transition:transform .9s cubic-bezier(.34,1.5,.64,1)" style-hover="transform:translate(.015em,-.02em) rotate(7deg)"></span></span></div>
+          <div data-cl="" style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;line-height:.8;font-size:min(15vh, 8.6vw);color:#8FC9E6;text-align:right;margin-top:-1vh">Años</div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div ref="{{ h1WrapRef }}" style="position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:max(110px, 13vh) 5vw 5vh;box-sizing:border-box;opacity:0;pointer-events:none;background:#15359D;overflow:hidden;text-align:center;color:#fff">
+      <video data-autoplay="" src="assets/pan-bimbo.mp4" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,.5) 75%, rgba(0,0,0,.88) 100%)"></div>
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:2.6vh;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:8px 18px">Nuestro propósito</div>
+        <h1 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;line-height:.86;letter-spacing:-.01em;font-size:clamp(52px, min(9.4vw, 14vh), 196px);color:#fff">Alimentamos<br><span style="color:#FAE5C5">un mundo mejor</span></h1>
+        <p style="margin:2.8vh 0 0;max-width:760px;font-size:clamp(19px, 1.6vw, 26px);line-height:1.45;font-weight:400;color:#fff;text-wrap:pretty">Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 93.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:3vh">
+          <a href="Marcas.dc.html" style="text-decoration:none;background:#fff;color:#15359D;font-weight:700;font-size:18px;padding:17px 30px;border-radius:999px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-3px);color:#15359D">Explora nuestras marcas →</a>
+          <a href="Sustentabilidad.dc.html" style="text-decoration:none;color:#fff;font-weight:600;font-size:18px;padding:16px 28px;border-radius:999px;border:1.5px solid rgba(255,255,255,.7);transition:background .25s" style-hover="background:rgba(255,255,255,.14);color:#fff">Conoce nuestra estrategia</a>
+        </div>
+      </div>
+      <div data-bento="" style="position:relative;width:100%;max-width:1480px;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:0 36px;text-align:left">
+        <sc-for list="{{ cifras }}" as="c" hint-placeholder-count="4">
+          <div style="border-top:1.5px solid rgba(255,255,255,.6);padding-top:16px;display:flex;flex-direction:column;gap:6px">
+            <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, min(5vw, 8vh), 92px);font-weight:900;line-height:.9;color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums">{{ c.pre }}{{ c.v }}<span style="font-size:.5em">{{ c.suf }}</span></div>
+            <div style="font-size:clamp(16px, 1.25vw, 20px);font-weight:600;color:#FAE5C5">{{ c.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div ref="{{ hTagsRef }}" data-hide-m="" style="position:absolute;left:0;right:0;bottom:4vh;z-index:5;pointer-events:none;display:flex;justify-content:center">
+      
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="07 Íconos" ref="{{ icoRef }}" data-pin="" style="height:380vh;position:relative">
+  <div data-sticky="" data-ico-sticky="" ref="{{ icoBgRef }}" style="position:sticky;top:0;height:100vh;overflow:hidden;background:#DCE6F5">
+    <nav data-hide-m="" aria-label="Íconos de la mesa mexicana" style="position:absolute;right:0;top:0;bottom:0;display:flex;z-index:7">
+      <sc-for list="{{ icoTabs }}" as="t" hint-placeholder-count="3"><button type="button" onClick="{{ t.go }}" aria-current="{{ t.cur }}" style="position:relative;width:{{ t.w }};flex:none;border:0;margin:0;padding:0;cursor:pointer;background:transparent;color:{{ t.fg }};font-family:Outfit, system-ui, sans-serif;text-align:left;overflow:hidden;transition:width .7s cubic-bezier(.2,.7,.2,1), color .6s;border-left:1px solid {{ t.line }}" style-hover="background:rgba(255,255,255,.18)">
+        <span style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:130px 0 40px;opacity:{{ t.opC }};transition:opacity .35s"><span style="font-size:13px;font-weight:700;letter-spacing:.12em">{{ t.n }}</span><span style="writing-mode:vertical-rl;transform:rotate(180deg);font-family:poleno, Lilita One, Outfit, sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;white-space:nowrap">{{ t.t }}</span><span style="font-size:18px">+</span></span>
+        <span style="position:absolute;inset:0;width:min(440px, 31vw);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:130px 40px 44px;opacity:{{ t.opA }};transform:translateX({{ t.tx }});transition:opacity .5s .15s, transform .7s cubic-bezier(.2,.7,.2,1)">
+          <span style="display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase"><span>{{ t.n }} / {{ t.total }}</span><span style="opacity:.85">Ícono</span></span>
+          <span style="display:flex;flex-direction:column;gap:22px">
+            <span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(28px, 2.5vw, 44px);line-height:.95;text-transform:uppercase;text-wrap:balance;overflow-wrap:anywhere">{{ t.t }}</span>
+            <span style="font-size:clamp(16px, 1.15vw, 19px);line-height:1.45;text-wrap:pretty">{{ t.linea }}</span>
+            <span style="display:block;height:3px;border-radius:3px;background:{{ t.line }};overflow:hidden"><span data-ico-bar="" style="display:block;height:100%;width:0%;background:{{ t.acc }};border-radius:3px"></span></span>
+          </span>
+          <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;background:{{ t.acc }};color:{{ t.accFg }};border-radius:999px;padding:14px 22px;font-size:16px;font-weight:700">Ver producto <span>→</span></span>
+        </span>
+      </button></sc-for>
+    </nav>
+    <div style="position:absolute;left:32px;top:110px;z-index:6;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:{{ icoTag }}"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Íconos de la mesa mexicana</div>
+    <div data-ico-stage="" style="position:absolute;left:0;top:0;bottom:0;right:calc(min(440px, 31vw) + 152px)">
+      <sc-for list="{{ iconos }}" as="p" hint-placeholder-count="1">
+        <div data-ico-item="" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+          <div data-ico-word="" aria-hidden="true" style="position:absolute;left:0;right:0;top:50%;transform:translateY(-55%);text-align:center;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.015em;line-height:.8;font-size:{{ p.fs }};color:{{ p.palido }};white-space:nowrap">{{ p.palabra }}</div>
+          <div data-ico-prod="" style="position:relative;z-index:3;width:min(600px, 44vw);aspect-ratio:599/481">
+            <div role="img" aria-label="{{ p.alt }}" style="position:absolute;inset:0;border-radius:32px;overflow:hidden;background-image:url({{ p.img }});background-size:cover;background-repeat:no-repeat;background-position:center;box-shadow:0 40px 80px -30px rgba(15,47,81,.45), 0 0 0 1px rgba(255,255,255,.5)"></div>
+          </div>
+          <div data-hide-m="" style="position:absolute;left:5vw;top:50%;z-index:4;display:flex;flex-direction:column;align-items:flex-start;gap:4px">
+            <sc-for list="{{ p.cinta }}" as="c" hint-placeholder-count="2"><span style="background:{{ p.acc }};color:{{ p.accFg }};font-family:poleno, Lilita One, Outfit, sans-serif;font-size:34px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;padding:6px 20px;transform:rotate({{ c.r }});box-shadow:0 12px 28px rgba(15,47,81,.25)">{{ c.t }}</span></sc-for>
+          </div>
+          <a href="Marcas.dc.html" data-ico-badge="" style="position:absolute;left:calc(50% + min(240px, 18vw));top:calc(50% - min(220px, 17vw));z-index:5;width:128px;height:128px;border-radius:50%;background:{{ p.acc }};color:{{ p.accFg }};display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 14px 34px rgba(15,47,81,.3);transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">
+            <svg viewBox="0 0 128 128" width="128" height="128" style="position:absolute;inset:0"><defs><path id="circIco" d="M64,64 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"></path></defs><text fill="currentColor" style="font-size:12px;font-weight:800;letter-spacing:3.4px;font-family:Outfit, sans-serif"><textPath href="#circIco">VER PRODUCTO · VER PRODUCTO ·</textPath></text></svg>
+            <span style="font-size:22px">↗</span>
+          </a>
+          <p data-ico-line="" style="display:none;position:absolute;left:24px;right:24px;bottom:7vh;z-index:4;margin:0;text-align:center;font-size:clamp(15px, 1.25vw, 19px);text-transform:uppercase;letter-spacing:.05em;line-height:1.4;color:{{ p.fg }}">{{ p.linea }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="02 Cinta" data-bg="#15359D" style="overflow:hidden;padding:30px 0 34px;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)">
+  <div ref="{{ marqueeRef }}" style="display:flex;width:max-content;will-change:transform;align-items:center">
+    <sc-for list="{{ cinta }}" as="c" hint-placeholder-count="12">
+      <span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(40px, 5vw, 80px);font-weight:900;text-transform:uppercase;letter-spacing:-.005em;padding:0 30px;white-space:nowrap;line-height:1;color:{{ c.color }};-webkit-text-stroke:{{ c.stroke }};paint-order:stroke fill">{{ c.t }}</span>
+      <span style="width:12px;height:12px;border-radius:50%;background:#EEB14F;flex:none"></span>
+    </sc-for>
+  </div>
+</section>
+
+<section data-screen-label="03 Misión" data-bg="#0F2F51" ref="{{ misionRef }}" data-pin="" style="height:230vh;position:relative">
+  <div data-sticky="" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;inset:-20px;background-image:url(assets/masa.png);background-size:cover;background-position:center 60%;filter:blur(3px) saturate(1.1)"></div>
+    <div aria-hidden="true" style="position:absolute;inset:0;background:rgba(15,47,81,.62)"></div>
+    <div style="max-width:1480px;margin:0 auto;padding:0 32px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;gap:40px;position:relative">
+      <div style="display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#EEB14F">
+        <div style="display:inline-flex;align-items:center;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Nuestra misión</div>
+        <div>Desde 1945</div>
+      </div>
+      <p ref="{{ palabrasRef }}" style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(46px, 7.4vw, 136px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.88;max-width:1400px">
+        <sc-for list="{{ palabras }}" as="w" hint-placeholder-count="10"><span data-w="" style="display:inline-block;margin-right:.2em">{{ w }}</span></sc-for>
+      </p>
+      <div ref="{{ misionExtraRef }}" data-g2="" style="display:grid;grid-template-columns:minmax(0,620px) auto;gap:40px;align-items:end;justify-content:space-between">
+        <p style="margin:0;font-size:20px;line-height:1.55;font-weight:300;color:#FAE5C5;text-wrap:pretty">Esa es nuestra misión desde que seis socios abrieron una panadería en la colonia Santa María Insurgentes, en 1945. Hoy la cumplimos con más de 9,000 productos y una filosofía que no ha cambiado: ser una empresa sustentable, altamente productiva y plenamente humana.</p>
+        <a href="Nosotros.dc.html" style="text-decoration:none;background:#FAE5C5;color:#0F2F51;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px;white-space:nowrap" style-hover="background:#EEB14F;color:#0F2F51">Conoce quiénes somos →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 Accesos" data-bg="#FBF7F0" style="padding:130px 32px 120px">
+  <div style="max-width:1480px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:48px" data-g2="">
+    <div data-rv="" style="display:flex;flex-direction:column;gap:20px;align-self:start;position:sticky;top:120px">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E675C"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Accesos</div>
+      <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, 4.6vw, 80px);font-weight:900;text-transform:uppercase;line-height:.9;color:#15359D">¿Qué estás buscando?</h2>
+      <p style="margin:0;font-size:17px;line-height:1.5;font-weight:300;color:#3d4a5c;max-width:320px">Dinos quién eres y te llevamos directo a lo tuyo.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1.5px solid #15359D">
+      <sc-for list="{{ accesos }}" as="a" hint-placeholder-count="6">
+        <a href="{{ a.href }}" onMouseEnter="{{ a.enter }}" onMouseLeave="{{ a.leave }}" style="text-decoration:none;position:relative;overflow:hidden;border-bottom:1.5px solid rgba(21,53,157,.25);padding:26px 22px;display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,auto);gap:20px;align-items:center;color:{{ a.fg }};transition:color .4s">
+          <span aria-hidden="true" style="position:absolute;inset:0;background:#15359D;transform:scaleY({{ a.sy }});transform-origin:bottom;transition:transform .55s cubic-bezier(.65,0,.25,1)"></span>
+          <span style="position:relative;font-size:14px;font-weight:700;opacity:.6">{{ a.n }}</span>
+          <span style="position:relative;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(34px, 4.2vw, 72px);font-weight:900;text-transform:uppercase;line-height:.9;transform:translateX({{ a.tx }});transition:transform .55s cubic-bezier(.2,.7,.2,1)">{{ a.frase }}</span>
+          <span style="position:relative;display:flex;align-items:center;gap:18px;justify-content:flex-end">
+            <span style="font-size:15px;line-height:1.4;max-width:260px;text-align:right;opacity:{{ a.op }};transform:translateY({{ a.ty }});transition:opacity .4s, transform .5s cubic-bezier(.2,.7,.2,1)">{{ a.d }}<br><strong>{{ a.cta }} →</strong></span>
+            <span style="flex:none;width:54px;height:54px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:20px;transform:rotate({{ a.rot }});transition:transform .5s cubic-bezier(.34,1.56,.64,1)">→</span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+
+
+<section data-screen-label="06 Marcas por momento" data-bg="#FBF7F0" ref="{{ momSecRef }}" data-pin="" style="height:480vh;position:relative;margin:160px 0 180px;padding:0 20px">
+  <div data-sticky="" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;padding-top:70px;box-sizing:border-box">
+  <div style="width:100%;max-width:1480px;margin:0 auto;border-radius:36px;background:#15359D;padding:64px 56px;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;overflow:hidden" data-g2="">
+    <div style="display:flex;flex-direction:column;gap:26px;min-width:0">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FAE5C5"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Nuestras marcas · un día en México</div>
+      <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(34px, 3.4vw, 56px);font-weight:900;text-transform:uppercase;line-height:.9;color:#fff">Una marca para cada momento del día</h2>
+      <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(90px, 11vw, 200px);font-weight:900;line-height:.8;color:#fff;font-variant-numeric:tabular-nums">{{ mom.hora }}</div>
+      <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(40px, 4.4vw, 76px);font-weight:900;text-transform:uppercase;line-height:.85;color:#15359D;-webkit-text-stroke:3px #FAE5C5;paint-order:stroke fill">{{ mom.nombre }}</div>
+      <p style="margin:0;font-size:16px;line-height:1.45;text-transform:uppercase;letter-spacing:.04em;max-width:460px;color:#fff">{{ mom.linea }}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ mom.marcas }}" as="b" hint-placeholder-count="3"><span style="background:#FAE5C5;color:#15359D;font-weight:800;font-size:15px;text-transform:uppercase;padding:9px 16px;transform:rotate({{ b.r }})">{{ b.t }}</span></sc-for></div>
+      <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+        <button onClick="{{ momPrev }}" aria-label="Momento anterior" style="all:unset;cursor:pointer;width:56px;height:56px;border-radius:50%;border:1.5px solid #fff;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">←</button>
+        <button onClick="{{ momNext }}" aria-label="Momento siguiente" style="all:unset;cursor:pointer;width:56px;height:56px;border-radius:50%;background:#fff;color:#15359D;display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">→</button>
+        <a href="Marcas.dc.html" style="margin-left:12px;font-weight:700;font-size:15px;color:#fff">Directorio de marcas →</a>
+      </div>
+    </div>
+    <div style="position:relative;width:min(100%, 600px);aspect-ratio:1;justify-self:center">
+      <div style="position:absolute;inset:0;border-radius:50%;border:1.5px dashed rgba(250,229,197,.45)"></div>
+      <div style="position:absolute;left:50%;top:-74px;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:18px solid #EE353A;z-index:3"></div>
+      <div style="position:absolute;inset:0;transform:rotate({{ ringRot }});transition:transform 1.1s cubic-bezier(.34,1.3,.64,1)">
+        <sc-for list="{{ momentos }}" as="m" hint-placeholder-count="5">
+          <button onClick="{{ m.go }}" style="all:unset;cursor:pointer;position:absolute;left:{{ m.x }};top:{{ m.y }};transform:translate(-50%,-50%) rotate({{ counterRot }});transition:transform 1.1s cubic-bezier(.34,1.3,.64,1);display:flex;flex-direction:column;align-items:center;gap:2px;background:{{ m.chipBg }};color:{{ m.chipFg }};padding:10px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.2)">
+            <span style="font-size:12px;font-weight:700">{{ m.hora }}</span><span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:20px;font-weight:900;text-transform:uppercase">{{ m.nombre }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="position:absolute;inset:16%;border-radius:50%;overflow:hidden;background:#FAE5C5;box-shadow:0 0 0 10px #FAE5C5, 0 40px 80px rgba(0,0,0,.35)">
+        <sc-for list="{{ momentos }}" as="m" hint-placeholder-count="1">
+          <div role="img" aria-label="{{ m.nombre }}" style="position:absolute;inset:0;background-image:url({{ m.img }});background-size:{{ m.fit }};background-repeat:no-repeat;background-color:{{ m.bgc }};background-position:center;opacity:{{ m.op }};transform:scale({{ m.sc }}) rotate({{ m.rot }});filter:saturate(1.08) contrast(1.04);transition:opacity .7s, transform 1.3s cubic-bezier(.2,.7,.2,1)"></div>
+        </sc-for>
+        <sc-if value="{{ mom.dummy }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#EE353A;flex-direction:column;gap:6px;text-align:center;padding:30px;color:#fff"><span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(40px, 5vw, 84px);line-height:.85;text-transform:uppercase">Takis<br>Barcel</span><span style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.85">Foto por recibir</span></div></sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section id="cadena" data-screen-label="08 Del campo a tu mesa" data-bg="#0F2F51" ref="{{ cadRef }}" data-pin="" style="height:400vh;position:relative;color:#fff">
+  <div data-sticky="" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center">
+    <div ref="{{ cadTrackRef }}" data-track="" style="display:flex;gap:0;align-items:stretch;padding:0;width:max-content;will-change:transform;height:100vh">
+      <div style="width:min(720px, 90vw);flex:none;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:0 60px 0 32px;box-sizing:border-box">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Cadena de valor</div>
+        <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(58px, 7vw, 132px);font-weight:900;text-transform:uppercase;letter-spacing:-.012em;line-height:.84">Del campo<br><span style="color:#0F2F51;-webkit-text-stroke:4px #8FC9E6;paint-order:stroke fill">a tu mesa</span></h2>
+        <p style="margin:0;font-size:19px;line-height:1.5;font-weight:300;color:#dbe6f2;max-width:440px">Cinco etapas, una sola operación. Cada una con historias reales, contadas por quienes las viven.</p>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#8FC9E6;font-weight:600">Desliza para recorrerla <span style="font-size:20px">→</span></div>
+      </div>
+      <sc-for list="{{ etapas }}" as="e" hint-placeholder-count="5">
+        <article style="width:100vw;flex:none;height:100vh;overflow:hidden;position:relative;background:#15359D">
+          <div style="position:absolute;inset:0;background-image:url({{ e.img }});background-size:cover;background-position:center"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(15,47,81,.95) 8%, rgba(15,47,81,.1) 60%)"></div>
+          <div style="position:absolute;left:6vw;top:120px;right:6vw;display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:64px;font-weight:900;letter-spacing:-.01em;line-height:1;color:#EEB14F">{{ e.n }}</span>
+            <a href="{{ e.url }}" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:#FBF7F0;color:#0F2F51;font-weight:700;font-size:14px;padding:12px 18px 12px 14px;border-radius:999px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:scale(1.06);color:#0F2F51"><span style="width:28px;height:28px;border-radius:50%;background:#15359D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px">▶</span>{{ e.video }}</a>
+          </div>
+          <div style="position:absolute;left:6vw;right:6vw;bottom:12vh;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:14px;max-width:640px">
+              <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(60px, 8vw, 150px);font-weight:900;text-transform:uppercase;letter-spacing:-.008em;line-height:.88">{{ e.t }}</div>
+              <p style="margin:0;font-size:17px;line-height:1.45;color:#dbe6f2">{{ e.d }}</p>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, 4.4vw, 72px);font-weight:900;letter-spacing:-.012em;line-height:.85;color:#EEB14F">{{ e.cifra }}</div>
+              <div style="font-size:14px;color:#dbe6f2;margin-top:6px">{{ e.cifraLabel }}</div>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+    <div data-hide-m="" style="position:absolute;left:32px;right:32px;bottom:30px;height:3px;background:rgba(255,255,255,.12);border-radius:3px"><div ref="{{ cadBarRef }}" style="height:100%;width:0%;background:#EEB14F;border-radius:3px"></div></div>
+  </div>
+</section>
+
+<section id="sustentabilidad" data-screen-label="09 Sustentabilidad" data-bg="#FBF7F0" ref="{{ susRef }}" style="padding:120px 20px 110px">
+  <div data-idx="" style="max-width:1480px;margin:0 auto;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px">
+    <div data-rv="" style="grid-column:1 / -1;background:#15359D;color:#fff;border-radius:28px;padding:44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end;position:relative;overflow:hidden;min-height:440px">
+      <div aria-hidden="true" style="position:absolute;inset:-12px;background-image:url(assets/trigo.png);background-size:cover;background-position:center;filter:blur(1.5px)"></div>
+      <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(21,53,157,.88) 30%, rgba(21,53,157,.35))"></div>
+      <div style="display:flex;flex-direction:column;gap:18px;position:relative">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Estrategia · Alimentamos un mundo mejor</div>
+        <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.82;font-size:clamp(56px, 7vw, 124px)"><span style="color:#15359D;-webkit-text-stroke:4px #fff;paint-order:stroke fill">Sus</span><br><span style="color:#15359D;-webkit-text-stroke:4px #fff;paint-order:stroke fill">tenta</span><br>bilidad</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px;position:relative">
+        <p style="margin:0;font-size:19px;line-height:1.5;font-weight:300;color:#dbe6f2">En 2021 fijamos metas con fecha. Tres pilares sobre unos Cimientos comunes, con el avance de cada meta al cierre de 2025, incluidas las que siguen en curso.</p>
+        <a href="Sustentabilidad.dc.html" style="align-self:flex-start;text-decoration:none;background:#fff;color:#15359D;font-weight:700;font-size:16px;padding:15px 24px;border-radius:999px;transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">Ver la estrategia completa →</a>
+      </div>
+    </div>
+    <sc-for list="{{ pilares }}" as="p" hint-placeholder-count="3">
+      <article data-rv="" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" onClick="{{ p.tog }}" style="cursor:pointer;background:{{ p.color }};color:#fff;border-radius:28px;padding:34px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:560px;position:relative;overflow:hidden">
+        <div aria-hidden="true" style="position:absolute;right:-20px;top:20px;width:52%;aspect-ratio:768/726;background-image:url({{ p.img }});background-size:contain;background-repeat:no-repeat;opacity:.95"></div>
+        <div style="position:relative;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.82">
+          <div style="font-size:26px;letter-spacing:-.01em;margin-bottom:8px;color:{{ p.tint }}">{{ p.pre }}</div>
+          <sc-for list="{{ p.silabas }}" as="s" hint-placeholder-count="2"><div style="font-size:clamp(56px, 5vw, 92px);color:{{ s.c }};-webkit-text-stroke:{{ s.k }};paint-order:stroke fill;letter-spacing:.02em">{{ s.t }}</div></sc-for>
+        </div>
+        <div style="position:relative;display:grid;align-items:end">
+        <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:10px;opacity:{{ p.sop }};transform:translateY({{ p.sty }});transition:opacity .4s, transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none">
+          <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(88px, 8.4vw, 156px);font-weight:900;line-height:.86;letter-spacing:-.02em;color:{{ p.tint }}">{{ p.res.v }}</div>
+          <div style="font-size:clamp(18px, 1.35vw, 22px);line-height:1.3;max-width:340px;font-weight:500">{{ p.res.t }}</div>
+          <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin-top:14px;display:inline-flex;align-self:flex-start;border:1.5px solid currentColor;border-radius:999px;padding:9px 16px">+ Ver metas</div>
+        </div>
+        <div style="grid-area:1 / 1;display:flex;flex-direction:column;gap:14px;opacity:{{ p.mop }};transform:translateY({{ p.mty }});transition:opacity .5s, transform .7s cubic-bezier(.2,.7,.2,1)">
+          <sc-for list="{{ p.metas }}" as="m" hint-placeholder-count="3">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px"><span style="font-size:15px;line-height:1.35;font-weight:500">{{ m.t }}</span><span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:32px;font-weight:900;letter-spacing:-.01em;white-space:nowrap">{{ m.v }}</span></div>
+              <div style="height:8px;border-radius:8px;background:rgba(255,255,255,.22);overflow:hidden"><div data-meta="{{ m.pct }}" style="height:100%;width:0%;background:#FBF7F0;border-radius:8px;transition:width 1.6s cubic-bezier(.2,.7,.2,1)"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;letter-spacing:.04em"><span>{{ m.meta }}</span><span style="background:rgba(255,255,255,.22);border-radius:999px;padding:2px 10px">{{ m.estado }}</span></div>
+            </div>
+          </sc-for>
+          <a href="{{ p.href }}" style="color:#fff;font-weight:700;font-size:16px;margin-top:4px" style-hover="color:#fff">Ver {{ p.t }} →</a>
+        </div>
+        </div>
+      </article>
+    </sc-for>
+    <div data-rv="" style="background:#954F1E;color:#FAE5C5;border-radius:28px;padding:34px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;min-height:300px">
+      <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(56px, 5.4vw, 96px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.82">Cimien<br><span style="color:#954F1E;-webkit-text-stroke:4px #FAE5C5;paint-order:stroke fill">tos</span></div>
+      <div style="display:flex;align-items:baseline;gap:14px"><span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:64px;font-weight:900;letter-spacing:-.01em;line-height:1;color:#EEB14F">95%</span><span style="font-size:15px;line-height:1.35">de los productos sale de plantas con certificación GFSI</span></div>
+    </div>
+    <div data-rv="" style="grid-column:span 2;background:#FAE5C5;border-radius:28px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:20px 28px;align-content:center">
+      <sc-for list="{{ cimientos }}" as="c" hint-placeholder-count="4"><div style="border-top:2px solid #954F1E;padding-top:14px;display:flex;flex-direction:column;gap:6px"><span style="font-size:13px;font-weight:700;color:#954F1E">{{ c.n }}</span><span style="font-size:20px;font-weight:700;line-height:1.2;color:#3a2a1c">{{ c.t }}</span></div></sc-for>
+    </div>
+  </div>
+  <div style="max-width:1480px;margin:18px auto 0;padding:0 12px;font-size:13px;color:#6E675C">Avance al cierre de 2025. Fuente: Informe Anual 2025 y Anexo de datos de desempeño 2025.</div>
+</section>
+
+<section id="historia" data-screen-label="10 Historia" data-bg="#FAE5C5" ref="{{ histRef }}" data-pin="" style="height:520vh;position:relative">
+  <div data-sticky="" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center">
+    <div data-hist-stage="" style="max-width:1480px;width:100%;margin:0 auto;padding:100px 32px 40px;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);gap:56px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:22px;position:relative;min-height:420px">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#954F1E"><span style="width:8px;height:8px;border-radius:50%;background:#954F1E"></span>80 años de creer y crear</div>
+        <div style="display:flex;align-items:flex-end;gap:18px">
+          <div ref="{{ anioRef }}" style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(96px, 10vw, 180px);font-weight:900;line-height:.8;color:#15359D;font-variant-numeric:tabular-nums">1945</div>
+          <div style="position:relative;width:70px;height:120px;flex:none">
+            <sc-for list="{{ eras }}" as="e" hint-placeholder-count="1"><div data-era-oso="" role="img" aria-label="{{ e.osoAlt }}" style="position:absolute;inset:0;background-image:url({{ e.oso }});background-size:contain;background-repeat:no-repeat;background-position:center bottom"></div></sc-for>
+          </div>
+        </div>
+        <div style="position:relative;min-height:220px">
+          <sc-for list="{{ eras }}" as="e" hint-placeholder-count="1">
+            <div data-era-txt="" style="position:absolute;inset:0;display:flex;flex-direction:column;gap:12px">
+              <span style="align-self:flex-start;font-size:14px;font-weight:800;background:#15359D;color:#fff;border-radius:999px;padding:6px 13px">{{ e.periodo }}</span>
+              <h3 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(30px, 2.8vw, 46px);font-weight:900;text-transform:uppercase;line-height:.92;color:#0F2F51">{{ e.t }}</h3>
+              <p style="margin:0;font-size:17px;line-height:1.5;color:#3a2a1c;text-wrap:pretty">{{ e.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:6px"><sc-for list="{{ eras }}" as="e" hint-placeholder-count="8"><span data-era-dot="" style="flex:1;height:6px;border-radius:6px;background:rgba(21,53,157,.18)"></span></sc-for></div>
+        <a href="Nosotros.dc.html#historia" style="font-weight:700;font-size:16px;color:#15359D">Recorre la historia completa →</a>
+      </div>
+      <div style="position:relative;aspect-ratio:570/370;border-radius:28px;overflow:hidden;background:#EAD3AE;box-shadow:0 40px 80px rgba(149,79,30,.25)">
+        <sc-for list="{{ eras }}" as="e" hint-placeholder-count="1"><div data-era-img="" role="img" aria-label="{{ e.alt }}" style="position:absolute;inset:0;background-image:url({{ e.img }});background-size:cover;background-position:center"></div></sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="11 Presencia" data-bg="#8FC9E6" style="padding:140px 32px;position:relative;overflow:hidden">
+  <div style="max-width:1480px;margin:0 auto;position:relative;display:flex;flex-direction:column;gap:48px">
+    <div data-g2="" style="display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end">
+      <div data-rv="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#0F2F51"><span style="width:8px;height:8px;border-radius:50%;background:#15359D"></span>Presencia · cuatro regiones</div>
+        <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(44px, 6vw, 104px);text-transform:uppercase;letter-spacing:-.01em;line-height:.86;color:#0F2F51">Cerca de la gente,<br><span style="color:#15359D">en 39 países</span></h2>
+      </div>
+      <p data-rv="" style="margin:0;font-size:18px;line-height:1.5;color:#0F2F51;max-width:460px;justify-self:end">Reportamos resultados en cuatro regiones. Elige una para ver sus panaderías, su gente y los países donde operamos.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;height:88px;gap:6px">
+        <sc-for list="{{ regiones }}" as="r" hint-placeholder-count="4">
+          <button onClick="{{ r.go }}" aria-pressed="{{ r.on }}" style="all:unset;cursor:pointer;flex:{{ r.plantas }};background:{{ r.bg }};color:{{ r.fg }};border-radius:18px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;transition:background .35s, color .35s">
+            <span style="font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.corto }}</span>
+            <span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:36px;letter-spacing:-.01em">{{ r.plantas }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="font-size:13px;color:#0F2F51;opacity:.75">El ancho de cada región es proporcional a sus panaderías y plantas.</div>
+    </div>
+    <div data-g2="" style="background:#FBF7F0;border-radius:32px;padding:44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(40px, 4vw, 68px);text-transform:uppercase;letter-spacing:-.01em;line-height:.88;color:#15359D">{{ reg.nombre }}</div>
+        <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px">
+          <div style="border-top:1px solid rgba(15,47,81,.18);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:46px;line-height:1;color:#0F2F51">{{ reg.plantas }}</div><div style="font-size:14px;color:#3d4a5c;margin-top:4px">panaderías y plantas</div></div>
+          <div style="border-top:1px solid rgba(15,47,81,.18);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:46px;line-height:1;color:#0F2F51">{{ reg.gente }}</div><div style="font-size:14px;color:#3d4a5c;margin-top:4px">colaboradores</div></div>
+          <div style="border-top:1px solid rgba(15,47,81,.18);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:46px;line-height:1;color:#15359D">{{ reg.crec }}</div><div style="font-size:14px;color:#3d4a5c;margin-top:4px">ventas 2025 en pesos</div></div>
+        </div>
+        <p style="margin:0;font-size:17px;line-height:1.5;color:#3d4a5c;max-width:560px">{{ reg.nota }}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;border-left:1px solid rgba(15,47,81,.14);padding-left:40px" data-bl="">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#15359D">{{ reg.nPaises }}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ reg.paises }}" as="p" hint-placeholder-count="8"><span style="font-size:15px;padding:8px 15px;border-radius:999px;background:#E6EDF8;color:#0F2F51">{{ p }}</span></sc-for>
+        </div>
+        <a href="Marcas.dc.html#regiones" style="font-weight:700;font-size:16px;margin-top:auto;color:#15359D">Ver marcas por país →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="12 Inversionistas" data-bg="#0F2F51" style="padding:140px 32px;color:#fff">
+  <div style="max-width:1480px;margin:0 auto;display:flex;flex-direction:column;gap:64px">
+    <div data-g2="" style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end">
+      <div data-rv="" style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Inversionistas · BMV: BIMBO · OTC: BMBOY</div>
+        <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(44px, 5.4vw, 96px);text-transform:uppercase;letter-spacing:-.01em;line-height:.86">Crecer con<br><span style="color:#0F2F51;-webkit-text-stroke:4px #8FC9E6;paint-order:stroke fill">disciplina</span></h2>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="Inversionistas.dc.html" style="text-decoration:none;background:#fff;color:#0F2F51;font-weight:700;font-size:16px;padding:16px 26px;border-radius:999px;transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">Descarga el reporte 3T26 →</a>
+        <a href="Inversionistas.dc.html" style="text-decoration:none;color:#fff;font-weight:600;font-size:16px;padding:15px 24px;border-radius:999px;border:1.5px solid rgba(255,255,255,.4);transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">Relación con Inversionistas</a>
+      </div>
+    </div>
+    <div data-idx="" style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:0 32px">
+      <sc-for list="{{ finanzas }}" as="f" hint-placeholder-count="4">
+        <div data-rv="" style="border-top:1px solid rgba(255,255,255,.18);padding:18px 0 0;display:flex;flex-direction:column;gap:6px;min-width:0">
+          <div style="font-size:14px;color:#8FC9E6">{{ f.label }}</div>
+          <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(34px, 3vw, 54px);letter-spacing:-.012em;line-height:.95">{{ f.v }}</div>
+          <div style="font-size:14px;color:#dbe6f2">{{ f.sub }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div data-g2="" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:56px;align-items:end">
+      <div data-rv="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:32px;padding:36px 36px 28px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:28px">
+          <div style="display:flex;flex-direction:column;gap:6px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:28px;text-transform:uppercase;line-height:1">Ventas netas, 1995–2025</div><div style="font-size:14px;color:#8FC9E6">Millones de pesos · Informe Anual 2025, p. 10</div></div>
+          <div style="display:flex;gap:32px">
+            <div><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:40px;line-height:1">7%</div><div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8FC9E6;margin-top:4px">TCAC ventas, 10 años</div></div>
+            <div><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:40px;line-height:1">10%</div><div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8FC9E6;margin-top:4px">TCAC UAFIDA, 10 años</div></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-end;gap:10px;height:300px">
+          <sc-for list="{{ crecimiento }}" as="c" hint-placeholder-count="7">
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:10px;height:100%;min-width:0">
+              <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(14px, 1.4vw, 22px);letter-spacing:-.02em;line-height:1">{{ c.v }}<div style="font-family:Outfit, sans-serif;font-size:12px;font-weight:700;color:#8FC9E6;margin-top:4px">{{ c.y }}</div></div>
+              <div data-bar-g="{{ c.pct }}" style="height:0%;background:{{ c.col }};border-radius:10px 10px 0 0;transition:height 1.6s cubic-bezier(.2,.7,.2,1)"></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <a href="https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf" data-rv="" style="text-decoration:none;color:#fff;display:flex;flex-direction:column;gap:16px;align-items:center">
+        <div style="width:min(260px, 80%);aspect-ratio:345/460;border-radius:10px;background-image:url({{ img.ia25 }});background-size:cover;box-shadow:0 40px 80px rgba(0,0,0,.4);transform:rotate(-4deg);transition:transform .7s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:rotate(0deg) scale(1.03)"></div>
+        <div style="text-align:center"><div style="font-size:17px;font-weight:700">Informe Anual Integrado 2025</div><div style="font-size:13px;color:#8FC9E6;margin-top:4px">182 páginas · PDF</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="12b Innovación" data-bg="#FBF7F0" style="padding:140px 32px 0">
+  <div style="max-width:1480px;margin:0 auto;display:flex;flex-direction:column;gap:40px">
+    <div data-rv="" style="display:flex;flex-direction:column;gap:18px">
+      <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#34596E"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Innovación</div>
+      <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(40px, 4.6vw, 80px);text-transform:uppercase;letter-spacing:-.01em;line-height:.88;color:#15359D">Horneando el futuro<br>de los alimentos</h2>
+    </div>
+    <div data-bento="" style="display:grid;grid-template-columns:repeat(12, minmax(0,1fr));gap:14px">
+      <a href="https://www.youtube.com/watch?v=R7oL2slQrMs" target="_blank" rel="noopener" data-rv="" style="grid-column:span 4;text-decoration:none;color:#fff;border-radius:24px;overflow:hidden;position:relative;min-height:320px;background:#15359D;transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-6px);box-shadow:0 26px 50px rgba(15,47,81,.22)" data-hv="card">
+        <div style="position:absolute;inset:0;background-image:url({{ img.electrico }});background-size:cover;background-position:center"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(15,47,81,.9), rgba(15,47,81,0) 65%)"></div>
+        <div style="position:absolute;left:24px;right:24px;bottom:22px;display:flex;flex-direction:column;gap:6px"><span style="font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8FC9E6">▶ Video</span><span style="font-size:24px;font-weight:700;line-height:1.15">Vehículos eléctricos, un legado para un mejor mañana</span></div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=PI-ARu-4AtI" target="_blank" rel="noopener" data-rv="" style="grid-column:span 4;text-decoration:none;border-radius:24px;overflow:hidden;position:relative;min-height:320px;background:#954F1E;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;box-sizing:border-box;transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-6px);box-shadow:0 26px 50px rgba(15,47,81,.22)" data-hv="card">
+        <div style="position:absolute;inset:0;background-image:url(assets/trigo.png);background-size:cover;background-position:center"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(60,30,10,.75), rgba(60,30,10,0) 60%)"></div>
+        <div style="position:relative;display:flex;flex-direction:column;gap:6px;color:#fff"><span style="font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FAE5C5">▶ Video · Bimbo Ventures</span><span style="font-size:24px;font-weight:700;line-height:1.15">Cinco centros de innovación en el mundo</span></div>
+      </a>
+      <sc-for list="{{ innovStats }}" as="s" hint-placeholder-count="2">
+        <div data-rv="" style="grid-column:span {{ s.span }};background:{{ s.bg }};color:{{ s.fg }};border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:320px;box-sizing:border-box;min-width:0">
+          <div style="font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.85">{{ s.label }}</div>
+          <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(36px, 3.4vw, 60px);letter-spacing:-.012em;line-height:.9;overflow-wrap:anywhere">{{ s.v }}</div>
+          <div style="font-size:15px;opacity:.9">{{ s.sub }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="13 Noticias" data-bg="#FBF7F0" style="padding:220px 32px 120px">
+  <div style="max-width:1480px;margin:0 auto">
+    <div data-rv="" style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E675C"><span style="width:8px;height:8px;border-radius:50%;background:#15359D"></span>Sala de prensa</div>
+        <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, 6vw, 104px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.86;color:#15359D">Lo más reciente</h2>
+      </div>
+      <a href="Prensa.dc.html" style="text-decoration:none;border:1.5px solid #15359D;color:#15359D;font-weight:600;font-size:16px;padding:14px 24px;border-radius:999px" style-hover="background:#15359D;color:#fff">Ir a la sala de prensa →</a>
+    </div>
+    <div data-g3="" style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:24px">
+      <sc-for list="{{ noticias }}" as="n" hint-placeholder-count="3">
+        <a href="Prensa.dc.html" data-rv="" data-hv="card" style="text-decoration:none;color:#0F2F51;display:flex;flex-direction:column;gap:16px" style-hover="color:#15359D">
+          <div style="aspect-ratio:{{ n.ar }};border-radius:22px;overflow:hidden;background:#E3ECF8;position:relative">
+            <div role="img" aria-label="{{ n.alt }}" style="position:absolute;inset:0;background-image:url({{ n.img }});background-size:cover;background-position:center;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.05)"></div>
+            <span style="position:absolute;left:14px;top:14px;background:#FBF7F0;color:#15359D;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:999px">{{ n.cat }}</span>
+          </div>
+          <div style="font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6E675C">{{ n.tipo }}</div>
+          <h3 style="margin:0;font-size:{{ n.fs }};font-weight:700;line-height:1.15;letter-spacing:-.015em;text-wrap:balance">{{ n.t }}</h3>
+        </a>
+      </sc-for>
+    </div>
+    <div style="margin-top:72px;overflow:hidden;border-top:1px solid rgba(15,47,81,.15);border-bottom:1px solid rgba(15,47,81,.15)">
+      <div ref="{{ recoRef }}" style="display:flex;width:max-content;will-change:transform">
+        <sc-for list="{{ recos }}" as="r" hint-placeholder-count="8">
+          <div style="display:flex;align-items:center;gap:16px;padding:26px 40px;white-space:nowrap;border-right:1px solid rgba(15,47,81,.15)">
+            <span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;color:#15359D">{{ r.org }}</span>
+            <span style="font-size:15px;color:#3d4a5c">{{ r.t }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="14 Carreras" data-bg="#15359D" style="padding:130px 32px;color:#fff;position:relative;overflow:hidden">
+    <div data-g2="" style="max-width:1480px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;position:relative">
+    <div style="border-radius:32px;overflow:hidden;position:relative;min-height:560px;background:#2253B1">
+      <div style="position:absolute;inset:0;background-image:url(assets/colaboradora.png);background-size:cover;background-position:32% center"></div>
+      <span style="position:absolute;left:24px;bottom:24px;background:#EEB14F;color:#0F2F51;font-size:14px;font-weight:700;padding:10px 16px;transform:rotate(-3deg)">Colaboradora Grupo Bimbo</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:34px">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Carreras</div>
+        <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, 5vw, 92px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.86">Haz carrera en la panificadora <span style="color:#15359D;-webkit-text-stroke:4px #fff;paint-order:stroke fill">más grande</span> del mundo</h2>
+        <p style="margin:0;font-size:18px;line-height:1.5;max-width:480px;color:#dbe6f2">Somos más de 153,000 personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:14px">
+        <div style="border-top:1px solid rgba(255,255,255,.3);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;letter-spacing:-.01em;line-height:1">+30%</div><div style="font-size:13.5px;margin-top:4px;color:#dbe6f2">mujeres en liderazgo</div></div>
+        <div style="border-top:1px solid rgba(255,255,255,.3);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;letter-spacing:-.01em;line-height:1">28 h</div><div style="font-size:13.5px;margin-top:4px;color:#dbe6f2">de capacitación promedio</div></div>
+        <div style="border-top:1px solid rgba(255,255,255,.3);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;letter-spacing:-.01em;line-height:1">+35 mil</div><div style="font-size:13.5px;margin-top:4px;color:#dbe6f2">cursos en GB University</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="Carreras.dc.html" style="text-decoration:none;background:#fff;color:#15359D;font-weight:700;font-size:16px;padding:16px 26px;border-radius:999px;transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">Buscar vacantes en mi país →</a>
+          <a href="Carreras.dc.html" style="text-decoration:none;color:#fff;font-weight:600;font-size:16px;padding:15px 24px;border-radius:999px;border:1.5px solid rgba(255,255,255,.55);transition:transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .45s" style-hover="transform:translateY(-3px);box-shadow:0 12px 26px rgba(15,47,81,.22)" data-hv="pill">Vida en Bimbo</a>
+        </div>
+        <div style="font-size:14px;display:flex;gap:8px;align-items:center;color:#dbe6f2"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Grupo Bimbo no solicita ningún pago durante el proceso de selección.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="15 Contacto" data-bg="#FFFFFF" style="padding:110px 32px 0;overflow:hidden;background:#FFFFFF;position:relative;z-index:1">
+  <div data-g2="" style="max-width:1480px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:end">
+    <div data-rv="" style="display:flex;flex-direction:column;gap:28px;padding-bottom:90px">
+      <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(48px, 7vw, 128px);font-weight:900;text-transform:uppercase;letter-spacing:-.012em;line-height:.84;color:#15359D">¿Quieres hablar <span style="color:#FFFFFF;-webkit-text-stroke:4px #15359D;paint-order:stroke fill">con nosotros?</span></h2>
+      <p style="margin:0;font-size:20px;line-height:1.5;color:#3a2a1c;max-width:560px">Cuéntanos quién eres y te llevamos al canal correcto: consumidores, clientes, proveedores, medios o línea ética.</p>
+      <a href="Contacto.dc.html" style="align-self:flex-start;text-decoration:none;background:#EE353A;color:#fff;font-weight:700;font-size:17px;padding:17px 30px;border-radius:999px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-3px);color:#fff">Ir a Contacto →</a>
+    </div>
+    <img src="assets/oso-callcenter-hd.png?v=2" alt="Osito Bimbo con diadema de atención al cliente" style="width:100%;max-width:600px;height:auto;display:block;justify-self:center">
+  </div>
+</section>
+
+<dc-import name="Footer" hint-size="100%,760px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mostrarSaludo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;typekitId&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tipografía (Poleno vía Adobe Fonts)&quot;},&quot;preloader&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimiento&quot;},&quot;reducirMovimiento&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Movimiento&quot;}}">
+class Component extends DCLogic {
+  state = { osoIn: false, osoAlt: false, saludo: 0, saludoOp: 1, region: 1, moT: 0, accH: -1, pilarH: -1, dialH: false };
+  rootRef = React.createRef(); bgRef = React.createRef(); loaderRef = React.createRef(); loaderVidRef = React.createRef(); loaderBarRef = React.createRef(); progRef = React.createRef();
+  heroRef = React.createRef(); donaRef = React.createRef(); osoWrapRef = React.createRef(); mxp = 0; myp = 0; h80Ref = React.createRef(); osoLRef = React.createRef(); osoRRef = React.createRef(); celeRef = React.createRef(); h1WrapRef = React.createRef(); hTagsRef = React.createRef(); cueRef = React.createRef();
+  marqueeRef = React.createRef(); recoRef = React.createRef(); misionRef = React.createRef(); palabrasRef = React.createRef(); misionExtraRef = React.createRef();
+  cifrasRef = React.createRef(); momRef = React.createRef(); relojRef = React.createRef(); icoRef = React.createRef(); momSecRef = React.createRef(); icoBgRef = React.createRef();
+  cadRef = React.createRef(); cadTrackRef = React.createRef(); cadBarRef = React.createRef(); susRef = React.createRef(); histRef = React.createRef(); anioRef = React.createRef();
+  mx = 0; rx = 0;
+
+  get reduced() { return !!this.props.reducirMovimiento || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches); }
+  get mobile() { return innerWidth <= 960; }
+
+  componentDidMount() {
+    const root = this.rootRef.current; if (!root) return;
+    const kick = () => root.querySelectorAll('video[data-autoplay]').forEach(v => { v.muted = true; v.defaultMuted = true; v.playsInline = true; if (v.paused) v.play().catch(() => {}); });
+    kick(); this._kick = setInterval(kick, 1500); addEventListener('pointerdown', kick, { once: true });
+    const R = this.reduced;
+    const tk = this.props.typekitId;
+    if (tk && !document.getElementById('tk-' + tk)) { const l = document.createElement('link'); l.id = 'tk-' + tk; l.rel = 'stylesheet'; l.href = `https://use.typekit.net/${tk}.css`; document.head.appendChild(l); }
+    const ld = this.loaderRef.current;
+    if (ld) {
+      if (R || this.props.preloader === false) ld.style.display = 'none';
+      else {
+        requestAnimationFrame(() => { const b = this.loaderBarRef.current; if (b) { b.style.width = '100%'; b.style.background = '#FFFFFF'; } });
+        const hide = () => { if (this.ldDone) return; this.ldDone = true; ld.style.clipPath = 'inset(0 0 100% 0)'; this.ldT2 = setTimeout(() => { ld.style.display = 'none'; }, 1050); };
+        const v = this.loaderVidRef.current; if (v) { v.muted = true; v.play && v.play().catch(() => {}); v.addEventListener('ended', hide); }
+        this.ldT = setTimeout(hide, 6000);
+      }
+    }
+    if (!R) root.querySelectorAll('[data-cl]').forEach((el, i) => {
+      el.style.opacity = '0'; el.style.transform = el.parentElement && el.parentElement.hasAttribute('data-n80') ? 'scale(.6) translateY(20%)' : 'translateY(60px)'; el.style.filter = 'blur(12px)';
+      el.style.transition = `opacity .9s ${1.35 + i * 0.12}s, transform 1.1s cubic-bezier(.2,.7,.2,1) ${1.35 + i * 0.12}s, filter 1s ${1.35 + i * 0.12}s`;
+      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; }));
+      setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; }, 120);
+    });
+    if (!R && window.Lenis) {
+      this.lenis = new window.Lenis({ lerp: 0.09, smoothWheel: true });
+      const f = t => { this.lenis && this.lenis.raf(t); this.lenisId = requestAnimationFrame(f); };
+      this.lenisId = requestAnimationFrame(f);
+    }
+    if (!R && 'IntersectionObserver' in window) {
+      const vh = innerHeight;
+      this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const el = e.target; el.style.opacity = '1'; el.style.filter = 'blur(0)'; el.style.transform = 'none'; this.io.unobserve(el); } }), { threshold: 0.1 });
+      const auto = 'section:not([data-pin]) h2, section:not([data-pin]) [data-g2] > *, section:not([data-pin]) [data-idx] > *, section:not([data-pin]) [data-bento] > *, section:not([data-pin]) p';
+      root.querySelectorAll(auto).forEach(el => { if (el.closest('[data-rv]') || el.querySelector('[data-rv]') || el.closest('[data-hero-sticky],[data-track],nav')) return; el.setAttribute('data-rv', ''); });
+      root.querySelectorAll('[data-rv]').forEach((el) => {
+        if (el.getBoundingClientRect().top < vh) return;
+        const sib = el.parentElement ? [...el.parentElement.children].filter(c => c.hasAttribute('data-rv')).indexOf(el) : 0;
+        const d = Math.min(Math.max(sib, 0), 5) * 0.09;
+        el.style.opacity = '0'; el.style.filter = 'blur(12px)'; el.style.transform = 'translateY(40px)';
+        el.style.transition = `opacity .9s ${d}s, filter 1s ${d}s, transform 1.1s cubic-bezier(.2,.7,.2,1) ${d}s, color .35s`;
+        this.io.observe(el);
+      });
+    }
+    root.querySelectorAll('[data-hv="card"]').forEach(a => {
+      const im = [...a.querySelectorAll('div')].find(d => d.style.backgroundImage && d.style.position === 'absolute'); if (!im) return;
+      im.style.transition = 'transform 1.1s cubic-bezier(.2,.7,.2,1)';
+      a.addEventListener('mouseenter', () => { im.style.transform = 'scale(1.06)'; });
+      a.addEventListener('mouseleave', () => { im.style.transform = 'scale(1)'; });
+    });
+    root.querySelectorAll('[data-hv="pill"]').forEach(a => {
+      const ar = [...a.childNodes].find(n => n.nodeType === 3 && /→/.test(n.textContent)); if (!ar) return;
+      const t = ar.textContent, i = t.lastIndexOf('→'), sp = document.createElement('span');
+      sp.textContent = '→'; sp.style.display = 'inline-block'; sp.style.transition = 'transform .45s cubic-bezier(.34,1.56,.64,1)'; sp.style.marginLeft = '2px';
+      ar.textContent = t.slice(0, i); ar.after(sp); if (t.slice(i + 1)) sp.after(document.createTextNode(t.slice(i + 1)));
+      a.addEventListener('mouseenter', () => { sp.style.transform = 'translateX(5px)'; });
+      a.addEventListener('mouseleave', () => { sp.style.transform = 'none'; });
+    });
+    root.querySelectorAll('[data-fill]').forEach(f => {
+      const a = f.parentElement;
+      a.addEventListener('mouseenter', () => { f.style.clipPath = 'circle(150% at 100% 0%)'; });
+      a.addEventListener('mouseleave', () => { f.style.clipPath = 'circle(0% at 100% 0%)'; });
+    });
+    const once = (el, fn, th = 0.3) => { if (!el) return; if (R || !('IntersectionObserver' in window)) return fn(); const o = new IntersectionObserver(es => { if (es[0].isIntersecting) { fn(); o.disconnect(); } }, { threshold: th }); o.observe(el); (this.obs = this.obs || []).push(o); };
+    once(this.cifrasRef.current, () => this.countUp(), 0.2);
+    this.secs0 = 0; root.querySelectorAll('[data-bar-g]').forEach(b => once(b.parentElement, () => { b.style.height = b.getAttribute('data-bar-g') + '%'; }, 0.2));
+    once(this.susRef.current, () => root.querySelectorAll('[data-meta]').forEach(b => { b.style.width = b.getAttribute('data-meta') + '%'; }), 0.15);
+    this.words = this.palabrasRef.current ? [...this.palabrasRef.current.querySelectorAll('[data-w]')] : [];
+    this.panels = [...root.querySelectorAll('[data-mp]')];
+    this.icoItems = [...root.querySelectorAll('[data-ico-item]')];
+    this.eraTxt = [...root.querySelectorAll('[data-era-txt]')]; this.eraOso = [...root.querySelectorAll('[data-era-oso]')]; this.eraImg = [...root.querySelectorAll('[data-era-img]')]; this.eraDot = [...root.querySelectorAll('[data-era-dot]')];
+    this.secs = [...root.querySelectorAll('section[data-bg]')];
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.measure(); }); };
+    this.onResize = () => { this.layout(); this.measure(); };
+    addEventListener('scroll', this.onScroll, { passive: true }); addEventListener('resize', this.onResize);
+    this.layout(); this.measure();
+    this.loop = () => {
+      if (!R) {
+        const m = this.marqueeRef.current; if (m) { this.mx -= 0.7; const w = m.scrollWidth / 2; if (-this.mx > w) this.mx += w; m.style.transform = `translateX(${this.mx}px)`; }
+        const r = this.recoRef.current; if (r) { this.rx -= 0.4; const w = r.scrollWidth / 2; if (-this.rx > w) this.rx += w; r.style.transform = `translateX(${this.rx}px)`; }
+        const t = performance.now();
+        root.querySelectorAll('[data-ico-badge] svg').forEach(s => { s.style.transform = `rotate(${t / 50 % 360}deg)`; });
+        if (this.cueRef.current) this.cueRef.current.style.transform = `scaleY(${0.6 + 0.4 * Math.sin(t / 400)})`;
+      }
+      this.loopId = requestAnimationFrame(this.loop);
+    };
+    this.loopId = requestAnimationFrame(this.loop);
+    this.onMM = ev => { const hr = this.heroRef.current; if (!hr || R) return; const r = hr.getBoundingClientRect(); if (r.bottom < 0) return; this.mxp = ev.clientX / innerWidth - 0.5; this.myp = ev.clientY / innerHeight - 0.5; this.onScroll(); };
+    addEventListener('mousemove', this.onMM, { passive: true });
+    const dn = this.donaRef.current; if (dn && !R) dn.addEventListener('mouseenter', () => this.dust());
+    this.osoT = setTimeout(() => { this.setState({ osoIn: true }); this.osoI = setInterval(() => this.setState(s => ({ osoAlt: !s.osoAlt })), 3400); }, R ? 0 : 2300);
+    this.moTimer = setInterval(() => { if (this.mobile && !this.state.dialH && !this.reduced) this.setState(s => ({ moT: s.moT + 1 })); }, 4200);
+    this.sTimer = setInterval(() => { this.setState({ saludoOp: 0 }); this.sT2 = setTimeout(() => this.setState(s => ({ saludo: (s.saludo + 1) % this.saludos.length, saludoOp: 1 })), 350); }, 2400);
+  }
+
+  componentWillUnmount() {
+    removeEventListener('scroll', this.onScroll); removeEventListener('mousemove', this.onMM); removeEventListener('resize', this.onResize);
+    cancelAnimationFrame(this.loopId); cancelAnimationFrame(this.lenisId); this.lenis && this.lenis.destroy();
+    clearInterval(this.sTimer); clearInterval(this.moTimer); clearInterval(this.osoI); clearTimeout(this.osoT); [this.sT2, this.ldT, this.ldT2].forEach(clearTimeout);
+    this.io && this.io.disconnect(); (this.obs || []).forEach(o => o.disconnect());
+  }
+
+  layout() {
+    const sec = this.cadRef.current, track = this.cadTrackRef.current;
+    if (sec && track) sec.style.height = this.mobile ? '' : (track.scrollWidth - innerWidth + innerHeight * 1.15) + 'px';
+  }
+
+  dust() {
+    const dn = this.donaRef.current; if (!dn) return; const now = performance.now(); if (this.dustT && now - this.dustT < 650) return; this.dustT = now;
+    const host = dn.parentElement, w = host.offsetWidth, hh = host.offsetHeight;
+    for (let k = 0; k < 110; k++) {
+      const big = k % 7 === 0, a = Math.PI * (0.08 + Math.random() * 0.84), r = 0.36 + Math.random() * 0.13;
+      const s = big ? 3 + Math.random() * 4 : 1 + Math.random() * 2.4;
+      const px = w / 2 + Math.cos(a) * w * r, py = hh / 2 + Math.sin(a) * hh * r;
+      const p = document.createElement('span');
+      p.style.cssText = 'position:absolute;left:' + px + 'px;top:' + py + 'px;width:' + s + 'px;height:' + s * (big ? 0.7 : 1) + 'px;border-radius:50%;background:#fff;pointer-events:none;opacity:.95';
+      host.appendChild(p);
+      const floor = hh * (1.04 + Math.random() * 0.05) - py, dx = (px - w / 2) * (0.15 + Math.random() * 0.35) + (Math.random() - 0.5) * 24;
+      const dur = 380 + Math.random() * 360;
+      p.animate([{ transform: 'translate(0,0)', opacity: 0 }, { transform: 'translate(' + dx * 0.4 + 'px,' + floor * 0.35 + 'px)', opacity: 1, offset: .1 }, { transform: 'translate(' + dx + 'px,' + floor + 'px) scaleY(.6)', opacity: 1, offset: .3 }, { transform: 'translate(' + dx + 'px,' + floor + 'px) scaleY(.6)', opacity: 0 }], { duration: dur + 1800, easing: 'cubic-bezier(.55,0,.85,.4)', delay: Math.random() * 160, fill: 'forwards' });
+      setTimeout(() => p.remove(), dur + 3000);
+    }
+  }
+
+  countUp() {
+    const els = this.rootRef.current.querySelectorAll('[data-to]'); const t0 = performance.now(); const D = 1800;
+    const step = now => {
+      const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 4);
+      els.forEach(el => { const to = +el.getAttribute('data-to'); el.textContent = Math.round(to * e).toLocaleString('en-US'); });
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  prog01(el) { if (!el) return 0; const r = el.getBoundingClientRect(); const span = r.height - innerHeight; return Math.max(0, Math.min(1, -r.top / (span || 1))); }
+  cl(v) { return Math.max(0, Math.min(1, v)); }
+  mix(a, b, f) { return f <= 0.001 ? a : f >= 0.999 ? b : `color-mix(in oklch, ${b} ${Math.round(f * 100)}%, ${a})`; }
+
+  measure() {
+    const R = this.reduced, M = this.mobile, vw = innerWidth, vh = innerHeight;
+    const tot = document.documentElement.scrollHeight - vh;
+    if (this.progRef.current) { const q = tot > 0 ? scrollY / tot : 0; this.progRef.current.style.width = (q * 100) + '%'; this.progRef.current.style.background = this.mix('#EEB14F', '#954F1E', q); }
+    const c = vh * 0.5, Z = vh * 0.38;
+    for (let i = 0; i < this.secs.length; i++) {
+      const r = this.secs[i].getBoundingClientRect();
+      if (r.top <= c && r.bottom > c) {
+        const cur = this.secs[i].dataset.bg; let col = cur;
+        const up = this.cl((r.top + Z - c) / (2 * Z)), dn = this.cl((c - (r.bottom - Z)) / (2 * Z));
+        if (up > 0 && this.secs[i - 1]) col = this.mix(cur, this.secs[i - 1].dataset.bg, up);
+        else if (dn > 0 && this.secs[i + 1]) col = this.mix(cur, this.secs[i + 1].dataset.bg, dn);
+        if (this.bgRef.current) this.bgRef.current.style.background = col;
+        break;
+      }
+    }
+    const ph = R ? 0 : this.prog01(this.heroRef.current);
+    const e1 = this.cl(ph / 0.55), ee = e1 * e1 * (3 - 2 * e1);
+    if (this.osoLRef.current) this.osoLRef.current.style.transform = `translateX(${-ee * 38}vw) rotate(${-ee * 8}deg)`;
+    if (this.osoRRef.current) this.osoRRef.current.style.transform = `translateX(${ee * 38}vw) rotate(${ee * 8}deg)`;
+    if (this.h80Ref.current) { const z = this.cl(ph / 0.5), zz = z * z * z; const el = this.h80Ref.current; el.style.transformOrigin = '76% 42%'; el.style.transform = `translateX(${-zz * 18}vw) scale(${1 + zz * 16})`; el.style.opacity = String(1 - this.cl((ph - 0.4) / 0.12)); }
+    if (this.osoWrapRef.current) this.osoWrapRef.current.style.transform = `translate(-50%,-50%)`;
+    if (this.celeRef.current) { const o = 1 - this.cl(ph / 0.3); this.celeRef.current.style.opacity = String(o); this.celeRef.current.style.filter = `blur(${(1 - o) * 16}px)`; this.celeRef.current.style.transform = `translateX(${-(1 - o) * 30}vw) scale(${1 - (1 - o) * 0.2})`; } { const t = this.rootRef.current && this.rootRef.current.querySelector('[data-cl]'); if (t && (t.dataset.inDone || ph > 0.001)) { t.dataset.inDone = '1'; t.style.transition = 'none'; const o2 = 1 - this.cl(ph / 0.3); t.style.opacity = String(o2); t.style.filter = `blur(${(1 - o2) * 16}px)`; t.style.transform = `translateX(${-(1 - o2) * 30}vw) scale(${1 - (1 - o2) * 0.2})`; t.style.transformOrigin = 'left center'; } }
+    if (this.hTagsRef.current) this.hTagsRef.current.style.opacity = String(1 - this.cl(ph / 0.2));
+    if (this.h1WrapRef.current) { const o = R ? 0 : this.cl((ph - 0.44) / 0.18); this.h1WrapRef.current.style.transform = `scale(${1.25 - o * 0.25})`; this.h1WrapRef.current.style.opacity = String(o); { const pr = this.h1WrapRef.current.querySelector('[data-prod]'); if (pr) pr.style.transform = `translateY(${(1 - o) * 80}px)`; }  this.h1WrapRef.current.style.filter = `blur(${(1 - o) * 10}px)`; this.h1WrapRef.current.style.pointerEvents = o > 0.5 ? 'auto' : 'none'; }
+    const pm = R ? 1 : this.prog01(this.misionRef.current); const n = this.words.length; const k = pm * 1.35 * n;
+    this.words.forEach((w, i) => {
+      const d = k - i;
+      w.style.webkitTextStroke = '2px #FAE5C5'; w.style.paintOrder = 'stroke fill';
+      if (d >= 1) { w.style.color = '#FAE5C5'; w.style.filter = 'none'; w.style.opacity = '1'; }
+      else if (d > 0) { w.style.color = `rgba(238,177,79,${d})`; w.style.filter = `blur(${(1 - d) * 4}px)`; w.style.opacity = String(0.45 + 0.55 * d); }
+      else { w.style.color = 'rgba(250,229,197,0)'; w.style.filter = 'none'; w.style.opacity = '0.4'; }
+    });
+    const ex = this.misionExtraRef.current; if (ex) { const o = R ? 1 : this.cl((pm - 0.74) / 0.16); ex.style.opacity = String(o); ex.style.transform = `translateY(${(1 - o) * 26}px)`; }
+    const N = this.momentosData.length; const p = this.prog01(this.momRef.current); const x = p * (N - 1);
+    this.panels.forEach((el, i) => {
+      const cc = Math.max(0, 1 - Math.abs(i - x));
+      const full = el.querySelector('[data-mp-full]'), v = el.querySelector('[data-mp-v]'), im = el.querySelector('[data-mp-img]');
+      if (M) { el.style.flex = ''; if (full) full.style.opacity = '1'; return; }
+      el.style.flex = String(0.55 + 7 * Math.pow(cc, 1.6));
+      if (full) full.style.opacity = String(this.cl((cc - 0.45) / 0.45));
+      if (v) v.style.opacity = String(this.cl(1 - cc * 2.2));
+      if (im) im.style.transform = `scale(${1.25 - 0.25 * cc})`;
+    });
+    if (this.relojRef.current) { const mins = 7 * 60 + x * (14 * 60 / (N - 1)); const hh = Math.floor(mins / 60), mm = Math.floor(mins % 60 / 15) * 15; this.relojRef.current.textContent = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`; }
+    if (!M && this.momSecRef.current) { const mi = Math.min(4, Math.floor(this.prog01(this.momSecRef.current) * 5)); if (this.state.moT !== mi) this.setState({ moT: mi }); }
+    const I = this.iconosData, NI = I.length; const pi = this.prog01(this.icoRef.current); const xi = pi * (NI - 1) * 1.0;
+    const ii = Math.min(NI - 1, Math.round(xi));
+    if (this.icoBgRef.current && !M) { const a = Math.min(NI - 1, Math.floor(xi)), b = Math.min(NI - 1, a + 1), f = this.cl(((xi - a) - 0.3) / 0.4); this.icoBgRef.current.style.background = this.mix(I[a].bg, I[b].bg, f); }
+    if (!M) this.icoItems.forEach((el, i) => {
+      const d = i - xi, ad = Math.abs(d), o = this.cl(1 - ad * 2.2);
+      el.style.opacity = String(o); el.style.pointerEvents = o > 0.5 ? 'auto' : 'none';
+      const prod = el.querySelector('[data-ico-prod]'), word = el.querySelector('[data-ico-word]');
+      if (prod) prod.style.transform = `translateY(${d * 60}vh) rotate(${d * -24 + (i % 2 ? 4 : -4)}deg)`;
+      if (word) word.style.transform = `translateY(-55%) translateX(${d * -30}vw)`;
+    });
+    if (this.state.ico !== ii) this.setState({ ico: ii });
+    const bar = this.icoBgRef.current && this.icoBgRef.current.querySelector('[aria-current="true"] [data-ico-bar]'); if (bar) bar.style.width = (this.cl(0.5 + (xi - ii)) * 100) + '%';
+    const sec = this.cadRef.current, track = this.cadTrackRef.current;
+    if (sec && track) {
+      if (M) track.style.transform = '';
+      else { const q = this.prog01(sec); track.style.transform = `translateX(${-q * Math.max(0, track.scrollWidth - vw)}px)`; if (this.cadBarRef.current) this.cadBarRef.current.style.width = (q * 100) + '%'; }
+    }
+    const NE = this.eraTxt.length;
+    if (NE) {
+      const qh = M ? 0 : this.prog01(this.histRef.current); const xe = qh * (NE - 1);
+      const yrs = [1945, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2026];
+      const a = Math.min(NE - 1, Math.floor(xe)), fr = xe - a;
+      if (this.anioRef.current) this.anioRef.current.textContent = String(Math.round(yrs[a] + (yrs[a + 1] - yrs[a]) * fr));
+      for (let i = 0; i < NE; i++) {
+        const dd = i - xe, o = M ? (i === 0 ? 1 : 0) : this.cl(1 - Math.abs(dd) * 2.4);
+        const t = this.eraTxt[i], s = this.eraOso[i], im = this.eraImg[i], dot = this.eraDot[i];
+        if (t) { t.style.opacity = String(o); t.style.transform = `translateY(${dd * 40}px)`; t.style.filter = `blur(${(1 - o) * 6}px)`; }
+        if (s) { s.style.opacity = String(o); s.style.transform = `translateX(${dd * 30}%) scale(${0.85 + 0.15 * o})`; }
+        if (im) im.style.opacity = String(o);
+        if (dot) dot.style.background = i <= xe + 0.5 ? '#15359D' : 'rgba(21,53,157,.18)';
+      }
+    }
+  }
+
+  saludos = [
+    { t: '¡Buen provecho!', pais: 'México' }, { t: 'Bom apetite', pais: 'Brasil' }, { t: 'Enjoy your meal', pais: 'Estados Unidos' },
+    { t: 'Bon appétit', pais: 'Francia' }, { t: 'Buon appetito', pais: 'Italia' }, { t: 'Afiyet olsun', pais: 'Turquía' },
+    { t: 'Poftă bună', pais: 'Rumanía' }, { t: 'Dobar tek', pais: 'Croacia' }, { t: '맛있게 드세요', pais: 'Corea del Sur' },
+    { t: 'Bom proveito', pais: 'Portugal' }, { t: 'Que aproveche', pais: 'España' },
+  ];
+
+  momentosData = [
+    { nombre: 'Desayuno', hora: '07:00', acc: '#FAE5C5', fg: '#15359D', img: 'pb1', linea: 'El día empieza con pan recién horneado, tostado y untado como a cada quien le gusta.', marcas: ['Bimbo', "Thomas'", 'Oroweat'] },
+    { nombre: 'Lonche', hora: '11:00', acc: '#8FC9E6', fg: '#0F2F51', img: 'pb2', linea: 'La torta del recreo, el sándwich de la oficina y la tortilla que acompaña la comida.', marcas: ['Bimbo', 'Sanissimo', 'Tía Rosa'] },
+    { nombre: 'Antojo', hora: '16:00', acc: '#2253B1', fg: '#fff', img: 'mant1', linea: 'Lo dulce de la tarde, para compartir o para uno solo.', marcas: ['Marinela', 'Bimbo', 'Lara'] },
+    { nombre: 'Botana', hora: '18:00', acc: '#15359D', fg: '#fff', img: 'takis', fit: '78% auto', bgc: '#EE353A', linea: 'Con los amigos, el partido o la película: picante, salado y crujiente.', marcas: ['Takis', 'Barcel', 'Runners'] },
+    { nombre: 'Sobremesa', hora: '21:00', acc: '#0F2F51', fg: '#fff', img: 'art2', linea: 'Cuando la plática se alarga, siempre hay algo para acompañar el café.', marcas: ['El Globo', "Entenmann's", 'Bimbo'] },
+  ];
+
+  goMo(d) {
+    if (this.mobile) { this.setState(s => ({ moT: s.moT + d })); return; }
+    const el = this.momSecRef.current; if (!el) return;
+    const i = Math.max(0, Math.min(4, this.state.moT + d)), span = el.offsetHeight - innerHeight;
+    scrollTo({ top: el.getBoundingClientRect().top + scrollY + span * ((i + 0.5) / 5), behavior: 'smooth' });
+  }
+  goIco(i) {
+    const el = this.icoRef.current; if (!el) return;
+    const N = this.iconosData.length, top = el.getBoundingClientRect().top + scrollY, span = el.offsetHeight - innerHeight;
+    scrollTo({ top: top + span * (i / (N - 1)) + 2, behavior: 'smooth' });
+  }
+  iconosData = [
+    { palabra: 'Pan Blanco', bg: '#DCE6F5', palido: '#C3D3EE', fg: '#0F2F51', acc: '#15359D', accFg: '#fff', img: 'pb2', alt: 'Pan Blanco Bimbo', cinta: ['Pan', 'Blanco'], linea: 'El pan de caja que abrió nuestra historia en 1945. Hazlo como quieras: haz sándwich.' },
+    { palabra: 'Mantecadas', bg: '#F6D57A', palido: '#EFC65A', fg: '#3a2a1c', acc: '#954F1E', accFg: '#fff', img: 'mant2', alt: 'Mantecadas Bimbo sabor mármol', cinta: ['Mantecadas', 'Mármol'], linea: 'La esponjosidad de siempre, ahora también sabor mármol, en tienditas y supermercados de todo el país.' },
+    { palabra: 'Artesano', bg: '#EAD3AE', palido: '#DFC08F', fg: '#3a2a1c', acc: '#0F2F51', accFg: '#fff', img: 'art1', alt: 'Pan Bimbo Artesano', cinta: ['Pan', 'Artesano'], linea: 'Pan hecho con masa madre, horneado sin conservadores ni colorantes artificiales.' },
+  ];
+
+  renderVals() {
+    const C = 'https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/';
+    const MX = 'https://bimbo-com-mx-assets.s3.amazonaws.com/s3fs-public/';
+    const OS = 'https://bimbo.com.mx/themes/custom/bimbo/media/';
+    const S = this.state;
+    const P = {
+      pb1: MX + 'product_sweet_bread_bimbo/carrusel-pan-blanco-sitio1.jpg?VersionId=PhX5j2zrcLCL8jXb_3nMo.4tK0ZZsQiW',
+      pb2: MX + 'product_sweet_bread_bimbo/carrusel-pan-blanco-sitio2.jpg?VersionId=qNepE1WIRIpr3jeLOUwKUgthcgoSZwpH',
+      mant1: MX + 'product_sweet_bread_bimbo/sitio%20web%20mantecada%20marmol_1.jpg?VersionId=FGGfCnDjljnEHC5gmCM1MV9l0x9UwbBt',
+      mant2: MX + 'product_sweet_bread_bimbo/sitio%20web%20mantecadas%20marmol.jpg?VersionId=Ogm826RzEA7ZHWeIGR.QisPQ1B.dt9hD',
+      art1: MX + 'product_bread_bimbo/CARRUSEL-599X481-Artesano1.jpg?VersionId=y9f_sK1aBGU_ci2FgRYwpJMGCcLYF51w',
+      art2: MX + 'product_bread_bimbo/CARRUSEL-599X481-Artesano2.jpg?VersionId=ukkB7ueTOopYahzSdfP4W9w9fFi2.rxy',
+      sandwich: C + '2026-10/sandwich-es.png',
+      lonche: 'assets/sandwich-lonche.png',
+      takis: 'https://www.barcel.com.mx/themes/custom/barceldos/images/files/takis_fuego.png',
+    };
+    const img = {
+      panaderias: C + 'nuestras-panaderias/bimbo-panaderias.jpg?VersionId=oVZRAZmBKEXR7O44dRLn5JhnCE9C5W19',
+      ia25: C + 'styles/reporte_345x460/public/reportes-2026/IA25GB_Cover_1500x1917jpg_2.jpg?VersionId=S5SgX_u0QxUFxJBQ3inABAJzsDqGPj5p&itok=dw_FyVtM',
+      electrico: C + 'styles/headline_press/public/noticias-2026/B_notas_Energia_0.png?VersionId=xdg.b6FJBo2D.lbbAX3nx6pQrDsEqa02&itok=6ECkftoV',
+      carreras: C + 'nuestras-panaderias/visita_panaderias-min.jpeg?VersionId=5gucsfOdvRAC8ZdzxrinILus1vh1cXGR',
+    };
+    const cw = ['¡Buen provecho!', 'Bom apetite', 'Enjoy your meal', 'Bon appétit', 'Buon appetito', 'Afiyet olsun', 'Poftă bună', 'Que aproveche'];
+    const cinta = [...cw, ...cw].map((t, i) => ({ t, color: i % 2 ? '#15359D' : '#fff', stroke: i % 2 ? '2.5px #8FC9E6' : '0' }));
+    const accesos = [
+      ['Inversionistas', 'Inversionistas', 'Resultados trimestrales, reportes anuales y gobierno corporativo.', 'Descarga el reporte 3T26', 'Inversionistas.dc.html'],
+      ['Carreras', 'Candidatos', 'Vacantes en los 39 países donde operamos.', 'Buscar vacantes', 'Carreras.dc.html'],
+      ['Marcas', 'Consumidores', 'Encuentra una marca por país o categoría.', 'Abrir el directorio', 'Marcas.dc.html'],
+      ['Prensa', 'Medios', 'Comunicados, noticias y kit de medios.', 'Ir a la sala de prensa', 'Prensa.dc.html'],
+      ['Proveedores', 'Proveedores', 'Registro, portal y políticas para proveedores.', 'Ir al portal', 'https://proveedores.grupobimbo.com/'],
+      ['Contacto', 'Todos', 'Dudas sobre un producto, denuncias éticas y más.', 'Elegir un canal', 'Contacto.dc.html'],
+    ].map(([t, aud, d, cta, href], i) => { const on = S.accH === i; return { n: '0' + (i + 1), t, aud, d, cta, href, frase: ['Soy inversionista', 'Quiero trabajar aquí', 'Busco una marca', 'Soy periodista', 'Soy proveedor', 'Necesito ayuda'][i], fg: on ? '#fff' : '#15359D', sy: on ? 1 : 0, tx: on ? '14px' : '0px', op: on ? 1 : 0, ty: on ? '0px' : '10px', rot: on ? '-45deg' : '0deg', enter: () => this.setState({ accH: i }), leave: () => this.setState(s => (s.accH === i ? { accH: -1 } : null)) }; });
+    const cifras = [{ pre: '', v: '39', to: 39, suf: '', label: 'Países donde operamos', sub: 'Y nuestros productos llegan a 93.' }, { pre: '', v: '249', to: 249, suf: '', label: 'Panaderías y plantas', sub: '38 de ellas en México.' }, { pre: '+', v: '100', to: 100, suf: '', label: 'Marcas', sub: 'Más de 9,000 productos.' }, { pre: '+', v: '153', to: 153, suf: ' mil', label: 'Colaboradores', sub: 'Más de 77,000 en México.' }];
+    const palabras = 'Alimentos deliciosos y nutritivos en las manos de todos.'.split(' ');
+    const rots = ['-4deg', '3deg', '-2deg'];
+    const TIN = ['#FFF3D6', '#FFE6B8', '#FFD9C7', '#FFE0D1', '#DCE6F5'], PAL = ['#F6DFA6', '#F7CF8F', '#F6B9A8', '#F9BCAA', '#BFD0EA'];
+    const mo = ((S.moT % 5) + 5) % 5;
+    const momentos = this.momentosData.map((m, i) => { const on = i === mo, a = i * 72 * Math.PI / 180; return { ...m, img: m.img ? P[m.img] : '', fit: m.fit || 'cover', bgc: m.bgc || 'transparent', x: (50 + 47 * Math.sin(a)) + '%', y: (50 - 47 * Math.cos(a)) + '%', op: on ? 1 : 0, sc: on ? 1 : 1.18, rot: on ? '0deg' : (i < mo ? '-10deg' : '10deg'), chipBg: on ? '#15359D' : '#FBF7F0', chipFg: on ? '#fff' : '#15359D', go: () => (this.mobile ? this.setState(s => ({ moT: s.moT + (((i - mo + 7) % 5) - 2) })) : this.goMo(i - mo)) }; });
+    const mm = this.momentosData[mo];
+    const mom = { ...mm, tinte: TIN[mo], palido: PAL[mo], dummy: mm.dummy || '', marcas: mm.marcas.map((t, j) => ({ t, r: rots[j] })) };
+    const iconos = this.iconosData.map(p => ({ ...p, img: P[p.img], fs: p.palabra.length > 8 ? 'min(22vw, 330px)' : 'min(28vw, 400px)', cinta: p.cinta.map((t, j) => ({ t, r: j ? '2deg' : '-3deg' })) }));
+    const cur = this.iconosData[S.ico || 0];
+    const icoTabs = this.iconosData.map((p, i) => { const on = (S.ico || 0) === i; return { n: '0' + (i + 1), total: '0' + this.iconosData.length, t: p.palabra, linea: p.linea, bg: 'transparent', fg: cur.fg, acc: cur.acc, accFg: cur.accFg, line: cur.fg + '33', cur: on ? 'true' : 'false', w: on ? 'min(440px, 31vw)' : '76px', opA: on ? 1 : 0, opC: on ? 0 : 1, tx: on ? '0px' : '40px', go: () => this.goIco(i) }; });
+    const YT = id => `https://www.youtube.com/watch?v=${id}`;
+    const etapas = [
+      ['Campo', 'Trabajamos con agricultores en agricultura regenerativa. Meta: 100% de ingredientes clave en 2050.', '+500 mil', 'hectáreas regenerativas', C + 'styles/headline_press/public/comunicados-2026/regenerativeagriculture_grupobimbo_0.png?VersionId=cFqTBc7yrPfpPlQqPc__Uc4.wVqcKzQN&itok=usg4GhFO', 'H2iIeOPV8RE', 'Del campo a tu mesa'],
+      ['Panaderías', 'Horneamos cada día en 249 panaderías y plantas, con maestros panaderos como Víctor Contreras.', '249', 'panaderías y plantas', img.panaderias, 'mzLwq8yF5H8', 'El maestro hornero'],
+      ['Distribución', 'Llevamos el pan fresco con más de 54,000 rutas y más de 1,700 centros de ventas.', '+54,000', 'rutas de distribución', C + 'styles/decada_570x370/public/historia/Grupo%20Bimbo%20define%20su%20meta%20de%20cero%20emisiones%20netas.jpeg?VersionId=K2uoMdHr4iqJYbWz.btvAAf7tZ07BAlO&itok=WAJPzsLa', 'hEGzFMfNU0E', 'Más allá del pan'],
+      ['Tiendas', 'Desde la tienda de la esquina hasta el supermercado, en 93 países.', '93', 'países', C + 'nuestras-panaderias/marinela.jpeg?VersionId=BnWsSdVu0eWc_ywZko_7i.pXcJ1ub.LX', 'JcJOYeUnUwQ', 'El alma de la tiendita'],
+      ['Tu mesa', 'Llegamos con más de 100 marcas para cada momento del día.', '+100', 'marcas', 'assets/sandwich-lonche.png', 'QUzqLH_KfY8', 'Haz sándwich'],
+    ].map(([t, d, cifra, cifraLabel, im, id, video], i) => ({ n: '0' + (i + 1), t, d, cifra, cifraLabel, img: im, url: YT(id), video }));
+    const PL = [
+      { t: 'Para Ti', pre: 'Para', sil: ['Ti'], color: '#DF8A35', tint: '#FAE5C5', img: C + '2026-01/Frame%201245.png', href: 'Sustentabilidad.dc.html#para-ti',
+        metas: [['Panes y bollería con 3.5 estrellas o más', '98%', 98, 'Meta: 100%', 'En curso'], ['Panes blancos con al menos 2 g de fibra', '97%', 100, 'Meta: 90%', 'Logrado'], ['Consumo diario sin colorantes artificiales', '100%', 100, 'Meta: todo el portafolio, 2026', 'En curso']] },
+      { t: 'Para la Vida', pre: 'Para la', sil: ['Vi', 'da'], color: '#A02949', tint: '#E2838C', img: C + '2026-01/Frame%2012451.png', href: 'Sustentabilidad.dc.html#para-la-vida',
+        metas: [['Proyectos Buen Vecino en 32 países', '270', 100, 'Meta: uno por centro de trabajo', 'Logrado'], ['Mujeres en posiciones de liderazgo', '+30%', 75, 'Meta: 40% en 2030', 'En curso'], ['Horas de capacitación promedio', '28 h', 70, 'GB University: +35,000 cursos', 'En curso']] },
+      { t: 'Para la Naturaleza', pre: 'Para la', sil: ['Na', 'tu', 'ra', 'le', 'za'], color: '#1B4A31', tint: '#8DC892', img: C + '2026-01/Frame%201246%20%281%29.png', href: 'Sustentabilidad.dc.html#para-la-naturaleza',
+        metas: [['Hectáreas con agricultura regenerativa', '+500 mil', 100, 'Meta: 200 mil en 2030', 'Logrado'], ['Empaques diseñados para ser reciclables', '99%', 99, 'Meta: 100%', 'En curso'], ['Residuos fuera de relleno sanitario', '99%', 99, 'Meta: 100%', 'En curso']] },
+    ];
+    const pilares = PL.map((p, i) => ({ ...p, on: S.pilarH === i, mh: S.pilarH === i ? '640px' : '0px', mop: S.pilarH === i ? 1 : 0, sop: S.pilarH === i ? 0 : 1, sty: S.pilarH === i ? '-16px' : '0px', mty: S.pilarH === i ? '0px' : '24px', res: { t: p.metas[0][0], v: p.metas[0][1] }, enter: () => this.setState({ pilarH: i }), leave: () => this.setState(s => (s.pilarH === i ? { pilarH: -1 } : null)), tog: () => this.setState(s => ({ pilarH: s.pilarH === i ? -1 : i })), silabas: p.sil.map(t => ({ t, c: p.color, k: '4px ' + p.tint })), metas: p.metas.map(([t, v, pct, meta, estado]) => ({ t, v, pct, meta, estado })) }));
+    const cimientos = [['01', 'Calidad e inocuidad alimentaria'], ['02', 'Derechos humanos y estándares laborales'], ['03', 'Abastecimiento sustentable'], ['04', 'Estándares ambientales y edificios sustentables']].map(([n, t]) => ({ n, t }));
+    const D = C + 'styles/decada_570x370/public/historia/';
+    const eras = [
+      ['1945–1950', 'Una panadería y un pan envuelto en celofán', 'Seis socios fundan Bimbo en Santa María Insurgentes y lanzan un pan de caja envuelto, novedad en la Ciudad de México.', 'Bimbo_1945-1950.png?VersionId=Pe3tHg8OI_ra5xpLSaxlIYub7ba4xqDn&itok=v_FYrEEo', '1945'],
+      ['1950–1960', 'Nace Marinela', 'Llegan las donas, los Bimbollos, las Medias Noches y los primeros pastelitos.', 'Bimbo_1950-1960.png?VersionId=TwzdG_QESaNKt31Y_XHYLMxBs7NHx6AR&itok=j5GOI2Yx', '1957'],
+      ['1960–1970', 'La primera gran reorganización', 'Lorenzo Servitje asume la Dirección General y la empresa se profesionaliza.', 'Bimbo_1960-1970.png?VersionId=mH7EeCLgeTB1_TPF27NJ59.3aNuoZ2TY&itok=5ughV_XL', '1947'],
+      ['1970–1980', 'La planta más grande de América Latina', 'Construimos la panificadora más grande de la región y una de las diez más grandes del mundo.', 'Bimbo_1970-1980.png?VersionId=J6Xf_f.L6aPhRcob22KcoZt6pIYCV1me&itok=IPcair4M', '1980'],
+      ['1980–1990', 'Empresa pública', 'El 15% de las acciones empieza a cotizar en la Bolsa Mexicana de Valores.', 'Bimbo_1980-1990.png?VersionId=FBXI1I5IvxwY2RpSpP6N1GZ.vUHMfXQx&itok=A0xZ3fA7', '1985'],
+      ['1990–2000', 'Rumbo a Latinoamérica', 'La Organización Latinoamérica lleva nuestras panaderías más allá de México.', 'argentina-min_0.jpg?VersionId=SgJkKp5eoBEJfioq3mroAW1sfPha1lix&itok=G07i_BVy', '1995'],
+      ['2000–2010', 'Un nuevo continente', 'Llegamos a Asia, a la costa oeste de Estados Unidos y sumamos El Globo y Chocolates La Corona.', 'assets/pastel-el-globo.png', '2012'],
+      ['2010–hoy', 'La panificadora más grande del mundo', 'Sumamos operaciones en Norteamérica, Europa, África y Asia, y fijamos la meta de cero emisiones netas.', 'assets/osito-mundo.png', '2012'],
+    ].map(([periodo, t, d, f, oy]) => ({ periodo, t, d, img: /^(https?:|assets\/)/.test(f) ? f : D + f, alt: `Bimbo en ${periodo}`, oso: `${OS}tl_osito-${oy}.png`, osoAlt: `Osito Bimbo de ${oy}` }));
+    const RG = [
+      { nombre: 'Norteamérica', corto: 'Norteamérica', plantas: 75, gente: '+26 mil', crec: '+0.5%', nota: 'Estados Unidos y Canadá: la región más grande en ventas. En 2025 ganamos participación en bollería, botanas saladas y pan.', paises: ['Canadá', 'Estados Unidos'] },
+      { nombre: 'México', corto: 'México', plantas: 38, gente: '+77 mil', crec: '+2.4%', nota: 'Crecimiento en todos los canales, con margen récord. Destacan bollería, pan dulce y pasteles.', paises: ['México'] },
+      { nombre: 'EAA · Europa, Asia y África', corto: 'EAA', plantas: 94, gente: '+18 mil', crec: '+20.4%', nota: 'Doble dígito en Rumania, India, Reino Unido y Bimbo QSR, con margen récord.', paises: ['China', 'Corea del Sur', 'Croacia', 'Eslovenia', 'España', 'Francia', 'India', 'Italia', 'Kazajistán', 'Marruecos', 'Montenegro', 'Portugal', 'Reino Unido', 'Rumanía', 'Rusia', 'Serbia', 'Sudáfrica', 'Suiza', 'Túnez', 'Turquía', 'Ucrania'] },
+      { nombre: 'Latinoamérica', corto: 'Latinoamérica', plantas: 42, gente: '+28 mil', crec: '+10.6%', nota: 'Centro y Sudamérica, de Guatemala a Argentina.', paises: ['Argentina', 'Brasil', 'Chile', 'Colombia', 'Costa Rica', 'Ecuador', 'El Salvador', 'Guatemala', 'Honduras', 'Nicaragua', 'Panamá', 'Paraguay', 'Perú', 'Uruguay', 'Venezuela'] },
+    ];
+    const regiones = RG.map((r, i) => { const on = i === S.region; return { ...r, on, bg: on ? '#15359D' : 'rgba(255,255,255,.55)', fg: on ? '#fff' : '#0F2F51', tf: on ? 'translateY(-6px)' : 'none', go: () => this.setState({ region: i }) }; });
+    const rg = RG[S.region]; const reg = { ...rg, nPaises: rg.paises.length === 1 ? '1 país' : `${rg.paises.length} países` };
+    const finanzas = [
+      { label: 'Ventas netas 2025', v: '$426,952 M', sub: '+4.6% contra 2024, récord' },
+      { label: 'UAFIDA ajustada', v: '$59,456 M', sub: '+7.2%; margen de 13.9%' },
+      { label: 'Deuda neta / UAFIDA', v: '2.7x', sub: '2.9x en 2024' },
+      { label: 'Regreso a accionistas', v: '$5,569 M', sub: 'Dividendos y recompra' },
+    ];
+    const innovStats = [
+      { span: 2, label: 'Inversión 2025', v: 'US$1.2 mil M', sub: 'En productividad y digitalización', bg: '#15359D', fg: '#fff' },
+      { span: 2, label: 'Vehículos eléctricos', v: '+4,000', sub: 'En nuestras operaciones', bg: '#8FC9E6', fg: '#0F2F51' },
+    ];
+    const PR = C + 'styles/headline_press/public/';
+    const noticias = [
+      { cat: 'Sustentabilidad', tipo: 'Comunicado', ar: '730/487', fs: 'clamp(26px, 2.2vw, 34px)', t: 'Grupo Bimbo reporta 73% de crecimiento en agricultura regenerativa', img: PR + 'comunicados-2026/regenerativeagriculture_grupobimbo_0.png?VersionId=cFqTBc7yrPfpPlQqPc__Uc4.wVqcKzQN&itok=usg4GhFO', alt: 'Agricultura regenerativa' },
+      { cat: 'Comunidad', tipo: 'Comunicado · 30 sep 2026', ar: '4/3', fs: '22px', t: 'Bimbo Global Race 2026 recorre 29 ciudades de 23 países', img: PR + 'noticias-2026/Banner_BGR_1280x798.jpg?VersionId=a.oo81et8KwJam_mFT8UcvVa3o4kXSMP&itok=lhf3eOad', alt: 'Bimbo Global Race 2026' },
+      { cat: 'Reconocimientos', tipo: 'Noticia', ar: '4/3', fs: '22px', t: 'Forbes nombra a Grupo Bimbo entre los World’s Best Employers 2026', img: PR + 'noticias-2026/Banner_Forbes_1280x798%20%281%29.jpg?VersionId=33z0xXy0ENsf8JNvNG2sj2BfNjX9ZenU&itok=UKsNsbmm', alt: 'Forbes World’s Best Employers 2026' },
+    ];
+    const rc = [{ org: 'Forbes', t: 'World’s Best Employers 2026' }, { org: 'Ethisphere', t: 'World’s Most Ethical Companies, por décima vez' }, { org: 'Merco', t: 'Empresa con mejor reputación de México' }, { org: 'TIME', t: 'Una de las mejores empresas del mundo' }, { org: '+90', t: 'reconocimientos en 2025' }];
+    return {
+      rootRef: this.rootRef, donaRef: this.donaRef, bgRef: this.bgRef, loaderRef: this.loaderRef, loaderVidRef: this.loaderVidRef, loaderBarRef: this.loaderBarRef, progRef: this.progRef,
+      heroRef: this.heroRef, h80Ref: this.h80Ref, osoLRef: this.osoLRef, osoRRef: this.osoRRef, celeRef: this.celeRef, h1WrapRef: this.h1WrapRef, hTagsRef: this.hTagsRef, cueRef: this.cueRef,
+      marqueeRef: this.marqueeRef, recoRef: this.recoRef, misionRef: this.misionRef, palabrasRef: this.palabrasRef, misionExtraRef: this.misionExtraRef,
+      cifrasRef: this.cifrasRef, momRef: this.momRef, relojRef: this.relojRef, icoRef: this.icoRef, icoBgRef: this.icoBgRef,
+      cadRef: this.cadRef, cadTrackRef: this.cadTrackRef, cadBarRef: this.cadBarRef, susRef: this.susRef, histRef: this.histRef, anioRef: this.anioRef,
+      osoNuevo: S.osoIn && !S.osoAlt ? 1 : 0, osoViejo: S.osoIn && S.osoAlt ? 1 : 0, osoNuevoS: S.osoIn && !S.osoAlt ? 1 : 0.05, osoViejoS: S.osoIn && S.osoAlt ? 1 : 0.05, osoNuevoR: S.osoIn && !S.osoAlt ? '0deg' : '-25deg', osoViejoR: S.osoIn && S.osoAlt ? '0deg' : '25deg', osoWrapRef: this.osoWrapRef, img, saludoVisible: this.props.mostrarSaludo ?? true, saludo: this.saludos[S.saludo], saludoOp: S.saludoOp,
+      cinta, accesos, cifras, palabras, momentos, mom, ringRot: `${-S.moT * 72}deg`, counterRot: `${S.moT * 72}deg`, momPrev: () => this.goMo(-1), momNext: () => this.goMo(1), dialEnter: () => this.setState({ dialH: true }), dialLeave: () => this.setState({ dialH: false }), icoTabs, momSecRef: this.momSecRef, iconos, icoTag: cur.fg, etapas, pilares, cimientos, eras, regiones, reg, finanzas, innovStats, noticias,
+      recos: [...rc, ...rc],
+      crecimiento: [[1995, '10,160', 10160], [2000, '31,477', 31477], [2005, '56,102', 56102], [2010, '117,163', 117163], [2015, '219,186', 219186], [2020, '331,051', 331051], [2025, '426,952', 426952]].map(([y, v, n], i) => ({ y, v, pct: Math.max(2, n / 426952 * 72), col: i === 6 ? '#8FC9E6' : '#2253B1' })),
+      de1945: [{ a: '1', t: 'Países', b: '93' }, { a: '1', t: 'Panaderías', b: '249' }, { a: '4', t: 'Productos', b: '+9 mil' }],
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -111,6 +111,7 @@ Ideas para contribuir:
 
 Lee el brief creativo completo y las referencias visuales en [`docs/`](docs/README.md):
 
+- **[Benchmark de referencias](docs/benchmark/README.md)** — Qué tomamos de cada sitio y a qué sección del demo aplica.
 - **[CONTEXTO.md](docs/contexto/CONTEXTO.md)** — Diagnóstico, intención, concepto, lenguaje visual y referencias.
 - **[docs/contexto/referencias/](docs/contexto/referencias/)** — Capturas de los sitios de referencia.
 

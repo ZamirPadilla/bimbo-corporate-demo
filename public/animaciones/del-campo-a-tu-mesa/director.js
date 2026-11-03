@@ -7,7 +7,7 @@ const TRAMOS = [
   { id: 'campo',    inicio: 0.00, fin: 0.22, montar: async (raiz) => (await import('./campo/campo3d.js')).montarCampo(raiz, { inercia: 0 }) },
   { id: 'camiones', inicio: 0.20, fin: 0.50, montar: async (raiz) => (await import('./camiones/camiones3d.js')).montarCamiones(raiz) },
   { id: 'planta',   inicio: 0.48, fin: 0.78, montar: async (raiz) => (await import('./planta/planta-fusion.js')).montarPlantaFusion(raiz) },
-  { id: 'planeta',  inicio: 0.76, fin: 1.00, montar: async (raiz) => (await import('./planeta/planeta-fusion.js')).montarPlanetaFusion(raiz) },
+  { id: 'planeta',  inicio: 0.77, fin: 1.00, montar: async (raiz) => (await import('./planeta/planeta-fusion.js')).montarPlanetaFusion(raiz) },
 ];
 const params = new URLSearchParams(location.search);
 const P_FIJO = params.has('p') ? parseFloat(params.get('p')) : null;

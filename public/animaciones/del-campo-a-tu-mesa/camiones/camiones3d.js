@@ -81,9 +81,8 @@ export async function montarCamiones(raiz, opciones = {}) {
       const x = p.getX(i), z = p.getZ(i);
       const surco = Math.sin(z * 2.2) > 0 ? 1 : 0.86;
       c1.set(0xc99a4c).multiplyScalar(surco);                        // trigal
-      c2.set(0x8fa05a);                                              // pasto
+      c2.set(0x9fb36f);                                              // pasto (el mismo de la planta)
       col.copy(c1).lerp(c2, suave(tramo(x, ZONA.campo - 6, ZONA.campo + 6)));
-      col.lerp(c2.set(0xc6c8c4), suave(tramo(x, ZONA.ciudad - 6, ZONA.ciudad + 4)));   // concreto
       col.multiplyScalar(0.93 + 0.1 * rnd());
       cs.set([col.r, col.g, col.b], i * 3);
     }

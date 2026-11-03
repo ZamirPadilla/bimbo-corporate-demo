@@ -11,7 +11,8 @@ import { plantarArboles } from '../arboles-campo.js';
 
 const CIELO = 0xdfe7ef;
 const FIN_2025 = 19.4, FIN_TRAILER = 20, DURACION = 20;
-const FASES = { llega: [0, 0.46], sale: [0.5, 0.82], sube: [0.8, 1] };
+// la subida es corta a propósito: desde las azoteas la ciudad (volúmenes simples) se ve básica
+const FASES = { llega: [0, 0.46], sale: [0.5, 0.95], sube: [0.94, 1] };
 // encuadre del tramo de camiones relativo a la nariz del camión (adelante, arriba, a su izquierda), en metros del
 // modelo de camiones, donde el 2025 mide LARGO_CAMIONES; aquí se escala al largo que tiene el 2025 en la planta
 const VIAJE = { pos: [5.2, 3.6, -12.5], mira: [-2.4, 1.0, 0] }, LARGO_CAMIONES = 4.546;
@@ -30,26 +31,44 @@ async function completarEntorno(escena, urlArboles) {
   const rnd = (() => { let s = 91; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; })();
   const Z_FIN = -220, Z_INI = 140, LEJOS = -2600, CERCA = 900;   // la calle original va de Z_FIN a Z_INI
 
+  // misma paleta que la ciudad del tramo de camiones, para que el corte no cambie de tono: asfalto claro, rayas
+  // blancas, vecinos en tonos cálidos claros
+  const VECINOS = [0xe8e2d6, 0xd9dde3, 0xc9d3dc, 0xe6d3c0, 0xbfc8d2];
+  const vistos = new Set();
+  escena.traverse((o) => {
+    if (!o.isMesh || vistos.has(o.material)) return;
+    const m = o.material, n = m.name ?? ''; vistos.add(m);
+    if (n === 'A_asfalto') m.color.set(0xa9adb3);
+    else if (/^A_raya/.test(n)) m.color.set(0xf4f5f6);
+    else if (/^A_vecino/.test(n)) m.color.set(VECINOS[(parseInt(n.replace(/\D/g, ''), 10) || 0) % VECINOS.length]);
+  });
   // piso hasta el horizonte (la bruma lo funde con el cielo antes del borde)
   for (const o of mallas(/^Piso_lejano/)) { o.scale.x *= 10; o.scale.z *= 10; }
-  // calle, banquetas y raya amarilla más allá de sus dos extremos
+  // calles, banquetas y rayas más allá de sus extremos: la A (la del tractocamión, a lo largo de z) hacia los dos
+  // lados; la B y la C (a lo largo de x) hacia el oeste, que desde arriba quedaba cortado
   const tiras = [];
-  for (const o of mallas(/^(Calle_A|Banqueta_A)/)) {
-    const b = caja(o), ancho = b.max.x - b.min.x, y = b.max.y + 0.001, x = (b.min.x + b.max.x) / 2;
-    for (const [z0, z1] of [[LEJOS, Z_FIN], [Z_INI, CERCA]]) {
-      const m = new THREE.Mesh(new THREE.PlaneGeometry(ancho, z1 - z0).rotateX(-Math.PI / 2), o.material);
-      m.position.set(x, y, (z0 + z1) / 2); m.receiveShadow = true; tiras.push(m);
+  const TRAMOS_EXTRA = { A: { eje: 'z', tramos: [[LEJOS, null], [null, CERCA]] }, B: { eje: 'x', tramos: [[LEJOS, null]] }, C: { eje: 'x', tramos: [[LEJOS, null]] } };
+  for (const [letra, { eje, tramos }] of Object.entries(TRAMOS_EXTRA)) {
+    const otro = eje === 'z' ? 'x' : 'z';
+    for (const o of mallas(new RegExp(`^(Calle|Banqueta)_${letra}`))) {
+      const b = caja(o), ancho = b.max[otro] - b.min[otro], centro = (b.min[otro] + b.max[otro]) / 2, y = b.max.y + 0.001;
+      for (let [a0, a1] of tramos) {
+        a0 ??= b.max[eje]; a1 ??= b.min[eje];
+        const largo = a1 - a0, m = new THREE.Mesh(new THREE.PlaneGeometry(eje === 'z' ? ancho : largo, eje === 'z' ? largo : ancho).rotateX(-Math.PI / 2), o.material);
+        m.position.set(0, y, 0); m.position[eje] = (a0 + a1) / 2; m.position[otro] = centro; m.receiveShadow = true; tiras.push(m);
+      }
     }
-  }
-  const rayas = mallas(/^Raya_A/).sort((a, c) => caja(a).min.z - caja(c).min.z);
-  if (rayas.length > 1) {
-    const r0 = caja(rayas[0]), paso = (caja(rayas[rayas.length - 1]).min.z - r0.min.z) / (rayas.length - 1);
-    const geo = new THREE.PlaneGeometry(r0.max.x - r0.min.x, r0.max.z - r0.min.z).rotateX(-Math.PI / 2);
-    const zs = [];
-    for (let z = r0.min.z - paso; z > LEJOS; z -= paso) zs.push(z);
-    for (let z = caja(rayas[rayas.length - 1]).min.z + paso; z < CERCA; z += paso) zs.push(z);
-    const im = new THREE.InstancedMesh(geo, rayas[0].material, zs.length), m4 = new THREE.Matrix4();
-    zs.forEach((z, i) => im.setMatrixAt(i, m4.makeTranslation((r0.min.x + r0.max.x) / 2, r0.max.y + 0.002, z + (r0.max.z - r0.min.z) / 2)));
+    const rayas = mallas(new RegExp(`^Raya_${letra}`)).sort((a, c) => caja(a).min[eje] - caja(c).min[eje]);
+    if (rayas.length < 2) continue;
+    const r0 = caja(rayas[0]), rN = caja(rayas[rayas.length - 1]), paso = (rN.min[eje] - r0.min[eje]) / (rayas.length - 1);
+    const tam = r0.getSize(new THREE.Vector3()), geo = new THREE.PlaneGeometry(tam.x, tam.z).rotateX(-Math.PI / 2);
+    const pos = [];
+    for (const [a0, a1] of tramos) {
+      if (a0 !== null) for (let v = r0.min[eje] - paso; v > a0; v -= paso) pos.push(v);
+      else for (let v = rN.min[eje] + paso; v < a1; v += paso) pos.push(v);
+    }
+    const im = new THREE.InstancedMesh(geo, rayas[0].material, pos.length), m4 = new THREE.Matrix4(), c = r0.getCenter(new THREE.Vector3());
+    pos.forEach((v, k) => { const p = c.clone(); p[eje] = v + tam[eje] / 2; p.y = r0.max.y + 0.002; im.setMatrixAt(k, m4.makeTranslation(p.x, p.y, p.z)); });
     tiras.push(im);
   }
   tiras.forEach((t) => escena.add(t));
@@ -78,7 +97,8 @@ async function completarEntorno(escena, urlArboles) {
     if (rnd() < 0.8) sitios.push([8.5 - rnd() * 3, z + 6 * rnd(), 7 + rnd() * 3]);
   }
   for (let z = Z_INI + 10; z < CERCA; z += 16 + rnd() * 10) { sitios.push([29.5 + rnd() * 3, z, 7 + rnd() * 3]); sitios.push([8.5 - rnd() * 3, z, 7 + rnd() * 3]); }
-  await plantarArboles(escena, sitios, { url: urlArboles });
+  // sin árboles en la banqueta oriente donde la cámara sigue al 2025 al llegar (quedarían entre ella y el camión)
+  await plantarArboles(escena, sitios.filter(([x, z]) => !(x > 20 && z > -135 && z < -40)), { url: urlArboles });
 }
 
 export async function montarPlantaFusion(raiz, opciones = {}) {
@@ -126,13 +146,13 @@ export async function montarPlantaFusion(raiz, opciones = {}) {
 
   const dirSol = new THREE.Vector3(0.283, -0.743, 0.606).normalize();
   const centro = new THREE.Vector3(-45, 0, -20);
-  const sol = new THREE.DirectionalLight(0xfff8ee, 3.2);
+  const sol = new THREE.DirectionalLight(0xfff8ef, 2.8);   // luz del final del tramo de camiones
   sol.position.copy(centro).addScaledVector(dirSol, -260); sol.target.position.copy(centro);
   sol.castShadow = true; sol.shadow.mapSize.set(4096, 4096);
   Object.assign(sol.shadow.camera, { left: -125, right: 125, top: 125, bottom: -125, near: 60, far: 520 });
   sol.shadow.bias = -0.0003; sol.shadow.normalBias = 0.04; sol.shadow.radius = 2.5;
   scene.add(sol, sol.target);
-  scene.add(new THREE.HemisphereLight(0xdde6f2, 0xa9b39a, 1.25));
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xa8a090, 1.55));
 
   // la cámara del .blend solo da la trayectoria; se dibuja con una cámara propia para poder mezclarla
   const horneada = gltf.cameras[0];
@@ -204,7 +224,7 @@ export async function montarPlantaFusion(raiz, opciones = {}) {
     // C · desde el tractocamión, sube en vertical hasta ver la zona desde arriba (ahí entra el planeta)
     if (pc > 0) {
       trailer.getWorldPosition(v);
-      const centro = v.lerp(centroZona, pc), altura = Math.exp(Math.log(30) + (Math.log(alto.y) - Math.log(30)) * pc);
+      const centro = v.lerp(centroZona, pc), altura = Math.exp(Math.log(30) + (Math.log(alto.y) - Math.log(30)) * Math.sqrt(pc));   // gana altura de inmediato
       camara.position.lerp(w.set(centro.x, altura, centro.z + 0.01), suave(Math.min(pc * 2.5, 1)));
       mira.lerp(centro, suave(Math.min(pc * 2.5, 1)));
       fov += (40 - fov) * pc;

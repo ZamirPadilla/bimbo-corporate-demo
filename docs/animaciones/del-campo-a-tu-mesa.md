@@ -7,7 +7,7 @@ Una sola animación de scroll une las cuatro piezas 3D:
 | 1 · Campo | 0 – 0.22 | Espiga a contraluz → parcela → el camión de los 40 en la terracería |
 | 2 · Camiones | 0.20 – 0.50 | El camión cambia de época al cruzar un cristal sin marco que atraviesa todo el paisaje (40 → 70 → 80 → 90 → 2025), mientras la carretera pasa de trigal a casas y a ciudad; la luz pasa de amanecer a día |
 | 3 · Planta | 0.48 – 0.78 | El 2025 llega y se estaciona; después sale el tractocamión, la cámara lo sigue por una calle que se pierde en el horizonte entre árboles como los del campo, y sube en vertical hasta ver la zona desde arriba |
-| 4 · Planeta | 0.76 – 1 | Zoom out desde la planta (Ciudad de México) hasta el encuadre de cerca del planeta limpio (horizonte curvo, con México y Norteamérica al frente). Aerogeneradores girando y los 39 países con operación directa como puntos blancos que se encienden por región. La vista del globo completo va en otra sección |
+| 4 · Planeta | 0.77 – 1 | Zoom out desde la planta (Ciudad de México) hasta el encuadre de cerca del planeta limpio (horizonte curvo, con México y Norteamérica al frente). Aerogeneradores girando y los 39 países con operación directa como puntos blancos que se encienden por región. La vista del globo completo va en otra sección |
 
 **Todavía no lleva textos:** van cuando el flujo esté aprobado. Se ve en
 `/animaciones/del-campo-a-tu-mesa/index.html`. Con `?p=0.49` se congela en ese avance y con `?debug` se muestran

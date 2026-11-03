@@ -6,15 +6,29 @@ Demo pública de una página corporativa para **Grupo Bimbo**, construida con Ne
 
 ---
 
+## 🧭 Por dónde empezar
+
+| Quiero… | Ve a |
+|---|---|
+| Ver todo el proyecto en una página: documentos, wireframes, decisiones, benchmark y dudas vigentes | `/demo` en la app · [`docs/INDICE.md`](docs/INDICE.md) |
+| Recorrer las 8 páginas propuestas con su copy | `/wireframes` en la app |
+| Entender por qué cambia el copy y de dónde sale cada cifra | [`docs/copy/`](docs/copy/README.md) |
+| Leer el brief creativo y las referencias visuales | [`docs/contexto/CONTEXTO.md`](docs/contexto/CONTEXTO.md) · [`docs/benchmark/`](docs/benchmark/README.md) |
+| Ver la página principal de la demo | `/` en la app |
+
+**Estado (2 de noviembre de 2026):** el copy y los wireframes de 8 páginas están listos y las cifras están validadas con el Informe Anual 2025 de Grupo Bimbo. Sigue el diseño visual. Las preguntas que siguen abiertas están en `/demo#dudas`.
+
+---
+
 ## 🚀 Vista rápida
 
-- **Hero** con métricas corporativas
-- **Valores** de la compañía
-- **Marcas globales** del portafolio
-- **Sostenibilidad** (bienestar, planeta, comunidad)
-- **Footer** corporativo
+| Ruta | Qué es |
+|---|---|
+| `/` | Página principal de la demo: hero, valores, marcas, sostenibilidad y footer |
+| `/demo` | Índice del proyecto |
+| `/wireframes` | Mapa del sitio propuesto y wireframes en grises de Inicio, Nosotros, Marcas, Sustentabilidad, Inversionistas, Prensa, Carreras y Contacto |
 
-Totalmente responsive, con paleta oficial Bimbo (rojo `#E30613`, azul `#003DA5`).
+Totalmente responsive, con paleta oficial Bimbo (rojo `#E30613`, azul `#003DA5`). `/demo` y `/wireframes` llevan `noindex`.
 
 ---
 
@@ -51,7 +65,7 @@ npm install
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador; el índice del proyecto está en [http://localhost:3000/demo](http://localhost:3000/demo).
 
 ### Build de producción
 
@@ -62,22 +76,53 @@ npm start
 
 ---
 
+## ✍️ Copy y cifras
+
+El copy de la propuesta no vive en los componentes: vive en `content/` y de ahí lo leen los wireframes, `/demo` y los documentos.
+
+| Archivo | Qué contiene |
+|---|---|
+| `content/cifras.ts` | Fuente única de cifras corporativas, cada una con su valor, fecha de corte y fuente |
+| `content/paginas.ts` | Copy de las 8 páginas, sección por sección |
+| `content/indice.ts` | Documentos, decisiones, benchmark de rendimiento y dudas vigentes |
+
+Reglas:
+
+- Las cifras se escriben como `{idCifra}` dentro del texto (por ejemplo, `Operamos en {paisesOperacion} países`), nunca a mano.
+- Cuando dos fuentes no coinciden, manda el último reporte publicado por Grupo Bimbo.
+- Lo que falta se marca a la vista: `[por confirmar]`, `[enlace pendiente]`, `[por migrar]`.
+
+Después de editar `content/`, regenera los documentos:
+
+```bash
+npm run copy:docs
+```
+
+Actualiza `docs/INDICE.md` y `docs/copy/02`, `04` y `05`. Esos archivos no se editan a mano.
+
+---
+
 ## 📁 Estructura
 
 ```
 bimbo-corporate-demo/
 ├── app/
-│   ├── layout.tsx          # Layout raíz
-│   ├── page.tsx            # Página principal
-│   └── globals.css         # Estilos globales + Tailwind
+│   ├── layout.tsx              # Layout raíz
+│   ├── page.tsx                # Página principal
+│   ├── globals.css             # Estilos globales + Tailwind
+│   ├── demo/page.tsx           # Índice del proyecto
+│   └── wireframes/             # Mapa del sitio y una ruta por página propuesta
 ├── components/
-│   ├── Navbar.tsx
-│   ├── Hero.tsx
-│   ├── Values.tsx
-│   ├── Brands.tsx
-│   ├── Sustainability.tsx
-│   └── Footer.tsx
-├── public/                 # Assets estáticos
+│   ├── Navbar.tsx, Hero.tsx, Values.tsx, Brands.tsx, Sustainability.tsx, Footer.tsx
+│   └── wireframe/              # Secciones de wireframe y resaltado de cifras
+├── content/                    # Copy, cifras e índice (fuente única)
+├── docs/
+│   ├── INDICE.md               # Índice del proyecto (generado)
+│   ├── copy/                   # Revisión del copy, cifras, arquitectura, copy deck y decisiones
+│   ├── contexto/               # Brief creativo y capturas de referencia
+│   └── benchmark/              # Benchmark de referencias visuales
+├── scripts/copy-docs.ts        # Genera los documentos desde content/
+├── public/                     # Assets estáticos
 ├── tailwind.config.ts
 ├── next.config.mjs
 └── tsconfig.json
@@ -97,13 +142,23 @@ Flujo rápido:
 4. Abre un **Pull Request** apuntando a `main`
 
 Ideas para contribuir:
-- Agregar nuevas secciones (noticias, inversionistas, carreras)
+- Llevar el diseño visual a las páginas de `/wireframes`, empezando por Marcas
 - Mejorar accesibilidad (WCAG AA)
 - Internacionalización (ES / EN / PT)
-- Modo oscuro
 - Animaciones y micro-interacciones
 - Tests (Vitest / Playwright)
 - Integración con un CMS (Sanity, Contentful)
+
+---
+
+## 📚 Contexto del proyecto
+
+Lee el brief creativo completo y las referencias visuales en [`docs/`](docs/README.md):
+
+- **[Benchmark de referencias](docs/benchmark/README.md)** — Qué tomamos de cada sitio y a qué sección del demo aplica.
+- **[CONTEXTO.md](docs/contexto/CONTEXTO.md)** — Diagnóstico, intención, concepto, lenguaje visual y referencias.
+- **[docs/contexto/referencias/](docs/contexto/referencias/)** — Capturas de los sitios de referencia.
+- **[docs/copy/](docs/copy/README.md)** — Revisión del copy actual, fuente única de cifras, arquitectura y copy deck.
 
 ---
 

@@ -8,13 +8,13 @@ skill (`SKILL.md` + `scripts/` + `references/`).
 |---|---|
 | `interacciones-scroll` | Secciones ligadas al scroll, etapas con temporizador y hover, filas sin brincos, video perezoso (React) |
 | `verificar-en-navegador` | Probar animaciones, canvas, hover y teléfono midiendo con JS |
-| `media-web-ligera` | Video y foto ligeros (`video_web.sh`, `foto_web.py`); el respaldo en un bucket es interno de Nuclea |
-| `vista-previa-compartir` | Reglas de thumbnails Open Graph e íconos sin esquinas blancas |
-| `mapa-relieve` | Mapa de relieve de presencia y generador de la retícula para cualquier país |
+| `media-web-ligera` | Video y foto ligeros (`video_web.sh`, `foto_web.py`) y metas de peso |
+| `vista-previa-compartir` | Metadatos, imagen Open Graph con `next/og` e íconos sin esquinas blancas |
+| `mapa-relieve` | Mapa de relieve de presencia: qué mapa proponer para Bimbo, generador de la retícula y reglas |
 | `media-drive-ia` | Solo con acceso al shared drive de Bimbo: se opera únicamente con `media_db.py` |
 
-Algunas skills se escribieron para sitios estáticos (`.html`). En este repo toma su método y sus reglas y
-llévalos a componentes de Next.
+Todas están adaptadas a Next y a esta demo; lo que solo aplicaba al sitio de referencia de Nuclea (páginas
+`.dc.html`, página de contraseña, respaldo en un bucket, planos recoloreados) se quitó.
 
 ## Instalar
 - **Claude Code:** desde esta carpeta, `for s in */; do ln -sfn "$PWD/${s%/}" ~/.claude/skills/${s%/}; done`
@@ -22,6 +22,9 @@ llévalos a componentes de Next.
 - **Claude.ai:** comprimir cada carpeta en zip (renombrado a `.skill`) y subirla desde Settings → Skills.
 
 ## Fuente y copias
-Estas carpetas son copias públicas saneadas: no se editan aquí. Los cambios se piden al equipo de Nuclea, que
-las vuelve a copiar. Las etapas que ya se cerraron (copy, wireframes, benchmark, repositorio de contenido,
+Estas carpetas son copias públicas adaptadas a este repo, así que ya no son idénticas a las versiones
+privadas de Nuclea (salvo `media-drive-ia`, que se copia tal cual desde el plugin y no se edita aquí). Si mejoras
+una, avisa al equipo de Nuclea para que lleve el cambio a su versión.
+
+Las etapas que ya se cerraron (copy, wireframes, benchmark, repositorio de contenido,
 manual de identidad) siguen en el plugin privado de Nuclea; sus resultados están en `content/` y `docs/`.

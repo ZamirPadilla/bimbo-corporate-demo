@@ -56,16 +56,15 @@ quedaron superados por el manual de 2025), `docs/benchmark/` y `docs/ideas/` (id
    `npm run copy:docs`.
 
 ## Skills de `skills/`
-Úsalas solo cuando la tarea lo pida. Están escritas para sitios estáticos: toma su método y sus reglas y
-llévalos a componentes de Next.
+Úsalas solo cuando la tarea lo pida. Están adaptadas a Next y a esta demo.
 
 | Skill | Cuándo |
 |---|---|
 | `interacciones-scroll` | Secciones ligadas al scroll, etapas con temporizador y hover, filas que se expanden, video perezoso |
 | `verificar-en-navegador` | Después de cada cambio visible: medir con JS en escritorio y teléfono |
-| `media-web-ligera` | Al recibir video o fotos: `video_web.sh` y `foto_web.py` (el respaldo en un bucket es interno de Nuclea) |
-| `vista-previa-compartir` | Reglas de thumbnails e íconos (en Next, aplica la Metadata API de arriba) |
-| `mapa-relieve` | Solo para la sección Presencia de Inicio: generador de la retícula y reglas del mapa. El dibujo es privado; pídelo al equipo de Nuclea |
+| `media-web-ligera` | Al recibir video o fotos: `video_web.sh`, `foto_web.py` y metas de peso |
+| `vista-previa-compartir` | Metadatos, imagen para compartir e íconos con la Metadata API |
+| `mapa-relieve` | Sección Presencia de Inicio: qué mapa proponer, generador de la retícula y reglas. El dibujo es privado; pídelo al equipo de Nuclea |
 | `media-drive-ia` | Solo si tienes acceso al shared drive de Bimbo: se opera únicamente con `media_db.py` |
 
 Las demás técnicas (copy, wireframes, benchmark, manual de identidad, producción 3D) ya se aplicaron y viven en

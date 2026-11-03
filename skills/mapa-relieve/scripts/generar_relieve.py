@@ -12,7 +12,7 @@ Uso:
 Opciones: --bbox lon0,lat0,lon1,lat1 recorta (útil con EE. UU. por Alaska/Hawái); --margen grados (0.4);
           --cache archivo.json guarda elevaciones ya pedidas (para reintentar sin repetir llamadas);
           --solo-contar dice cuántos puntos y llamadas saldrían, sin llamar a la API.
-Cuidar el total de puntos: sitio-relieve.js dibuja cada punto en cada cuadro; ~3 000–6 000 va fluido.
+Cuidar el total de puntos: el dibujo del relieve pinta cada punto en cada cuadro; ~3 000–6 000 va fluido.
 Códigos: 484 México, 840 EE. UU., 124 Canadá, 76 Brasil, 32 Argentina, 152 Chile, 170 Colombia, 604 Perú,
 218 Ecuador, 862 Venezuela, 320 Guatemala, 222 El Salvador, 340 Honduras, 558 Nicaragua, 188 Costa Rica,
 591 Panamá, 214 Rep. Dominicana, 858 Uruguay, 600 Paraguay, 68 Bolivia, 724 España, 620 Portugal, 250 Francia,

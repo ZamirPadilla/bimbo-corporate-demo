@@ -14,7 +14,7 @@ JavaScript ejecutado en la página.
 - **Panel visible.** Si el panel/ventana del navegador está oculto, `document.visibilityState === 'hidden'`:
   `requestAnimationFrame` no corre (canvas en blanco, 0 cuadros) y los `setInterval` se agrupan a 1 s. Mostrar el
   panel y poner la pestaña al frente antes de medir animaciones; comprobar `visibilityState` en cada medición.
-- **Caché.** Subir `?v=N` en la URL de la página y en los scripts/iframes que cambiaron.
+- **Caché.** Con `npm run dev` la recarga en caliente basta; contra un build (`npm run build && npm start`) recargar sin caché o subir `?v=N` en la URL.
 
 ## Tamaños
 - Teléfono 375×812 y ~550 px; tablet 820×1180 y 1180×820; portátil 1440×900; panorámico 2560×1080.
@@ -36,7 +36,7 @@ const w = iframe.contentWindow, P = w.CanvasRenderingContext2D.prototype, of = P
 P.fillText = function (t, ...a) { ft.push(t); return of.call(this, t, ...a); };
 // luego, en un bucle: esperar 1 s, guardar [...new Set(ft)], vaciar ft
 ```
-Así se encontró que el mapa del sitio de referencia no dibujaba etiquetas en ventanas angostas de computadora (la condición era el
+Así se encontró que un mapa de relieve no dibujaba etiquetas en ventanas angostas de computadora (la condición era el
 ancho, no el tipo de puntero).
 
 **¿Cuántos cuadros corren?** Envolver `requestAnimationFrame` y contar por segundo (≈ 60 visible, 0 oculto).

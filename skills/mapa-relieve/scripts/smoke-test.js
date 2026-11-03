@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Prueba rápida de sitio-relieve.js sin navegador: ejecuta cuadros reales con un canvas falso y comprueba que
+// Prueba rápida del dibujo del relieve (relieve.js) sin navegador: ejecuta cuadros reales con un canvas falso y comprueba que
 // (1) el script carga, (2) los cuadros dibujan sin lanzar errores, (3) `fit` encaja y (4) `pick` encuentra el marcador.
-// Uso:  node .claude/skills/mapa-relieve/scripts/smoke-test.js prototipo/sitio-relieve.js
+// Uso:  node skills/mapa-relieve/scripts/smoke-test.js <ruta>/relieve.js [NombreGlobal]
 // Correrla después de CUALQUIER edición del archivo: un error dentro de requestAnimationFrame no rompe la carga,
-// solo deja el mapa en blanco (pasó: un comentario se tragó `const t0 = …` y desaparecieron el hero y Presencia).
+// solo deja el mapa en blanco (pasó: un comentario se tragó `const t0 = …` y desapareció el mapa).
 const fs = require('fs');
-const file = process.argv[2] || 'prototipo/sitio-relieve.js';
+const file = process.argv[2] || 'relieve.js';
 const src = fs.readFileSync(file, 'utf8');
 
 global.window = {}; global.document = { documentElement: {} };

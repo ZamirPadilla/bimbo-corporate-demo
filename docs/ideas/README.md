@@ -76,6 +76,7 @@ páginas de Next.
 - El camión se queda en el origen y el mundo se mueve. Dos planos de recorte por modelo (`clippingPlanes`,
   `clipShadows`) muestran cada camión solo entre su arco de entrada y el de salida.
 - [`scripts/camiones/exportar_glb.py`](../../scripts/camiones/exportar_glb.py) regenera un GLB desde Blender.
+- Guía para integrarla al sitio: [`docs/integracion/camiones-epocas.md`](../integracion/camiones-epocas.md).
 
 ### Qué falta decidir
 - **Material oficial de los camiones.** Los modelos son aproximaciones hechas a partir de fotos de juguetes de

@@ -1,0 +1,245 @@
+{
+ "fuente": "39 países con operación directa (content/cifras.ts → paisesOperacion). Centroides de Natural Earth 1:50m, tomados de public/globo/paises.json (rama feat/globo-presencia).",
+ "regiones": {
+  "1": "Norteamérica",
+  "2": "México",
+  "3": "Latinoamérica",
+  "4": "Europa, Asia y África"
+ },
+ "paises": [
+  {
+   "nombre": "Canadá",
+   "region": 1,
+   "lat": 58.59,
+   "lon": -99
+  },
+  {
+   "nombre": "Estados Unidos",
+   "region": 1,
+   "lat": 39.89,
+   "lon": -98.82
+  },
+  {
+   "nombre": "México",
+   "region": 2,
+   "lat": 23.92,
+   "lon": -102.15
+  },
+  {
+   "nombre": "Argentina",
+   "region": 3,
+   "lat": -34.54,
+   "lon": -64.75
+  },
+  {
+   "nombre": "Brasil",
+   "region": 3,
+   "lat": -10.69,
+   "lon": -53.24
+  },
+  {
+   "nombre": "Chile",
+   "region": 3,
+   "lat": -34.36,
+   "lon": -70.95
+  },
+  {
+   "nombre": "Colombia",
+   "region": 3,
+   "lat": 3.9,
+   "lon": -73.08
+  },
+  {
+   "nombre": "Costa Rica",
+   "region": 3,
+   "lat": 9.98,
+   "lon": -84.19
+  },
+  {
+   "nombre": "Ecuador",
+   "region": 3,
+   "lat": -1.44,
+   "lon": -78.39
+  },
+  {
+   "nombre": "El Salvador",
+   "region": 3,
+   "lat": 13.74,
+   "lon": -88.87
+  },
+  {
+   "nombre": "Guatemala",
+   "region": 3,
+   "lat": 15.69,
+   "lon": -90.37
+  },
+  {
+   "nombre": "Honduras",
+   "region": 3,
+   "lat": 14.83,
+   "lon": -86.62
+  },
+  {
+   "nombre": "Nicaragua",
+   "region": 3,
+   "lat": 12.85,
+   "lon": -85.03
+  },
+  {
+   "nombre": "Panamá",
+   "region": 3,
+   "lat": 8.53,
+   "lon": -80.11
+  },
+  {
+   "nombre": "Paraguay",
+   "region": 3,
+   "lat": -23.21,
+   "lon": -58.44
+  },
+  {
+   "nombre": "Perú",
+   "region": 3,
+   "lat": -9.11,
+   "lon": -74.42
+  },
+  {
+   "nombre": "Uruguay",
+   "region": 3,
+   "lat": -32.79,
+   "lon": -56.03
+  },
+  {
+   "nombre": "Venezuela",
+   "region": 3,
+   "lat": 7.12,
+   "lon": -66.18
+  },
+  {
+   "nombre": "China",
+   "region": 4,
+   "lat": 36.76,
+   "lon": 103.35
+  },
+  {
+   "nombre": "Corea del Sur",
+   "region": 4,
+   "lat": 36.45,
+   "lon": 127.87
+  },
+  {
+   "nombre": "Croacia",
+   "region": 4,
+   "lat": 45.16,
+   "lon": 16.42
+  },
+  {
+   "nombre": "Eslovenia",
+   "region": 4,
+   "lat": 46.12,
+   "lon": 14.8
+  },
+  {
+   "nombre": "España",
+   "region": 4,
+   "lat": 40.37,
+   "lon": -3.57
+  },
+  {
+   "nombre": "Francia",
+   "region": 4,
+   "lat": 46.57,
+   "lon": 2.46
+  },
+  {
+   "nombre": "India",
+   "region": 4,
+   "lat": 22.8,
+   "lon": 79.53
+  },
+  {
+   "nombre": "Italia",
+   "region": 4,
+   "lat": 43.49,
+   "lon": 12.3
+  },
+  {
+   "nombre": "Kazajistán",
+   "region": 4,
+   "lat": 48.36,
+   "lon": 67.25
+  },
+  {
+   "nombre": "Marruecos",
+   "region": 4,
+   "lat": 29.77,
+   "lon": -8.73
+  },
+  {
+   "nombre": "Montenegro",
+   "region": 4,
+   "lat": 42.79,
+   "lon": 19.24
+  },
+  {
+   "nombre": "Portugal",
+   "region": 4,
+   "lat": 39.65,
+   "lon": -7.98
+  },
+  {
+   "nombre": "Reino Unido",
+   "region": 4,
+   "lat": 53.83,
+   "lon": -2.41
+  },
+  {
+   "nombre": "Rumanía",
+   "region": 4,
+   "lat": 45.85,
+   "lon": 24.98
+  },
+  {
+   "nombre": "Rusia",
+   "region": 4,
+   "lat": 65.89,
+   "lon": 95.53
+  },
+  {
+   "nombre": "Serbia",
+   "region": 4,
+   "lat": 44.21,
+   "lon": 20.81
+  },
+  {
+   "nombre": "Sudáfrica",
+   "region": 4,
+   "lat": -28.97,
+   "lon": 25.19
+  },
+  {
+   "nombre": "Suiza",
+   "region": 4,
+   "lat": 46.8,
+   "lon": 8.21
+  },
+  {
+   "nombre": "Túnez",
+   "region": 4,
+   "lat": 34.09,
+   "lon": 9.55
+  },
+  {
+   "nombre": "Turquía",
+   "region": 4,
+   "lat": 39.06,
+   "lon": 35.41
+  },
+  {
+   "nombre": "Ucrania",
+   "region": 4,
+   "lat": 49.2,
+   "lon": 31.32
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planeta Ventures · prototipo 3D</title>
+<style>
+  :root { --fondo: #e3e9f1; --texto: #2b3445; --suave: #6b778a; }
+  html, body { margin: 0; height: 100%; background: var(--fondo); color: var(--texto);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+  #escena { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: pan-y; }
+  #escena.arrastrando { cursor: grabbing; }
+  .pista { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); font-size: 13px; color: var(--suave);
+    background: rgb(255 255 255 / 0.55); padding: 8px 14px; border-radius: 999px; pointer-events: none;
+    transition: opacity .6s; white-space: nowrap; }
+  .pista.oculta { opacity: 0; }
+  #depurar { position: fixed; top: 12px; left: 12px; font: 12px ui-monospace, monospace; background: rgb(255 255 255 / 0.7);
+    padding: 6px 10px; border-radius: 6px; display: none; }
+  #cargando { position: fixed; inset: 0; display: grid; place-items: center; font-size: 14px; color: var(--suave); }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<canvas id="escena" aria-label="Planeta con bosques que crecen; arrastra para girarlo"></canvas>
+<div id="cargando">Cargando planeta…</div>
+<div class="pista" id="pista">Arrastra para girar el planeta · clic para que el bosque vuelva a crecer</div>
+<div id="depurar"></div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

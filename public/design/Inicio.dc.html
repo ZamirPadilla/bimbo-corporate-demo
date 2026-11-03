@@ -31,7 +31,9 @@
 <link rel="stylesheet" href="globo/bimbo-globo.css?v=2">
 <script src="globo/bimbo-globo.js?v=2" defer></script>
 <style>
-html,body{margin:0;background:#FBF7F0;-webkit-font-smoothing:antialiased;font-synthesis:none}
+/* el fondo de la página sigue el color de la sección en pantalla (measure): si el zoom del navegador o un tamaño
+   de ventana fraccionario deja una rendija de 1 px en los bordes, se ve del mismo color y no como línea crema */
+html,body{margin:0;background:var(--pagina, #FBF7F0);-webkit-font-smoothing:antialiased;font-synthesis:none}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto !important}
 a{color:#15359D}
@@ -702,6 +704,7 @@ class Component extends DCLogic {
     cancelAnimationFrame(this.loopId); cancelAnimationFrame(this.lenisId); this.lenis && this.lenis.destroy();
     clearInterval(this.sTimer); clearInterval(this.moTimer); clearInterval(this.osoI); clearTimeout(this.osoT); [this.sT2, this.ldT, this.ldT2].forEach(clearTimeout);
     this.io && this.io.disconnect(); (this.obs || []).forEach(o => o.disconnect());
+    document.documentElement.style.removeProperty('--pagina');
     clearTimeout(this._lt); this.desmontarGlobo && this.desmontarGlobo(); this.desmontarGlobo = null;
     this.cmIO && this.cmIO.disconnect(); this.cmFin = true; this.cm && this.cm.destruir(); this.cm = null;
   }
@@ -768,6 +771,7 @@ class Component extends DCLogic {
         if (up > 0 && this.secs[i - 1]) col = this.mix(cur, this.secs[i - 1].dataset.bg, up);
         else if (dn > 0 && this.secs[i + 1]) col = this.mix(cur, this.secs[i + 1].dataset.bg, dn);
         if (this.bgRef.current) this.bgRef.current.style.background = col;
+        if (col !== this.colPagina) { this.colPagina = col; document.documentElement.style.setProperty('--pagina', col); }
         break;
       }
     }

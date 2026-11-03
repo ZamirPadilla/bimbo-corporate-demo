@@ -11,6 +11,16 @@ export const globo = {
   latinoamerica: "#4FA3E8",
   eaa: "#6E7BFF",
   rotulo: "#5AAEF0",
+  // v2: granos en su color natural sobre el mantel azul (la foto del mapa de trigo del informe).
+  trigo: "#D9A456",
+  trigoTostado: "#A8692B",
+  avena: "#E7D5AF",
+  avenaTostada: "#BFA270",
+  ajonjoli: "#F2E5C6",
+  ajonjoliTostado: "#CFB385",
+  maiz: "#F4C142",
+  maizTostado: "#D98B1E",
+  tierraNatural: "#3D5C88",
 };
 
 const config: Config = {

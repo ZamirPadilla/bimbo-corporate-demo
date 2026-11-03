@@ -5,14 +5,23 @@
 import * as THREE from "three";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { globo } from "@/tailwind.config";
+import { GRANOS, type TipoGrano } from "./granos";
 
 export type Vista = { lat: number; lon: number; dist: number };
 export type Parada = { region: number; desde: Vista; hasta: Vista; giro?: number };
 export type PaisGlobo = { nombre: string; region: number; lat: number; lon: number; granos: number };
+export type Paleta = "azul" | "natural";
 
 const RAD = Math.PI / 180;
 const COLORES = [globo.tierra, globo.norteamerica, globo.mexico, globo.latinoamerica, globo.eaa].map((c) => new THREE.Color(c));
 const ORIGEN = 2; // México: de ahí salen los arcos (la panadería de 1945)
+// Multigrano: proporción de cada grano en la mezcla.
+const MEZCLA: [Exclude<TipoGrano, "multigrano" | "punto">, number][] = [
+  ["trigo", 0.45],
+  ["avena", 0.2],
+  ["ajonjoli", 0.2],
+  ["maiz", 0.15],
+];
 
 function normal(lat: number, lon: number, r = 1) {
   const la = lat * RAD;
@@ -34,8 +43,15 @@ const granoVS = /* glsl */ `
   uniform float uTiempo;
   uniform float uEscala;
   uniform vec3 uColores[5];
+  uniform vec3 uTam;
+  uniform float uNatural;
+  uniform float uForma;
+  uniform vec3 uGrano;
+  uniform vec3 uGranoTostado;
+  uniform vec3 uTierraNatural;
   varying vec3 vNormal;
   varying vec3 vColor;
+  varying vec3 vLocal;
   void main() {
     vec3 n = vec3(cos(aLatLon.x) * sin(aLatLon.y), sin(aLatLon.x), cos(aLatLon.x) * cos(aLatLon.y));
     vec3 este = normalize(cross(vec3(0.0, 1.0, 0.0), n) + vec3(1e-5, 0.0, 0.0));
@@ -51,29 +67,49 @@ const granoVS = /* glsl */ `
     float d = clamp((uPop - aAzar * 0.55) / 0.45, 0.0, 1.0);
     float salto = activo ? sin(d * 3.14159) * 0.05 + d * 0.004 : 0.0;
     float latido = foco * (0.012 + 0.008 * sin(uTiempo * 7.0 + aAzar * 6.0));
-    // Casi redondos y planos, con hueco entre ellos: se leen como puntos de mapa, no como gusanitos.
-    vec3 s = vec3(0.0046, 0.0040, 0.0017) * uEscala * (0.9 + 0.2 * fract(aAzar * 7.0)) * (activo ? 1.0 + 0.2 * d : (opera ? 1.0 : 0.8));
+    // Tamaño por tipo de grano, con variación por grano para que no se vean de molde.
+    vec3 s = uTam * uEscala * (0.88 + 0.24 * fract(aAzar * 7.0)) * (activo ? 1.0 + 0.2 * d : (opera ? 1.0 : 0.8));
+    s.y *= mix(1.0, 0.88 + 0.24 * fract(aAzar * 13.0), uForma);
+    vLocal = position;
     float h = s.z + salto + latido;
 
     vec3 p = n * (1.0 + h) + t * position.x * s.x + b * position.y * s.y + n * position.z * s.z;
     vNormal = normalize(normalMatrix * normalize(t * normal.x / s.x + b * normal.y / s.y + n * normal.z / s.z));
 
-    vec3 c = uColores[int(aRegion + 0.5)];
-    if (opera && !activo) c = mix(uColores[0], c, 0.35);
-    if (activo && uRegion > 0.5) c = mix(c, vec3(1.0), 0.12 * d);
+    vec3 c;
+    if (uNatural < 0.5) {
+      c = uColores[int(aRegion + 0.5)];
+      if (opera && !activo) c = mix(uColores[0], c, 0.35);
+      if (activo && uRegion > 0.5) c = mix(c, vec3(1.0), 0.12 * d);
+      c *= 0.85 + 0.25 * aAzar;
+    } else {
+      // Grano natural: dorado donde operamos, apagado donde no; la región en foco se tuesta un poco.
+      c = mix(uGrano, uGranoTostado, 0.75 * fract(aAzar * 5.0));
+      if (!opera) c = mix(uTierraNatural, c, 0.22);
+      else if (!activo) c = mix(uTierraNatural, c, 0.5);
+      if (activo && uRegion > 0.5) c = mix(c, c * 1.12 + 0.04, d);
+    }
     c = mix(c, vec3(1.0), foco * 0.6);
-    vColor = c * (0.85 + 0.25 * aAzar);
+    vColor = c;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
   }
 `;
 
 const granoFS = /* glsl */ `
+  uniform float uBrillo;
+  uniform float uPunta;
+  uniform float uForma;
   varying vec3 vNormal;
   varying vec3 vColor;
+  varying vec3 vLocal;
   void main() {
+    vec3 n = normalize(vNormal);
     vec3 luz = normalize(vec3(-0.45, 0.6, 0.75));
-    float dif = max(dot(normalize(vNormal), luz), 0.0);
-    gl_FragColor = vec4(vColor * (0.38 + 0.68 * dif), 1.0);
+    float dif = max(dot(n, luz), 0.0);
+    float esp = pow(max(dot(n, normalize(luz + vec3(0.0, 0.0, 1.0))), 0.0), 28.0) * uBrillo;
+    float sombra = mix(1.0, 0.72 + 0.28 * smoothstep(-1.0, 0.5, vLocal.z), uForma); // la panza del grano, más oscura
+    vec3 c = mix(vColor, vColor * 1.2 + 0.1, uPunta * smoothstep(0.35, 0.95, -vLocal.x)); // corona clara del maíz
+    gl_FragColor = vec4(c * (0.38 + 0.68 * dif) * sombra + esp, 1.0);
     #include <colorspace_fragment>
   }
 `;
@@ -91,6 +127,7 @@ const oceanoVS = /* glsl */ `
 const oceanoFS = /* glsl */ `
   uniform vec3 uOceano;
   uniform vec3 uBorde;
+  uniform float uCuadro;
   varying vec3 vPos;
   varying vec3 vNormalVista;
   void main() {
@@ -101,7 +138,7 @@ const oceanoFS = /* glsl */ `
     float b = step(0.5, fract(lat / 10.0));
     float cuadro = (a + b) * 0.5;
     float frente = clamp(vNormalVista.z, 0.0, 1.0);
-    vec3 c = uOceano * (0.9 + 0.12 * cuadro);
+    vec3 c = uOceano * (1.0 - uCuadro * 0.8 + uCuadro * cuadro);
     c = mix(uBorde, c, smoothstep(0.0, 0.55, frente));
     float luz = max(dot(vNormalVista, normalize(vec3(-0.45, 0.6, 0.75))), 0.0);
     gl_FragColor = vec4(c * (0.75 + 0.4 * luz), 1.0);
@@ -160,7 +197,23 @@ export class EscenaGlobo {
   private escena = new THREE.Scene();
   private camara = new THREE.PerspectiveCamera(30, 1, 0.05, 50);
   private globo = new THREE.Group();
-  private granos?: THREE.Mesh<THREE.InstancedBufferGeometry, THREE.ShaderMaterial>;
+  private granos: THREE.Mesh<THREE.InstancedBufferGeometry, THREE.ShaderMaterial>[] = [];
+  // Uniformes que comparten todas las mallas de granos (en multigrano hay una por tipo).
+  private comunes = {
+    uRegion: { value: 0 },
+    uPop: { value: 0 },
+    uFoco: { value: -1 },
+    uTiempo: { value: 0 },
+    uEscala: { value: 1 },
+    uColores: { value: COLORES },
+    uNatural: { value: 0 },
+    uTierraNatural: { value: new THREE.Color(globo.tierraNatural) },
+  };
+  private cargado = false;
+  private oceano?: THREE.Mesh<THREE.SphereGeometry, THREE.ShaderMaterial>;
+  private instancias: Record<string, THREE.InstancedBufferAttribute> = {};
+  private tipo?: TipoGrano = "punto";
+  private paleta: Paleta = "azul";
   private arcos?: THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial>;
   private etiquetas: { i: number; pais: PaisGlobo; el: HTMLElement; pos: THREE.Vector3 }[] = [];
   private gestos = new AbortController();
@@ -200,9 +253,10 @@ export class EscenaGlobo {
       new THREE.ShaderMaterial({
         vertexShader: oceanoVS,
         fragmentShader: oceanoFS,
-        uniforms: { uOceano: { value: new THREE.Color(globo.oceano) }, uBorde: { value: new THREE.Color(globo.noche) } },
+        uniforms: { uOceano: { value: new THREE.Color(globo.oceano) }, uBorde: { value: new THREE.Color(globo.noche) }, uCuadro: { value: 0.12 } },
       }),
     );
+    this.oceano = oceano;
     this.globo.add(oceano);
 
     const brillo = new THREE.Mesh(
@@ -233,11 +287,6 @@ export class EscenaGlobo {
     const region = new Uint8Array(datos, n * 4, n);
     const pais = new Uint8Array(datos, n * 5, n);
 
-    const base = new THREE.SphereGeometry(1, 8, 6);
-    const geo = new THREE.InstancedBufferGeometry();
-    geo.index = base.index;
-    geo.setAttribute("position", base.getAttribute("position"));
-    geo.setAttribute("normal", base.getAttribute("normal"));
     const latLon = new Float32Array(n * 2);
     const azar = new Float32Array(n);
     for (let i = 0; i < n; i++) {
@@ -246,28 +295,87 @@ export class EscenaGlobo {
       const x = Math.sin(i * 12.9898) * 43758.5453;
       azar[i] = x - Math.floor(x);
     }
-    geo.setAttribute("aLatLon", new THREE.InstancedBufferAttribute(latLon, 2));
-    geo.setAttribute("aRegion", new THREE.InstancedBufferAttribute(Float32Array.from(region), 1));
-    geo.setAttribute("aPais", new THREE.InstancedBufferAttribute(Float32Array.from(pais), 1));
-    geo.setAttribute("aAzar", new THREE.InstancedBufferAttribute(azar, 1));
-    geo.instanceCount = n;
-    this.granos = new THREE.Mesh(
-      geo,
+    this.instancias = {
+      aLatLon: new THREE.InstancedBufferAttribute(latLon, 2),
+      aRegion: new THREE.InstancedBufferAttribute(Float32Array.from(region), 1),
+      aPais: new THREE.InstancedBufferAttribute(Float32Array.from(pais), 1),
+      aAzar: new THREE.InstancedBufferAttribute(azar, 1),
+    };
+    this.cargado = true;
+    const tipo = this.tipo;
+    this.tipo = undefined;
+    this.setGrano(tipo ?? "punto", this.paleta);
+  }
+
+  /** Geometría instanciada de un tipo de grano, con todas las instancias o solo las indicadas. */
+  private geometriaGrano(tipo: Exclude<TipoGrano, "multigrano">, indices?: number[]) {
+    const base = GRANOS[tipo].geometria();
+    const geo = new THREE.InstancedBufferGeometry();
+    geo.index = base.index;
+    geo.setAttribute("position", base.getAttribute("position"));
+    geo.setAttribute("normal", base.getAttribute("normal"));
+    for (const [nombre, a] of Object.entries(this.instancias)) {
+      if (!indices) geo.setAttribute(nombre, a);
+      else {
+        const sub = new Float32Array(indices.length * a.itemSize);
+        indices.forEach((i, k) => sub.set(a.array.subarray(i * a.itemSize, (i + 1) * a.itemSize), k * a.itemSize));
+        geo.setAttribute(nombre, new THREE.InstancedBufferAttribute(sub, a.itemSize));
+      }
+    }
+    geo.instanceCount = indices ? indices.length : this.instancias.aAzar.count;
+    return geo;
+  }
+
+  private mallaGrano(tipo: Exclude<TipoGrano, "multigrano">, indices?: number[]) {
+    const g = GRANOS[tipo];
+    const malla = new THREE.Mesh(
+      this.geometriaGrano(tipo, indices),
       new THREE.ShaderMaterial({
         vertexShader: granoVS,
         fragmentShader: granoFS,
         uniforms: {
-          uRegion: { value: 0 },
-          uPop: { value: 0 },
-          uFoco: { value: -1 },
-          uTiempo: { value: 0 },
-          uEscala: { value: 1 },
-          uColores: { value: COLORES },
+          ...this.comunes,
+          uForma: { value: tipo === "punto" ? 0 : 1 },
+          uTam: { value: new THREE.Vector3(...g.tam) },
+          uGrano: { value: new THREE.Color(g.color[0]) },
+          uGranoTostado: { value: new THREE.Color(g.color[1]) },
+          uBrillo: { value: g.brillo },
+          uPunta: { value: g.punta },
         },
       }),
     );
-    this.granos.frustumCulled = false;
-    this.globo.add(this.granos);
+    malla.frustumCulled = false;
+    return malla;
+  }
+
+  /** Cambia la forma del grano y la paleta (azul por región o color natural del grano) sin recargar. */
+  setGrano(tipo: TipoGrano, paleta: Paleta) {
+    this.paleta = paleta;
+    const natural = paleta === "natural" && tipo !== "punto";
+    this.comunes.uNatural.value = natural ? 1 : 0;
+    if (this.oceano) this.oceano.material.uniforms.uCuadro.value = natural ? 0.28 : 0.12;
+    if (tipo === this.tipo) return;
+    this.tipo = tipo;
+    if (!this.cargado) return;
+    for (const m of this.granos) {
+      this.globo.remove(m);
+      m.geometry.dispose();
+      m.material.dispose();
+    }
+    if (tipo !== "multigrano") this.granos = [this.mallaGrano(tipo)];
+    else {
+      // Pan multigrano: cada punto toma uno de los cuatro granos según su propio azar.
+      const grupos: number[][] = MEZCLA.map(() => []);
+      const azar = this.instancias.aAzar.array;
+      for (let i = 0; i < azar.length; i++) {
+        const x = (azar[i] * 31.7) % 1;
+        let k = 0;
+        for (let acum = MEZCLA[0][1]; x > acum && k < MEZCLA.length - 1; acum += MEZCLA[++k][1]);
+        grupos[k].push(i);
+      }
+      this.granos = MEZCLA.map(([t], k) => this.mallaGrano(t, grupos[k]));
+    }
+    for (const m of this.granos) this.globo.add(m);
   }
 
   private crearEtiquetas() {
@@ -381,7 +489,7 @@ export class EscenaGlobo {
     this.zoom = 1;
     this.pop = 0;
     if (parada.region === 0) this.progresoArcos = 0;
-    if (this.granos) this.granos.material.uniforms.uRegion.value = parada.region;
+    this.comunes.uRegion.value = parada.region;
   }
 
   enfocar(pais: number) {
@@ -446,14 +554,12 @@ export class EscenaGlobo {
     this.camara.updateProjectionMatrix();
 
     this.pop = quieto ? 1 : Math.min(1, this.pop + dt / 1.6);
-    if (this.granos) {
-      const u = this.granos.material.uniforms;
-      u.uPop.value = this.pop;
-      u.uTiempo.value = this.tiempo;
-      u.uFoco.value = this.foco;
-      // Granos un poco más grandes cuando la cámara se aleja, para que la tierra no se vea rala.
-      u.uEscala.value = 0.5 + 0.13 * this.actual.dist;
-    }
+    const u = this.comunes;
+    u.uPop.value = this.pop;
+    u.uTiempo.value = this.tiempo;
+    u.uFoco.value = this.foco;
+    // Granos un poco más grandes cuando la cámara se aleja, para que la tierra no se vea rala.
+    u.uEscala.value = 0.5 + 0.13 * this.actual.dist;
     if (this.arcos) {
       const u = this.arcos.material.uniforms;
       const mundo = this.parada.region === 0;

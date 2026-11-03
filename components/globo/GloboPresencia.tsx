@@ -3,7 +3,8 @@
 // Globo de presencia: recorre el mundo y las cuatro regiones de reporte. Avanza solo, se pausa con el
 // cursor sobre el texto y se detiene en cuanto alguien gira, acerca o elige una región.
 import { useEffect, useRef, useState } from "react";
-import type { EscenaGlobo, PaisGlobo, Parada } from "./escena";
+import type { EscenaGlobo, PaisGlobo, Paleta, Parada } from "./escena";
+import { NOMBRE_GRANO, TIPOS_GRANO, type TipoGrano } from "./granos";
 
 export type DatoGlobo = { valor: string; etiqueta: string; corte: string | null };
 export type ParadaGlobo = {
@@ -18,7 +19,7 @@ export type ParadaGlobo = {
 
 // Encuadres de cámara: la parada viaja de `desde` a `hasta` (lat, lon y distancia en radios del globo).
 const VISTAS: Record<number, Omit<Parada, "region">> = {
-  0: { desde: { lat: 14, lon: -100, dist: 5.6 }, hasta: { lat: 22, lon: -72, dist: 5.0 }, giro: 1.5 },
+  0: { desde: { lat: 14, lon: -100, dist: 4.87 }, hasta: { lat: 22, lon: -72, dist: 4.35 }, giro: 1.5 },
   1: { desde: { lat: 50, lon: -112, dist: 3.6 }, hasta: { lat: 44, lon: -94, dist: 3.35 } },
   2: { desde: { lat: 25, lon: -105, dist: 2.85 }, hasta: { lat: 21, lon: -99, dist: 2.6 } },
   3: { desde: { lat: 0, lon: -74, dist: 3.75 }, hasta: { lat: -18, lon: -64, dist: 3.5 } },
@@ -56,7 +57,18 @@ function Numero({ valor, className }: { valor: string; className?: string }) {
   );
 }
 
-export default function GloboPresencia({ rotulo, titulo, bajada, paradas }: { rotulo: string; titulo: string; bajada: string; paradas: ParadaGlobo[] }) {
+type Props = {
+  rotulo: string;
+  titulo: string;
+  bajada: string;
+  paradas: ParadaGlobo[];
+  /** v2: grano y paleta iniciales, y un panel para compararlos (se guardan en la URL: ?grano=avena&color=natural). */
+  grano?: TipoGrano;
+  paleta?: Paleta;
+  laboratorio?: boolean;
+};
+
+export default function GloboPresencia({ rotulo, titulo, bajada, paradas, grano: granoInicial = "punto", paleta: paletaInicial = "azul", laboratorio = false }: Props) {
   const lienzo = useRef<HTMLCanvasElement>(null);
   const capa = useRef<HTMLDivElement>(null);
   const seccion = useRef<HTMLElement>(null);
@@ -67,6 +79,8 @@ export default function GloboPresencia({ rotulo, titulo, bajada, paradas }: { ro
   const [reproduciendo, setReproduciendo] = useState(true);
   const [enVista, setEnVista] = useState(false);
   const [listo, setListo] = useState(false);
+  const [grano, setGrano] = useState<TipoGrano>(granoInicial);
+  const [paleta, setPaleta] = useState<Paleta>(paletaInicial);
   const parada = paradas[indice];
   const duracion = parada.region === 0 ? DURACION.mundo : DURACION.region;
 
@@ -112,6 +126,24 @@ export default function GloboPresencia({ rotulo, titulo, bajada, paradas }: { ro
   }, [paises]);
 
   useEffect(() => {
+    if (!laboratorio) return;
+    const q = new URLSearchParams(window.location.search);
+    const g = q.get("grano") as TipoGrano | null;
+    const c = q.get("color");
+    if (g && TIPOS_GRANO.includes(g)) setGrano(g);
+    if (c === "azul" || c === "natural") setPaleta(c);
+  }, [laboratorio]);
+
+  useEffect(() => {
+    escena.current?.setGrano(grano, paleta);
+    if (!laboratorio) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("grano", grano);
+    url.searchParams.set("color", paleta);
+    window.history.replaceState(null, "", url);
+  }, [grano, paleta, paises, laboratorio]);
+
+  useEffect(() => {
     escena.current?.irA({ region: parada.region, ...VISTAS[parada.region] }, duracion);
     escena.current?.enfocar(-1);
   }, [parada, duracion, paises]);
@@ -147,6 +179,39 @@ export default function GloboPresencia({ rotulo, titulo, bajada, paradas }: { ro
         <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 hidden w-[58%] bg-gradient-to-r from-globo-noche from-40% via-globo-noche/70 to-transparent md:block" />
         <div ref={capa} aria-hidden className="pointer-events-none absolute inset-0" />
         <p className="pointer-events-none absolute bottom-3 right-4 hidden text-xs text-white/50 md:block">Arrastra para girar · pellizca o usa + / − para acercar</p>
+        {laboratorio && (
+          <div className="absolute right-4 top-4 z-20 w-[15rem] rounded-2xl border border-white/15 bg-globo-noche/85 p-3 text-xs backdrop-blur md:right-6 md:top-6">
+            <p className="font-semibold uppercase tracking-[0.2em] text-globo-rotulo">Laboratorio · v2</p>
+            <p className="mt-3 text-white/60">Grano</p>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {TIPOS_GRANO.map((t) => (
+                <button
+                  key={t}
+                  type="button"
+                  aria-pressed={grano === t}
+                  onClick={() => setGrano(t)}
+                  className={`rounded-full px-2.5 py-1 font-semibold transition-colors ${grano === t ? "bg-white text-globo-noche" : "bg-white/10 hover:bg-white/20"}`}
+                >
+                  {NOMBRE_GRANO[t]}
+                </button>
+              ))}
+            </div>
+            <p className="mt-3 text-white/60">Color</p>
+            <div className="mt-1.5 flex gap-1.5">
+              {(["natural", "azul"] as const).map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  aria-pressed={paleta === c}
+                  onClick={() => setPaleta(c)}
+                  className={`rounded-full px-2.5 py-1 font-semibold transition-colors ${paleta === c ? "bg-white text-globo-noche" : "bg-white/10 hover:bg-white/20"}`}
+                >
+                  {c === "natural" ? "Natural" : "Azul por región"}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="pointer-events-none relative z-10 order-1 contents md:flex md:h-full md:w-[46%] md:max-w-[38.75rem] md:flex-col md:py-12 md:pl-16">

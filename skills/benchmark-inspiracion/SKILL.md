@@ -12,7 +12,7 @@ convierte esa intuición en un método repetible en dos partes: **mirar afuera**
 Awwwards y en el sector) y **mirar adentro** (qué abstracciones salen del negocio del cliente).
 
 El ejemplo completo es Grupo Bimbo (`assets/ejemplo-bimbo.html`, se abre directo en el navegador; las
-imágenes de referencia no viajan con la skill, pídelas al equipo de Nuclea).
+imágenes de referencias viven en `~/Factory/bimbo/benchmark-inspiracion/refs/`).
 
 ## Flujo
 
@@ -33,7 +33,7 @@ Método detallado y snippets en `references/metodo-awwwards.md`. Resumen:
   (`scripts/hoja-contactos.py`); describir solo lo que se ve o lo que dice la ficha. Si un sitio no se pudo
   abrir o la captura del panel salió en negro, decirlo — no inventar la técnica.
 - Agregar 2–3 pares directos del cliente (competidores) si el usuario los pide; el benchmark de pares
-  técnico (rendimiento) vive aparte: en la demo de Bimbo, en `/demo#benchmark`.
+  técnico vive en la auditoría (`auditoria-grupobimbo/` es el ejemplo).
 
 ### 3 · Mirar adentro: léxico y motivos
 Marco completo en `references/lexico-y-motivos.md`:

@@ -1,7 +1,8 @@
 # Caso completo: Grupo Bimbo (2 nov 2026)
 
-Página del benchmark: copia en `assets/ejemplo-bimbo.html` (servir con
-`python3 -m http.server 8811 --directory assets`).
+Página: `~/Factory/bimbo/benchmark-inspiracion/index.html` (servir con
+`python3 -m http.server 8811 --directory benchmark-inspiracion`, configuración `benchmark-inspiracion` en
+`~/Factory/bimbo/.claude/launch.json`). Copia en `assets/ejemplo-bimbo.html`.
 
 ## Léxico
 - **Materia:** silueta del pan de caja, miga, corteza, espiga de trigo, harina.
@@ -10,8 +11,8 @@ Página del benchmark: copia en `assets/ejemplo-bimbo.html` (servir con
 - **Ritual:** "para todos los momentos de tu día" (frase del sitio actual): desayuno, lonchera, merienda, cena.
 - **Íconos:** el Osito Bimbo y su gorro de panadero, los camiones de reparto (Bimbo empezó en 1945 con 4
   productos y 10 camiones repartidores, según grupobimbo.com/es/marcas/mexico), el rojo y azul de marca.
-- **Escala:** países, panaderías, rutas, marcas, colaboradores (las cifras oficiales están en `content/cifras.ts` del
-  repo de la demo, validadas con el Informe Anual 2025).
+- **Escala:** países, panaderías, rutas, marcas, colaboradores (cifras oficiales por confirmar: la auditoría
+  encontró tres versiones distintas del número de panaderías).
 
 ## Decisión de motivos
 - **Protagonista:** la corona del pan de caja como corte entre fondos y como máscara de fotos y botones.

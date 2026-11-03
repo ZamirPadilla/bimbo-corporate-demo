@@ -56,8 +56,25 @@ ID no cambia nunca, aunque el archivo cambie de tema o vaya a la papelera.
 `id`, `archivo`, `titulo`, `tipo` (imagen, video, documento, dato), `formato`, `bytes`, `ancho`, `alto`,
 `duracion_s`, `sha256`, `tema`, `etiquetas`, `origen` (tipo `oficial | tercero | cliente | nuclea`, fuente, url,
 página, nombre original, fecha), `derechos` (`oficial-cliente`, `referencia-interna`, `licencia-libre`,
-`nuclea`, `por-confirmar`), `alt`, `uso_demo` (sección, estado `candidato | aprobado | descartado`),
-`relacionados`, `notas`, `estado` (`activo | papelera`), `creado`, `actualizado`.
+`nuclea`, `por-confirmar`), `rol` (`contenido | referencia`), `alt`, `uso_demo` (sección, estado
+`candidato | aprobado | descartado`), `relacionados`, `notas`, `estado` (`activo | papelera`), `creado`, `actualizado`.
+
+## Contenido o referencia (campo `rol`)
+El drive mezcla dos clases de material, y quien arma la página necesita saber cuál puede usar sin pensarlo:
+
+| Rol | Qué es | Ejemplos |
+|---|---|---|
+| `contenido` | Listo para la página tal cual: foto, ilustración o video limpio, sin texto horneado ni interfaz de otro sitio, con resolución suficiente para su uso y derechos `oficial-cliente`, `nuclea` o `licencia-libre` | Retratos, fotos de planta y de gente, renders del personaje, fondos sin texto, recortes sin texto, loops de video limpios |
+| `referencia` | Para consultar, inspirar, modelar o sacar datos; no va a la página | Capturas del sitio actual o del informe, piezas con texto o cifras dentro, miniaturas y logos chicos, material de terceros, documentos e inventarios |
+
+- **Todo entra como `referencia`** (es el valor por defecto) y pasa a `contenido` solo cuando alguien confirma que
+  sirve tal cual: `editar ID rol=contenido`, o `--rol contenido` al ingresar.
+- El script lo hace cumplir: lo `referencia-interna` y lo `por-confirmar` no pueden ser contenido, y
+  `uso_demo.estado=aprobado` solo se acepta en contenido. `verificar` cuenta como falla un activo sin rol o incoherente.
+- Si el usuario declara que algo no sirve para la página (en Bimbo, la línea del tiempo del sitio actual), es
+  `referencia` aunque sea oficial y de buena calidad; anótalo en `notas` y en el contexto del cliente.
+- El índice separa cada tema en "Contenido para la página" y "Referencia"; `buscar --rol contenido --tema gente`
+  lista lo usable de un tema.
 
 ## Operaciones
 ```bash
@@ -67,12 +84,13 @@ python3 -I "$M" ingresar ARCHIVO… --tema camioncitos --origen tercero --fuente
         --titulo "Tractocamión 80 años, de frente" --etiquetas juguete,80-anos --seccion historia
 python3 -I "$M" ingresar "$MEDIA_DRIVE/00_entrada/lote" --tema historia --origen oficial --fuente grupobimbo.com --mover
 python3 -I "$M" importar-manifiesto manifiesto.csv CARPETA --origen oficial --fuente grupobimbo.com --mapa-temas youtube=youtube-miniaturas
-python3 -I "$M" editar BMB-00012 uso_demo.estado=aprobado notas="Hero de Historia"
+python3 -I "$M" editar BMB-00012 rol=contenido uso_demo.estado=aprobado notas="Hero de Historia"
 python3 -I "$M" mover BMB-00012 --tema historia
 python3 -I "$M" mover BMB-00012 --subcarpeta "Camion Bimbo 90"      # dentro del mismo tema
 python3 -I "$M" retirar BMB-00030 --motivo "duplicado visual de BMB-00012"
 python3 -I "$M" reemplazar BMB-00334 manual-v2.pdf --motivo "versión corregida"   # mismo ID, la v1 a la papelera
 python3 -I "$M" buscar tractocamion
+python3 -I "$M" buscar --rol contenido --tema gente      # lo que sí puede ir a la página
 python3 -I "$M" editar-config --agregar-tema logistica
 python3 -I "$M" contexto contexto-cliente.md       # contexto del cliente que aparece en el LEEME
 ```
@@ -92,10 +110,12 @@ python3 -I "$M" contexto contexto-cliente.md       # contexto del cliente que ap
    saber qué es cada archivo y darle un título que lo describa (modelo, época, ángulo).
 2. **Decidir origen y derechos:** oficial del cliente → `oficial-cliente`; tienda, prensa o fan → `referencia-interna`
    (va a `referencias-terceros/` y nunca se publica); si no hay certeza, `por-confirmar`.
-3. **Ingresar** con tema, título, etiquetas y sección de la demo.
-4. **Agrupar:** si varios archivos son el mismo objeto (seis fotos del mismo camioncito), ligarlos con
+3. **Decidir el rol:** `--rol contenido` solo si va a la página tal cual; si trae texto, es captura, es chica o
+   no hay certeza, se queda como `referencia` (el valor por defecto).
+4. **Ingresar** con tema, título, etiquetas, rol y sección de la demo.
+5. **Agrupar:** si varios archivos son el mismo objeto (seis fotos del mismo camioncito), ligarlos con
    `editar ID relacionados=…` o una etiqueta común (`modelo-tractocamion`).
-5. **Verificar** y reportar al usuario: qué entró (IDs), qué se omitió por duplicado, qué quedó por confirmar.
+6. **Verificar** y reportar al usuario: qué entró (IDs), qué se omitió por duplicado, qué quedó por confirmar.
 
 ## Contexto del cliente
 El LEEME se genera solo, pero lo que una IA nueva necesita saber del cliente (decisiones del usuario, dónde está

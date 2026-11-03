@@ -8,13 +8,13 @@ Uso (la raíz se pasa con --drive o con la variable MEDIA_DRIVE):
   media_db.py --drive RAIZ iniciar --cliente "Grupo Bimbo" --prefijo BMB
   media_db.py --drive RAIZ ingresar ARCHIVO_O_CARPETA --tema camioncitos --origen tercero \
               --fuente "Mercado Libre" [--url URL] [--derechos referencia-interna] [--titulo T] \
-              [--etiquetas a,b] [--seccion historia] [--subcarpeta "Camion Bimbo 40"] [--mover] [--json metadatos.json]
+              [--etiquetas a,b] [--seccion historia] [--subcarpeta "Camion Bimbo 40"] [--rol contenido] [--mover] [--json metadatos.json]
   media_db.py --drive RAIZ importar-manifiesto CSV CARPETA_BASE --origen oficial --fuente grupobimbo.com
   media_db.py --drive RAIZ editar ID campo=valor [campo=valor …]      (campos con punto: origen.url=…)
   media_db.py --drive RAIZ mover ID [--tema NUEVO_TEMA] [--subcarpeta "Camion Bimbo 40"]
   media_db.py --drive RAIZ retirar ID --motivo "duplicado de BMB-0001"
   media_db.py --drive RAIZ reemplazar ID ARCHIVO_NUEVO --motivo "versión corregida"   (mismo ID; la anterior va a 99_papelera)
-  media_db.py --drive RAIZ buscar TEXTO
+  media_db.py --drive RAIZ buscar TEXTO [--rol contenido|referencia] [--tema gente]
   media_db.py --drive RAIZ verificar          (archivos faltantes, huérfanos, hash distinto; código 1 si hay fallas)
   media_db.py --drive RAIZ vista              (regenera media.csv, INDICE.md y el LEEME)
   media_db.py --drive RAIZ contexto contexto.md   (contexto del cliente que se incluye en el LEEME)
@@ -34,7 +34,7 @@ import subprocess
 import sys
 import unicodedata
 
-VERSION = "1.3.2"
+VERSION = "1.4.0"
 SISTEMA = "_sistema"
 CARPETAS = ["00_entrada", "01_media/imagenes", "01_media/video", "01_media/referencias-terceros",
             "02_documentos", "03_datos", "99_papelera", SISTEMA]
@@ -48,6 +48,19 @@ DERECHOS = {"oficial-cliente": "Material publicado por el cliente en sus canales
             "nuclea": "Producido por Nuclea",
             "por-confirmar": "Sin certeza de derechos; no usar hasta confirmar"}
 ORIGENES = {"oficial", "tercero", "cliente", "nuclea"}
+ROLES = {"contenido": "Listo para la página: limpio (sin texto ni interfaz de otro sitio), con resolución y derechos para usarse",
+         "referencia": "Para consultar, inspirar, modelar o sacar datos; no va a la página tal cual"}
+
+
+def problema_rol(a):
+    """Regresa el motivo si el rol de un activo no es coherente con sus derechos o su uso, o None."""
+    rol = a.get("rol", "")
+    if rol not in ROLES: return f"rol inválido o vacío ({rol!r}; usa {', '.join(ROLES)})"
+    if rol == "contenido" and a["derechos"] in ("referencia-interna", "por-confirmar"):
+        return f"un activo con derechos {a['derechos']} no puede ser contenido"
+    if a["uso_demo"]["estado"] == "aprobado" and rol != "contenido":
+        return "solo el contenido se aprueba para la demo; lo de referencia no va a la página"
+    return None
 ACTOR = os.environ.get("MEDIA_ACTOR", "claude")
 
 
@@ -155,12 +168,16 @@ class Base:
         return os.path.join(base, slug(sub)) if sub else base
 
     def agregar(self, origen_archivo, tema, origen, fuente, url="", derechos=None, titulo="", etiquetas=(),
-                seccion="", pagina="", alt="", notas="", mover=False, extra=None, sub=""):
+                seccion="", pagina="", alt="", notas="", mover=False, extra=None, sub="", rol=""):
         if tema not in self.db["temas"]:
             sys.exit(f"Tema desconocido: {tema}. Temas válidos: {', '.join(self.db['temas'])} (agrégalo en config con 'editar-config').")
         if origen not in ORIGENES: sys.exit(f"Origen inválido: {origen} ({', '.join(sorted(ORIGENES))})")
         derechos = derechos or ("oficial-cliente" if origen in ("oficial", "cliente") else "nuclea" if origen == "nuclea" else "referencia-interna")
         if derechos not in DERECHOS: sys.exit(f"Derechos inválidos: {derechos} ({', '.join(DERECHOS)})")
+        rol = rol or "referencia"   # todo entra como referencia hasta que alguien confirme que sirve para la página
+        if rol not in ROLES: sys.exit(f"Rol inválido: {rol} ({', '.join(ROLES)})")
+        if rol == "contenido" and derechos in ("referencia-interna", "por-confirmar"):
+            sys.exit(f"Con derechos {derechos} el rol solo puede ser referencia")
         h = sha256(origen_archivo)
         dup = self.por_hash(h)
         if dup:
@@ -180,7 +197,7 @@ class Base:
              "tema": tema, "subcarpeta": slug(sub) if sub else "", "etiquetas": sorted({e.strip() for e in etiquetas if e.strip()}),
              "origen": {"tipo": origen, "fuente": fuente, "url": url, "pagina": pagina, "nombre_original": os.path.basename(origen_archivo),
                         "obtenido": ahora()},
-             "derechos": derechos, "alt": alt, "uso_demo": {"seccion": seccion, "estado": "candidato"},
+             "derechos": derechos, "rol": rol, "alt": alt, "uso_demo": {"seccion": seccion, "estado": "candidato"},
              "relacionados": [], "notas": notas, "estado": "activo", "creado": ahora(), "actualizado": ahora()}
         if extra: a.update(extra)
         self.db["activos"].append(a)
@@ -191,28 +208,39 @@ class Base:
         act = [a for a in self.db["activos"] if a["estado"] == "activo"]
         with open(os.path.join(self.sis, "media.csv"), "w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)
-            w.writerow(["id", "archivo", "titulo", "tipo", "tema", "etiquetas", "derechos", "origen", "fuente", "url", "ancho", "alto",
+            w.writerow(["id", "archivo", "titulo", "tipo", "tema", "etiquetas", "derechos", "rol", "origen", "fuente", "url", "ancho", "alto",
                         "duracion_s", "bytes", "seccion", "estado_uso"])
             for a in act:
                 w.writerow([a["id"], a["archivo"], a["titulo"], a["tipo"], a["tema"], ";".join(a["etiquetas"]), a["derechos"],
-                            a["origen"]["tipo"], a["origen"]["fuente"], a["origen"]["url"], a["ancho"], a["alto"], a["duracion_s"],
+                            a.get("rol", ""), a["origen"]["tipo"], a["origen"]["fuente"], a["origen"]["url"], a["ancho"], a["alto"], a["duracion_s"],
                             a["bytes"], a["uso_demo"]["seccion"], a["uso_demo"]["estado"]])
         lineas = [f"# Índice de media · {self.db['cliente']}", "",
                   f"Generado por `media_db.py` {VERSION} el {ahora()}. **No editar a mano**: este archivo y "
                   f"`media.json` los mantiene solo la IA con la skill `media-drive-ia`.", "",
-                  f"{len(act)} activos · {sum(a['bytes'] for a in act) / 1e6:.1f} MB", "", "| Tema | Activos | Imágenes | Videos | Documentos | Datos | Referencias de terceros |",
-                  "|---|---:|---:|---:|---:|---:|---:|"]
+                  f"{len(act)} activos · {sum(a['bytes'] for a in act) / 1e6:.1f} MB · "
+                  f"{sum(1 for a in act if a.get('rol') == 'contenido')} de contenido para la página y "
+                  f"{sum(1 for a in act if a.get('rol') == 'referencia')} de referencia.", "",
+                  "**Contenido** está listo para usarse en la página. **Referencia** sirve para consultar, inspirar, modelar o "
+                  "sacar datos, pero no va a la página tal cual.", "",
+                  "| Tema | Activos | Contenido | Referencia | Imágenes | Videos | Documentos | Datos | De terceros |",
+                  "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
         for t in self.db["temas"]:
             s = [a for a in act if a["tema"] == t]
             if not s: continue
             c = lambda k: sum(1 for a in s if a["tipo"] == k)
-            lineas.append(f"| {t} | {len(s)} | {c('imagen')} | {c('video')} | {c('documento')} | {c('dato')} | {sum(1 for a in s if a['derechos'] == 'referencia-interna')} |")
+            r = lambda k: sum(1 for a in s if a.get("rol") == k)
+            lineas.append(f"| {t} | {len(s)} | {r('contenido')} | {r('referencia')} | {c('imagen')} | {c('video')} | {c('documento')} | {c('dato')} | {sum(1 for a in s if a['derechos'] == 'referencia-interna')} |")
         for t in self.db["temas"]:
             s = [a for a in act if a["tema"] == t]
             if not s: continue
-            lineas += ["", f"## {t}", "", "| ID | Título | Tipo | Derechos | Archivo |", "|---|---|---|---|---|"]
-            for a in s:
-                lineas.append(f"| {a['id']} | {a['titulo'].replace('|', '·')} | {a['tipo']} | {a['derechos']} | `{a['archivo']}` |")
+            lineas += ["", f"## {t}"]
+            for rol, nombre in (("contenido", "Contenido para la página"), ("referencia", "Referencia"), ("", "Sin clasificar")):
+                g = [a for a in s if a.get("rol", "") == rol]
+                if not g: continue
+                lineas += ["", f"### {nombre} ({len(g)})", "", "| ID | Título | Tipo | Derechos | Uso en la demo | Archivo |", "|---|---|---|---|---|---|"]
+                for a in g:
+                    uso = " · ".join(x for x in (a["uso_demo"]["estado"], a["uso_demo"]["seccion"]) if x)
+                    lineas.append(f"| {a['id']} | {a['titulo'].replace('|', '·')} | {a['tipo']} | {a['derechos']} | {uso} | `{a['archivo']}` |")
         open(os.path.join(self.sis, "INDICE.md"), "w", encoding="utf-8").write("\n".join(lineas) + "\n")
         escribir_leeme(self)
 
@@ -233,6 +261,8 @@ leyó la skill `media-drive-ia`. Todo cambio pasa por `_sistema/herramientas/med
 - Para aportar material, déjalo en **`00_entrada/`** con una nota de dónde salió, y pide a la IA que lo ingrese.
 - Para encontrar algo, abre **`_sistema/INDICE.md`** (catálogo por tema) o `_sistema/media.csv`; cada archivo
   empieza con su ID (`{prefijo}-00012_…`).
+- **Para la página usa solo lo marcado como contenido.** En el índice, cada tema separa el *contenido* (listo para
+  usarse) de la *referencia* (capturas, piezas con texto, material de terceros, miniaturas y documentos para consultar).
 - No muevas, renombres ni borres nada: la verificación lo marca como huérfano o faltante y hay que repararlo.
 
 ## Si eres una IA (lee todo antes de operar)
@@ -265,6 +295,9 @@ leyó la skill `media-drive-ia`. Todo cambio pasa por `_sistema/herramientas/med
 - **Material interno de Nuclea no entra aquí:** análisis comerciales, notas de venta, estrategia, nombres de
   contactos del cliente, credenciales o datos personales.
 - **Cifras dentro de imágenes no son fuente:** se verifican contra el informe anual antes de usarse.
+- **Rol:** cada activo es `contenido` (limpio, con resolución y derechos para ir a la página) o `referencia` (para
+  consultar, inspirar, modelar o sacar datos). Todo entra como referencia; pasa a contenido solo cuando sirve tal
+  cual. Lo de terceros y lo `por-confirmar` siempre es referencia, y solo el contenido se aprueba en `uso_demo`.
 
 ## Estado al {fecha}
 {estado}
@@ -289,7 +322,8 @@ def escribir_leeme(b):
     db = b.db
     act = [a for a in db["activos"] if a["estado"] == "activo"]
     por_tema = ", ".join(f"{t} {n}" for t in db["temas"] for n in [sum(1 for a in act if a["tema"] == t)] if n)
-    estado = (f"{len(act)} activos ({sum(a['bytes'] for a in act) / 1e6:.0f} MB) y "
+    estado = (f"{len(act)} activos ({sum(a['bytes'] for a in act) / 1e6:.0f} MB): "
+              f"{sum(1 for a in act if a.get('rol') == 'contenido')} de contenido y {sum(1 for a in act if a.get('rol') == 'referencia')} de referencia; "
               f"{sum(1 for a in db['activos'] if a['estado'] == 'papelera')} en papelera. Por tema: {por_tema or 'sin activos'}. "
               f"Siguiente ID: {db['prefijo']}-{db.get('siguiente', 1):05d}.")
     ctx = os.path.join(b.sis, "contexto-cliente.md")
@@ -325,10 +359,11 @@ def main():
     s.add_argument("--temas", default="")
     s = sub.add_parser("ingresar"); s.add_argument("rutas", nargs="+")
     for k in ("tema", "origen", "fuente"): s.add_argument("--" + k, required=True)
-    for k in ("url", "derechos", "titulo", "etiquetas", "seccion", "pagina", "alt", "notas", "json", "subcarpeta"): s.add_argument("--" + k, default="")
+    for k in ("url", "derechos", "titulo", "etiquetas", "seccion", "pagina", "alt", "notas", "json", "subcarpeta", "rol"): s.add_argument("--" + k, default="")
     s.add_argument("--mover", action="store_true")
     s = sub.add_parser("importar-manifiesto"); s.add_argument("csv"); s.add_argument("base")
     s.add_argument("--origen", required=True); s.add_argument("--fuente", required=True); s.add_argument("--derechos", default="")
+    s.add_argument("--rol", default="")
     s.add_argument("--tema-por-defecto", default=""); s.add_argument("--mapa-temas", default="", help="cat1=tema1,cat2=tema2")
     s = sub.add_parser("editar"); s.add_argument("id"); s.add_argument("cambios", nargs="+")
     s = sub.add_parser("editar-config"); s.add_argument("--agregar-tema", action="append", default=[])
@@ -336,7 +371,8 @@ def main():
     s = sub.add_parser("mover"); s.add_argument("id"); s.add_argument("--tema", default=""); s.add_argument("--subcarpeta", default=None)
     s = sub.add_parser("retirar"); s.add_argument("id"); s.add_argument("--motivo", required=True)
     s = sub.add_parser("reemplazar"); s.add_argument("id"); s.add_argument("archivo"); s.add_argument("--motivo", required=True)
-    s = sub.add_parser("buscar"); s.add_argument("texto")
+    s = sub.add_parser("buscar"); s.add_argument("texto", nargs="?", default="")
+    s.add_argument("--rol", default=""); s.add_argument("--tema", default="")
     sub.add_parser("verificar"); sub.add_parser("vista"); sub.add_parser("actualizar-herramientas")
     s = sub.add_parser("contexto"); s.add_argument("archivo", help="Markdown con el contexto del cliente para el LEEME")
     a = ap.parse_args()
@@ -363,8 +399,10 @@ def main():
             if a.cmd == "buscar":
                 q = a.texto.lower()
                 for x in db["activos"]:
+                    if a.rol and x.get("rol", "") != a.rol: continue
+                    if a.tema and x["tema"] != a.tema: continue
                     if q in json.dumps(x, ensure_ascii=False).lower():
-                        print(f"{x['id']}  {x['estado']:8} {x['tema']:18} {x['titulo'][:60]}  ->  {x['archivo']}")
+                        print(f"{x['id']}  {x['estado']:8} {x.get('rol', '') or '¿rol?':10} {x['tema']:18} {x['titulo'][:60]}  ->  {x['archivo']}")
                 return 0
             fallas = 0; registrados = set()
             for x in db["activos"]:
@@ -379,6 +417,8 @@ def main():
                         if f.startswith(".") or f.endswith(".tmp"): continue
                         rel = os.path.normpath(os.path.relpath(os.path.join(dp, f), b.raiz))
                         if rel not in registrados: print("HUÉRFANO (¿edición manual?)", rel); fallas += 1
+            for x in db["activos"]:
+                if x["estado"] == "activo" and problema_rol(x): print("ROL", x["id"], problema_rol(x)); fallas += 1
             entrada = [f for f in os.listdir(os.path.join(b.raiz, "00_entrada")) if not f.startswith(".")]
             if entrada: print(f"PENDIENTE en 00_entrada: {len(entrada)} elementos por ingresar")
             act = sum(1 for x in db["activos"] if x["estado"] == "activo")
@@ -408,7 +448,7 @@ def main():
             n = 0
             for f in archivos:
                 x, nuevo = b.agregar(f, a.tema, a.origen, a.fuente, a.url, a.derechos or None, a.titulo if len(archivos) == 1 else "",
-                                     a.etiquetas.split(","), a.seccion, a.pagina, a.alt, a.notas, a.mover, extra, a.subcarpeta)
+                                     a.etiquetas.split(","), a.seccion, a.pagina, a.alt, a.notas, a.mover, extra, a.subcarpeta, a.rol)
                 n += nuevo
                 print(("NUEVO " if nuevo else "YA EXISTÍA ") + x["id"], x["archivo"])
             print(n, "ingresados")
@@ -421,7 +461,7 @@ def main():
                 tema = mapa.get(fila.get("categoria", ""), fila.get("categoria") or a.tema_por_defecto)
                 if tema not in db["temas"]: tema = a.tema_por_defecto or tema
                 x, nuevo = b.agregar(ruta, tema, a.origen, fila.get("origen") or a.fuente, fila.get("url", ""), a.derechos or None,
-                                     fila.get("alt") or "", (), "", fila.get("pagina", ""), fila.get("alt", ""))
+                                     fila.get("alt") or "", (), "", fila.get("pagina", ""), fila.get("alt", ""), rol=fila.get("rol") or a.rol)
                 n += nuevo
             print(n, "importados")
         elif a.cmd == "editar":
@@ -431,6 +471,7 @@ def main():
                 if k in ("id", "sha256", "archivo", "bytes"): sys.exit(f"'{k}' no se edita a mano (usa mover/retirar)")
                 if k == "derechos" and v not in DERECHOS: sys.exit("Derechos inválidos")
                 poner(x, k, v)
+            if x["estado"] == "activo" and problema_rol(x): sys.exit(f"{a.id}: {problema_rol(x)}. No se guardó nada.")
             x["actualizado"] = ahora(); b.bitacora("editar", id=a.id, cambios=a.cambios)
         elif a.cmd == "mover":
             x = next((y for y in db["activos"] if y["id"] == a.id), None) or sys.exit("No existe " + a.id)

@@ -16,6 +16,7 @@
 - [Decisiones tomadas](copy/05-decisiones.md): Las seis decisiones abiertas, resueltas con el Informe Anual 2025.
 - [Contexto creativo](contexto/CONTEXTO.md): Diagnóstico, intención, concepto y lenguaje visual del equipo creativo.
 - [Benchmark de referencias](benchmark/README.md): Qué tomar de cada sitio de referencia y a qué sección aplica.
+- [Banco de ideas](ideas/README.md): Ideas de interacción por aprobar; la primera: el pan del hero se vuelve el gorro del osito.
 
 ## Wireframes
 

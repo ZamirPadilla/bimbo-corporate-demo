@@ -22,6 +22,7 @@ export const documentos = [
   { titulo: "Decisiones tomadas", ruta: "docs/copy/05-decisiones.md", descripcion: "Las seis decisiones abiertas, resueltas con el Informe Anual 2025." },
   { titulo: "Contexto creativo", ruta: "docs/contexto/CONTEXTO.md", descripcion: "Diagnóstico, intención, concepto y lenguaje visual del equipo creativo." },
   { titulo: "Benchmark de referencias", ruta: "docs/benchmark/README.md", descripcion: "Qué tomar de cada sitio de referencia y a qué sección aplica." },
+  { titulo: "Banco de ideas", ruta: "docs/ideas/README.md", descripcion: "Ideas de interacción por aprobar; la primera: el pan del hero se vuelve el gorro del osito." },
 ].map((d) => ({ ...d, url: `${REPO}/${d.ruta}` }));
 
 export const fuentes = [

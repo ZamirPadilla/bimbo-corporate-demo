@@ -2,7 +2,7 @@
 
 > Generado por `npm run copy:docs` desde `content/`. No editar a mano: editar `content/paginas.ts` o `content/cifras.ts`.
 
-36 cifras; 0 por confirmar. Fuentes: reporte del 3T26, Informe Anual 2025 y sitio público grupobimbo.com, leídos el 2 y 3 de noviembre de 2026.
+42 cifras; 0 por confirmar. Fuentes: reporte del 3T26, Informe Anual 2025 y sitio público grupobimbo.com, leídos el 2 y 3 de noviembre de 2026.
 
 | Cifra | Valor propuesto | Estado | Dónde aparece hoy | Nota |
 |---|---|---|---|---|
@@ -42,3 +42,9 @@
 | Bimbo Global Race 2026 | **29 ciudades de 23 países** (Comunicado del 30 de septiembre de 2026) | Confirmada | [Prensa](https://www.grupobimbo.com/es/prensa): «29 ciudades de 23 países»<br>[Marcas](https://www.grupobimbo.com/es/marcas): «22 países y 28 ciudades» | Se toma el comunicado más reciente. Marcas dice 28 ciudades de 22 países (probablemente la edición anterior). |
 | Colaboradores en México | **más de 77,000** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «COLABORADORES +77k (México)»<br>[Preguntas frecuentes](https://www.grupobimbo.com/es/faq/generales): «más de 78,000 personas en México» | Las preguntas frecuentes dicen «más de 78,000». |
 | Panaderías y plantas en México | **38** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «PANADERÍAS Y PLANTAS 38 (México)»<br>[Preguntas frecuentes](https://www.grupobimbo.com/es/faq/generales): «38 plantas de producción en México» |  |
+| Panaderías y plantas en Norteamérica | **75** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «PANADERÍAS Y PLANTAS 75 (Norteamérica)» |  |
+| Colaboradores en Norteamérica | **más de 26,000** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «COLABORADORES +26k (Norteamérica)» |  |
+| Panaderías y plantas en Latinoamérica | **42** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «PANADERÍAS Y PLANTAS 42 (Latinoamérica)» |  |
+| Colaboradores en Latinoamérica | **más de 28,000** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «COLABORADORES +28k (Latinoamérica)» |  |
+| Panaderías y plantas en EAA | **94** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «PANADERÍAS Y PLANTAS 94 (EAA)» |  |
+| Colaboradores en EAA | **más de 18,000** (Informe Anual 2025 (cierre de 2025)) | Confirmada | [Informe Anual 2025, presencia por región](https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf): «COLABORADORES +18k (EAA)» |  |

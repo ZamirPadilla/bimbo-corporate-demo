@@ -1,0 +1,279 @@
+{
+ "fuente": "Natural Earth 1:50m (world-atlas 2.0.2). Generado por scripts/globo-granos.ts; no editar a mano.",
+ "granos": 25856,
+ "paises": [
+  {
+   "nombre": "Canadá",
+   "region": 1,
+   "lat": 58.59,
+   "lon": -99,
+   "granos": 1740
+  },
+  {
+   "nombre": "Estados Unidos",
+   "region": 1,
+   "lat": 39.89,
+   "lon": -98.82,
+   "granos": 1671
+  },
+  {
+   "nombre": "México",
+   "region": 2,
+   "lat": 23.92,
+   "lon": -102.15,
+   "granos": 338
+  },
+  {
+   "nombre": "Argentina",
+   "region": 3,
+   "lat": -34.54,
+   "lon": -64.75,
+   "granos": 497
+  },
+  {
+   "nombre": "Brasil",
+   "region": 3,
+   "lat": -10.69,
+   "lon": -53.24,
+   "granos": 1500
+  },
+  {
+   "nombre": "Chile",
+   "region": 3,
+   "lat": -34.36,
+   "lon": -70.95,
+   "granos": 124
+  },
+  {
+   "nombre": "Colombia",
+   "region": 3,
+   "lat": 3.9,
+   "lon": -73.08,
+   "granos": 198
+  },
+  {
+   "nombre": "Costa Rica",
+   "region": 3,
+   "lat": 9.98,
+   "lon": -84.19,
+   "granos": 8
+  },
+  {
+   "nombre": "Ecuador",
+   "region": 3,
+   "lat": -1.44,
+   "lon": -78.39,
+   "granos": 46
+  },
+  {
+   "nombre": "El Salvador",
+   "region": 3,
+   "lat": 13.74,
+   "lon": -88.87,
+   "granos": 8
+  },
+  {
+   "nombre": "Guatemala",
+   "region": 3,
+   "lat": 15.69,
+   "lon": -90.37,
+   "granos": 20
+  },
+  {
+   "nombre": "Honduras",
+   "region": 3,
+   "lat": 14.83,
+   "lon": -86.62,
+   "granos": 20
+  },
+  {
+   "nombre": "Nicaragua",
+   "region": 3,
+   "lat": 12.85,
+   "lon": -85.03,
+   "granos": 21
+  },
+  {
+   "nombre": "Panamá",
+   "region": 3,
+   "lat": 8.53,
+   "lon": -80.11,
+   "granos": 14
+  },
+  {
+   "nombre": "Paraguay",
+   "region": 3,
+   "lat": -23.21,
+   "lon": -58.44,
+   "granos": 71
+  },
+  {
+   "nombre": "Perú",
+   "region": 3,
+   "lat": -9.11,
+   "lon": -74.42,
+   "granos": 232
+  },
+  {
+   "nombre": "Uruguay",
+   "region": 3,
+   "lat": -32.79,
+   "lon": -56.03,
+   "granos": 32
+  },
+  {
+   "nombre": "Venezuela",
+   "region": 3,
+   "lat": 7.12,
+   "lon": -66.18,
+   "granos": 161
+  },
+  {
+   "nombre": "China",
+   "region": 4,
+   "lat": 36.76,
+   "lon": 103.35,
+   "granos": 1650
+  },
+  {
+   "nombre": "Corea del Sur",
+   "region": 4,
+   "lat": 36.45,
+   "lon": 127.87,
+   "granos": 16
+  },
+  {
+   "nombre": "Croacia",
+   "region": 4,
+   "lat": 45.16,
+   "lon": 16.42,
+   "granos": 8
+  },
+  {
+   "nombre": "Eslovenia",
+   "region": 4,
+   "lat": 46.12,
+   "lon": 14.8,
+   "granos": 8
+  },
+  {
+   "nombre": "España",
+   "region": 4,
+   "lat": 40.37,
+   "lon": -3.57,
+   "granos": 88
+  },
+  {
+   "nombre": "Francia",
+   "region": 4,
+   "lat": 46.57,
+   "lon": 2.46,
+   "granos": 95
+  },
+  {
+   "nombre": "India",
+   "region": 4,
+   "lat": 22.8,
+   "lon": 79.53,
+   "granos": 557
+  },
+  {
+   "nombre": "Italia",
+   "region": 4,
+   "lat": 43.49,
+   "lon": 12.3,
+   "granos": 50
+  },
+  {
+   "nombre": "Kazajistán",
+   "region": 4,
+   "lat": 48.36,
+   "lon": 67.25,
+   "granos": 480
+  },
+  {
+   "nombre": "Marruecos",
+   "region": 4,
+   "lat": 29.77,
+   "lon": -8.73,
+   "granos": 106
+  },
+  {
+   "nombre": "Montenegro",
+   "region": 4,
+   "lat": 42.79,
+   "lon": 19.24,
+   "granos": 8
+  },
+  {
+   "nombre": "Portugal",
+   "region": 4,
+   "lat": 39.65,
+   "lon": -7.98,
+   "granos": 17
+  },
+  {
+   "nombre": "Reino Unido",
+   "region": 4,
+   "lat": 53.83,
+   "lon": -2.41,
+   "granos": 39
+  },
+  {
+   "nombre": "Rumanía",
+   "region": 4,
+   "lat": 45.85,
+   "lon": 24.98,
+   "granos": 42
+  },
+  {
+   "nombre": "Rusia",
+   "region": 4,
+   "lat": 65.89,
+   "lon": 95.53,
+   "granos": 2980
+  },
+  {
+   "nombre": "Serbia",
+   "region": 4,
+   "lat": 44.21,
+   "lon": 20.81,
+   "granos": 13
+  },
+  {
+   "nombre": "Sudáfrica",
+   "region": 4,
+   "lat": -28.97,
+   "lon": 25.19,
+   "granos": 213
+  },
+  {
+   "nombre": "Suiza",
+   "region": 4,
+   "lat": 46.8,
+   "lon": 8.21,
+   "granos": 8
+  },
+  {
+   "nombre": "Túnez",
+   "region": 4,
+   "lat": 34.09,
+   "lon": 9.55,
+   "granos": 27
+  },
+  {
+   "nombre": "Turquía",
+   "region": 4,
+   "lat": 39.06,
+   "lon": 35.41,
+   "granos": 139
+  },
+  {
+   "nombre": "Ucrania",
+   "region": 4,
+   "lat": 49.2,
+   "lon": 31.32,
+   "granos": 101
+  }
+ ]
+}

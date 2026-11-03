@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Metadatos para compartir del sitio de Grupo PRODI.
+"""Metadatos para compartir del sitio de referencia.
 
-Lee un paginas.json (ver el ejemplo de PRODI junto a este script) y:
+Lee un paginas.json (ver el ejemplo del sitio de referencia junto a este script) y:
   1. Dibuja con Chrome headless un thumbnail de 1200×630 por página (plantilla.html)
      y lo guarda como JPEG en prototipo/assets/compartir/og-<slug>-v<version>.jpg.
   2. Arma favicon.svg, favicon.ico (16/32/48) y apple-touch-icon.png en prototipo/.
@@ -47,7 +47,7 @@ def logo_svg():
 
 
 def p_del_logo():
-    """La primera letra del logotipo: el trazo cuyo d empieza con icono.trazo_logo (en PRODI, la «P»: 'M0.19')."""
+    """La primera letra del logotipo: el trazo cuyo d empieza con icono.trazo_logo (en el sitio de referencia, la «P»: 'M0.19')."""
     trazos = re.findall(r'<path d="([^"]+)"', logo_svg())
     pref = CFG.get('icono', {}).get('trazo_logo', 'M0.19')
     return next(d for d in trazos if d.startswith(pref))
@@ -88,7 +88,7 @@ def icono_svg(rx):
     if ic.get('svg'):                          # SVG propio de 64×64: se usa tal cual; la versión cuadrada quita el rx
         svg = (SITIO / ic['svg']).read_text()
         return svg if rx else re.sub(r'\srx="[^"]*"', '', svg, count=1)
-    t = ic.get('escala', 0.684); dx, dy = ic.get('mover', [11.9, 2.8])  # en PRODI la P ocupa ~40 de 64 unidades
+    t = ic.get('escala', 0.684); dx, dy = ic.get('mover', [11.9, 2.8])  # en el sitio de referencia la P ocupa ~40 de 64 unidades
     return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
             f'<rect width="64" height="64"{f' rx="{rx}"' if rx else ''} fill="{COL['tinta']}"/>'
             f'<path fill="{COL['papel']}" transform="translate({dx} {dy}) scale({t})" d="{p_del_logo()}"/></svg>\n')
@@ -120,7 +120,7 @@ def iconos(tmp):
 def thumbnails(cfg, tmp):
     plantilla = (AQUI / 'plantilla.html').read_text()
     plantilla = re.sub(r':root\{[^}]*\}', ':root{--ink:%s;--paper:%s;--mist:%s;--accent:%s}' % (COL['tinta'], COL['papel'], COL['niebla'], COL['acento']), plantilla, count=1)
-    plantilla = plantilla.replace('Ecosistema PRODI', html.escape(cfg.get('marca_plataforma', cfg.get('sitio', ''))))
+    plantilla = plantilla.replace('Ecosistema', html.escape(cfg.get('marca_plataforma', cfg.get('sitio', ''))))
     por_slug = {p['slug']: p for p in cfg['paginas']}
     plataformas = [{'nombre': por_slug[s]['og']['etiqueta'], 'foto': por_slug[s]['og']['foto'],
                     'posicion': por_slug[s]['og'].get('posicion')} for s in PLATAFORMAS]

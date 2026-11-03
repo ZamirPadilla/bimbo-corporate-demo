@@ -38,7 +38,7 @@ fechas/contenido con la anterior. Ver `paginas-claude-design`.
 ## 4 · Reporte e índice
 - Reporte página por página: qué cambió cada quien respecto a `base` (`git diff --stat base autor-b -- prototipo/`),
   y qué archivos nuevos del otro autor corresponden a qué página.
-- Índice navegable de páginas y secciones (en PRODI, en una rama aparte: `herramientas/generar-indice.py` → `prototipo/index.html`,
+- Índice navegable de páginas y secciones (en el sitio de referencia, en una rama aparte: `herramientas/generar-indice.py` → `prototipo/index.html`,
   con la lista dictada por el usuario en `herramientas/indice-fusion.json`). Cada título abre la página en la
   sección (`#ancla` o `?query`).
 
@@ -58,7 +58,7 @@ fechas/contenido con la anterior. Ver `paginas-claude-design`.
 
 ## Trampas
 - No fusionar por adelantado: el usuario va dictando cada paso.
-- Una sección puede depender de un script compartido (`prodi-relieve.js`) que también cambió; combinarlo y subir
+- Una sección puede depender de un script compartido (`sitio-relieve.js`) que también cambió; combinarlo y subir
   su `?v=` en todos los lugares que lo cargan.
 - `git stash` es compartido entre worktrees y sesiones: usar commits temporales.
 - Imágenes cambiadas con el mismo nombre no se ven por la caché inmutable de `assets/`: nombre nuevo (`-v2`).

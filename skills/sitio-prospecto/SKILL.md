@@ -1,25 +1,23 @@
 ---
 name: sitio-prospecto
-description: Arma el prototipo de sitio corporativo para un prospecto de Nuclea (Bimbo, un grupo industrial, una constructora, un fondo) tomando como referencia el sitio de Grupo PRODI. Cubre investigación del cliente, mapa del sitio, sistema visual, catálogo de secciones probadas (hero con video, ciclo con etapas, mapa de relieve, plano → obra, listado de activos, cifras, historia, ecosistema), forma de trabajo paso a paso con el usuario y qué skill usar en cada etapa. Úsala siempre que pidan "un sitio como el de PRODI para…", "prototipo para un prospecto", "propuesta web para Bimbo / otro cliente", "arranca el sitio de X", "toma de referencia la página de PRODI", o cuando haya que planear o coordinar un sitio corporativo nuevo aunque no mencionen PRODI.
+description: Arma el prototipo de sitio corporativo para un prospecto de Nuclea (Bimbo, un grupo industrial, una constructora, un fondo) tomando como referencia el sitio de referencia. Cubre investigación del cliente, mapa del sitio, sistema visual, catálogo de secciones probadas (hero con video, ciclo con etapas, mapa de relieve, plano → obra, listado de activos, cifras, historia, ecosistema), forma de trabajo paso a paso con el usuario y qué skill usar en cada etapa. Úsala siempre que pidan "un sitio como el del sitio de referencia para…", "prototipo para un prospecto", "propuesta web para Bimbo / otro cliente", "arranca el sitio de X", "toma de referencia la página del sitio de referencia", o cuando haya que planear o coordinar un sitio corporativo nuevo aunque no mencionen el sitio de referencia.
 ---
 
-# Sitio corporativo para un prospecto (referencia: Grupo PRODI)
+# Sitio corporativo para un prospecto (referencia: un sitio de Nuclea)
 
-El sitio de Grupo PRODI es el ejemplo vivo de lo que esta serie de skills sabe hacer: un sitio corporativo
+El sitio de referencia es el ejemplo vivo de lo que esta serie de skills sabe hacer: un sitio corporativo
 oscuro y editorial, con animaciones ligadas al scroll, planos técnicos que se convierten en obra, un mapa de
 relieve con presencia y media ligera. Esta skill coordina el trabajo; cada técnica vive en su propia skill.
 
 ## Dónde está la referencia
 - Código: repo privado de Nuclea (rama `fusion/sitio`, carpeta `prototipo/`); pedir acceso al equipo. La media
   pesada no está en git, vive en un bucket privado; los modelos Blender también son privados.
-- Ramas viejas: `marlon` tiene versiones previas (`Grupo PRODI Home v3.dc.html`, `Liderazgo v2`, `… Design`);
-  la referencia vigente es siempre `fusion/sitio`.
 - Sitio en línea: URL privada con contraseña; pedirla al equipo de Nuclea.
 - `references/catalogo-secciones.md`: cada sección probada, qué hace, en qué archivo y línea buscarla y cómo
   adaptarla. Léela antes de proponer el mapa del sitio.
 - `references/sistema-visual.md`: paleta, tipografía, medidas y reglas de composición.
 
-## Cómo trabajar con el usuario (lo aprendido en PRODI)
+## Cómo trabajar con el usuario (lo aprendido en el sitio de referencia)
 Estas reglas salen de correcciones reales; seguirlas ahorra vueltas:
 1. **Paso a paso.** Proponer el plan y avanzar sección por sección. El usuario dicta el orden; no fusionar,
    reemplazar ni publicar nada que no haya pedido.
@@ -51,7 +49,7 @@ Estas reglas salen de correcciones reales; seguirlas ahorra vueltas:
 - Pedir al usuario el material que solo él tiene: logo en vector, fotos o videos con derechos, renders.
 
 ### 2 · Mapa del sitio y guion
-- Partir del mapa de PRODI (Home, Nosotros, unidades de negocio, Activos, Medios, Contacto) y traducirlo al
+- Partir del mapa del sitio de referencia (Home, Nosotros, unidades de negocio, Activos, Medios, Contacto) y traducirlo al
   negocio del prospecto. Cada página es una secuencia de secciones del catálogo.
 - Escribir el guion de la Home sección por sección (titular, texto, qué animación) y validarlo con el
   usuario antes de diseñar.
@@ -70,8 +68,8 @@ Estas reglas salen de correcciones reales; seguirlas ahorra vueltas:
 - Formato de página: `paginas-claude-design` (archivos `.dc.html` que también abre Claude Design).
 - Si dos personas trabajan en paralelo (una en Claude Design, otra en local): `fusion-disenos-git`.
 - Secciones especiales:
-  - plano → obra con un edificio real: `gemelo-desde-foto` (imágenes y sección web).
-  - lámina técnica de un activo (camión, planta, buque…): `lamina-tecnica`.
+  - plano → obra con un edificio real y lámina técnica de un activo: skills internas de Nuclea
+    (`gemelo-desde-foto`, `lamina-tecnica`), no incluidas en este repo; pedirlas al equipo.
   - mapa de presencia en relieve: `mapa-relieve` (sirve para cualquier país o región).
 - Patrones de interacción (temporizadores, hover, carruseles, scroll): `paginas-claude-design`, en
   `references/patrones-interaccion.md`.

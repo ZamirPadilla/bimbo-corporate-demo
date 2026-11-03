@@ -1,4 +1,4 @@
-# Instrucciones para la IA: llevar esta demo al nivel del sitio de Grupo PRODI
+# Instrucciones para la IA: llevar esta demo al nivel del sitio de referencia
 
 Copia este documento como primer mensaje a la IA que trabaje en este repo (Claude Code u otra). Está escrito para
 que arranque sin más contexto.
@@ -10,24 +10,23 @@ Vas a mejorar **bimbo-corporate-demo**, una demo técnica y pública de página 
 (Next.js 15, React 19, Tailwind 3.4, TypeScript). **No está afiliada a Grupo Bimbo** (ver la nota legal del
 README) y nunca debe presentarse como su sitio oficial.
 
-La meta es aplicar las técnicas del sitio que Nuclea Solutions hizo para **Grupo PRODI**: secciones ligadas al
+La meta es aplicar las técnicas del sitio que Nuclea Solutions hizo como **sitio de referencia**: secciones ligadas al
 scroll, un ciclo de etapas interactivo, un mapa de relieve con la presencia, una sección "del plano a la obra",
-media ligera y vistas previas cuidadas al compartir. Toma las técnicas, no el contenido ni el look de PRODI: aquí
+media ligera y vistas previas cuidadas al compartir. Toma las técnicas, no el contenido ni el look del sitio de referencia: aquí
 manda la identidad de Bimbo que ya está en `tailwind.config.ts` (`bimbo.red #E30613`, `bimbo.blue #003DA5`,
 `bimbo.cream #FFF8E7`, `bimbo.dark #1A1A1A`).
 
 ## Las skills
 Están en `skills/` de este repo. Lee primero `skills/README.md` y `skills/sitio-prospecto/SKILL.md`. Están
-escritas para el sitio de PRODI, hecho con páginas `.dc.html` de Claude Design. Aquí el stack es Next.js, así que
+escritas para el sitio de referencia, hecho con páginas `.dc.html` de Claude Design. Aquí el stack es Next.js, así que
 usa su **lógica y sus reglas**, no su formato de archivo. Equivalencias:
 
 | Skill | Qué tomar para este repo |
 |---|---|
 | `sitio-prospecto` | Reglas de trabajo, catálogo de secciones, cómo investigar al prospecto |
 | `paginas-claude-design` → `references/patrones-interaccion.md` | Los patrones en sí (progreso de scroll, temporizador con pausa por hover, filas sin brincos, video perezoso), llevados a componentes `"use client"` con `useRef`/`useEffect` |
-| `mapa-relieve` | `scripts/generar_relieve.py` para crear la retícula (en `public/data/`), y la API y reglas del mapa. El dibujo (`prodi-relieve.js`) es privado: pídelo al equipo de Nuclea o reimpleméntalo a partir de la skill |
-| `gemelo-desde-foto` | Cómo obtener plano y foto con el mismo encuadre, y la sección web (`references/web-cortina.md`, `variantes-a-todo-el-ancho.md`) |
-| `lamina-tecnica` | Lámina técnica de un activo (camión de reparto, línea de horneado) rotulada "ESQUEMA ILUSTRATIVO" |
+| `mapa-relieve` | `scripts/generar_relieve.py` para crear la retícula (en `public/data/`), y la API y reglas del mapa. El dibujo (`sitio-relieve.js`) es privado: pídelo al equipo de Nuclea o reimpleméntalo a partir de la skill |
+| `gemelo-desde-foto`, `lamina-tecnica` | Skills internas de Nuclea (producción 3D), no incluidas en este repo: plano → obra y láminas técnicas de un activo (camión de reparto, línea de horneado). Pedirlas al equipo si se usan |
 | `media-web-ligera` | `video_web.sh`, `foto_web.py` y las metas de peso. El repo es público y GitHub limita archivos a 100 MB: media ligera o en almacenamiento externo |
 | `vista-previa-compartir` | Las **reglas** de íconos y vistas previas. En Next usa la Metadata API (`metadata.openGraph` en `app/layout.tsx`), `app/opengraph-image.tsx` con `next/og`, `app/icon.svg` y `app/apple-icon.png` (cuadrado y opaco) en vez de `generar.py` |
 | `verificar-en-navegador` | Cómo probar animaciones, canvas y hover midiendo con JS, en escritorio y teléfono |
@@ -82,7 +81,7 @@ La Home actual tiene `Hero`, `Values`, `Brands`, `Sustainability` y `Footer`. Pr
    (patrón 2 de `patrones-interaccion.md`).
 4. **Presencia en relieve**: México con sus plantas, o México + Centroamérica. Para la presencia global no hay un
    solo mapa de América (es demasiado ancho): usa dos mapas o un mapa plano.
-5. **Marcas** como fila horizontal guiada por el scroll (ecosistema de PRODI).
+5. **Marcas** como fila horizontal guiada por el scroll (ecosistema del sitio de referencia).
 6. **Del plano a la obra** de una planta real a partir de una foto aérea oficial.
 7. **Sostenibilidad** con datos y fuente.
 8. **Footer**.

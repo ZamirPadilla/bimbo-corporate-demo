@@ -1,12 +1,12 @@
-# Catálogo de secciones probadas (sitio Grupo PRODI)
+# Catálogo de secciones probadas (sitio de referencia)
 
-Rutas relativas a `prototipo/` de la rama `fusion/sitio` del repo privado del sitio de PRODI. Cada sección
+Rutas relativas a `prototipo/` de la rama `fusion/sitio` del repo privado del sitio de referencia. Cada sección
 se ubica buscando su `data-screen-label` **dentro de la página indicada** (las líneas cambian; el rótulo no). Ojo:
 Energía y Destinos comparten prefijo `E` (Energía `E6 Cifras`, Destinos `E6 Ubicaciones`), y algunos rótulos se
 repiten dentro de una página porque el CSS de teléfono los usa como selector (`06 Ciclo completo` en `<helmet>`).
 La media (fotos y videos) no está en git: pedir al equipo de Nuclea el acceso al bucket o una copia. Al llevar una
 sección a otro sitio, copiar también lo que usa por dentro: imágenes en `<image href>` de SVG, `url()` de CSS,
-scripts `prodi-*.js` y sus datos (`assets/*.json`).
+scripts `sitio-*.js` y sus datos (`assets/*.json`).
 
 ## Contenido
 1. Aperturas (heroes)
@@ -21,7 +21,7 @@ scripts `prodi-*.js` y sus datos (`assets/*.json`).
 |---|---|---|---|
 | Hero con video | Home `01 Hero` | Video a sangre con póster inmediato, titular por palabras, versión de teléfono recortada 540×720 con `<source media>` | Seguir `prototipo/CLAUDE.md` (póster JPEG, `opacity` al reproducir). Video propio del cliente, sin audio |
 | Hero foto → plano → curvas de nivel | Destinos `E1 Hero` | Foto aérea que se barre a plano territorial y a curvas de nivel con el scroll | `lamina-tecnica`, variante plano territorial |
-| Hero "Construir país" (recorrido) | Liderazgo `Li4 Construir país`, `prodi-recorrido.js` | Una cámara vuela sobre el relieve de parada en parada guiada por el scroll | Pesado de rehacer: requiere retículas regionales y geometría OSM. Proponerlo solo si el cliente tiene 5–8 lugares icónicos |
+| Hero de recorrido | Liderazgo `Li4`, `sitio-recorrido.js` | Una cámara vuela sobre el relieve de parada en parada guiada por el scroll | Pesado de rehacer: requiere retículas regionales y geometría OSM. Proponerlo solo si el cliente tiene 5–8 lugares icónicos |
 | Hero de página interna | Logística `L1`, Energía `E1`, Deporte `S1`, Ecosistema `Eco1` | Foto o video con titular grande y rótulo mono | Igual, con la foto de cada unidad de negocio |
 
 ## 2 · Narrativa y datos
@@ -45,10 +45,10 @@ scripts `prodi-*.js` y sus datos (`assets/*.json`).
 ## 4 · Planos y activos
 | Sección | Dónde | Qué hace | Skill |
 |---|---|---|---|
-| Del plano a la obra (portada) | Activos `04b Del plano a la obra` (antes en Home v3, rama `marlon`) | Plano en líneas → (modelo) → foto, con barrido y persiana ligados al scroll; cielo extendido en pantallas altas | `gemelo-desde-foto` |
-| Plano → obra a todo el ancho entre secciones | `L3b Mexipuerto`, `E4b Ciclo combinado`, `E3b Nauka`, `S3b Estadio` | La misma mecánica como sección completa; franja 5:2 con tope de alto en horizontal; colores del plano según el fondo de la página | `gemelo-desde-foto`, `references/variantes-a-todo-el-ancho.md` |
-| Lámina técnica | Activos `02 Origen` (barco 1944) | Alzado/planta con cotas y cajetín, sacado de un modelo Blender | `lamina-tecnica` |
-| Catálogo de activos | Activos `04 Activos` | Lista de filas; al pasar el mouse una cortina muestra plano y foto. Carga inmediata, sin animación de entrada (`data-noreveal`) | `prodi-planos.js` para esquemas SVG |
+| Del plano a la obra (portada) | Activos `04b Del plano a la obra` (antes en Home v3, en una rama anterior) | Plano en líneas → (modelo) → foto, con barrido y persiana ligados al scroll; cielo extendido en pantallas altas | `gemelo-desde-foto` |
+| Plano → obra a todo el ancho entre secciones | Una por página de unidad de negocio (`L3b`, `E4b`, `E3b`, `S3b`) | La misma mecánica como sección completa; franja 5:2 con tope de alto en horizontal; colores del plano según el fondo de la página | `gemelo-desde-foto`, `references/variantes-a-todo-el-ancho.md` |
+| Lámina técnica | Activos `02 Origen` | Alzado/planta con cotas y cajetín, sacado de un modelo Blender | `lamina-tecnica` |
+| Catálogo de activos | Activos `04 Activos` | Lista de filas; al pasar el mouse una cortina muestra plano y foto. Carga inmediata, sin animación de entrada (`data-noreveal`) | `sitio-planos.js` para esquemas SVG |
 
 ## 5 · Listados y medios
 | Sección | Dónde | Qué hace |
@@ -61,11 +61,11 @@ scripts `prodi-*.js` y sus datos (`assets/*.json`).
 ## 6 · Cierre y componentes compartidos
 | Pieza | Dónde | Notas |
 |---|---|---|
-| Nav | `Prodi Nav.dc.html` | `theme` (dark/light), `active` (clave de la página), `bar` (barra lateral fija sin tapar el texto). Menú con grupos y tarjetas con subtítulo |
-| Footer | `Prodi Footer.dc.html` | Enlaces por grupo; al crear página nueva, agregarla aquí y en la Nav |
+| Nav | `Nav.dc.html` | `theme` (dark/light), `active` (clave de la página), `bar` (barra lateral fija sin tapar el texto). Menú con grupos y tarjetas con subtítulo |
+| Footer | `Footer.dc.html` | Enlaces por grupo; al crear página nueva, agregarla aquí y en la Nav |
 | CTA final | Home `10 CTA`, `S7 CTA` | Bloque de contacto a pantalla completa |
 | Ecosistema al pie | Logística `L8`, Energía y Destinos `E7`, Deporte `S8` | Tarjetas hacia las otras unidades de negocio |
 
-## Mapa de páginas de PRODI (para traducir al prospecto)
+## Mapa de páginas del sitio de referencia (para traducir al prospecto)
 Home · Nuestra Historia · Liderazgo · Ecosistema · cuatro páginas de plataforma (Logística, Energía, Destinos,
 Deporte) · Activos · Centro de Medios · Sala de Prensa · Contacto.

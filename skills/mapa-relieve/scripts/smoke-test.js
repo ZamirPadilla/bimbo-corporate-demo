@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Prueba rápida de prodi-relieve.js sin navegador: ejecuta cuadros reales con un canvas falso y comprueba que
+// Prueba rápida de sitio-relieve.js sin navegador: ejecuta cuadros reales con un canvas falso y comprueba que
 // (1) el script carga, (2) los cuadros dibujan sin lanzar errores, (3) `fit` encaja y (4) `pick` encuentra el marcador.
-// Uso:  node .claude/skills/mapa-relieve/scripts/smoke-test.js prototipo/prodi-relieve.js
+// Uso:  node .claude/skills/mapa-relieve/scripts/smoke-test.js prototipo/sitio-relieve.js
 // Correrla después de CUALQUIER edición del archivo: un error dentro de requestAnimationFrame no rompe la carga,
 // solo deja el mapa en blanco (pasó: un comentario se tragó `const t0 = …` y desaparecieron el hero y Presencia).
 const fs = require('fs');
-const file = process.argv[2] || 'prototipo/prodi-relieve.js';
+const file = process.argv[2] || 'prototipo/sitio-relieve.js';
 const src = fs.readFileSync(file, 'utf8');
 
 global.window = {}; global.document = { documentElement: {} };
@@ -30,7 +30,7 @@ const cv = { getContext: () => ctx, clientWidth: 1000, clientHeight: 800,
 
 new Function(src)();
 const fail = m => { console.error('FALLA:', m); process.exit(1); };
-const G = process.argv[3] || 'ProdiRelieve';
+const G = process.argv[3] || 'Relieve';
 if (!window[G]) fail('no se definió window.' + G);
 
 const R = window[G].start(cv, { sites: [{ n: 'A', ll: [-110, 20] }], labelMinW: 0,

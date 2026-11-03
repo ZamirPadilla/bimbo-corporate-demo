@@ -1,7 +1,7 @@
 ---
 name: paginas-claude-design
 description: >-
-  Cómo leer, escribir y modificar páginas ".dc.html" de Claude Design (formato x-dc con helmet, plantillas {{ }}, sc-for, sc-if, dc-import y class Component extends DCLogic), exportarlas, servirlas en local, llevar secciones de una página a otra y hacerlas responsivas. Incluye patrones de interacción probados (secciones ligadas al scroll, temporizadores que se pausan con hover, carruseles con video perezoso, reveal). Úsala siempre que haya que editar o crear una página .dc.html, mover una sección entre páginas, agregar una página nueva a la Nav/Footer, arreglar algo que solo falla en teléfono, o depurar una animación o un hover en un sitio hecho con Claude Design (PRODI, Bimbo u otro prospecto).
+  Cómo leer, escribir y modificar páginas ".dc.html" de Claude Design (formato x-dc con helmet, plantillas {{ }}, sc-for, sc-if, dc-import y class Component extends DCLogic), exportarlas, servirlas en local, llevar secciones de una página a otra y hacerlas responsivas. Incluye patrones de interacción probados (secciones ligadas al scroll, temporizadores que se pausan con hover, carruseles con video perezoso, reveal). Úsala siempre que haya que editar o crear una página .dc.html, mover una sección entre páginas, agregar una página nueva a la Nav/Footer, arreglar algo que solo falla en teléfono, o depurar una animación o un hover en un sitio hecho con Claude Design (el sitio de referencia, Bimbo u otro prospecto).
 ---
 
 # Páginas de Claude Design (.dc.html)
@@ -18,12 +18,12 @@ El mismo archivo se edita en Claude Design o a mano; por eso hay que respetar el
   <script src="./support.js"></script>
 </head><body>
 <x-dc>
-  <helmet>  <!-- lo que va al <head>: fuentes, <style>, scripts propios (prodi-*.js), CSS de teléfono -->  </helmet>
-  <dc-import name="Prodi Nav" theme="dark" active="act" bar="{{ true }}" hint-size="100%,96px" style="…"></dc-import>
+  <helmet>  <!-- lo que va al <head>: fuentes, <style>, scripts propios (sitio-*.js), CSS de teléfono -->  </helmet>
+  <dc-import name="Nav" theme="dark" active="act" bar="{{ true }}" hint-size="100%,96px" style="…"></dc-import>
   <section data-screen-label="01 Hero" ref="{{ heroRef }}"> … {{ titulo }} … </section>
   <sc-for list="{{ items }}" as="it" hint-placeholder-count="5"> <a href="{{ it.href }}">{{ it.t }}</a> </sc-for>
   <sc-if value="{{ it.foto }}" hint-placeholder-val="{{ false }}"> … </sc-if>
-  <dc-import name="Prodi Footer" hint-size="100%,900px"></dc-import>
+  <dc-import name="Footer" hint-size="100%,900px"></dc-import>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
@@ -39,16 +39,16 @@ class Component extends DCLogic {
   Se recalcula en cada render; ahí se derivan estilos (`opacity:{{ s.op }}`) del estado.
 - `data-screen-label="NN Nombre"` nombra la sección: lo usan Claude Design, el índice de fusión y el CSS de
   teléfono. Una sección por rótulo y con número (en el CSS de `<helmet>` el rótulo se repite como selector; eso
-  está bien). Usar un prefijo distinto por página (en PRODI Energía y Destinos comparten `E` y confunde).
+  está bien). Usar un prefijo distinto por página (en el sitio de referencia Energía y Destinos comparten `E` y confunde).
 - `hint-placeholder-count` / `hint-placeholder-val` / `hint-size` solo sirven al editor; poner valores realistas.
-- Componentes compartidos (`Prodi Nav`, `Prodi Footer`) son otros `.dc.html` con sus props. Una página nueva
+- Componentes compartidos (`Nav`, `Footer`) son otros `.dc.html` con sus props. Una página nueva
   se agrega en la lista de enlaces de la Nav y del Footer.
-- Librerías propias (`prodi-relieve.js`, `prodi-planos.js`) se cargan en `<helmet>` y se esperan con
+- Librerías propias (`sitio-relieve.js`, `sitio-planos.js`) se cargan en `<helmet>` y se esperan con
   `lib(name, cb) { const t = () => (window[name] ? cb(window[name]) : (this._lt = setTimeout(t, 40))); t(); }`.
 
 ## Trampas del runtime (todas pasaron)
 - **Los estilos se serializan como `prop: value` con espacio y `0px`** (`grid-template-columns: 56px minmax(0px, 1fr)`).
-  El CSS de teléfono (`prodi-mobile.css`) apunta a esos estilos con selectores `[style*="…"]`; escribir el
+  El CSS de teléfono (`sitio-mobile.css`) apunta a esos estilos con selectores `[style*="…"]`; escribir el
   selector con la forma serializada, no con la del código fuente.
 - El texto interpolado se envuelve en `<span>`; dentro de `<text>` de SVG no se dibuja. Las etiquetas sobre un
   SVG van como capa HTML posicionada en % encima.
@@ -81,7 +81,7 @@ class Component extends DCLogic {
 4. Probar en escritorio y teléfono (`verificar-en-navegador`).
 
 ## Teléfono
-- Overrides en `prodi-mobile.css` o en `<helmet>` con `@media (max-width:760px)` y `!important` (los estilos
+- Overrides en `sitio-mobile.css` o en `<helmet>` con `@media (max-width:760px)` y `!important` (los estilos
   en línea ganan sin él). Selector por `[data-screen-label="…"]` o atributo `data-*` propio.
 - Preferir ocultar lo que se encima a apretarlo. Revisar a 375 px y ~550 px.
 - Distinguir dispositivo táctil de ventana angosta: `matchMedia('(hover:hover) and (pointer:fine)')` = hay
@@ -90,4 +90,4 @@ class Component extends DCLogic {
 ## Patrones listos
 `references/patrones-interaccion.md`: progreso de scroll en secciones `sticky`, medición con rAF, temporizador
 con pausa por hover, filas que responden a movimiento real, video perezoso en carruseles, tope de alto en
-horizontal para franjas anchas, entrada (`prodi-reveal.js`) y cómo excluir una sección (`data-noreveal`).
+horizontal para franjas anchas, entrada (`sitio-reveal.js`) y cómo excluir una sección (`data-noreveal`).

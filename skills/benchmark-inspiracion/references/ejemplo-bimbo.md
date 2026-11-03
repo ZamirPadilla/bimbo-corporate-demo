@@ -1,7 +1,6 @@
 # Caso completo: Grupo Bimbo (2 nov 2026)
 
-Página del benchmark: copia en `assets/ejemplo-bimbo.html` (servir con
-`python3 -m http.server 8811 --directory assets`).
+Página: copia en `assets/ejemplo-bimbo.html` (servir la carpeta con `python3 -m http.server`).
 
 ## Léxico
 - **Materia:** silueta del pan de caja, miga, corteza, espiga de trigo, harina.
@@ -10,15 +9,15 @@ Página del benchmark: copia en `assets/ejemplo-bimbo.html` (servir con
 - **Ritual:** "para todos los momentos de tu día" (frase del sitio actual): desayuno, lonchera, merienda, cena.
 - **Íconos:** el Osito Bimbo y su gorro de panadero, los camiones de reparto (Bimbo empezó en 1945 con 4
   productos y 10 camiones repartidores, según grupobimbo.com/es/marcas/mexico), el rojo y azul de marca.
-- **Escala:** países, panaderías, rutas, marcas, colaboradores (las cifras oficiales están en `content/cifras.ts` del
-  repo de la demo, validadas con el Informe Anual 2025).
+- **Escala:** países, panaderías, rutas, marcas, colaboradores (cifras oficiales por confirmar: la auditoría
+  encontró tres versiones distintas del número de panaderías).
 
 ## Decisión de motivos
 - **Protagonista:** la corona del pan de caja como corte entre fondos y como máscara de fotos y botones.
 - **Apoyo 1 (textura/color):** miga al 6–10 % y rampa de tostado ligada al scroll.
 - **Apoyo 2 (movimiento):** levar para cifras y entradas; rebanar para cambios de página.
 - **Clásicos:** la corona del pan se vuelve el gorro del osito y un zoom out lo revela (idea 01, en
-  `docs/ideas` del repo `bimbo-corporate-demo`); el camión de reparto es la barra de avance del sitio, el
+  `docs/ideas` de este repo); el camión de reparto es la barra de avance del sitio, el
   capítulo 1945 de Historia y la ruta de Presencia.
 - **Detalles:** espiga como viñeta y línea de tiempo, termómetro del horno como indicador de capítulo en la
   sección de manufactura, ruta de reparto sobre el mapa de relieve, harina en el hero.

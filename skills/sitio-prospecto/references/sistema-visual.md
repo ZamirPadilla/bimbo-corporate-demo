@@ -1,9 +1,9 @@
-# Sistema visual de referencia (Grupo PRODI)
+# Sistema visual de referencia
 
 Sirve como punto de partida. Para otro cliente se conserva la estructura (jerarquía, ritmo, medidas) y se
 cambian el acento, el logo y, si su marca lo pide, el modo claro u oscuro.
 
-## Color (PRODI)
+## Color (sitio de referencia)
 | Rol | Valor | Uso |
 |---|---|---|
 | Tinta | `#171726` | Fondo principal oscuro, texto sobre claro |

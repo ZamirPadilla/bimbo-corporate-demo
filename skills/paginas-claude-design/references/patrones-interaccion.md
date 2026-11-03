@@ -1,6 +1,6 @@
 # Patrones de interacción probados
 
-Cada patrón viene de un bug real o de una corrección del usuario en el sitio de PRODI.
+Cada patrón viene de un bug real o de una corrección del usuario en el sitio de referencia.
 
 ## 1 · Progreso de scroll en una sección `sticky`
 Sección alta (300–440 vh) con hijo `position:sticky; top:0; height:100vh`. El avance:
@@ -75,7 +75,7 @@ libre medida en JS (`--bandMaxH`):
 (`W×H` = proporción de la imagen.) Dejar separación (`padding-top: clamp(48px,6vw,96px)`) con la sección
 siguiente; el usuario lo pidió dos veces.
 
-## 6 · Entrada de elementos (`prodi-reveal.js`)
+## 6 · Entrada de elementos (`sitio-reveal.js`)
 Anima `h1…p, img, video, a, button, [data-reveal]` al entrar en pantalla, salvo los que ya tienen movimiento
 propio. Para que algo cargue de inmediato y sin animación (p. ej. el listado de activos, cuyo único efecto debe
 ser el hover) poner `data-noreveal` en su contenedor y no usar `loading="lazy"` en esas imágenes.

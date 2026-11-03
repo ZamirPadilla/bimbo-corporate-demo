@@ -3,7 +3,7 @@
 # Uso: publicar.sh <carpeta del sitio> <proyecto vercel> [carpeta de publicación] [archivo de la Home]
 #   p. ej.: MIDDLEWARE=herramientas/cliente/middleware.js publicar.sh prototipo bimbo-cliente ../_cliente "Bimbo Home.dc.html"
 # MIDDLEWARE: copia del cliente de middleware.js con su bloque MARCA editado (no editar la plantilla de la skill:
-# la comparten todos los clientes). Sin MIDDLEWARE se usa la plantilla, con la marca de PRODI.
+# la comparten todos los clientes). Sin MIDDLEWARE se usa la plantilla, con la marca del sitio de referencia.
 # La contraseña se pone aparte (ver SKILL.md); sin CLIENTE_PASS el sitio queda cerrado para todos.
 set -euo pipefail
 AQUI="$(cd "$(dirname "$0")" && pwd)"

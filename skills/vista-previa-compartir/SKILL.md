@@ -14,7 +14,7 @@ está detrás de una página de acceso, esa página debe repetir los metadatos d
 - `generar.py <paginas.json> [--sin-imagenes | --iconos]`: dibuja con Chrome headless un thumbnail por página
   con `plantilla.html`, arma los íconos y escribe el bloque `<!-- compartir:inicio … compartir:fin -->` en cada
   página. Solo usa la biblioteca estándar, Google Chrome y `sips` (macOS).
-- `paginas.json`: ejemplo real de PRODI. Copiarlo junto al sitio del cliente y ajustar `sitio_dir`, `base` (URL
+- `paginas.json`: ejemplo genérico (un sitio con cuatro unidades de negocio). Copiarlo junto al sitio del cliente y ajustar `sitio_dir`, `base` (URL
   pública que irá en `og:url`/`og:image`), `sitio`, `logo`, `colores`, `icono`, `mosaico` y las páginas.
 - Tipos de lámina (`og.tipo`): `foto` (foto con velo, etiqueta, titular, pie), `plataforma` (además, índice
   01–04 como el slider de la Home), `mosaico` (fotos de varias páginas), `plano-obra` (mitad plano, mitad foto).
@@ -34,7 +34,7 @@ está detrás de una página de acceso, esa página debe repetir los metadatos d
 ## Íconos
 - `favicon.svg`: cuadro redondeado (`rx=12` en 64×64) con la letra del logo; esquinas transparentes.
 - `favicon.ico` (16/32/48): se fotografía el SVG con **fondo transparente** (`--default-background-color=00000000`).
-  Sin esa bandera Chrome pinta de blanco las esquinas y se ven en cualquier fondo que no sea blanco (pasó en PRODI).
+  Sin esa bandera Chrome pinta de blanco las esquinas y se ven en cualquier fondo que no sea blanco (pasó en el sitio de referencia).
 - `apple-touch-icon.png` 180×180: **cuadrado y opaco**; iOS lo redondea solo y rellena lo transparente.
 - Enlaces con versión (`favicon.ico?v=2`) porque los navegadores guardan el favicon mucho tiempo; subir
   `ICONOS_V` en `generar.py` al cambiarlos. `--iconos` rehace solo íconos y `<head>`.

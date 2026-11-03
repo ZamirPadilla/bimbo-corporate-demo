@@ -13,16 +13,16 @@ el repo y la demo son abiertos.
 | Qué | Dónde | Regla |
 |---|---|---|
 | Mapa del sitio y copy | `content/paginas.ts` | 8 páginas: inicio, nosotros, marcas, sustentabilidad, inversionistas, prensa, carreras, contacto. Sin otras páginas ni secciones sin pasar por un issue |
-| Cifras | `content/cifras.ts` | Validadas con el Informe Anual 2025. En el texto van como `{idCifra}` y se resuelven con `content/resolver.ts`. **Ninguna cifra a mano**, tampoco en `metadata`, textos alternativos, contadores ni líneas de tiempo. Un dato nuevo entra primero a `cifras.ts` con su fuente |
+| Cifras | `content/cifras.ts` | Cada una con su fuente y fecha de corte. Cuando dos fuentes no coinciden, manda el reporte más reciente de Grupo Bimbo. En el texto van como `{idCifra}` y se resuelven con `content/resolver.ts`. **Ninguna cifra a mano**, tampoco en `metadata`, textos alternativos, contadores ni líneas de tiempo. Un dato nuevo entra primero a `cifras.ts` con su fuente |
 | Decisiones y dudas | `content/indice.ts` y `docs/copy/05-decisiones.md` | Lo que está como duda sigue abierto: no se resuelve inventando |
 | Colores, tipografía y medidas | `tailwind.config.ts` | No se escriben colores hex sueltos en los componentes |
-| Sistema visual | Manual de identidad de referencia 2025 (abstraído del Informe Anual Integrado 2025) | Claro y cálido, un color por pilar en bloques completos y sin degradados. Tipografía Outfit; Poleno para títulos y cifras cuando haya licencia web |
+| Sistema visual | **Por decidir** en un issue antes de diseñar el Home nuevo | Base propuesta: manual de identidad de referencia 2025, abstraído del Informe Anual Integrado 2025 (claro y cálido, un color por pilar en bloques completos, Outfit; Poleno para títulos y cifras cuando haya licencia web). Mientras no se decida, la paleta de `tailwind.config.ts` es provisional |
 
 Se generan con `npm run copy:docs` y no se editan a mano: `docs/INDICE.md`, `docs/copy/02-fuente-unica-de-cifras.md`,
 `docs/copy/04-copy-deck.md` y `docs/copy/05-decisiones.md`. Para trabajar, lee `content/`, no estos documentos.
 
 Son **inspiración, no reglas**: `docs/contexto/CONTEXTO.md` (sus colores y tipografías de las secciones 7.3 y 7.4
-quedaron superados por el manual de 2025), `docs/benchmark/` y `docs/ideas/` (ideas sin aprobar).
+no son el sistema visual), `docs/benchmark/` y `docs/ideas/` (ideas sin aprobar).
 
 ## Marca y material
 - **El logotipo, el Osito, los camiones y los empaques no se redibujan ni se aproximan**, ni se usan como adorno

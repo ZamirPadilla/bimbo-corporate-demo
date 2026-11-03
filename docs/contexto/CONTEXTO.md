@@ -2,7 +2,7 @@
 
 > **Superado en parte (3 nov 2026).** Este brief se escribió para una sola página (marcas México). El alcance
 > actual son las 8 páginas de `content/paginas.ts`, y la propuesta de color y tipografía (secciones 7.3 y 7.4)
-> la reemplaza el manual de identidad de referencia 2025. Lo vigente está en [`CLAUDE.md`](../../CLAUDE.md).
+> es solo inspiración: el sistema visual se decide en un issue antes del Home nuevo. Lo vigente está en [`CLAUDE.md`](../../CLAUDE.md).
 
 > **Cómo leer este documento**
 > Esto es contexto, no especificación. Reúne el diagnóstico, la intención y las referencias que ha juntado el equipo de Nuclea. Nada de aquí es una regla: los colores, las tipografías, las librerías y las estructuras son puntos de partida para explorar, mejorar o descartar si aparece algo mejor.

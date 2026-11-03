@@ -29,7 +29,7 @@ Demo pública de una página corporativa para **Grupo Bimbo**, construida con Ne
 | `/demo` | Índice del proyecto |
 | `/wireframes` | Mapa del sitio propuesto y wireframes en grises de Inicio, Nosotros, Marcas, Sustentabilidad, Inversionistas, Prensa, Carreras y Contacto |
 
-Los colores y la tipografía viven en `tailwind.config.ts` y siguen el manual de identidad de referencia 2025 (ver [`CLAUDE.md`](CLAUDE.md)). `/demo` y `/wireframes` llevan `noindex`.
+Los colores y la tipografía viven en `tailwind.config.ts`; la paleta actual es provisional hasta que se decida el sistema visual (ver [`CLAUDE.md`](CLAUDE.md)). `/demo` y `/wireframes` llevan `noindex`.
 
 ---
 

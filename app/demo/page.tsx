@@ -44,7 +44,7 @@ export default function IndiceDemo() {
         <p className="mt-2 text-sm text-neutral-500">
           Actualizado el {estado.actualizado} · rama <code>{estado.rama}</code> ·{" "}
           <a href={estado.pr} className="underline underline-offset-4">
-            pull request
+            PR del copy y los wireframes
           </a>
         </p>
 

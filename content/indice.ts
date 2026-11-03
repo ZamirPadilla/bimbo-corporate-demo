@@ -3,12 +3,12 @@
 
 import { paginas } from "./paginas";
 
-const REPO = "https://github.com/ZamirPadilla/bimbo-corporate-demo/blob/propuesta/copy-y-wireframes";
+const REPO = "https://github.com/ZamirPadilla/bimbo-corporate-demo/blob/main";
 const IA25 = "https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf";
 
 export const estado = {
   actualizado: "2 de noviembre de 2026",
-  rama: "propuesta/copy-y-wireframes",
+  rama: "main",
   pr: "https://github.com/ZamirPadilla/bimbo-corporate-demo/pull/2",
   etapa: "Copy y wireframes listos; sigue el diseño visual.",
 };

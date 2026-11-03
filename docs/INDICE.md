@@ -2,7 +2,7 @@
 
 > Generado por `npm run copy:docs` desde `content/`. No editar a mano: editar `content/paginas.ts` o `content/cifras.ts`.
 
-**Estado:** Copy y wireframes listos; sigue el diseño visual. · Actualizado el 2 de noviembre de 2026 · Rama `propuesta/copy-y-wireframes` · [PR](https://github.com/ZamirPadilla/bimbo-corporate-demo/pull/2) · Versión navegable: `npm run dev` y abrir `/demo`.
+**Estado:** Copy y wireframes listos; sigue el diseño visual. · Actualizado el 2 de noviembre de 2026 · Rama `main` · [PR](https://github.com/ZamirPadilla/bimbo-corporate-demo/pull/2) · Versión navegable: `npm run dev` y abrir `/demo`.
 
 > Propuesta de sitio corporativo. No es el sitio oficial ni está afiliada a Grupo Bimbo.
 

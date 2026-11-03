@@ -14,6 +14,8 @@
 - [Arquitectura y voz](copy/03-arquitectura-y-voz.md): Audiencias, mapa del sitio y guía de estilo.
 - [Copy deck](copy/04-copy-deck.md): El copy de las 8 páginas, sección por sección (generado).
 - [Decisiones tomadas](copy/05-decisiones.md): Las seis decisiones abiertas, resueltas con el Informe Anual 2025.
+- [Contexto creativo](contexto/CONTEXTO.md): Diagnóstico, intención, concepto y lenguaje visual del equipo creativo.
+- [Benchmark de referencias](benchmark/README.md): Qué tomar de cada sitio de referencia y a qué sección aplica.
 
 ## Wireframes
 
@@ -37,9 +39,11 @@
 | ¿Las regiones siguen las del informe anual? | Sí: Norteamérica (Estados Unidos y Canadá), México, Latinoamérica (Centro y Sudamérica) y EAA (Europa, Asia y África). | Informe Anual 2025 y reporte 3T26 (notas de segmentos) |
 | Nutrición: ¿página propia o dentro de Para Ti? | Dentro de Sustentabilidad › Para Ti; /nutricion redirige ahí. | Informe Anual 2025: los perfiles nutrimentales se reportan dentro del pilar Para Ti |
 
-## Benchmark
+## Benchmark de rendimiento
 
 Página de inicio de cada empresa, medida desde México el 2 de noviembre de 2026 con Lighthouse 13.6; mediana de 3 corridas por dispositivo, misma red para todas. Sirve como línea base para la propuesta.
+
+El benchmark de referencias visuales está en [benchmark/README.md](benchmark/README.md).
 
 | Sitio | Móvil | Escritorio | Contenido principal en móvil | Peso | Peticiones |
 |---|---:|---:|---:|---:|---:|

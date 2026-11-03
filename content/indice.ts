@@ -20,6 +20,8 @@ export const documentos = [
   { titulo: "Arquitectura y voz", ruta: "docs/copy/03-arquitectura-y-voz.md", descripcion: "Audiencias, mapa del sitio y guía de estilo." },
   { titulo: "Copy deck", ruta: "docs/copy/04-copy-deck.md", descripcion: "El copy de las 8 páginas, sección por sección (generado)." },
   { titulo: "Decisiones tomadas", ruta: "docs/copy/05-decisiones.md", descripcion: "Las seis decisiones abiertas, resueltas con el Informe Anual 2025." },
+  { titulo: "Contexto creativo", ruta: "docs/contexto/CONTEXTO.md", descripcion: "Diagnóstico, intención, concepto y lenguaje visual del equipo creativo." },
+  { titulo: "Benchmark de referencias", ruta: "docs/benchmark/README.md", descripcion: "Qué tomar de cada sitio de referencia y a qué sección aplica." },
 ].map((d) => ({ ...d, url: `${REPO}/${d.ruta}` }));
 
 export const fuentes = [

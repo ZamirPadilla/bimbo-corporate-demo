@@ -4,6 +4,9 @@ Material entregado por el equipo creativo para orientar el prototipo.
 
 ## Contenido
 
+- **[INDICE.md](INDICE.md)** — Índice de todo el proyecto: documentos, wireframes, decisiones, benchmark de rendimiento y dudas vigentes (generado; también en `/demo`).
+- **[copy/](copy/README.md)** — Revisión del copy actual, fuente única de cifras, arquitectura y voz, copy deck y decisiones.
+
 - **[benchmark/](benchmark/README.md)** — Benchmark de referencias con capturas, qué tomar de cada sitio y a qué sección del demo aplica.
 - **[contexto/CONTEXTO.md](contexto/CONTEXTO.md)** — Diagnóstico del sitio actual de Grupo Bimbo, intención y tono, concepto, estructura propuesta, lenguaje visual, referencias y notas técnicas.
 - **[contexto/referencias/](contexto/referencias/)** — 17 capturas de los sitios que sirven de referencia visual y de interacción (Henrietta Said, Le Pain Quotidien, Akaru, Barcoop, Polpharma, FIX, Time Out).

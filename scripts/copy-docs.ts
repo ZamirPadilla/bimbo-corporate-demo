@@ -125,7 +125,7 @@ function indiceMd() {
     "## Documentación", "", ...documentos.map((d) => `- [${d.titulo}](${d.ruta.replace("docs/", "")}): ${d.descripcion}`), "",
     "## Wireframes", "", ...paginas.map((p) => `- **${p.nombre}** · \`/wireframes/${p.slug}\` · ${p.secciones.length} secciones`), "",
     "## Decisiones tomadas", "", "| Pregunta | Decisión | Fuente |", "|---|---|---|", ...decisiones.map((d) => `| ${d.pregunta} | ${d.decision} | ${d.fuente} |`), "",
-    "## Benchmark", "", benchmark.nota, "", "| Sitio | Móvil | Escritorio | Contenido principal en móvil | Peso | Peticiones |", "|---|---:|---:|---:|---:|---:|",
+    "## Benchmark de rendimiento", "", benchmark.nota, "", "El benchmark de referencias visuales está en [benchmark/README.md](benchmark/README.md).", "", "| Sitio | Móvil | Escritorio | Contenido principal en móvil | Peso | Peticiones |", "|---|---:|---:|---:|---:|---:|",
     ...benchmark.filas.map((f) => `| ${f.sitio}${"nota" in f && f.nota ? ` (${f.nota})` : ""} | ${fmt(f.movil)} | ${fmt(f.escritorio)} | ${fmt(f.lcpMovil, " s")} | ${fmt(f.pesoMb, " MB")} | ${fmt(f.peticiones)} |`),
     "", benchmark.metas, "",
     `## Dudas vigentes (${dudas.length})`, "", "| Tema | Pregunta | A quién |", "|---|---|---|", ...dudas.map((d) => `| ${d.tema} | ${d.pregunta} | ${d.quien} |`), "",

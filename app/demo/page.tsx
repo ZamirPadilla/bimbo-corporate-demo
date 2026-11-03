@@ -28,7 +28,7 @@ export default function IndiceDemo() {
     ["documentacion", "Documentación"],
     ["wireframes", "Wireframes"],
     ["decisiones", "Decisiones"],
-    ["benchmark", "Benchmark"],
+    ["benchmark", "Benchmark de rendimiento"],
     ["dudas", "Dudas vigentes"],
     ["fuentes", "Fuentes"],
   ];
@@ -128,7 +128,7 @@ export default function IndiceDemo() {
           </ul>
         </Bloque>
 
-        <Bloque id="benchmark" titulo="Benchmark">
+        <Bloque id="benchmark" titulo="Benchmark de rendimiento">
           <p className="max-w-3xl text-sm text-neutral-600">{benchmark.nota}</p>
           <div className="mt-6 overflow-x-auto">
             <table className="w-full min-w-[560px] text-left text-sm">

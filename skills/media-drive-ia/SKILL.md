@@ -88,7 +88,7 @@ python3 -I "$M" contexto contexto-cliente.md       # contexto del cliente que ap
 0. **Pregunta si el usuario ya lo organizó.** Si trae carpetas propias (por año, por modelo), esa clasificación
    manda: cruza por sha256 lo que ya está en el drive, reubica conservando el ID, ingresa lo nuevo con
    `--subcarpeta` y retira (papelera) lo que el usuario dejó fuera, si así lo pide.
-1. **Mirar antes de ingresar:** hoja de contactos (ver `benchmark-inspiracion/scripts/hoja-contactos.py`) para
+1. **Mirar antes de ingresar:** hoja de contactos (script `hoja-contactos.py` del plugin de Nuclea, o un montaje con `ffmpeg`/`sips`) para
    saber qué es cada archivo y darle un título que lo describa (modelo, época, ángulo).
 2. **Decidir origen y derechos:** oficial del cliente → `oficial-cliente`; tienda, prensa o fan → `referencia-interna`
    (va a `referencias-terceros/` y nunca se publica); si no hay certeza, `por-confirmar`.

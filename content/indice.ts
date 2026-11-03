@@ -14,6 +14,7 @@ export const estado = {
 };
 
 export const documentos = [
+  { titulo: "Instrucciones del repo", ruta: "CLAUDE.md", descripcion: "Fuentes de verdad, reglas de marca, intensidad por página y flujo, para personas e IA." },
   { titulo: "Cómo se trabajó el copy", ruta: "docs/copy/README.md", descripcion: "Método, documentos y cómo editar el copy." },
   { titulo: "Revisión crítica del copy actual", ruta: "docs/copy/01-revision-critica.md", descripcion: "Ocho problemas de fondo, 15 correcciones de redacción." },
   { titulo: "Fuente única de cifras", ruta: "docs/copy/02-fuente-unica-de-cifras.md", descripcion: "Cada cifra con su valor, su fuente y dónde aparece hoy (generado)." },

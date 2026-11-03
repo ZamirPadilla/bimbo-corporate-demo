@@ -15,6 +15,7 @@ Demo pública de una página corporativa para **Grupo Bimbo**, construida con Ne
 | Entender por qué cambia el copy y de dónde sale cada cifra | [`docs/copy/`](docs/copy/README.md) |
 | Leer el brief creativo y las referencias visuales | [`docs/contexto/CONTEXTO.md`](docs/contexto/CONTEXTO.md) · [`docs/benchmark/`](docs/benchmark/README.md) |
 | Ver la página principal de la demo | `/` en la app |
+| Trabajar en el repo (personas o IA): fuentes de verdad, reglas de marca y flujo | [`CLAUDE.md`](CLAUDE.md) |
 
 **Estado (2 de noviembre de 2026):** el copy y los wireframes de 8 páginas están listos y las cifras están validadas con el Informe Anual 2025 de Grupo Bimbo. Sigue el diseño visual. Las preguntas que siguen abiertas están en `/demo#dudas`.
 
@@ -28,7 +29,7 @@ Demo pública de una página corporativa para **Grupo Bimbo**, construida con Ne
 | `/demo` | Índice del proyecto |
 | `/wireframes` | Mapa del sitio propuesto y wireframes en grises de Inicio, Nosotros, Marcas, Sustentabilidad, Inversionistas, Prensa, Carreras y Contacto |
 
-Totalmente responsive, con paleta oficial Bimbo (rojo `#E30613`, azul `#003DA5`). `/demo` y `/wireframes` llevan `noindex`.
+Totalmente responsive. Los colores y la tipografía viven en `tailwind.config.ts` y siguen el manual de identidad de referencia 2025 (ver [`CLAUDE.md`](CLAUDE.md)). `/demo` y `/wireframes` llevan `noindex`.
 
 ---
 

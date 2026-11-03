@@ -8,7 +8,7 @@ description: Hace que los enlaces de un sitio se vean bien al compartirlos (What
 WhatsApp, iMessage, Slack y LinkedIn **no corren JavaScript**: solo leen el HTML tal cual llega. Por eso el
 bloque de metadatos va en el `<head>` estático de cada página (fuera de `<x-dc>`/`<helmet>`), y si el sitio
 está detrás de una página de acceso, esa página debe repetir los metadatos de la página pedida y responder 200
-(ver `publicar-vercel`).
+(en este repo no hay página de acceso: ver `CLAUDE.md`).
 
 ## Generador (`scripts/`)
 - `generar.py <paginas.json> [--sin-imagenes | --iconos]`: dibuja con Chrome headless un thumbnail por página

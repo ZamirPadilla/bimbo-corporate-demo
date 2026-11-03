@@ -24,7 +24,7 @@ Pillow/numpy: `python3 -m venv /tmp/v && /tmp/v/bin/python -m pip install pillow
 - En el HTML del hero: póster JPEG inmediato + `<source media="(max-width: 767px) and (max-aspect-ratio: 1/1)" src="…-movil-v2.mp4">`
   antes del de escritorio. Reglas del hero en `prototipo/CLAUDE.md` del sitio de referencia (póster, opacidad al reproducir).
 - Videos que no son el hero: `preload="metadata"`, sin `autoPlay`, y que los reproduzca solo el que está activo y
-  cerca de pantalla (`paginas-claude-design`, patrón "video perezoso").
+  cerca de pantalla (`interacciones-scroll`, patrón 4).
 - Revisar el resultado con un cuadro comparado (`ffmpeg -ss T -i a -ss T -i b -filter_complex vstack …`) además
   del SSIM: los degradados de cielo son lo primero que se nota.
 

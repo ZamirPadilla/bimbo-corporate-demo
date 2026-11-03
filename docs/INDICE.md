@@ -8,6 +8,7 @@
 
 ## Documentación
 
+- [Instrucciones del repo](CLAUDE.md): Fuentes de verdad, reglas de marca, intensidad por página y flujo, para personas e IA.
 - [Cómo se trabajó el copy](copy/README.md): Método, documentos y cómo editar el copy.
 - [Revisión crítica del copy actual](copy/01-revision-critica.md): Ocho problemas de fondo, 15 correcciones de redacción.
 - [Fuente única de cifras](copy/02-fuente-unica-de-cifras.md): Cada cifra con su valor, su fuente y dónde aparece hoy (generado).

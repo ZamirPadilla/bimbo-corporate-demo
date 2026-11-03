@@ -44,7 +44,7 @@ export default function IndiceDemo() {
         <p className="mt-2 text-sm text-neutral-500">
           Actualizado el {estado.actualizado} · rama <code>{estado.rama}</code> ·{" "}
           <a href={estado.pr} className="underline underline-offset-4">
-            pull request
+            PR del copy y los wireframes
           </a>
         </p>
 
@@ -148,7 +148,7 @@ export default function IndiceDemo() {
                   <tr key={f.sitio}>
                     <th scope="row" className="py-3 pr-4 font-medium">
                       {f.sitio}
-                      {"nota" in f && f.nota ? <span className="block text-xs font-normal text-neutral-500">{f.nota}</span> : null}
+                      {f.nota ? <span className="block text-xs font-normal text-neutral-500">{f.nota}</span> : null}
                     </th>
                     <td className="py-3 pr-4 text-right tabular-nums">{fmt(f.movil)}</td>
                     <td className="py-3 pr-4 text-right tabular-nums">{fmt(f.escritorio)}</td>

@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark de inspiración · Bimbo</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#0033A0; --azul-hondo:#002269; --rojo:#EE353A; --trigo:#C9983D; --naranja:#EF7F13;
+  --masa:#F6EEDF; --miga:#EFE2C8; --dorado:#D9A54E; --tostado:#9A5B26; --corteza:#4E2C14;
+  --tinta:#1A1D24; --gris:#6B6F7A; --regla:#E3DCCD; --papel:#FBF8F2;
+  --sans:'Montserrat',system-ui,sans-serif; --serif:'Source Serif 4',Georgia,serif;
+  --ease:cubic-bezier(.16,1,.3,1); --levado:cubic-bezier(.34,1.45,.64,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papel);color:var(--tinta);font:400 17px/1.6 var(--serif);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.k,.chip,button,nav,.cifra{font-family:var(--sans)}
+a{color:var(--azul)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,48px)}
+.k{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--trigo)}
+h1{font:800 clamp(38px,6.2vw,84px)/.98 var(--sans);letter-spacing:-.035em;margin:.25em 0 .3em;text-wrap:balance}
+h2{font:800 clamp(28px,3.6vw,46px)/1.05 var(--sans);letter-spacing:-.03em;margin:.2em 0 .5em;text-wrap:balance}
+h3{font:700 19px/1.25 var(--sans);margin:0 0 .4em}
+p{max-width:68ch;text-wrap:pretty}
+.lead{font-size:clamp(18px,2vw,22px);color:#3a3d45}
+section{padding:clamp(64px,10vw,120px) 0;position:relative}
+.nota{font:400 13px/1.5 var(--sans);color:var(--gris)}
+
+/* ---- Hero: el fondo de dos tonos se corta con la silueta del pan de caja ---- */
+.hero{background:var(--azul);color:#fff;padding:clamp(56px,9vw,120px) 0 0;overflow:hidden}
+.hero .k{color:#F3D9A4}
+.hero .lead{color:#dfe6f7}
+.hero-corte{display:block;width:100%;height:auto;margin-top:clamp(40px,7vw,90px)}
+#harina{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* ---- Termómetro de horno: indicador de capítulo que se enfría con el scroll ---- */
+.termo{position:fixed;right:clamp(10px,2vw,28px);top:50%;transform:translateY(-50%);z-index:20;display:flex;align-items:center;gap:10px;font:600 12px/1.2 var(--sans);color:var(--tinta);background:rgba(251,248,242,.94);padding:12px 14px 12px 12px;border-radius:18px;box-shadow:0 6px 24px rgba(26,29,36,.12)}
+.termo .barra{width:6px;height:180px;border-radius:6px;background:var(--regla);position:relative;overflow:hidden}
+.termo .nivel{position:absolute;left:0;right:0;bottom:0;border-radius:6px;background:linear-gradient(to top,var(--trigo),var(--rojo));transition:height .4s var(--ease)}
+.termo .grados{font:800 20px/1 var(--sans);letter-spacing:-.02em}
+.termo .etapa{color:var(--gris);font-weight:500;max-width:9ch}
+@media (max-width:760px){.termo{top:auto;bottom:12px;right:12px;transform:none;background:rgba(251,248,242,.92);padding:8px 12px;border-radius:999px;mix-blend-mode:normal}.termo .barra{width:60px;height:6px}.termo .nivel{top:0;bottom:0;left:0;right:auto;height:auto!important;background:linear-gradient(to right,var(--trigo),var(--rojo))}}
+
+/* ---- Léxico ---- */
+.lentes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:28px}
+.lente{background:#fff;border:1px solid var(--regla);border-radius:22px;padding:22px}
+.lente .k{color:var(--azul)}
+.lente ul{margin:.6em 0 0;padding:0;list-style:none;font:500 15px/1.5 var(--sans)}
+.lente li{display:flex;gap:8px;align-items:baseline}
+.lente li::before{content:"";flex:0 0 9px;height:14px;background:var(--trigo);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E%3Cellipse cx='5' cy='8' rx='3.4' ry='7' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E%3Cellipse cx='5' cy='8' rx='3.4' ry='7' fill='black'/%3E%3C/svg%3E") center/contain no-repeat;transform:rotate(18deg)}
+.preguntas{counter-reset:q;margin:24px 0 0;padding:0;list-style:none;columns:2 340px;column-gap:40px}
+.preguntas li{break-inside:avoid;margin:0 0 14px;padding-left:38px;position:relative}
+.preguntas li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:2px;width:26px;height:26px;border-radius:50%;background:var(--masa);font:700 13px/26px var(--sans);text-align:center;color:var(--tostado)}
+
+/* ---- Referencias ---- */
+.miga-bg{background-color:var(--masa)}
+.refs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:30px}
+.ref{background:#fff;border-radius:22px;overflow:hidden;border:1px solid var(--regla);display:flex;flex-direction:column}
+.ref img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:var(--miga)}
+.ref .cuerpo{padding:18px 20px 22px}
+.ref h3 a{color:inherit;text-decoration:none}
+.chip{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;background:var(--masa);color:var(--tostado);margin:0 6px 8px 0}
+.chip.sotd{background:var(--rojo);color:#fff}.chip.hm{background:var(--azul);color:#fff}
+.ref p{font-size:15px;line-height:1.5;margin:.3em 0}
+.ref .bimbo{font:500 14px/1.45 var(--sans);color:var(--azul-hondo);border-top:1px dashed var(--regla);padding-top:10px;margin-top:10px}
+
+/* ---- Patrones ---- */
+.patrones{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--regla);border-radius:22px;overflow:hidden;margin-top:28px}
+.patron{background:var(--papel);padding:24px}
+.patron .n{font:800 13px/1 var(--sans);color:var(--rojo);margin-bottom:10px}
+.patron p{font-size:15px;line-height:1.5;margin:0}
+
+/* ---- Kit de motivos ---- */
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px;margin-top:30px}
+.motivo{background:#fff;border:1px solid var(--regla);border-radius:26px;overflow:hidden;display:flex;flex-direction:column}
+.motivo .demo{height:240px;position:relative;overflow:hidden}
+.demo{background:var(--masa)}
+.motivo .txt{padding:20px 22px 24px}
+.motivo .txt p{font-size:15px;line-height:1.5;margin:.2em 0}
+.motivo .uso{font:500 13px/1.5 var(--sans);color:var(--gris);margin-top:8px}
+.motivo button{font:600 13px/1 var(--sans);border:0;border-radius:999px;padding:9px 14px;background:var(--azul);color:#fff;cursor:pointer;position:absolute;right:14px;bottom:14px;z-index:3}
+.motivo button:focus-visible{outline:3px solid var(--rojo);outline-offset:2px}
+
+/* 1 · rebanada */
+.d-rebanada{background:var(--masa)}
+.d-rebanada svg{position:absolute;inset:0;width:100%;height:100%}
+.d-rebanada .card{position:absolute;left:50%;top:52%;width:150px;height:170px;transform:translate(-50%,-50%);background:linear-gradient(160deg,var(--dorado),var(--tostado));clip-path:url(#rebanadaClip)}
+.d-rebanada .card::after{content:"";position:absolute;inset:16px 14px 14px;background:var(--miga);clip-path:url(#rebanadaClip)}
+/* 2 · miga */
+.d-miga canvas{position:absolute;inset:0;width:100%;height:100%}
+.d-miga .sello{position:absolute;inset:auto 22px 22px 22px;font:800 30px/1 var(--sans);color:var(--corteza);letter-spacing:-.02em}
+/* 3 · espiga */
+.d-espiga{background:var(--azul-hondo);display:grid;place-items:center}
+.d-espiga svg{width:88%;height:auto}
+/* 4 · tostado */
+.d-tostado{display:grid;place-items:center;transition:background .2s}
+.d-tostado input{width:70%;accent-color:var(--tostado)}
+.d-tostado .etq{position:absolute;top:18px;left:22px;font:700 14px/1 var(--sans)}
+/* 5 · levado */
+.d-levado{display:flex;align-items:flex-end;justify-content:center;gap:22px;padding-bottom:42px;background:linear-gradient(var(--masa),#fff)}
+.d-levado .bollo{width:64px;border-radius:32px 32px 10px 10px;background:linear-gradient(170deg,var(--dorado),var(--tostado));transform-origin:50% 100%}
+.d-levado .bollo span{display:block;font:800 18px/1 var(--sans);color:#fff;text-align:center;padding-top:12px}
+.levando .bollo{animation:leva 1.4s var(--levado) both}
+.levando .bollo:nth-child(2){animation-delay:.12s}.levando .bollo:nth-child(3){animation-delay:.24s}.levando .bollo:nth-child(4){animation-delay:.36s}
+@keyframes leva{from{transform:scaleY(.55) scaleX(1.12);filter:saturate(.4) brightness(1.25)}to{transform:none;filter:none}}
+/* 6 · rebanar */
+.d-rebanar{display:grid;place-items:center;background:var(--tinta)}
+.d-rebanar .bloque{width:78%;height:150px;position:relative}
+.d-rebanar .tajada{position:absolute;left:0;right:0;overflow:hidden}
+.d-rebanar .tajada>div{position:absolute;left:0;right:0;height:150px;background:linear-gradient(120deg,var(--azul) 0 40%,var(--rojo) 40% 70%,var(--trigo) 70%);font:800 46px/150px var(--sans);color:#fff;text-align:center}
+.rebanando .tajada{animation:tajada .9s var(--ease) both}
+@keyframes tajada{from{transform:translateX(-110%)}to{transform:none}}
+/* 7 · ruta */
+.d-ruta{background:#F1F4FA}
+.d-ruta svg{position:absolute;inset:0;width:100%;height:100%}
+.d-ruta .camino{fill:none;stroke:var(--azul);stroke-width:3;stroke-linecap:round;stroke-dasharray:6 9}
+.d-ruta .avance{fill:none;stroke:var(--rojo);stroke-width:4;stroke-linecap:round}
+/* 8 · momentos */
+.d-momentos{transition:background 1s var(--ease)}
+.d-momentos .tabs{position:absolute;left:16px;right:16px;bottom:16px;display:flex;gap:6px;flex-wrap:wrap}
+.d-momentos .tabs button{position:static;background:rgba(255,255,255,.85);color:var(--tinta)}
+.d-momentos .tabs button[aria-pressed=true]{background:var(--tinta);color:#fff}
+.d-momentos .sol{position:absolute;width:70px;height:70px;border-radius:50%;transition:all 1s var(--ease)}
+.d-momentos .frase{position:absolute;left:22px;top:20px;font:800 24px/1.1 var(--sans);max-width:12ch;transition:color 1s}
+/* 10 · osito */
+.d-osito{background:var(--azul);display:grid;place-items:center}
+.d-osito svg{width:86%;height:auto}
+.motivo .d-osito button{background:#fff;color:var(--azul)}
+.d-osito .nota-of{position:absolute;left:18px;top:16px;font:600 12px/1.3 var(--sans);color:#F3D9A4;max-width:24ch}
+/* 11 · camión */
+.d-camion{background:#EEF2FA}
+.d-camion svg{position:absolute;inset:0;width:100%;height:100%}
+/* barra de reparto: el camión avanza con el scroll */
+.reparto{position:fixed;left:0;right:0;top:0;height:4px;background:rgba(0,51,160,.12);z-index:30}
+.reparto .hecho{height:100%;width:0;background:var(--rojo)}
+.reparto svg{position:absolute;top:-1px;width:34px;height:20px;transform:translateX(-50%)}
+/* 9 · horno */
+.d-horno{background:var(--tinta);display:grid;place-items:center}
+.d-horno .boca{width:190px;height:150px;border-radius:95px 95px 14px 14px;background:radial-gradient(120% 90% at 50% 100%,#FFB547 0%,var(--naranja) 30%,#A3300F 62%,#2a1209 100%);box-shadow:inset 0 -18px 30px rgba(0,0,0,.35);animation:brasa 3.2s ease-in-out infinite alternate}
+.d-horno .rejilla{position:absolute;width:190px;height:150px;border-radius:95px 95px 14px 14px;background:repeating-linear-gradient(90deg,transparent 0 20px,rgba(0,0,0,.28) 20px 22px);mix-blend-mode:multiply}
+@keyframes brasa{from{filter:brightness(.92)}to{filter:brightness(1.12) saturate(1.1)}}
+
+/* ---- Carácter por página ---- */
+.paginas{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:30px}
+.pag{border-radius:24px;padding:24px 24px 26px;border:1px solid var(--regla);background:#fff;display:flex;flex-direction:column;gap:10px}
+.pag header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pag h3{margin:0;font-size:22px;letter-spacing:-.02em}
+.intens{display:flex;gap:3px}
+.intens i{width:9px;height:18px;border-radius:50%;background:var(--regla);transform:rotate(24deg)}
+.intens i.on{background:var(--trigo)}
+.pag dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font:400 14px/1.45 var(--sans)}
+.pag dt{font-weight:700;color:var(--gris);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.pag dd{margin:0}
+.pag.home{border-top:6px solid var(--azul)}.pag.marcas{border-top:6px solid var(--rojo)}.pag.historia{background:var(--corteza);color:#F6EEDF;border-color:var(--corteza)}
+.pag.historia dt{color:#D9C3A0}.pag.historia .intens i{background:rgba(246,238,223,.25)}.pag.historia .intens i.on{background:#F3D9A4}
+.pag.proceso{background:var(--tinta);color:#F6EEDF;border-color:var(--tinta)}.pag.proceso dt{color:#B8BCC6}.pag.proceso .intens i{background:rgba(246,238,223,.2)}.pag.proceso .intens i.on{background:var(--naranja)}
+.pag.sobria{background:var(--papel)}
+
+/* ---- Dosis ---- */
+.dosis{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:26px}
+.dosis div{border-top:4px solid var(--trigo);padding-top:14px}
+.dosis .si{border-color:var(--azul)}.dosis .no{border-color:var(--rojo)}
+table{width:100%;border-collapse:collapse;font:400 15px/1.45 var(--sans);margin-top:24px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--regla);vertical-align:top}
+th{font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gris)}
+.tabla-scroll{overflow-x:auto}
+
+/* ---- Pie: termina con la silueta invertida ---- */
+footer{background:var(--corteza);color:#f2e6d2;padding:0 0 48px}
+footer svg{display:block;width:100%;height:auto;background:var(--papel)}
+footer p{font:400 14px/1.6 var(--sans)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Silueta del pan de caja (rebanada) en unidades relativas: sirve como máscara de cualquier elemento -->
+    <clipPath id="rebanadaClip" clipPathUnits="objectBoundingBox">
+      <path d="M.06 1 L.06 .36 C.0 .33 0 .26 0 .21 C0 .08 .12 0 .27 0 C.38 0 .44 .05 .5 .05 C.56 .05 .62 0 .73 0 C.88 0 1 .08 1 .21 C1 .26 1 .33 .94 .36 L.94 1 Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<div class="reparto" aria-hidden="true"><div class="hecho" id="repHecho"></div><svg id="repCamion" viewBox="0 0 34 20"><rect x="1" y="3" width="21" height="12" rx="3" fill="#fff" stroke="#0033A0" stroke-width="1.5"/><rect x="1" y="10" width="21" height="2.4" fill="#EE353A"/><path d="M22 7h6l4 4v4H22z" fill="#0033A0"/><rect x="24" y="8.4" width="3.6" height="2.6" rx=".6" fill="#BFD6FF"/><circle cx="7" cy="16" r="2.6" fill="#1A1D24"/><circle cx="27" cy="16" r="2.6" fill="#1A1D24"/></svg></div>
+<div class="termo" aria-hidden="true">
+  <div class="barra"><div class="nivel" id="nivel" style="height:100%"></div></div>
+  <div><div class="grados" id="grados">220 °C</div><div class="etapa" id="etapa">Horno</div></div>
+</div>
+
+<header class="hero" data-temp="220" data-etapa="Horno">
+  <canvas id="harina" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="k">Nuclea · material interno para la demo de Grupo Bimbo · 2 nov 2026</div>
+    <h1>Que en cada detalle se note que estás en la casa del pan.</h1>
+    <p class="lead">Benchmark de 17 sitios premiados o nominados en Awwwards (panaderías, alimentos, manufactura y marcas con herencia) y un kit de motivos abstractos de Bimbo para usar a lo largo de la página: la rebanada, la miga, la espiga, el horno, el tostado, el levado, la ruta de reparto, y los dos clásicos que nadie confunde: el Osito Bimbo y sus camiones.</p>
+  </div>
+  <!-- El fondo de dos tonos: el corte entre azul y papel tiene la corona del pan de caja -->
+  <svg class="hero-corte" viewBox="0 0 1200 170" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="var(--papel)" d="M24 170 L24 128 C4 118 0 100 0 78 C0 30 46 10 130 10 C330 10 470 28 600 28 C730 28 870 10 1070 10 C1154 10 1200 30 1200 78 C1200 100 1196 118 1176 128 L1176 170 Z"/>
+    <path fill="var(--papel)" d="M0 150 H1200 V170 H0 Z"/>
+  </svg>
+</header>
+
+<main>
+<section id="lexico" data-temp="180" data-etapa="Corteza">
+  <div class="wrap">
+    <div class="k">01 · La pregunta antes del diseño</div>
+    <h2>¿Qué palabras, formas y movimientos solo pueden ser de Bimbo?</h2>
+    <p class="lead">Un sitio premiado no se reconoce por su logo, sino porque su materia prima se filtra en todo: el fondo, los divisores, el cursor, el cargador, el ritmo de las animaciones. Para encontrar esos elementos pasamos el negocio por seis lentes; la de íconos es obligatoria: el osito y los camiones son lo primero que la gente asocia con Bimbo.</p>
+    <div class="lentes">
+      <div class="lente"><div class="k">Materia · forma y textura</div><ul><li>Silueta del pan de caja</li><li>Miga y alvéolos</li><li>Corteza, greñado</li><li>Grano y espiga de trigo</li><li>Harina en el aire</li></ul></div>
+      <div class="lente"><div class="k">Proceso · movimiento</div><ul><li>Amasar (estirar y volver)</li><li>Levar (crecer suave)</li><li>Hornear (calor que sube)</li><li>Rebanar (cortes paralelos)</li><li>Empacar y repartir</li></ul></div>
+      <div class="lente"><div class="k">Lugar · composición</div><ul><li>Campo en surcos</li><li>Molino</li><li>Boca del horno en arco</li><li>Línea de producción</li><li>Ruta y punto de venta</li></ul></div>
+      <div class="lente"><div class="k">Ritual · tiempo y tono</div><ul><li>Momentos del día</li><li>Desayuno y lonchera</li><li>Mesa compartida</li><li>Pan tibio, olor</li><li>Desde 1945</li></ul></div>
+      <div class="lente" style="border-color:var(--rojo)"><div class="k" style="color:var(--rojo)">Íconos · los clásicos</div><ul><li>El Osito Bimbo</li><li>Su gorro de panadero</li><li>Los camiones de reparto</li><li>Rutas y vendedores</li><li>Rojo y azul de marca</li></ul></div>
+      <div class="lente"><div class="k">Escala · cifras</div><ul><li>Países con presencia</li><li>Panaderías</li><li>Rutas diarias</li><li>Marcas</li><li>Colaboradores</li></ul></div>
+    </div>
+    <h3 style="margin-top:44px">Las preguntas que nos hacemos en cada demo</h3>
+    <ol class="preguntas">
+      <li>¿Qué transforma el cliente? Materia prima, proceso, producto, entrega.</li>
+      <li>¿Qué forma reconocería alguien sin ver el logo? (Aquí: la corona del pan de caja.)</li>
+      <li>¿Qué textura tiene su producto de cerca? Una foto macro sirve de fondo (miga, corteza).</li>
+      <li>¿Qué verbo resume su oficio? Ese verbo es la animación principal (levar, rebanar).</li>
+      <li>¿Hay una magnitud física en su proceso? Temperatura, tiempo, distancia: sirve de indicador de avance.</li>
+      <li>¿Qué colores salen de la materia y cuáles de la marca? Se combinan, no se mezclan.</li>
+      <li>¿Qué momento de la vida del usuario toca? Ese momento ordena la narrativa.</li>
+      <li>¿Qué cifra lo hace grande? Se anima con el verbo del oficio, no con un contador genérico.</li>
+      <li>¿Qué tiene de herencia? Una línea de tiempo con el tono de la época.</li>
+      <li>¿Dónde se nota en lo pequeño? Cursor, viñetas, cargador, 404, favicon, divisores.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="referencias" class="miga-bg" data-temp="140" data-etapa="Dorado">
+  <div class="wrap">
+    <div class="k">02 · Referencias en Awwwards</div>
+    <h2>Lo que hacen los mejores sitios de alimentos y oficio</h2>
+    <p class="lead">Seleccionadas de 96 fichas revisadas el 2 de noviembre de 2026 (búsquedas bread, bakery, flour, snack, cereal, chocolate, grain y la categoría Food &amp; Drink). Imagen: la captura que publica Awwwards de cada sitio.</p>
+    <div class="refs" id="refs"></div>
+  </div>
+</section>
+
+<section id="patrones" data-temp="90" data-etapa="Enfriado">
+  <div class="wrap">
+    <div class="k">03 · Lo que marca la pauta</div>
+    <h2>Ocho patrones que se repiten en los sitios que ganan</h2>
+    <div class="patrones">
+      <div class="patron"><div class="n">01 · La materia es el fondo</div><p>Bernice usa sus chispas como fondo; Sonoma, la corteza en macro; Oriental Pastry, harina sobre la masa. La textura del producto reemplaza al color plano.</p></div>
+      <div class="patron"><div class="n">02 · Una forma propia corta el espacio</div><p>Agrumea pone una mancha con forma detrás del producto y texto circular. Las secciones no se separan con líneas rectas: se separan con la silueta de la marca.</p></div>
+      <div class="patron"><div class="n">03 · El proceso es la barra de avance</div><p>Shorodo baja de 320 °C (fuego de carbón) a 36.5 °C (la palma de la mano) conforme lees. El scroll cuenta el oficio, no un porcentaje.</p></div>
+      <div class="patron"><div class="n">04 · El producto se arma con el scroll</div><p>TÒPAS construye su pincho en 3D al bajar; Morpho lleva una lata desde el estudio hasta la costa de origen; Simply Chocolate desenvuelve la barra.</p></div>
+      <div class="patron"><div class="n">05 · Los ingredientes flotan alrededor</div><p>Hozon rodea el frasco con rodajas translúcidas; Simply Chocolate y TÒPAS lanzan trozos alrededor del titular. Da profundidad sin video pesado.</p></div>
+      <div class="patron"><div class="n">06 · Tipografía enorme con oficio</div><p>For the Love of Bread, IGIN y Simply Chocolate escriben más grande que la foto. Impasto apila sus panes como palabras que revelan imagen al pasar el cursor.</p></div>
+      <div class="patron"><div class="n">07 · Herencia con línea de tiempo y motivo cultural</div><p>Shorodo recorre las eras desde 1877; Mâm Cơm usa el tambor de bronce Đông Sơn como ornamento en todo el sitio. La historia se diseña, no se lista.</p></div>
+      <div class="patron"><div class="n">08 · El fabricante también puede ser memorable</div><p>Kindi Land (manufactura B2B, ISO 9001) y Oriental Pastry (fabricante desde 1985) demuestran que un sitio industrial puede tener el mismo cuidado que una marca de consumo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="kit" class="miga-bg" data-temp="45" data-etapa="Empaque">
+  <div class="wrap">
+    <div class="k">04 · Kit de motivos Bimbo</div>
+    <h2>Abstracciones listas para usar a lo largo de la página</h2>
+    <p class="lead">Cada motivo funciona sin logo y vive en un detalle distinto: un divisor, un fondo, una viñeta, un indicador, una transición. Todos están hechos con SVG, CSS o canvas ligero; respetan <code>prefers-reduced-motion</code>.</p>
+    <div class="kit">
+
+      <article class="motivo">
+        <div class="demo d-rebanada">
+          <svg viewBox="0 0 400 240" preserveAspectRatio="none" aria-hidden="true"><rect width="400" height="240" fill="var(--azul)"/><path fill="var(--masa)" d="M10 240 L10 168 C2 163 0 156 0 146 C0 118 26 104 70 104 C120 104 160 114 200 114 C240 114 280 104 330 104 C374 104 400 118 400 146 C400 156 398 163 390 168 L390 240 Z"/></svg>
+          <div class="card" role="img" aria-label="Tarjeta recortada con la silueta de una rebanada"></div>
+        </div>
+        <div class="txt"><div class="k">01 · Rebanada</div><h3>La corona del pan de caja como corte</h3><p>El cambio entre dos fondos sigue la silueta de una rebanada: hombros redondos y una ligera hondonada al centro. Como máscara (<code>clip-path</code>) recorta fotos, tarjetas y botones.</p><p class="uso">Úsalo en: transición entre secciones, máscara de fotos de producto, botón principal, favicon.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-miga"><canvas id="miga" aria-hidden="true"></canvas><div class="sello">Miga</div></div>
+        <div class="txt"><div class="k">02 · Miga</div><h3>Los alvéolos como textura y como cargador</h3><p>Poros irregulares generados con una semilla fija (siempre el mismo dibujo). Al 6–10 % de opacidad son una textura que no compite con el texto; animados, son un cargador que "esponja".</p><p class="uso">Úsalo en: fondo de secciones claras, estado de carga, 404, sello de la tarjeta de cifras.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-espiga"><svg id="espiga" viewBox="0 0 420 140" aria-label="Espiga de trigo que se llena según el avance"></svg><button type="button" id="btnEspiga">Avanzar</button></div>
+        <div class="txt"><div class="k">03 · Espiga</div><h3>Granos alternados como viñeta y como progreso</h3><p>Una espiga horizontal cuyos granos se doran uno a uno indica en qué paso vas (de la siembra a la mesa). Un solo grano funciona como viñeta de listas.</p><p class="uso">Úsalo en: pasos de una historia, viñetas, línea de tiempo 1945–hoy, separador de pie.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-tostado" id="dTostado"><div class="etq" id="etqTostado">Masa</div><input type="range" min="0" max="100" value="0" id="rTostado" aria-label="Grado de tostado"></div>
+        <div class="txt"><div class="k">04 · Tostado</div><h3>La reacción de Maillard como rampa de color</h3><p>Masa, dorado, tostado, corteza: cuatro tonos que salen del pan y conviven con el azul y el rojo de la marca. Ligada al scroll, la página se "hornea" mientras bajas.</p><p class="uso">Úsalo en: fondo de la home que se dora con el scroll, estados de hover, gráficas de avance.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-levado levando" id="dLevado"><div class="bollo" style="height:120px"><span>39</span></div><div class="bollo" style="height:150px"><span>100+</span></div><div class="bollo" style="height:180px"><span>200+</span></div><div class="bollo" style="height:96px"><span>80</span></div><button type="button" id="btnLevado">Hornear</button></div>
+        <div class="txt"><div class="k">05 · Levado</div><h3>Las cifras crecen como masa, no como contador</h3><p>Una curva de entrada con un pequeño rebote (<code>cubic-bezier(.34,1.45,.64,1)</code>) y un cambio de pálido a dorado. Las cifras de la demo son marcadores: van las oficiales de Bimbo.</p><p class="uso">Úsalo en: cifras corporativas, gráficas de barras, entrada de tarjetas.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-rebanar" id="dRebanar"><div class="bloque" id="bloque"></div><button type="button" id="btnRebanar">Rebanar</button></div>
+        <div class="txt"><div class="k">06 · Rebanar</div><h3>Transiciones en tajadas paralelas</h3><p>Imágenes y titulares entran en franjas horizontales escalonadas, como rebanadas que se acomodan. Es la firma de movimiento: se usa siempre igual para que se aprenda.</p><p class="uso">Úsalo en: cambio de página, entrada de fotos grandes, revelado de titulares.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-horno"><div class="boca"></div><div class="rejilla"></div></div>
+        <div class="txt"><div class="k">07 · Horno</div><h3>El arco y el calor como luz de escena</h3><p>La boca en arco enmarca video o producto; el degradado de brasa da calidez a secciones oscuras. Con el termómetro lateral de esta página, el calor también cuenta el avance.</p><p class="uso">Úsalo en: marco del video del hero, sección de manufactura, indicador de capítulo.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-ruta"><svg viewBox="0 0 400 240" aria-label="Ruta de reparto animada"><path id="camino" class="camino" d="M30 200 C90 200 90 120 150 120 S210 60 260 80 S330 170 372 60"/><path id="avance" class="avance" d="M30 200 C90 200 90 120 150 120 S210 60 260 80 S330 170 372 60"/><g fill="var(--azul)"><circle cx="30" cy="200" r="7"/><circle cx="150" cy="120" r="6"/><circle cx="260" cy="80" r="6"/></g><circle cx="372" cy="60" r="9" fill="var(--rojo)"/></svg></div>
+        <div class="txt"><div class="k">08 · Ruta</div><h3>De la planta al punto de venta</h3><p>Una línea que se traza con el scroll y une paradas. Conecta con el mapa de relieve (skill <code>mapa-relieve</code>) para presencia por país sin caer en un mapa genérico.</p><p class="uso">Úsalo en: sección de distribución, presencia, línea de tiempo, sostenibilidad (de campo a mesa).</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-momentos" id="dMomentos"><div class="sol" id="sol"></div><div class="frase" id="frase">Desayuno</div><div class="tabs" role="group" aria-label="Momento del día"></div></div>
+        <div class="txt"><div class="k">09 · Momentos del día</div><h3>La luz cambia según la hora</h3><p>"Para todos los momentos de tu día" vuelto interfaz: el fondo y la foto del hero cambian según la hora local del visitante (desayuno, lonchera, merienda, cena).</p><p class="uso">Úsalo en: hero, sección de marcas filtradas por momento, ilustraciones de producto.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-osito"><div class="nota-of">Idea 01 · el corte del hero se vuelve el gorro del osito</div><svg viewBox="0 0 400 240" aria-label="La silueta del pan se transforma en el gorro de panadero"><path id="gorro" fill="#D9A54E" stroke="#F6EEDF" stroke-width="3"/><path id="banda" d="M130 172 H270" stroke="#C9D3EF" stroke-width="3" stroke-linecap="round" opacity="0"/></svg><button type="button" id="btnGorro">Transformar</button></div>
+        <div class="txt"><div class="k">10 · El osito</div><h3>Del pan al gorro, del gorro al osito</h3><p>La corona del pan se transforma en el gorro de panadero y un zoom out revela al Osito Bimbo. El abstracto termina en el personaje: el remate de la home. El osito se pide al cliente en su archivo oficial; aquí solo se anima el gorro.</p><p class="uso">Úsalo en: remate del hero, cierre de Historia, 404 y estados de carga. Registrada en el repo de la demo, <code>docs/ideas</code>.</p></div>
+      </article>
+
+      <article class="motivo">
+        <div class="demo d-camion"><svg viewBox="0 0 400 240" aria-label="Camión de reparto que recorre las paradas"><path d="M20 176 H380" stroke="#9AA6C4" stroke-width="2" stroke-dasharray="10 10"/><g id="paradas"></g><g id="camion"><rect x="0" y="-46" width="86" height="44" rx="8" fill="#fff" stroke="#0033A0" stroke-width="3"/><rect x="0" y="-22" width="86" height="8" fill="#EE353A"/><path d="M86 -32 h24 l16 16 v14 h-40z" fill="#0033A0"/><rect x="93" y="-27" width="14" height="10" rx="2" fill="#BFD6FF"/><circle cx="22" cy="0" r="9" fill="#1A1D24"/><circle cx="22" cy="0" r="3.5" fill="#9AA6C4"/><circle cx="104" cy="0" r="9" fill="#1A1D24"/><circle cx="104" cy="0" r="3.5" fill="#9AA6C4"/></g></svg></div>
+        <div class="txt"><div class="k">11 · El camión</div><h3>El reparto como barra de avance</h3><p>El camión de reparto es el otro clásico: Bimbo empezó en 1945 con 4 productos y 10 camiones repartidores. Abstracto (caja, franja roja, cabina azul), recorre las paradas; en esta página es la barra de avance de arriba.</p><p class="uso">Úsalo en: barra de progreso del scroll, Presencia y distribución, el capítulo 1945 de Historia, cargador.</p></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="caracter" data-temp="35" data-etapa="Empaque">
+  <div class="wrap">
+    <div class="k">05 · Cada página, su carácter</div>
+    <h2>La home aclara, Marcas invita a explorar e Historia se da vuelo</h2>
+    <p class="lead">Lo que une al sitio es el kit de motivos. Lo que cambia de página a página es el flujo, la estructura, la interfaz y cuánto se expresa. La intensidad sube con la intención del visitante: a la home llega todo el mundo con prisa; a Historia solo llega quien ya quiere saber más.</p>
+    <div class="paginas" id="paginas"></div>
+    <p class="nota">Intensidad en granos de espiga: 1 sobrio, 5 experiencia. De las referencias se toma el principio, nunca la composición ni el código.</p>
+  </div>
+</section>
+
+<section id="dosis" data-temp="25" data-etapa="Mesa">
+  <div class="wrap">
+    <div class="k">06 · Dosis</div>
+    <h2>Un motivo protagonista, dos de apoyo, el resto en silencio</h2>
+    <p class="lead">La abstracción suma cuando se nota en los detalles y resta cuando se vuelve disfraz. Estas reglas evitan que la demo parezca un empaque.</p>
+    <div class="dosis">
+      <div class="si"><h3>Sí</h3><p>Elegir un motivo protagonista (aquí, la rebanada) y repetirlo con disciplina en cortes, máscaras y botones.</p></div>
+      <div class="si"><h3>Sí</h3><p>Sacar color de la materia (dorado, tostado, masa) y dejar el azul y el rojo de la marca para acciones y énfasis.</p></div>
+      <div class="si"><h3>Sí</h3><p>Llevar el motivo a lo pequeño: cursor, favicon, cargador, 404, viñetas, pie de página.</p></div>
+      <div class="no"><h3>No</h3><p>Ilustraciones literales de pan, emojis o clipart. Si se ve como icono de app de recetas, está de más.</p></div>
+      <div class="si"><h3>Sí</h3><p>Usar los clásicos, el Osito Bimbo y los camiones, en momentos clave: remate del hero, Historia, distribución, 404.</p></div>
+      <div class="no"><h3>No</h3><p>Dibujar nuestra propia versión del osito o del camión con logo: se piden los archivos oficiales al cliente.</p></div>
+      <div class="no"><h3>No</h3><p>Animaciones que retrasen la lectura o la carga en teléfono. La auditoría ya mostró que el sitio actual pesa de más.</p></div>
+    </div>
+
+    <h3 style="margin-top:52px">Dónde va cada motivo en la demo de Bimbo</h3>
+    <div class="tabla-scroll"><table>
+      <thead><tr><th>Sección</th><th>Motivo protagonista</th><th>Detalle de apoyo</th><th>Referencia</th></tr></thead>
+      <tbody>
+        <tr><td>Home · hero</td><td>Corte de rebanada que se vuelve el gorro del osito (idea 01)</td><td>Momentos del día en el fondo; harina en el aire</td><td>Agrumea, Bernice</td></tr>
+        <tr><td>Nuestra historia (desde 1945)</td><td>Espiga como línea de tiempo; el osito cierra el recorrido</td><td>Los 10 camiones de 1945; tostado por décadas</td><td>Shorodo, Mâm Cơm</td></tr>
+        <tr><td>Marcas</td><td>Tarjetas con máscara de rebanada, filtro por momento del día</td><td>Ingredientes flotando alrededor del producto</td><td>Hozon, Simply Chocolate</td></tr>
+        <tr><td>Cómo hacemos pan (manufactura)</td><td>Termómetro del horno como indicador de capítulo</td><td>Arco del horno enmarcando video</td><td>Shorodo, Kindi Land</td></tr>
+        <tr><td>Presencia y distribución</td><td>Camión que recorre la ruta sobre el mapa de relieve</td><td>Cifras que levan</td><td>Morpho (viaje de origen)</td></tr>
+        <tr><td>Sustentabilidad</td><td>Campo en surcos (líneas de nivel en dorado)</td><td>Espiga como progreso de metas</td><td>Agrumea, Delta Cafés</td></tr>
+        <tr><td>Inversionistas</td><td>Sobrio: rebanada solo en el corte de sección</td><td>Miga al 6 % en tarjetas de cifras</td><td>Delta Cafés, Kindi Land</td></tr>
+        <tr><td>404 y estados vacíos</td><td>El camión que se salió de ruta</td><td>Miga animada ("esta página no levó")</td><td>IGIN (juego breve)</td></tr>
+        <tr><td>Todo el sitio</td><td>Barra de avance con el camión de reparto</td><td>Favicon con la corona del pan</td><td>Shorodo (el oficio como indicador)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="nota">El dato de 1945 (4 productos y 10 camiones) sale de grupobimbo.com/es/marcas/mexico. Las temperaturas del termómetro lateral (220 °C a 25 °C) son ilustrativas; si se usan en la demo, confirmar con el cliente las de su proceso.</p>
+  </div>
+</section>
+</main>
+
+<footer data-temp="22" data-etapa="Mesa">
+  <svg viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path fill="var(--corteza)" d="M24 120 L24 92 C4 84 0 70 0 56 C0 22 46 8 130 8 C330 8 470 22 600 22 C730 22 870 8 1070 8 C1154 8 1200 22 1200 56 C1200 70 1196 84 1176 92 L1176 120 Z"/></svg>
+  <div class="wrap">
+    <p><strong>Benchmark de inspiración · Grupo Bimbo.</strong> Preparado por Nuclea Solutions para uso interno. No es material del cliente ni usa sus logotipos. Fuentes: fichas públicas de Awwwards consultadas el 2 de noviembre de 2026; paleta tomada de la hoja de estilos pública de grupobimbo.com (#0033A0, #EE353A, #C9983D, #EF7F13, Montserrat).</p>
+  </div>
+</footer>
+
+<script>
+const REDUCIR = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---------- Carácter por página ----------
+const PAGS = [
+  ['home','Home',2,'Todos, sin contexto: entender quién es Bimbo en 10 segundos y elegir a dónde ir.','Pocas secciones cortas, una idea por pantalla y salidas claras por audiencia (consumidor, inversionista, proveedor, candidato, prensa).','Navegación evidente; el corte de rebanada en el hero y entre secciones, con el remate del gorro del osito.','Azul y papel, mucho aire.','Agrumea, Delta Cafés'],
+  ['marcas','Marcas',4,'Quien busca una marca concreta: Takis, Marinela, Barcel.','Explorar, no leer: filtrar por país, categoría y momento del día; comparar; abrir el detalle.','Catálogo con filtros, tarjetas con máscara de rebanada y hover vivo; ingredientes que flotan en el detalle.','El sitio se vuelve neutro y cada marca pone su color.','Impasto, Hozon, Simply Chocolate'],
+  ['historia','Historia',5,'Interesados reales, con tiempo: periodistas, talento, fans de la marca.','Scroll narrativo largo por capítulos desde 1945; la línea de tiempo se recorre, no se lee.','Secciones pegajosas, años que cambian, archivo que se revela en tajadas, los camiones de 1945 y el osito por época.','Rampa de época: de sepia y tostado al color actual.','Shorodo, Mâm Cơm, For the Love of Bread'],
+  ['proceso','Cómo hacemos pan',4,'Curiosos, prensa y talento técnico.','Paso a paso del campo a la mesa, guiado por el termómetro del horno.','Indicador por temperatura, video enmarcado en el arco del horno, pasos numerados.','Cálidos del proceso sobre fondo oscuro.','Shorodo, Kindi Land, TÒPAS'],
+  ['','Presencia',3,'Inversionistas y prensa.','Mapa primero, cifras después.','Mapa de relieve con filtro por región y el camión que recorre la ruta.','Neutro con un acento por región.','Morpho Water'],
+  ['','Sustentabilidad',3,'Analistas ESG, prensa, organizaciones.','Metas, avance, evidencia y el informe a un clic.','Indicadores de meta en espiga, gráficas simples, surcos de campo.','Verdes y dorados de campo.','Agrumea, Delta Cafés'],
+  ['sobria','Inversionistas',1,'Analistas que buscan un documento.','Directo a reportes, calendario y contacto, sin preámbulo.','Tablas, filtros solo por años con contenido, descargas con su peso.','Tinta y un acento.','Lajoya, Delta Cafés'],
+  ['sobria','Prensa y trámites',1,'Periodistas, proveedores y candidatos con un trámite.','Lista editorial por fecha; cifras oficiales en una ficha; formularios directos.','Retícula editorial, kit de prensa descargable, pasos claros.','Neutro.','Lajoya'],
+];
+document.getElementById('paginas').innerHTML = PAGS.map(([c,n,k,q,f,u,col,r]) => `
+  <article class="pag ${c}">
+    <header><h3>${n}</h3><span class="intens" role="img" aria-label="Intensidad ${k} de 5">${[1,2,3,4,5].map(i => `<i class="${i<=k?'on':''}"></i>`).join('')}</span></header>
+    <dl><dt>Quién llega</dt><dd>${q}</dd><dt>Flujo</dt><dd>${f}</dd><dt>Interfaz</dt><dd>${u}</dd><dt>Color</dt><dd>${col}</dd><dt>Mirar</dt><dd>${r}</dd></dl>
+  </article>`).join('');
+
+// ---------- Referencias ----------
+const REFS = [
+  ['shorodo','Shorodo','Nominee','oct 2026','https://shorodo.nagoya/','Confitero de Nagoya desde 1877. Un termómetro baja de 320 °C (carbón) a 36.5 °C (la palma) capítulo a capítulo; línea de eras Meiji a Reiwa.','El horno de Bimbo como indicador: del horno a la mesa mientras se lee la historia.'],
+  ['impasto-forno-antico','Impasto Forno Antico','Nominee','oct 2026','https://www.impastofornoantico.com/','Panadería italiana: marco color corteza, papel crema, panes apilados como palabras (Focaccia, Ciabatta, Sourdough) que revelan foto.','Lista de marcas como tipografía grande que revela el producto al pasar el cursor.'],
+  ['agrumea-farm','Agrumea Farm','Honorable Mention','oct 2026','https://www.agrumeafarm.it/en','Granja siciliana con Three.js y Lenis: una mancha de color con forma propia detrás de los frascos y texto en círculo.','El fondo de dos tonos cortado con la silueta del pan de caja.'],
+  ['bernice-bakery','Bernice Bakery','Honorable Mention','feb 2025','https://bernicebakery.com/','Panadería de Montreal: las chispas de colores son el fondo de todo el sitio; tipografía gruesa y animaciones juguetonas.','La miga o la corteza en macro como fondo, en lugar de un color plano.'],
+  ['delta-cafes','Delta Cafés','Nominee','oct 2026','https://deltacafes.com/en','Grupo cafetalero con seis décadas: del grano a la taza, herencia, sustentabilidad y diario en un sitio corporativo oscuro y cálido.','La referencia más cercana en arquitectura corporativa: grupo, marcas, sustentabilidad, historia.'],
+  ['kindi-land','Kindi Land','Nominee','oct 2026','https://kindi.land/','Fabricante de galletas y confitería (B2B, ISO 9001): azul de marca con retícula de píxeles y productos en fila.','Un fabricante industrial también puede ser memorable: patrón propio, no foto de planta genérica.'],
+  ['oriental-pastry','Oriental Pastry Products','Nominee','may 2025','https://www.myphyllo.com/','Fabricante de masa filo desde 1985: bordes rasgados, harina y rodillo como marco de la foto.','La harina y la masa como marco de las fotos de manufactura.'],
+  ['hozon','Hozon','Nominee','oct 2026','https://aestudio.studio/hozon','Encurtidos: rodajas translúcidas y burbujas flotan alrededor del frasco y del titular.','Ingredientes (trigo, semillas, harina) flotando alrededor de cada producto en Marcas.'],
+  ['topas','TÒPAS','Nominee','oct 2026','https://bar-topas.ch/','Bar de tapas: un pincho 3D se arma solo con el scroll; cintas de texto cruzando la página.','Un sándwich que se arma rebanada por rebanada al bajar.'],
+  ['morpho-water','Morpho Water','Nominee','oct 2026','https://morphowater.com/','Agua de manantial: la lata en 3D viaja hasta la costa de origen en un scroll cinematográfico.','Del campo de trigo al anaquel: el viaje del producto como narrativa de presencia.'],
+  ['mam-com','Mâm Cơm','Nominee','oct 2026','https://the-family-rice-tray.vercel.app/','Homenaje a la comida familiar vietnamita: el tambor de bronce Đông Sơn como ornamento y la charola de siete platos como navegación.','Un motivo cultural propio repetido como ornamento y una mesa compartida como menú.'],
+  ['simply-chocolate','Simply Chocolate','Site of the Day','oct 2017','https://simplychocolate.dk/','Tienda experiencia: la barra se desenvuelve, tipografía gigante y trozos alrededor.','Abrir la bolsa de pan como transición de entrada a una marca.'],
+  ['for-the-love-of-bread','For the Love of Bread','Site of the Day','abr 2021','https://fortheloveofbread.com/','Serie documental de Sonoma Baking: tipografía enorme sobre fotografía en blanco y negro de ciudades y panaderías.','Historias de panaderos y rutas de Bimbo con tono documental.'],
+  ['sonoma-bakery','Sonoma Bakery','Honorable Mention','jun 2022','https://sonomabakery.com/','Masa madre artesanal: macro de corteza con greñado como hero, todo lo demás en silencio.','Un hero de textura real (corteza, miga) a sangre, sin adornos.'],
+  ['igin-usa','IGIN USA','Honorable Mention','oct 2026','https://iginusa.com/','Collage de papel, cintas de texto y un mini juego de rebanar de 22 segundos para captar correos.','Un juego breve de rebanar en la 404 o en la sección de marcas.'],
+  ['santioni-spirits','Santioni Spirits','Site of the Day','oct 2026','https://santionispirits.com/','Universo ilustrado tipo cómic con textura de pincel y tipografía con carácter.','Textura de trazo propia como fondo de secciones oscuras.'],
+  ['lajoya','Lajoya','Nominee','oct 2026','https://lajoya-foods.com/en','Alimentos gourmet: retícula editorial, bloques de color planos y animaciones secas.','Retícula editorial para Prensa e Inversionistas sin perder personalidad.'],
+];
+const chip = a => a.includes('Day') ? 'sotd' : a.includes('Honorable') ? 'hm' : '';
+document.getElementById('refs').innerHTML = REFS.map(([s,n,a,f,u,q,b]) => `
+  <article class="ref">
+    <img src="refs/${s}.jpg" alt="Captura de ${n} publicada en Awwwards" loading="lazy" width="1000" height="667">
+    <div class="cuerpo">
+      <span class="chip ${chip(a)}">${a}</span><span class="chip">${f}</span>
+      <h3><a href="${u}" target="_blank" rel="noopener">${n}</a></h3>
+      <p>${q}</p>
+      <div class="bimbo">Para Bimbo: ${b}</div>
+    </div>
+  </article>`).join('');
+
+// ---------- Termómetro: se enfría con el scroll ----------
+const tramos = [...document.querySelectorAll('[data-temp]')];
+const grados = document.getElementById('grados'), etapa = document.getElementById('etapa'), nivel = document.getElementById('nivel');
+function termometro(){
+  const y = scrollY + innerHeight * .45;
+  let i = 0; tramos.forEach((t,k) => { if (t.offsetTop <= y) i = k; });
+  const a = tramos[i], b = tramos[Math.min(i+1, tramos.length-1)];
+  const p = b === a ? 0 : Math.min(1, Math.max(0, (y - a.offsetTop) / (b.offsetTop - a.offsetTop)));
+  const t = +a.dataset.temp + (b.dataset.temp - a.dataset.temp) * p;
+  grados.textContent = Math.round(t) + ' °C';
+  etapa.textContent = a.dataset.etapa;
+  nivel.style.height = ((t - 20) / 200 * 100).toFixed(1) + '%';
+}
+addEventListener('scroll', termometro, {passive:true}); termometro();
+
+// ---------- Harina en el aire (hero) ----------
+(function(){
+  const c = document.getElementById('harina'), x = c.getContext('2d');
+  let W, H, P = [];
+  function size(){ W = c.width = c.offsetWidth * devicePixelRatio; H = c.height = c.offsetHeight * devicePixelRatio;
+    P = Array.from({length: Math.round(W*H/26000)}, () => ({x:Math.random()*W, y:Math.random()*H, r:(Math.random()*1.8+.4)*devicePixelRatio, v:Math.random()*.25+.05, o:Math.random()*.5+.15})); }
+  function draw(){ x.clearRect(0,0,W,H);
+    for (const p of P){ p.y -= p.v*devicePixelRatio; p.x += Math.sin(p.y/60)*.2; if (p.y < -5){ p.y = H+5; p.x = Math.random()*W; }
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,7); x.fillStyle = `rgba(255,248,232,${p.o})`; x.fill(); }
+    if (!REDUCIR) requestAnimationFrame(draw); }
+  c.parentElement.addEventListener('click', e => { const r = c.getBoundingClientRect();
+    for (let i=0;i<40;i++) P.push({x:(e.clientX-r.left)*devicePixelRatio+(Math.random()-.5)*40, y:(e.clientY-r.top)*devicePixelRatio+(Math.random()-.5)*30, r:Math.random()*2.2*devicePixelRatio+.4, v:Math.random()*.9+.2, o:.7});
+    if (P.length > 900) P.splice(0, P.length-900); });
+  addEventListener('resize', size); size(); draw();
+})();
+
+// ---------- Miga: alvéolos con semilla fija ----------
+(function(){
+  const c = document.getElementById('miga'), x = c.getContext('2d');
+  let s = 1945; const rnd = () => (s = (s*16807) % 2147483647) / 2147483647;
+  function draw(t=0){ const W = c.width = c.offsetWidth*devicePixelRatio, H = c.height = c.offsetHeight*devicePixelRatio; s = 1945;
+    x.fillStyle = '#EFE2C8'; x.fillRect(0,0,W,H);
+    for (let i=0;i<260;i++){ const px=rnd()*W, py=rnd()*H, rx=(rnd()*14+3)*devicePixelRatio*(1+.06*Math.sin(t/700+i)), ry=rx*(rnd()*.5+.45), a=rnd()*Math.PI;
+      x.beginPath(); x.ellipse(px,py,rx,ry,a,0,7); x.fillStyle=`rgba(154,91,38,${.10+rnd()*.12})`; x.fill();
+      x.lineWidth = devicePixelRatio; x.strokeStyle = 'rgba(78,44,20,.12)'; x.stroke(); } }
+  let vis = false; new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(c);
+  (function loop(t){ if (vis) draw(t); if (!REDUCIR) requestAnimationFrame(loop); })(0); draw();
+})();
+
+// ---------- Espiga ----------
+(function(){
+  const svg = document.getElementById('espiga'); const N = 8; let paso = 3;
+  let h = '<path d="M20 70 H400" stroke="#C9983D" stroke-width="3" stroke-linecap="round"/>';
+  for (let i=0;i<N;i++){ const cx = 50 + i*44;
+    h += `<ellipse class="g" data-i="${i}" cx="${cx}" cy="52" rx="9" ry="20" transform="rotate(32 ${cx} 52)"/>`;
+    h += `<ellipse class="g" data-i="${i}" cx="${cx+14}" cy="88" rx="9" ry="20" transform="rotate(-32 ${cx+14} 88)"/>`; }
+  h += '<path d="M400 70 l12 -16 M400 70 l12 16" stroke="#C9983D" stroke-width="3" stroke-linecap="round"/>';
+  svg.innerHTML = h;
+  function pinta(){ svg.querySelectorAll('.g').forEach(g => { const on = +g.dataset.i < paso;
+    g.setAttribute('fill', on ? '#D9A54E' : 'transparent'); g.setAttribute('stroke', on ? '#F3D9A4' : 'rgba(243,217,164,.45)'); g.setAttribute('stroke-width','2');
+    g.style.transition = 'fill .5s'; }); }
+  document.getElementById('btnEspiga').onclick = () => { paso = paso >= N ? 0 : paso + 1; pinta(); }; pinta();
+})();
+
+// ---------- Tostado ----------
+(function(){
+  const r = document.getElementById('rTostado'), d = document.getElementById('dTostado'), e = document.getElementById('etqTostado');
+  const stops = [[246,238,223,'Masa'],[217,165,78,'Dorado'],[154,91,38,'Tostado'],[78,44,20,'Corteza']];
+  function f(){ const v = r.value/100*(stops.length-1), i = Math.min(stops.length-2, Math.floor(v)), p = v-i, a = stops[i], b = stops[i+1];
+    const c = a.slice(0,3).map((k,j) => Math.round(k + (b[j]-k)*p)); d.style.background = `rgb(${c})`;
+    const n = stops[Math.round(v)]; e.textContent = n[3]; e.style.color = v > 1.4 ? '#fff' : '#4E2C14'; }
+  r.oninput = f; f();
+})();
+
+// ---------- Levado ----------
+document.getElementById('btnLevado').onclick = () => { const d = document.getElementById('dLevado'); d.classList.remove('levando'); void d.offsetWidth; d.classList.add('levando'); };
+
+// ---------- Rebanar ----------
+(function(){
+  const b = document.getElementById('bloque'), n = 6;
+  b.innerHTML = Array.from({length:n}, (_,i) => `<div class="tajada" style="top:${i*25}px;height:25px;animation-delay:${i*.07}s"><div style="top:-${i*25}px">rebanar</div></div>`).join('');
+  const d = document.getElementById('dRebanar');
+  document.getElementById('btnRebanar').onclick = () => { d.classList.remove('rebanando'); void d.offsetWidth; d.classList.add('rebanando'); };
+  d.classList.add('rebanando');
+})();
+
+// ---------- Ruta ----------
+(function(){
+  const a = document.getElementById('avance'), L = a.getTotalLength(); a.style.strokeDasharray = L; a.style.strokeDashoffset = L;
+  let t0 = null; function loop(t){ if (t0 === null) t0 = t; const p = ((t - t0) / 4000) % 1.25; a.style.strokeDashoffset = L * (1 - Math.min(1, p)); if (!REDUCIR) requestAnimationFrame(loop); }
+  if (REDUCIR) a.style.strokeDashoffset = 0; else requestAnimationFrame(loop);
+})();
+
+// ---------- Osito: del pan al gorro ----------
+(function(){
+  // Mismas instrucciones en ambos trazos para poder interpolar número por número
+  const PAN   = [110,200, 110,150, 96,146,90,136,90,122, 90,92,116,80,150,80, 172,80,186,90,200,90, 214,90,228,80,250,80, 284,80,310,92,310,122, 310,136,304,146,290,150, 290,200];
+  const GORRO = [135,200, 135,150, 105,146,88,126,92,104, 96,80,122,70,145,78, 160,52,186,46,200,50, 214,46,240,52,255,78, 278,70,304,80,308,104, 312,126,295,146,265,150, 265,200];
+  const g = document.getElementById('gorro'), banda = document.getElementById('banda');
+  const d = n => `M${n[0]} ${n[1]} L${n[2]} ${n[3]} C${n.slice(4,10)} C${n.slice(10,16)} C${n.slice(16,22)} C${n.slice(22,28)} C${n.slice(28,34)} C${n.slice(34,40)} L${n[40]} ${n[41]} Z`;
+  const mezcla = (a,b,t) => Math.round((a + (b-a)*t)*10)/10;
+  let t = 0, meta = 0;
+  function pinta(){ g.setAttribute('d', d(PAN.map((v,i) => mezcla(v, GORRO[i], t))));
+    const c = [217,165,78].map((v,i) => Math.round(v + ([255,255,255][i]-v)*t)); g.setAttribute('fill', `rgb(${c})`); banda.setAttribute('opacity', Math.max(0, t*2-1)); }
+  function anima(){ t += (meta - t) * .08; if (Math.abs(meta - t) < .002) t = meta; pinta(); if (t !== meta) requestAnimationFrame(anima); }
+  document.getElementById('btnGorro').onclick = () => { meta = meta ? 0 : 1; if (REDUCIR){ t = meta; pinta(); } else anima(); };
+  pinta();
+})();
+
+// ---------- Camión: recorre las paradas ----------
+(function(){
+  const cam = document.getElementById('camion'), par = document.getElementById('paradas'), xs = [70, 160, 250, 340];
+  par.innerHTML = xs.map(x => `<circle cx="${x}" cy="196" r="7" fill="#C9D3EF"/>`).join('');
+  const dots = [...par.children]; let t0 = null;
+  function loop(t){ if (t0 === null) t0 = t; const p = ((t - t0) / 6000) % 1, x = -130 + p * 520;
+    cam.setAttribute('transform', `translate(${x} 176)`);
+    dots.forEach((c,i) => c.setAttribute('fill', x + 104 > xs[i] ? '#EE353A' : '#C9D3EF'));
+    if (!REDUCIR) requestAnimationFrame(loop); }
+  if (REDUCIR){ cam.setAttribute('transform','translate(140 176)'); } else requestAnimationFrame(loop);
+})();
+
+// ---------- Barra de reparto ----------
+(function(){
+  const h = document.getElementById('repHecho'), c = document.getElementById('repCamion');
+  function f(){ const p = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    h.style.width = (p*100).toFixed(2) + '%'; c.style.left = `calc(${(p*100).toFixed(2)}% + ${17 - p*34}px)`; }
+  addEventListener('scroll', f, {passive:true}); f();
+})();
+
+// ---------- Momentos del día ----------
+(function(){
+  const M = [
+    ['Desayuno','linear-gradient(180deg,#FFE7B8,#F6EEDF)','#EF7F13','38%','72%','#4E2C14'],
+    ['Lonchera','linear-gradient(180deg,#BFD6FF,#EAF1FF)','#FFD15C','8%','58%','#002269'],
+    ['Merienda','linear-gradient(180deg,#F7C08A,#F3D9C3)','#EE353A','30%','78%','#4E2C14'],
+    ['Cena','linear-gradient(180deg,#0B1E4F,#002269)','#F6EEDF','12%','78%','#F6EEDF'],
+  ];
+  const d = document.getElementById('dMomentos'), tabs = d.querySelector('.tabs'), sol = document.getElementById('sol'), fr = document.getElementById('frase');
+  tabs.innerHTML = M.map((m,i) => `<button type="button" data-i="${i}">${m[0]}</button>`).join('');
+  function pon(i){ const m = M[i]; d.style.background = m[1]; sol.style.background = m[2]; sol.style.top = m[3]; sol.style.left = m[4]; fr.textContent = m[0]; fr.style.color = m[5];
+    tabs.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.i === i)); }
+  tabs.onclick = e => { if (e.target.dataset.i) pon(+e.target.dataset.i); };
+  const h = new Date().getHours(); pon(h < 11 ? 0 : h < 16 ? 1 : h < 19 ? 2 : 3);
+})();
+</script>
+</body>
+</html>

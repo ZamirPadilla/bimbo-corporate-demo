@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- three para «Del campo a tu mesa» (sección 08): la misma versión que /animaciones/del-campo-a-tu-mesa/index.html -->
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/" } }
+</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -49,6 +54,12 @@ a:hover{color:#0F2F51}
  [data-ico-word]{position:static !important;transform:none !important;font-size:12.5vw !important}
  [data-hist-stage]{grid-template-columns:1fr !important}
  [data-screen-label="07b Mapa"]{padding-top:76px !important}
+ [data-cm-texto]{left:20px !important;bottom:6vh !important;gap:12px !important}
+ [data-cm-texto] h3{font-size:clamp(40px, 11vw, 64px) !important}
+ [data-cm-texto] p{font-size:15.5px !important}
+ [data-cm-dato]{right:16px !important;top:88px !important;bottom:auto !important;padding:14px 16px 12px !important;border-radius:18px !important}
+ [data-cm-dato] > div:first-child{font-size:clamp(44px, 12vw, 64px) !important}
+ [data-cm-velo]{background:linear-gradient(to top, rgba(15,47,81,.92) 0%, rgba(15,47,81,.45) 42%, rgba(15,47,81,0) 62%), linear-gradient(to bottom, rgba(15,47,81,.65) 0%, rgba(15,47,81,0) 32%) !important}
 }
 @media (max-width: 600px){ [data-bento] > *{grid-column:1 / -1 !important} [data-bento]{grid-template-columns:1fr !important} }
 </style>
@@ -246,37 +257,32 @@ a:hover{color:#0F2F51}
 </section>
 
 
-<section id="cadena" data-screen-label="08 Del campo a tu mesa" data-bg="#0F2F51" ref="{{ cadRef }}" data-pin="" style="height:400vh;position:relative;color:#fff">
-  <div data-sticky="" style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center">
-    <div ref="{{ cadTrackRef }}" data-track="" style="display:flex;gap:0;align-items:stretch;padding:0;width:max-content;will-change:transform;height:100vh">
-      <div style="width:min(720px, 90vw);flex:none;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:0 60px 0 32px;box-sizing:border-box">
-        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Cadena de valor</div>
-        <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(58px, 7vw, 132px);font-weight:900;text-transform:uppercase;letter-spacing:-.012em;line-height:.84">Del campo<br><span style="color:#0F2F51;-webkit-text-stroke:4px #8FC9E6;paint-order:stroke fill">a tu mesa</span></h2>
-        <p style="margin:0;font-size:19px;line-height:1.5;font-weight:300;color:#dbe6f2;max-width:440px">Cinco etapas, una sola operación. Cada una con historias reales, contadas por quienes las viven.</p>
-        <div style="display:flex;align-items:center;gap:12px;font-size:14px;color:#8FC9E6;font-weight:600">Desliza para recorrerla <span style="font-size:20px">→</span></div>
+<section id="cadena" data-screen-label="08 Del campo a tu mesa" data-bg="#0F2F51" ref="{{ cadRef }}" style="height:1200vh;position:relative;color:#fff">
+  <div data-cm-sticky="" style="position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0F2F51">
+    <div ref="{{ cadEscenaRef }}" aria-hidden="true" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s"></div>
+    <div aria-hidden="true" data-cm-velo="" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg, rgba(15,47,81,.82) 0%, rgba(15,47,81,.45) 34%, rgba(15,47,81,0) 58%), linear-gradient(to top, rgba(15,47,81,.75) 0%, rgba(15,47,81,0) 38%)"></div>
+    <sc-for list="{{ cmTextos }}" as="b" hint-placeholder-count="6">
+      <div data-cm-b="" data-cm-texto="" data-desde="{{ b.desde }}" data-hasta="{{ b.hasta }}" style="position:absolute;left:32px;bottom:10vh;width:min(560px, calc(100vw - 64px));display:flex;flex-direction:column;gap:18px;opacity:0;pointer-events:none;text-shadow:0 2px 24px rgba(15,47,81,.55)">
+        <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>{{ b.rotulo }}</div>
+        <h3 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:{{ b.tam }};font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.86">{{ b.t1 }}<br><span style="color:transparent;-webkit-text-stroke:3px #8FC9E6">{{ b.t2 }}</span></h3>
+        <p style="margin:0;font-size:18px;line-height:1.5;font-weight:300;color:#e6eef7;max-width:470px">{{ b.d }}</p>
+        <sc-if value="{{ b.url }}" hint-placeholder-val="{{ true }}">
+          <a href="{{ b.url }}" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none;display:inline-flex;align-items:center;gap:10px;background:#FBF7F0;color:#0F2F51;font-weight:700;font-size:14px;padding:11px 18px 11px 14px;border-radius:999px;text-shadow:none"><span style="width:26px;height:26px;border-radius:50%;background:#EEB14F;display:grid;place-items:center;font-size:11px">▶</span>{{ b.video }}</a>
+        </sc-if>
       </div>
-      <sc-for list="{{ etapas }}" as="e" hint-placeholder-count="5">
-        <article style="width:100vw;flex:none;height:100vh;overflow:hidden;position:relative;background:#15359D">
-          <div style="position:absolute;inset:0;background-image:url({{ e.img }});background-size:cover;background-position:center"></div>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(15,47,81,.95) 8%, rgba(15,47,81,.1) 60%)"></div>
-          <div style="position:absolute;left:6vw;top:120px;right:6vw;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:64px;font-weight:900;letter-spacing:-.01em;line-height:1;color:#EEB14F">{{ e.n }}</span>
-            <a href="{{ e.url }}" target="_blank" rel="noopener" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:#FBF7F0;color:#0F2F51;font-weight:700;font-size:14px;padding:12px 18px 12px 14px;border-radius:999px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:scale(1.06);color:#0F2F51"><span style="width:28px;height:28px;border-radius:50%;background:#15359D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px">▶</span>{{ e.video }}</a>
-          </div>
-          <div style="position:absolute;left:6vw;right:6vw;bottom:12vh;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap">
-            <div style="display:flex;flex-direction:column;gap:14px;max-width:640px">
-              <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(60px, 8vw, 150px);font-weight:900;text-transform:uppercase;letter-spacing:-.008em;line-height:.88">{{ e.t }}</div>
-              <p style="margin:0;font-size:17px;line-height:1.45;color:#dbe6f2">{{ e.d }}</p>
-            </div>
-            <div style="text-align:right">
-              <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, 4.4vw, 72px);font-weight:900;letter-spacing:-.012em;line-height:.85;color:#EEB14F">{{ e.cifra }}</div>
-              <div style="font-size:14px;color:#dbe6f2;margin-top:6px">{{ e.cifraLabel }}</div>
-            </div>
-          </div>
-        </article>
-      </sc-for>
+    </sc-for>
+    <sc-for list="{{ cmDatos }}" as="d" hint-placeholder-count="10">
+      <div data-cm-b="" data-cm-dato="" data-desde="{{ d.desde }}" data-hasta="{{ d.hasta }}" style="position:absolute;right:32px;bottom:13vh;text-align:right;opacity:0;pointer-events:none;background:rgba(15,47,81,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:20px 24px 18px;border-radius:24px">
+        <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(52px, 6.4vw, 112px);font-weight:900;letter-spacing:-.012em;line-height:.85;color:#EEB14F">{{ d.v }}</div>
+        <div style="font-size:15px;font-weight:600;letter-spacing:.04em;color:#FBF7F0;margin-top:10px;max-width:300px;margin-left:auto">{{ d.l }}</div>
+      </div>
+    </sc-for>
+    <div data-cm-b="" data-cm-dato="" data-desde="0.846" data-hasta="0.955" style="position:absolute;right:32px;bottom:13vh;text-align:right;opacity:0;pointer-events:none;background:rgba(15,47,81,.5);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:20px 24px 18px;border-radius:24px">
+      <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(52px, 6.4vw, 112px);font-weight:900;letter-spacing:-.012em;line-height:.85;color:#EEB14F"><span ref="{{ cmPaisesRef }}">1</span><span style="font-size:.42em;color:#FBF7F0"> de {{ cmTotalPaises }}</span></div>
+      <div style="font-size:15px;font-weight:600;letter-spacing:.04em;color:#FBF7F0;margin-top:10px">países donde operamos</div>
+      <div ref="{{ cmRegionRef }}" style="font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6;margin-top:8px">México</div>
     </div>
-    <div data-hide-m="" style="position:absolute;left:32px;right:32px;bottom:30px;height:3px;background:rgba(255,255,255,.12);border-radius:3px"><div ref="{{ cadBarRef }}" style="height:100%;width:0%;background:#EEB14F;border-radius:3px"></div></div>
+    <div data-hide-m="" style="position:absolute;left:32px;right:32px;bottom:30px;height:3px;background:rgba(255,255,255,.14);border-radius:3px"><div ref="{{ cadBarRef }}" style="height:100%;width:0%;background:#EEB14F;border-radius:3px"></div></div>
   </div>
 </section>
 
@@ -561,7 +567,7 @@ class Component extends DCLogic {
   globoRef = React.createRef();
   marqueeRef = React.createRef(); recoRef = React.createRef(); misionRef = React.createRef(); palabrasRef = React.createRef(); misionExtraRef = React.createRef();
   cifrasRef = React.createRef(); momRef = React.createRef(); relojRef = React.createRef(); icoRef = React.createRef(); momSecRef = React.createRef(); icoBgRef = React.createRef();
-  cadRef = React.createRef(); cadTrackRef = React.createRef(); cadBarRef = React.createRef(); susRef = React.createRef(); histRef = React.createRef(); anioRef = React.createRef();
+  cadRef = React.createRef(); cadEscenaRef = React.createRef(); cadBarRef = React.createRef(); cmPaisesRef = React.createRef(); cmRegionRef = React.createRef(); susRef = React.createRef(); histRef = React.createRef(); anioRef = React.createRef();
   mx = 0; rx = 0;
 
   get reduced() { return !!this.props.reducirMovimiento || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches); }
@@ -602,7 +608,7 @@ class Component extends DCLogic {
       const vh = innerHeight;
       this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const el = e.target; el.style.opacity = '1'; el.style.filter = 'blur(0)'; el.style.transform = 'none'; this.io.unobserve(el); } }), { threshold: 0.1 });
       const auto = 'section:not([data-pin]) h2, section:not([data-pin]) [data-g2] > *, section:not([data-pin]) [data-idx] > *, section:not([data-pin]) [data-bento] > *, section:not([data-pin]) p';
-      root.querySelectorAll(auto).forEach(el => { if (el.closest('[data-rv]') || el.querySelector('[data-rv]') || el.closest('[data-hero-sticky],[data-track],nav')) return; el.setAttribute('data-rv', ''); });
+      root.querySelectorAll(auto).forEach(el => { if (el.closest('[data-rv]') || el.querySelector('[data-rv]') || el.closest('[data-hero-sticky],[data-track],[data-cm-sticky],nav')) return; el.setAttribute('data-rv', ''); });
       root.querySelectorAll('[data-rv]').forEach((el) => {
         if (el.getBoundingClientRect().top < vh) return;
         const sib = el.parentElement ? [...el.parentElement.children].filter(c => c.hasAttribute('data-rv')).indexOf(el) : 0;
@@ -640,10 +646,24 @@ class Component extends DCLogic {
     this.icoItems = [...root.querySelectorAll('[data-ico-item]')];
     this.eraTxt = [...root.querySelectorAll('[data-era-txt]')]; this.eraOso = [...root.querySelectorAll('[data-era-oso]')]; this.eraImg = [...root.querySelectorAll('[data-era-img]')]; this.eraDot = [...root.querySelectorAll('[data-era-dot]')];
     this.secs = [...root.querySelectorAll('section[data-bg]')];
+    // 08 Del campo a tu mesa: la animación de /animaciones/del-campo-a-tu-mesa se monta al acercarse a la sección;
+    // sus textos (data-cm-b) se encienden con el avance ya suavizado que devuelve el director.
+    this.cmBeats = [...root.querySelectorAll('[data-cm-b]')].map(el => ({ el, a: +el.dataset.desde, z: +el.dataset.hasta, o: -1 }));
+    const cad = this.cadRef.current;
+    if (cad && 'IntersectionObserver' in window) {
+      this.cmIO = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting || this.cmCarga) return;
+        this.cmCarga = import(new URL('campo-mesa/director-inicio.js', location.href).href)
+          .then(m => m.montarCampoMesa(this.cadEscenaRef.current, { alAvanzar: P => this.cmAvance(P), alCargar: () => { this.cadEscenaRef.current.style.opacity = '1'; } }))
+          .then(a => { if (!a) return; if (this.cmFin) return a.destruir(); this.cm = a; this.measure(); })
+          .catch(err => console.warn('Del campo a tu mesa: no cargó la animación', err));
+      }, { rootMargin: '120% 0px' });
+      this.cmIO.observe(cad);
+    }
     this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.measure(); }); };
-    this.onResize = () => { this.layout(); this.measure(); };
+    this.onResize = () => this.measure();
     addEventListener('scroll', this.onScroll, { passive: true }); addEventListener('resize', this.onResize);
-    this.layout(); this.measure();
+    this.measure();
     this.loop = () => {
       if (!R) {
         const m = this.marqueeRef.current; if (m) { this.mx -= 0.7; const w = m.scrollWidth / 2; if (-this.mx > w) this.mx += w; m.style.transform = `translateX(${this.mx}px)`; }
@@ -669,12 +689,9 @@ class Component extends DCLogic {
     clearInterval(this.sTimer); clearInterval(this.moTimer); clearInterval(this.osoI); clearTimeout(this.osoT); [this.sT2, this.ldT, this.ldT2].forEach(clearTimeout);
     this.io && this.io.disconnect(); (this.obs || []).forEach(o => o.disconnect());
     clearTimeout(this._lt); this.desmontarGlobo && this.desmontarGlobo(); this.desmontarGlobo = null;
+    this.cmIO && this.cmIO.disconnect(); this.cmFin = true; this.cm && this.cm.destruir(); this.cm = null;
   }
 
-  layout() {
-    const sec = this.cadRef.current, track = this.cadTrackRef.current;
-    if (sec && track) sec.style.height = this.mobile ? '' : (track.scrollWidth - innerWidth + innerHeight * 1.15) + 'px';
-  }
 
   dust() {
     const dn = this.donaRef.current; if (!dn) return; const now = performance.now(); if (this.dustT && now - this.dustT < 650) return; this.dustT = now;
@@ -705,6 +722,23 @@ class Component extends DCLogic {
 
   prog01(el) { if (!el) return 0; const r = el.getBoundingClientRect(); const span = r.height - innerHeight; return Math.max(0, Math.min(1, -r.top / (span || 1))); }
   cl(v) { return Math.max(0, Math.min(1, v)); }
+  // Textos de 08 al avance P (0..1) de la animación. Los tramos y momentos salen de director.js, camiones3d.js
+  // (ARCOS), planta-fusion.js (FASES) y planeta-fusion.js (OLEADAS) de /animaciones/del-campo-a-tu-mesa.
+  cmAvance(P) {
+    const f = 0.012;
+    (this.cmBeats || []).forEach(b => {
+      const o = Math.round(Math.min(this.cl((P - b.a) / f), this.cl((b.z - P) / f)) * 100) / 100; if (o === b.o) return; b.o = o;
+      b.el.style.opacity = String(o); b.el.style.transform = `translateY(${(1 - o) * 18}px)`; b.el.style.pointerEvents = o > 0.6 ? 'auto' : 'none';
+    });
+    if (this.cadBarRef.current) this.cadBarRef.current.style.width = (P * 100) + '%';
+    // países encendidos: el planeta corre de P 0.78 a 1 y cada región se enciende país por país en su oleada
+    const q = (P - 0.78) / 0.22; let n = 0, region = 'México';
+    [['México', 0.3, 0.3, 1], ['Norteamérica', 0.42, 0.55, 2], ['Latinoamérica', 0.55, 0.75, 15], ['Europa, Asia y África', 0.75, 0.95, 21]].forEach(([nom, a, z, k]) => {
+      if (q < a) return; region = nom; n += k === 1 ? 1 : Math.min(k, Math.floor((q - a) / (z - a) * (k - 1)) + 1);
+    });
+    if (this.cmPaisesRef.current) this.cmPaisesRef.current.textContent = String(Math.max(1, n));
+    if (this.cmRegionRef.current) this.cmRegionRef.current.textContent = region;
+  }
   mix(a, b, f) { return f <= 0.001 ? a : f >= 0.999 ? b : `color-mix(in oklch, ${b} ${Math.round(f * 100)}%, ${a})`; }
 
   measure() {
@@ -765,10 +799,10 @@ class Component extends DCLogic {
     });
     if (this.state.ico !== ii) this.setState({ ico: ii });
     const bar = this.icoBgRef.current && this.icoBgRef.current.querySelector('[aria-current="true"] [data-ico-bar]'); if (bar) bar.style.width = (this.cl(0.5 + (xi - ii)) * 100) + '%';
-    const sec = this.cadRef.current, track = this.cadTrackRef.current;
-    if (sec && track) {
-      if (M) track.style.transform = '';
-      else { const q = this.prog01(sec); track.style.transform = `translateX(${-q * Math.max(0, track.scrollWidth - vw)}px)`; if (this.cadBarRef.current) this.cadBarRef.current.style.width = (q * 100) + '%'; }
+    const cad = this.cadRef.current;
+    if (cad) {
+      const q = this.prog01(cad), r = cad.getBoundingClientRect();
+      if (this.cm) { this.cm.fijarAvance(q); this.cm.fijarVisible(r.bottom > 0 && r.top < innerHeight); } else this.cmAvance(q);
     }
     const NE = this.eraTxt.length;
     if (NE) {
@@ -836,7 +870,6 @@ class Component extends DCLogic {
       takis: 'https://www.barcel.com.mx/themes/custom/barceldos/images/files/takis_fuego.png',
     };
     const img = {
-      panaderias: C + 'nuestras-panaderias/bimbo-panaderias.jpg?VersionId=oVZRAZmBKEXR7O44dRLn5JhnCE9C5W19',
       ia25: C + 'styles/reporte_345x460/public/reportes-2026/IA25GB_Cover_1500x1917jpg_2.jpg?VersionId=S5SgX_u0QxUFxJBQ3inABAJzsDqGPj5p&itok=dw_FyVtM',
       electrico: C + 'styles/headline_press/public/noticias-2026/B_notas_Energia_0.png?VersionId=xdg.b6FJBo2D.lbbAX3nx6pQrDsEqa02&itok=6ECkftoV',
       carreras: C + 'nuestras-panaderias/visita_panaderias-min.jpeg?VersionId=5gucsfOdvRAC8ZdzxrinILus1vh1cXGR',
@@ -863,13 +896,31 @@ class Component extends DCLogic {
     const cur = this.iconosData[S.ico || 0];
     const icoTabs = this.iconosData.map((p, i) => { const on = (S.ico || 0) === i; return { n: '0' + (i + 1), total: '0' + this.iconosData.length, t: p.palabra, linea: p.linea, bg: 'transparent', fg: cur.fg, acc: cur.acc, accFg: cur.accFg, line: cur.fg + '33', cur: on ? 'true' : 'false', w: on ? 'min(440px, 31vw)' : '76px', opA: on ? 1 : 0, opC: on ? 0 : 1, tx: on ? '0px' : '40px', go: () => this.goIco(i) }; });
     const YT = id => `https://www.youtube.com/watch?v=${id}`;
-    const etapas = [
-      ['Campo', 'Trabajamos con agricultores en agricultura regenerativa. Meta: 100% de ingredientes clave en 2050.', '+500 mil', 'hectáreas regenerativas', C + 'styles/headline_press/public/comunicados-2026/regenerativeagriculture_grupobimbo_0.png?VersionId=cFqTBc7yrPfpPlQqPc__Uc4.wVqcKzQN&itok=usg4GhFO', 'H2iIeOPV8RE', 'Del campo a tu mesa'],
-      ['Panaderías', 'Horneamos cada día en 249 panaderías y plantas, con maestros panaderos como Víctor Contreras.', '249', 'panaderías y plantas', img.panaderias, 'mzLwq8yF5H8', 'El maestro hornero'],
-      ['Distribución', 'Llevamos el pan fresco con más de 54,000 rutas y más de 1,700 centros de ventas.', '+54,000', 'rutas de distribución', C + 'styles/decada_570x370/public/historia/Grupo%20Bimbo%20define%20su%20meta%20de%20cero%20emisiones%20netas.jpeg?VersionId=K2uoMdHr4iqJYbWz.btvAAf7tZ07BAlO&itok=WAJPzsLa', 'hEGzFMfNU0E', 'Más allá del pan'],
-      ['Tiendas', 'Desde la tienda de la esquina hasta el supermercado, en 93 países.', '93', 'países', C + 'nuestras-panaderias/marinela.jpeg?VersionId=BnWsSdVu0eWc_ywZko_7i.pXcJ1ub.LX', 'JcJOYeUnUwQ', 'El alma de la tiendita'],
-      ['Tu mesa', 'Llegamos con más de 100 marcas para cada momento del día.', '+100', 'marcas', 'assets/sandwich-lonche.png', 'QUzqLH_KfY8', 'Haz sándwich'],
-    ].map(([t, d, cifra, cifraLabel, im, id, video], i) => ({ n: '0' + (i + 1), t, d, cifra, cifraLabel, img: im, url: YT(id), video }));
+    // 08 Del campo a tu mesa: P = avance de la animación en que entra y sale cada texto. Cifras de content/cifras.ts.
+    const tamCm = 'clamp(40px, 4.4vw, 80px)';
+    const cmTextos = [
+      [-1, 0.06, 'Cadena de valor', 'Del campo', 'a tu mesa', 'Cada pan empieza en el campo. Desliza y recorre con nosotros el camino hasta tu mesa.', null, null, 'clamp(58px, 7vw, 132px)'],
+      [0.075, 0.205, '01 · Campo', 'Todo empieza', 'en el trigo', 'Trabajamos con agricultores en agricultura regenerativa, que cuida el suelo y el agua. La meta: 100% de nuestros ingredientes clave en 2050.', 'H2iIeOPV8RE', 'Del campo a tu mesa'],
+      [0.225, 0.485, '02 · El camino', 'Más de 80 años', 'en camino', 'Desde 1945 llevamos el pan fresco a cada tienda. El camión cambió de época; la promesa de frescura, no.', 'hEGzFMfNU0E', 'Más allá del pan'],
+      [0.505, 0.63, '03 · Panaderías', 'Horneamos', 'cada día', 'En nuestras panaderías, maestros panaderos hornean todos los días el pan que llega a tu mesa.', 'mzLwq8yF5H8', 'El maestro hornero'],
+      [0.64, 0.765, '04 · Distribución', 'Del horno', 'a la tienda', 'De cada panadería salen nuestras rutas a los centros de ventas, y de ahí a la tiendita de la esquina y al supermercado.', 'JcJOYeUnUwQ', 'El alma de la tiendita'],
+      [0.785, 0.955, '05 · El mundo', 'Y de ahí,', 'al mundo', 'Operamos en 39 países de cuatro continentes, con más de 152,000 colaboradores y electricidad renovable.', null, null],
+      [0.965, 2, '06 · Tu mesa', 'Hasta', 'tu mesa', 'Más de 100 marcas para cada momento del día, en 102 países.', 'QUzqLH_KfY8', 'Haz sándwich'],
+    ].map(([desde, hasta, rotulo, t1, t2, d, id, video, tam]) => ({ desde, hasta, rotulo, t1, t2, d, url: id ? YT(id) : null, video, tam: tam || tamCm }));
+    // los cambios de época caen donde el camión cruza cada cristal (ARCOS de camiones3d.js)
+    const cmDatos = [
+      [0.09, 0.205, '+500 mil', 'hectáreas con agricultura regenerativa'],
+      [0.225, 0.298, 'Años 40', '1945: nace Bimbo'],
+      [0.298, 0.347, 'Años 70', 'el camión de reparto de cada época'],
+      [0.347, 0.396, 'Años 80', 'el camión de reparto de cada época'],
+      [0.396, 0.444, 'Años 90', 'el camión de reparto de cada época'],
+      [0.444, 0.485, '+4,000', 'vehículos eléctricos hoy'],
+      [0.505, 0.63, '250', 'panaderías y botaneras'],
+      [0.64, 0.70, '+54,000', 'rutas de distribución'],
+      [0.70, 0.765, '+1,600', 'centros de ventas'],
+      [0.785, 0.846, '99%', 'de nuestra electricidad es renovable (RE100)'],
+      [0.965, 2, '102', 'países a los que llegan nuestros productos'],
+    ].map(([desde, hasta, v, l]) => ({ desde, hasta, v, l }));
     const PL = [
       { t: 'Para Ti', pre: 'Para', sil: ['Ti'], color: '#DF8A35', tint: '#FAE5C5', img: C + '2026-01/Frame%201245.png', href: 'Sustentabilidad.dc.html#para-ti',
         metas: [['Panes y bollería con 3.5 estrellas o más', '98%', 98, 'Meta: 100%', 'En curso'], ['Panes blancos con al menos 2 g de fibra', '97%', 100, 'Meta: 90%', 'Logrado'], ['Consumo diario sin colorantes artificiales', '100%', 100, 'Meta: todo el portafolio, 2026', 'En curso']] },
@@ -922,9 +973,9 @@ class Component extends DCLogic {
       globoRef: this.globoRef,
       marqueeRef: this.marqueeRef, recoRef: this.recoRef, misionRef: this.misionRef, palabrasRef: this.palabrasRef, misionExtraRef: this.misionExtraRef,
       cifrasRef: this.cifrasRef, momRef: this.momRef, relojRef: this.relojRef, icoRef: this.icoRef, icoBgRef: this.icoBgRef,
-      cadRef: this.cadRef, cadTrackRef: this.cadTrackRef, cadBarRef: this.cadBarRef, susRef: this.susRef, histRef: this.histRef, anioRef: this.anioRef,
+      cadRef: this.cadRef, cadEscenaRef: this.cadEscenaRef, cadBarRef: this.cadBarRef, cmPaisesRef: this.cmPaisesRef, cmRegionRef: this.cmRegionRef, cmTextos, cmDatos, cmTotalPaises: 39, susRef: this.susRef, histRef: this.histRef, anioRef: this.anioRef,
       osoNuevo: S.osoIn && !S.osoAlt ? 1 : 0, osoViejo: S.osoIn && S.osoAlt ? 1 : 0, osoNuevoS: S.osoIn && !S.osoAlt ? 1 : 0.05, osoViejoS: S.osoIn && S.osoAlt ? 1 : 0.05, osoNuevoR: S.osoIn && !S.osoAlt ? '0deg' : '-25deg', osoViejoR: S.osoIn && S.osoAlt ? '0deg' : '25deg', osoWrapRef: this.osoWrapRef, img, saludoVisible: this.props.mostrarSaludo ?? true, saludo: this.saludos[S.saludo], saludoOp: S.saludoOp,
-      cinta, accesos, cifras, palabras, momentos, mom, ringRot: `${-S.moT * 72}deg`, counterRot: `${S.moT * 72}deg`, momPrev: () => this.goMo(-1), momNext: () => this.goMo(1), dialEnter: () => this.setState({ dialH: true }), dialLeave: () => this.setState({ dialH: false }), icoTabs, momSecRef: this.momSecRef, iconos, icoTag: cur.fg, etapas, pilares, cimientos, eras, regiones, reg, finanzas, innovStats, noticias,
+      cinta, accesos, cifras, palabras, momentos, mom, ringRot: `${-S.moT * 72}deg`, counterRot: `${S.moT * 72}deg`, momPrev: () => this.goMo(-1), momNext: () => this.goMo(1), dialEnter: () => this.setState({ dialH: true }), dialLeave: () => this.setState({ dialH: false }), icoTabs, momSecRef: this.momSecRef, iconos, icoTag: cur.fg, pilares, cimientos, eras, regiones, reg, finanzas, innovStats, noticias,
       recos: [...rc, ...rc],
       crecimiento: [[1995, '10,160', 10160], [2000, '31,477', 31477], [2005, '56,102', 56102], [2010, '117,163', 117163], [2015, '219,186', 219186], [2020, '331,051', 331051], [2025, '426,952', 426952]].map(([y, v, n], i) => ({ y, v, pct: Math.max(2, n / 426952 * 72), col: i === 6 ? '#8FC9E6' : '#2253B1' })),
       de1945: [{ a: '1', t: 'Países', b: '93' }, { a: '1', t: 'Panaderías', b: '249' }, { a: '4', t: 'Productos', b: '+9 mil' }],

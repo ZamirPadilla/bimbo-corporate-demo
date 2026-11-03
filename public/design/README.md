@@ -22,6 +22,7 @@ sobre `public/` (por ejemplo `python3 -m http.server 8818 --directory public`).
 | `support.js` | Runtime de Claude Design (monta la plantilla `<x-dc>`) |
 | `assets/` | Solo las 11 imágenes y videos que Inicio usa |
 | `globo/` | Globo de presencia v2 (sección `07b Mapa`, entre Íconos y la cinta de idiomas) |
+| `campo-mesa/` | Director que monta «Del campo a tu mesa» en la sección `08` |
 
 ## Mapa (globo de presencia)
 
@@ -38,6 +39,16 @@ npx tsx scripts/globo-estatico.ts
 
 Lo que **no** se trajo: `uploads/` (capturas y documentos de contexto del proyecto), `Inicio v1` y `Inicio v2`
 (versiones anteriores) y los assets que Inicio ya no usa.
+
+## Del campo a tu mesa (sección 08)
+
+La sección monta la animación de `public/animaciones/del-campo-a-tu-mesa/` (PR #15) con
+`campo-mesa/director-inicio.js`: el mismo director de la animación, pero con el avance que le pasa el scroll de
+la sección (1200vh) en lugar de su propia pista. Las escenas no se copian. Se cargan al acercarse a la sección y
+se pausan fuera de pantalla. Los textos (`cmTextos`) y las cifras (`cmDatos`) de `renderVals()` tienen el avance
+`P` en que entran y salen, alineado con los momentos de la animación: los cambios de época del camión (`ARCOS`),
+las fases de la planta (`FASES`) y las regiones del planeta (`OLEADAS`). El contador de países repite el reparto
+de `OLEADAS`. Si cambian esos tiempos allá, hay que moverlos aquí.
 
 ## Pendientes conocidos
 

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Del campo a tu mesa · Bimbo</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --fondo: #1d140d; --texto: #f6e7cf; }
+  html, body { margin: 0; background: var(--fondo); color: var(--texto); font-family: system-ui, sans-serif; }
+  /* la altura de la pista es lo largo de toda la historia; el escenario se queda pegado a la pantalla */
+  #pista { position: relative; height: 1600vh; }
+  #escenario { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .escena { position: absolute; inset: 0; opacity: 0; }
+  .escena canvas { display: block; width: 100%; height: 100%; }
+  #carga { position: absolute; inset: 0; display: grid; place-items: center; background: var(--fondo); transition: opacity .6s; z-index: 5; }
+  #carga::after { content: ''; width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgb(246 231 207 / .25); border-top-color: var(--texto); animation: gira 1s linear infinite; }
+  #carga.listo { opacity: 0; pointer-events: none; }
+  /* indicador de scroll sin texto: una línea que baja */
+  #aviso { position: absolute; left: 50%; bottom: 28px; width: 1px; height: 34px; background: var(--texto); opacity: .8; transform-origin: top;
+           animation: baja 1.6s ease-in-out infinite; transition: opacity .5s; z-index: 4; }
+  #aviso.oculto { opacity: 0; }
+  #depurar { position: absolute; left: 8px; top: 8px; font: 12px ui-monospace, monospace; background: rgb(0 0 0 / .45); padding: 4px 8px; border-radius: 4px; z-index: 6; }
+  @keyframes baja { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+  @keyframes gira { to { transform: rotate(1turn); } }
+  @media (prefers-reduced-motion: reduce) { #aviso, #carga::after { animation: none; } }
+</style>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/" } }
+</script>
+</head>
+<body>
+<div id="pista">
+  <div id="escenario" role="img" aria-label="Del campo a tu mesa: una espiga de trigo, el camión Bimbo que cambia de época del campo a la ciudad, la planta donde se estaciona mientras sale un tractocamión, y el planeta con los países donde opera Grupo Bimbo">
+    <div class="escena" data-escena="campo"><canvas></canvas></div>
+    <div class="escena" data-escena="camiones"><canvas></canvas></div>
+    <div class="escena" data-escena="planta"><canvas></canvas></div>
+    <div class="escena" data-escena="planeta"><canvas></canvas></div>
+    <div id="aviso"></div>
+    <div id="carga"></div>
+    <div id="depurar" hidden></div>
+  </div>
+</div>
+<script type="module" src="./director.js"></script>
+</body>
+</html>

@@ -25,11 +25,11 @@ Demo pública de una página corporativa para **Grupo Bimbo**, construida con Ne
 
 | Ruta | Qué es |
 |---|---|
-| `/` | Página principal de la demo: hero, valores, marcas, sostenibilidad y footer |
+| `/` | Redirige a `/demo` mientras se diseña la página principal |
 | `/demo` | Índice del proyecto |
 | `/wireframes` | Mapa del sitio propuesto y wireframes en grises de Inicio, Nosotros, Marcas, Sustentabilidad, Inversionistas, Prensa, Carreras y Contacto |
 
-Totalmente responsive. Los colores y la tipografía viven en `tailwind.config.ts` y siguen el manual de identidad de referencia 2025 (ver [`CLAUDE.md`](CLAUDE.md)). `/demo` y `/wireframes` llevan `noindex`.
+Los colores y la tipografía viven en `tailwind.config.ts` y siguen el manual de identidad de referencia 2025 (ver [`CLAUDE.md`](CLAUDE.md)). `/demo` y `/wireframes` llevan `noindex`.
 
 ---
 
@@ -109,12 +109,11 @@ Actualiza `docs/INDICE.md` y `docs/copy/02`, `04` y `05`. Esos archivos no se ed
 bimbo-corporate-demo/
 ├── app/
 │   ├── layout.tsx              # Layout raíz
-│   ├── page.tsx                # Página principal
+│   ├── page.tsx                # Redirige a /demo
 │   ├── globals.css             # Estilos globales + Tailwind
 │   ├── demo/page.tsx           # Índice del proyecto
 │   └── wireframes/             # Mapa del sitio y una ruta por página propuesta
 ├── components/
-│   ├── Navbar.tsx, Hero.tsx, Values.tsx, Brands.tsx, Sustainability.tsx, Footer.tsx
 │   └── wireframe/              # Secciones de wireframe y resaltado de cifras
 ├── content/                    # Copy, cifras e índice (fuente única)
 ├── docs/

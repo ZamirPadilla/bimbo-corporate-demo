@@ -76,5 +76,12 @@ Utilidades: Proveedores · Bimbo Ventures · BIDA (asistente) · ES / EN
 | Llamadas a la acción con verbo y destino: «Descarga el reporte 3T26» | «Ver más», «Leer más», «Conócelas» |
 | Mayúsculas por diseño (CSS) | Texto escrito en mayúsculas |
 | Español de México; términos en inglés solo si son nombre propio (Bimbo Ventures) | startup, frontline, racionales |
+| cero emisiones de carbono en 2050 | cero emisiones netas (el informe nunca dice «netas») |
+| 99% de nuestra electricidad es renovable, según los criterios de RE100 | 100% energía renovable (es electricidad, y el 100% lleva asterisco) |
+| vamos hacia, avanzamos, nos falta | logramos, ya somos, misión cumplida, en metas de sustentabilidad no cumplidas |
+| deuda vinculada a la sustentabilidad | bonos verdes, bonos sustentables |
+| empresa de panificación más grande del mundo | líder indiscutible, la mejor, la número uno |
+| Las siete creencias, tal cual | Frases de apoyo propias atribuidas a Bimbo |
+| un trabajo seguro e incluyente | cero accidentes, bien pagado, paridad salarial (el informe no lo promete) |
 
 **Marcadores en el copy:** `[por confirmar]` en cifras sin fuente única; `[cita de muestra]` en textos atribuidos a personas; `[enlace pendiente]` cuando no conocemos la URL definitiva. En los wireframes aparecen resaltados.

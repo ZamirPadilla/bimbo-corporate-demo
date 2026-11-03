@@ -46,6 +46,9 @@ Criterio: cuando las páginas del sitio no coinciden, manda el último reporte p
 - Productos: más de 9,000 (Inversionistas dice «más de 10mil»).
 - Creencias: «Somos operadores eficaces», «Competimos y ganamos con calidad superior» y «Trascendemos y permanecemos en el tiempo» (el sitio dice «eficientes» y acorta las otras dos).
 - Misión y propósito: «Alimentos deliciosos y nutritivos en las manos de todos» y «Alimentamos un mundo mejor».
-- Energía: el 100% renovable es de la electricidad, no de toda la energía; el anexo de datos reporta 99% bajo criterios RE100.
+- Electricidad: se publica 99% renovable bajo los criterios de RE100 (anexo de Datos de Desempeño, p. 27). La carta dice «100%*», con asterisco «en proceso de validación», porque el 1% restante se respalda con certificados de otros mercados. Es electricidad, no toda la energía.
+- Deuda: el informe habla de «certificados bursátiles vinculados a la sustentabilidad» (p. 169); el copy dice «deuda vinculada a la sustentabilidad», nunca «bonos verdes» ni «bonos sustentables».
+- Sustentabilidad: la meta de 2025 de emisiones de la cadena de valor no se alcanzó y la validación ante SBTi está en pausa; la meta de ventas con 3.5 estrellas quedó en 48% contra 50%. El copy habla de camino y lo dice abiertamente, como el informe.
+- Creencias: se publican solo los siete títulos oficiales; se quitaron las frases de apoyo que habíamos redactado.
 - Emisiones: la meta es «cero emisiones de carbono» o «emisiones cero» en 2050; el informe nunca dice «netas».
 - Las acciones también cotizan en Estados Unidos con ADR Nivel 1 (BMBOY).

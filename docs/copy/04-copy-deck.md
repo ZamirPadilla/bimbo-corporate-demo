@@ -7,18 +7,18 @@ Wireframes navegables: `npm run dev` y abrir `/wireframes`.
 ## Inicio · `/`
 
 - **title** (40 car.): Grupo Bimbo | Alimentamos un mundo mejor
-- **description** (124 car.): La panificadora más grande del mundo: más de 100 marcas, 39 países de operación y una estrategia pública de sustentabilidad.
+- **description** (135 car.): La empresa de panificación más grande del mundo: más de 100 marcas, operación directa en 39 países y metas públicas de sustentabilidad.
 - **Audiencias:** todas
 
 ### hero · hero
 
 **Rótulo:** Grupo Bimbo · desde 1945  
 **Titular:** Alimentamos un mundo mejor  
-**Bajada:** Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 102 países.  
+**Bajada:** Somos la empresa de panificación más grande del mundo y un jugador relevante en botanas. Hacemos pan, pan dulce, pastelitos, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 102.  
 **Botones:** Explora nuestras marcas · Conoce nuestra estrategia  
 **Visual:** Video a sangre: del horno a la mesa, sin audio. Póster inmediato; versión vertical para teléfono. Sin carrusel automático.  
 
-> Nota de diseño: Reemplaza el carrusel actual (alt vacío, controles en dos idiomas, sin pausa visible). El H1 es el propósito, no «Últimas noticias».
+> Nota de diseño: Reemplaza el carrusel actual (alt vacío, controles en dos idiomas, sin pausa visible). El H1 es el propósito, no «Últimas noticias». La bajada sigue la frase oficial del reporte 3T26 («empresa de panificación líder y más grande del mundo y un jugador relevante en snacks»); «hornear» no aplica a las botanas.
 
 ### accesos · distribuidor
 
@@ -51,11 +51,11 @@ Wireframes navegables: `npm run dev` y abrir `/wireframes`.
 **Rótulo:** Nuestra misión  
 **Título:** Alimentos deliciosos y nutritivos en las manos de todos
 
-Esa es nuestra misión desde que seis socios abrieron una panadería en la colonia Santa María Insurgentes, en 1945. Hoy la cumplimos con más de 9,000 productos y una filosofía que no ha cambiado: ser una empresa sustentable, altamente productiva y plenamente humana.
+Esa es nuestra misión desde 1945, cuando seis emprendedores encabezados por Lorenzo Servitje abrieron una panadería en la colonia Santa María Insurgentes, con 34 colaboradores y cuatro productos. Hoy son más de 9,000, y la filosofía es la misma: ser una empresa sustentable, altamente productiva y plenamente humana.
 
 **Botón:** Conoce quiénes somos
 
-> Nota de diseño: Texto grande que se revela por palabras con el scroll.
+> Nota de diseño: Texto grande que se revela por palabras con el scroll. Fundación, 34 colaboradores y cuatro productos: Informe Anual 2025, pp. 8 y 14.
 
 ### ciclo · etapas
 
@@ -63,11 +63,11 @@ Esa es nuestra misión desde que seis socios abrieron una panadería en la colon
 
 Cinco etapas, una sola operación.
 
-1. **Campo.** Trabajamos con agricultores en agricultura regenerativa. Meta: 100% de ingredientes clave en 2050.
-2. **Panaderías.** Horneamos cada día en 250 panaderías y botaneras.
-3. **Distribución.** Llevamos el pan fresco con más de 54,000 rutas y más de 1,600 centros de ventas.
-4. **Tiendas.** Desde la tienda de la esquina hasta el supermercado, en 102 países.
-5. **Tu mesa.** Llegamos con más de 100 marcas para cada momento del día.
+1. **Campo.** Trabajamos con agricultores para que el trigo, el maíz, la papa y el azúcar vengan de agricultura regenerativa. Hoy son más de 500 mil hectáreas; la meta es 100% de ingredientes clave en 2050.
+2. **Panaderías.** Producimos en 250 panaderías y botaneras de cuatro continentes.
+3. **Distribución.** Una de las redes de distribución directa más grandes del mundo: más de 54,000 rutas y más de 1,600 centros de ventas.
+4. **Tiendas.** De la tienda de la esquina al supermercado, en 102 países.
+5. **Tu mesa.** Más de 100 marcas para cada momento del día, del desayuno a la cena.
 
 > Nota de diseño: Sección «ciclo completo»: avanza sola cada 3.4 s, se pausa con el cursor y con un botón visible (WCAG 2.2.2).
 
@@ -90,15 +90,15 @@ Cinco etapas, una sola operación.
 ### sustentabilidad · tarjetas
 
 **Rótulo:** Sustentabilidad  
-**Título:** Una estrategia con metas públicas
+**Título:** Metas públicas, y cuánto llevamos
 
-En 2021 lanzamos «Alimentamos un mundo mejor», con tres pilares y una base común.
+En 2021 lanzamos nuestra estrategia de sustentabilidad, con tres pilares y una base común. Cada año publicamos lo que avanzamos y lo que nos falta.
 
-- **Para Ti.** Mejores perfiles nutrimentales, etiquetas claras y más ingredientes de origen vegetal. → *Ver Para Ti*
-- **Para la Vida.** Comunidades más fuertes y un trabajo seguro, incluyente y bien pagado. → *Ver Para la Vida*
-- **Para la Naturaleza.** Cero emisiones de carbono en 2050, cero desperdicios y agricultura regenerativa. → *Ver Para la Naturaleza*
+- **Para Ti.** Mejores perfiles nutrimentales: el 48% de nuestras ventas viene de productos con 3.5 estrellas o más en el Health Star Rating. → *Ver Para Ti*
+- **Para la Vida.** Comunidades más fuertes y un trabajo seguro e incluyente: más de 270 proyectos Buen Vecino en 2025. → *Ver Para la Vida*
+- **Para la Naturaleza.** Vamos hacia cero desperdicios, cero emisiones de carbono en 2050 y agricultura regenerativa. → *Ver Para la Naturaleza*
 
-> Nota de diseño: Los tres pilares con su nombre oficial. Reemplaza la imagen con texto incrustado y las tres anclas que hoy van al mismo lugar.
+> Nota de diseño: Los tres pilares con su nombre oficial y un dato cada uno. Tono de camino, no de logro: «vamos hacia», nunca «logramos». Se quitó «bien pagado»: el informe dice que no busca una meta fija de paridad salarial (p. 81). Reemplaza la imagen con texto incrustado y las tres anclas que hoy van al mismo lugar.
 
 ### presencia · texto
 
@@ -119,7 +119,9 @@ Y con socios estratégicos, nuestros productos llegan a 102 países.
 
 ### reconocimientos · lista
 
-**Título:** Reconocimientos 2026
+**Título:** Reconocimientos
+
+En 2025 recibimos más de 90 premios y reconocimientos. Estos son los más recientes.
 
 - Forbes · World's Best Employers 2026
 - Ethisphere · World's Most Ethical Companies, por décima vez
@@ -143,8 +145,8 @@ Y con socios estratégicos, nuestros productos llegan a 102 países.
 ### hero · hero
 
 **Rótulo:** Nosotros  
-**Titular:** Una panadería de 1945 que hoy hornea en 39 países  
-**Bajada:** Somos más de 152,000 personas con una misma forma de trabajar. Esto es lo que creemos.  
+**Titular:** Una panadería de 1945 que hoy opera en 39 países  
+**Bajada:** Somos más de 152,000 colaboradores. Esto es lo que creemos y cómo llegamos hasta aquí.  
 **Visual:** Foto de archivo de la primera panadería junto a una planta actual.  
 
 ### identidad · tarjetas
@@ -155,23 +157,23 @@ Y con socios estratégicos, nuestros productos llegan a 102 países.
 - **Misión.** Alimentos deliciosos y nutritivos en las manos de todos.
 - **Propósito.** Alimentamos un mundo mejor.
 
-> Nota de diseño: Redacción oficial del Informe Anual 2025. En el sitio actual solo existe dentro del texto alternativo de una imagen, y con otra redacción («Tener alimentos…», «alimentar un mundo mejor»).
+> Nota de diseño: Redacción oficial del Informe Anual 2025 (p. 6). En el sitio actual solo existe dentro del texto alternativo de una imagen, y con otra redacción («Tener alimentos…», «alimentar un mundo mejor»).
 
-### creencias · tarjetas
+### creencias · lista
 
 **Título:** Nuestras creencias
 
-Siete ideas que orientan cada decisión.
+Siete creencias guían cómo trabajamos.
 
-- **Valoramos a la persona.** La persona está al centro de lo que hacemos.
-- **Somos una comunidad.** Crecemos junto con quienes nos rodean.
-- **Conseguimos resultados.** Cumplimos lo que prometemos.
-- **Competimos y ganamos con calidad superior.** Buscamos ser la mejor opción para cada cliente.
-- **Somos operadores eficaces.** Cuidamos cada recurso.
-- **Actuamos con integridad.** Hacemos lo correcto aunque nadie esté viendo.
-- **Trascendemos y permanecemos en el tiempo.** Construimos para las siguientes generaciones.
+- Valoramos a la persona.
+- Somos una comunidad.
+- Conseguimos resultados.
+- Competimos y ganamos con calidad superior.
+- Somos operadores eficaces.
+- Actuamos con integridad.
+- Trascendemos y permanecemos en el tiempo.
 
-> Nota de diseño: Los siete títulos siguen la redacción del Informe Anual 2025 (el sitio dice «operadores eficientes»; el informe, «eficaces»). Las frases de apoyo son propuesta y deben validarse con el área de Cultura.
+> Nota de diseño: Redacción literal del Informe Anual 2025 (p. 6); el sitio actual dice «operadores eficientes». Se quitaron las frases de apoyo que habíamos redactado: si Bimbo quiere una explicación por creencia, la escribe o valida el área de Cultura.
 
 ### cifras · cifras
 
@@ -183,12 +185,13 @@ Siete ideas que orientan cada decisión.
 - Centros de ventas: Más de 1,600
 - Rutas de distribución: Más de 54,000
 - Productos: Más de 9,000
+- Ventas anuales: Más de US$23 mil millones
 
 ### categorias · lista
 
-**Título:** Qué horneamos
+**Título:** Qué hacemos
 
-- Pan de caja
+- Pan de caja y artesanal
 - Bollería
 - Pan dulce
 - Pastelitos
@@ -203,14 +206,14 @@ Siete ideas que orientan cada decisión.
 
 **Título:** Más de 80 años en ocho eras
 
-- **1945–1950 · Una panadería y un pan envuelto en celofán.** Seis socios fundan Bimbo en Santa María Insurgentes y lanzan un pan de caja envuelto, novedad en la Ciudad de México.
+- **1945–1950 · Una panadería y un pan envuelto en celofán.** Seis emprendedores encabezados por Lorenzo Servitje fundan Panificación Bimbo con 34 colaboradores y lanzan un pan de caja envuelto, novedad en la Ciudad de México.
 - **1950–1960 · Nace Marinela.** Llegan las donas, los Bimbollos, las Medias Noches y los primeros pastelitos.
 - **1960–1970 · La primera gran reorganización.** Lorenzo Servitje asume la Dirección General y la empresa se profesionaliza.
 - **1970–1980 · La planta más grande de América Latina.** Construimos la panificadora más grande de la región y una de las diez más grandes del mundo.
 - **1980–1990 · Empresa pública.** El 15% de las acciones empieza a cotizar en la Bolsa Mexicana de Valores.
 - **1990–2000 · Rumbo a Latinoamérica.** La Organización Latinoamérica lleva nuestras panaderías más allá de México.
 - **2000–2010 · Un nuevo continente.** Llegamos a Asia, a la costa oeste de Estados Unidos y sumamos El Globo y Chocolates La Corona.
-- **2010–hoy · La panificadora más grande del mundo.** Sumamos operaciones en Norteamérica, Europa, África y Asia, lanzamos la estrategia de sustentabilidad y la meta de cero emisiones de carbono.
+- **2010–hoy · La panificadora más grande del mundo.** Sumamos operaciones en Norteamérica, Europa, África y Asia y en 2021 lanzamos nuestra estrategia de sustentabilidad. En 2025 cumplimos 80 años y abrimos MiBIMBO, un museo interactivo en la Ciudad de México.
 
 > Nota de diseño: Línea por eras con fotos de archivo. Cada era abre las historias que hoy existen como notas sueltas.
 
@@ -229,10 +232,11 @@ Siete ideas que orientan cada decisión.
 
 **Título:** Liderazgo
 
-- **Alejandro Rodríguez Bas.** Director General desde noviembre de 2025. Antes dirigió Barcel Global.
-- **Comité Directivo.** [integrantes por migrar desde Inversionistas › Gobierno corporativo]
+- **Daniel Servitje.** Presidente Ejecutivo de Grupo Bimbo.
+- **Alejandro Rodríguez Bas.** Director General desde noviembre de 2025. Encabeza el Comité Directivo; antes dirigió Barcel Global.
+- **Comité Directivo.** Diego Gaxiola Cuevas (Administración y Finanzas), Juan Muldoon Barrena (Personas), Raúl Ignacio Obregón Servitje y Fernando Lerdo de Tejada Servitje (directores generales adjuntos), José Manuel González Guzmán (Bimbo México), Jorge Guillermo Zárate Lupercio (Cadena de Suministro), Greg Kohersen (Bimbo Bakeries USA) y Alejandro Pintado (Barcel México).
 
-> Nota de diseño: Semblanzas profesionales, sin datos personales.
+> Nota de diseño: Cargos del Informe Anual 2025 (pp. 13 y 142); confirmar vigencia con Bimbo antes de publicar. Semblanzas profesionales y fotos por migrar, sin datos personales.
 
 ### cta · cta
 
@@ -262,6 +266,16 @@ Filtros: Región, País, Categoría. Muestra: Bimbo, Marinela, Barcel, Takis, T�
 
 > Nota de diseño: Alimentado por un catálogo único de marcas (nombre, logo, categorías, países, URL verificada). Hoy 10 de 21 marcas de México no enlazan a su sitio.
 
+### innovacion · texto
+
+**Rótulo:** Innovación  
+**Título:** Marcas que crecen y viajan
+
+En 2025 nuestro índice de innovación llegó a más de 12%, con lanzamientos como Artesano Masa Madre en México y Latinoamérica, el pan brioche de Plus Vita en Brasil y formatos más accesibles, como la media hogaza.
+Cero Cero ya está en 16 países, y el Pan Blanco y el Pan Integral Bimbo llegan a 12.
+
+> Nota de diseño: Carta del Director General, Informe Anual 2025 (pp. 9–10). Fotos de producto sin recortar el empaque ni el logo.
+
 ### regiones · regiones
 
 **Título:** Dónde operamos
@@ -284,14 +298,14 @@ Filtros: Región, País, Categoría. Muestra: Bimbo, Marinela, Barcel, Takis, T�
 ## Sustentabilidad · `/sustentabilidad`
 
 - **title** (29 car.): Sustentabilidad | Grupo Bimbo
-- **description** (126 car.): Nuestra estrategia «Alimentamos un mundo mejor»: metas públicas para Para Ti, Para la Vida y Para la Naturaleza, y cómo vamos.
+- **description** (144 car.): Nuestra estrategia de sustentabilidad: metas públicas para Para Ti, Para la Vida y Para la Naturaleza, lo que hemos avanzado y lo que nos falta.
 - **Audiencias:** comunidad, inversionistas, prensa
 
 ### hero · hero
 
 **Rótulo:** Sustentabilidad  
-**Titular:** Alimentamos un mundo mejor: para ti, para la vida y para la naturaleza  
-**Bajada:** En 2021 fijamos metas públicas. Aquí está lo que nos propusimos y cuánto hemos avanzado.  
+**Titular:** Un camino con metas públicas  
+**Bajada:** Para ti, para la vida y para la naturaleza. En 2021 nos pusimos metas con fecha; cada año publicamos cuánto avanzamos, qué cumplimos y qué todavía no.  
 
 ### origen · texto
 
@@ -311,16 +325,29 @@ Desde el inicio quisimos ser una empresa sustentable, altamente productiva y ple
 
 ### metas · cifras
 
-**Título:** Metas y avance
+**Título:** Cómo vamos
 
-- Meta de cero emisiones de carbono: 2050
-- Meta de agricultura regenerativa: 100% de ingredientes clave en 2050
+- Ventas de productos con 3.5 estrellas o más (Health Star Rating): 48%
+- Consumo diario sin colorantes artificiales: 100%
+- Proyectos Buen Vecino: Más de 270
+- Mujeres en posiciones de liderazgo: Más del 30%
 - Hectáreas con agricultura regenerativa: Más de 500 mil
-- Empaques reciclables: 99%
-- Electricidad de fuentes renovables: 100%
+- Empaques diseñados para ser reciclables: 99%
+- Electricidad renovable según los criterios de RE100: 99%
+- Reúso de agua tratada en servicios: 100%
 - Vehículos eléctricos: Más de 4,000
 
-> Nota de diseño: Avances del Informe Anual 2025. «100%» es de la electricidad, no de toda la energía: así debe decirse en el texto y en los metadatos.
+> Nota de diseño: Avances del Informe Anual 2025, cada uno con su alcance en la etiqueta: electricidad (no toda la energía), agua de servicios, empaques diseñados para ser reciclables, consumo diario. Agrupar por pilar: Para Ti (3), Para la Vida (2), Para la Naturaleza (4).
+
+### pendientes · texto
+
+**Rótulo:** Lo que falta  
+**Título:** Lo que todavía no logramos
+
+No alcanzamos la meta de 2025 para reducir las emisiones de nuestra cadena de valor. Estamos recalculando nuestra línea base, y mientras terminamos pedimos pausar la validación de nuestros objetivos ante la iniciativa Science Based Targets. La meta no cambia: cero emisiones de carbono en 2050.
+En nutrición nos propusimos que en 2025 el 50% de nuestras ventas viniera de productos con 3.5 estrellas o más. Llegamos a 48% y esperamos cerrar la diferencia en 2026.
+
+> Nota de diseño: Pedido por la revisión del supervisor (3 nov 2026): Sustentabilidad habla de camino, no de logro. Bimbo lo reporta abiertamente (Informe Anual 2025, pp. 31–32, 101, 109 y 169). Validar con Bimbo el tono de esta sección antes de publicar.
 
 ### cimientos · lista
 
@@ -337,12 +364,21 @@ Lo que sostiene a los tres pilares.
 
 **Título:** Reportes y descargas
 
-- Informe Anual 2025 «Celebramos» · 182 páginas · PDF
+- Informe Anual Integrado 2025 «Celebramos lo que nos une» · 182 páginas · PDF
+- Datos de Desempeño 2025 · Anexo del informe · PDF
 - Análisis de doble materialidad 2025 · PDF
 - Planes de acción de agricultura y aceite de palma · 2023–2025 · PDF
 - Contribución a los ODS · PDF
 
 > Nota de diseño: Concentra el Centro de Descargas. Cada archivo muestra año y peso.
+
+### contacto · texto
+
+**Título:** ¿Preguntas sobre sustentabilidad?
+
+Escríbenos a sustentabilidad@grupobimbo.com.
+
+> Nota de diseño: Correo del Informe Anual 2025 (p. 182).
 
 ## Inversionistas · `/inversionistas`
 
@@ -362,9 +398,21 @@ Lo que sostiene a los tres pilares.
 **Título:** La compañía en cifras
 
 - Ventas netas últimos 12 meses: Ps. 420,168 millones
+- Ventas anuales: Más de US$23 mil millones
 - Países donde operamos: 39
 - Rutas de distribución: Más de 54,000
 - Productos: Más de 9,000
+
+### anio · texto
+
+**Rótulo:** 2025 en breve  
+**Título:** Ventas y UAFIDA Ajustada récord en nuestro 80 aniversario
+
+Cerramos 2025 con ventas netas de Ps. 426,952 millones y una UAFIDA Ajustada de Ps. 59,456 millones, ambas récord. Redujimos el apalancamiento a 2.7 veces y regresamos Ps. 5,569 millones a nuestros accionistas en dividendos y recompra de acciones.
+
+**Botón:** Leer el Informe Anual 2025
+
+> Nota de diseño: Informe Anual 2025 (pp. 7 y 11). Se actualiza con cada informe anual; los trimestres van en «Reportes trimestrales».
 
 ### tesis · tarjetas
 
@@ -391,15 +439,18 @@ Lo que sostiene a los tres pilares.
 | Reportes BMV | Información entregada a la Bolsa Mexicana de Valores. | Ver reportes BMV |
 | Eventos y presentaciones | Conferencias de resultados y presentaciones. | Ver eventos |
 | Gobierno corporativo | Consejo, comités, asambleas y código. | Ver gobierno corporativo |
-| Financiamiento sustentable | Marco y reportes de bonos sustentables. | Ver el marco |
+| Deuda vinculada a la sustentabilidad | Certificados bursátiles ligados a metas de emisiones y su avance. | Ver los instrumentos |
 
-> Nota de diseño: CbCR solo existe en inglés: se enlaza con la etiqueta «(en inglés)».
+> Nota de diseño: CbCR solo existe en inglés: se enlaza con la etiqueta «(en inglés)». «Deuda vinculada a la sustentabilidad» sigue al informe («certificados bursátiles vinculados a la sustentabilidad», p. 169); no usar «bonos verdes» ni «bonos sustentables». Confirmar el término con Relación con Inversionistas.
 
 ### contacto · texto
 
 **Título:** Relación con Inversionistas
 
-[correo y teléfono por migrar desde Inversionistas › Contacto]
+Escríbenos a ir@grupobimbo.com.
+[teléfono por migrar desde Inversionistas › Contacto]
+
+> Nota de diseño: Correo del Informe Anual 2025 (p. 182).
 
 ## Prensa · `/prensa`
 
@@ -443,7 +494,7 @@ Lo que sostiene a los tres pilares.
 
 **Rótulo:** Carreras  
 **Titular:** Haz carrera en la panificadora más grande del mundo  
-**Bajada:** Somos más de 152,000 personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.  
+**Bajada:** Somos más de 152,000 colaboradores en 39 países. «Valoramos a la persona» es la primera de nuestras creencias, y la persona es el eje de nuestras decisiones.  
 **Botones:** Buscar vacantes en mi país  
 
 ### cifras · cifras
@@ -453,6 +504,19 @@ Lo que sostiene a los tres pilares.
 - Colaboradores: Más de 152,000
 - Países donde operamos: 39
 - Mujeres en posiciones de liderazgo: Más del 30%
+- Horas de capacitación por colaborador: 28
+
+### cuidado · tarjetas
+
+**Título:** Cómo cuidamos a nuestra gente
+
+El cuidado de nuestra gente es la base de todo lo que hacemos.
+
+- **Pertenencia.** Queremos que cada persona se sienta valorada, respetada y libre de ser auténtica.
+- **Formación.** 28 horas de capacitación al año en promedio, con GB University y programas de liderazgo.
+- **Seguridad y bienestar.** Nuestros líderes siguen cuatro verbos: cuido, corrijo, capacito y celebro.
+
+> Nota de diseño: Frases del Informe Anual 2025 (pp. 62, 64, 71 y 75). No prometer «cero accidentes» ni paridad salarial.
 
 ### vacantes · distribuidor
 
@@ -513,6 +577,7 @@ Grupo Bimbo no solicita ningún tipo de pago durante el proceso de selección. S
 | Inversionistas | Relación con Inversionistas. | Ir a Inversionistas |
 | Prensa | Solicitudes de medios. | Ir a Prensa |
 | Candidatos | Vacantes y procesos de selección. | Ir a Carreras |
+| Organizaciones sociales | Propuestas de inversión social y donativos. | Inversionsocial@grupobimbo.com |
 | Visitas | Visitas virtuales y escolares a nuestras panaderías. | Agendar una visita |
 
 ### comenta · texto
@@ -521,11 +586,12 @@ Grupo Bimbo no solicita ningún tipo de pago durante el proceso de selección. S
 **Título:** Comenta: reporta una posible falta al Código de Ética
 
 Para colaboradores y proveedores. Los reportes son confidenciales: no revelamos la identidad de quien reporta ni de las personas involucradas.
+Puedes reportar por teléfono las 24 horas (según tu país), en comenta@grupobimbo.com o en el sitio de Comenta.
 Comenta no atiende quejas de producto, servicio o pagos; para eso, escribe a atención a consumidores.
 
 **Botón:** Reportar en Comenta
 
-> Nota de diseño: Hoy Comenta es un botón naranja destacado en el pie, sin explicación.
+> Nota de diseño: Hoy Comenta es un botón naranja destacado en el pie, sin explicación. Canales del Informe Anual 2025 (p. 167).
 
 ### fraude · aviso
 

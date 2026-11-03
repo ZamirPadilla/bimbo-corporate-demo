@@ -22,11 +22,11 @@
 
 - **Inicio** · `/wireframes/inicio` · 11 secciones
 - **Nosotros** · `/wireframes/nosotros` · 9 secciones
-- **Marcas** · `/wireframes/marcas` · 4 secciones
-- **Sustentabilidad** · `/wireframes/sustentabilidad` · 6 secciones
-- **Inversionistas** · `/wireframes/inversionistas` · 5 secciones
+- **Marcas** · `/wireframes/marcas` · 5 secciones
+- **Sustentabilidad** · `/wireframes/sustentabilidad` · 8 secciones
+- **Inversionistas** · `/wireframes/inversionistas` · 6 secciones
 - **Prensa** · `/wireframes/prensa` · 4 secciones
-- **Carreras** · `/wireframes/carreras` · 5 secciones
+- **Carreras** · `/wireframes/carreras` · 6 secciones
 - **Contacto** · `/wireframes/contacto` · 5 secciones
 
 ## Decisiones tomadas
@@ -55,7 +55,7 @@ El benchmark de referencias visuales está en [benchmark/README.md](benchmark/RE
 
 Objetivo de la propuesta en móvil: rendimiento de 90 o más y contenido principal en menos de 2.5 s.
 
-## Dudas vigentes (15)
+## Dudas vigentes (18)
 
 | Tema | Pregunta | A quién |
 |---|---|---|
@@ -64,10 +64,13 @@ Objetivo de la propuesta en móvil: rendimiento de 90 o más y contenido princip
 | Contacto | Teléfono corporativo que se publica. | Comunicación |
 | Contacto | Canal para clientes y distribuidores. | Comercial |
 | Prensa | Correo y responsable de prensa. | Comunicación |
-| Inversionistas | Correo y teléfono de Relación con Inversionistas (migrar de la página actual). | Relación con Inversionistas |
+| Inversionistas | Teléfono de Relación con Inversionistas (el correo ir@grupobimbo.com sale del Informe Anual 2025). | Relación con Inversionistas |
+| Inversionistas | ¿«Deuda vinculada a la sustentabilidad» es el término correcto para los certificados Bimbo 23L y 23-2L? | Relación con Inversionistas |
+| Sustentabilidad | Electricidad renovable: ¿se publica 99% (criterio RE100) o «respaldamos el 100%» con la explicación de los certificados? La demo usa 99%. | Sustentabilidad |
+| Sustentabilidad | ¿Se publica la sección «Lo que todavía no logramos» (alcance 3, pausa ante SBTi, meta de nutrición) y con ese tono? | Sustentabilidad y Comunicación |
 | Carreras | Bolsas de trabajo de México, Estados Unidos y Europa. | Talento |
-| Nosotros | Semblanzas de los fundadores e integrantes del Comité Directivo. | Comunicación |
-| Nosotros | Frases de apoyo de las siete creencias (propuesta nuestra). | Cultura |
+| Nosotros | Semblanzas de los fundadores y vigencia del Comité Directivo que publica el Informe Anual 2025. | Comunicación |
+| Nosotros | ¿Quieren una explicación breve por creencia? La demo publica solo los siete títulos oficiales. | Cultura |
 | Reconocimientos | Año del reconocimiento de TIME. | Comunicación |
 | Marcas | Catálogo de marcas con categorías, países y sitio oficial de cada una. | Marketing |
 | Marcas | ¿Ricolino sigue en el portafolio? La demo original la incluía y el sitio actual no la muestra. | Marketing |
@@ -75,7 +78,7 @@ Objetivo de la propuesta en móvil: rendimiento de 90 o más y contenido princip
 | Idiomas | Copy en inglés: se redactará a partir del español una vez aprobado. | Equipo de la propuesta |
 | Media | Logotipos en vector, fotos y video con derechos de uso para el diseño. | Comunicación |
 
-### Marcadores en el copy (14)
+### Marcadores en el copy (12)
 
 - Inicio › reconocimientos: `[año por confirmar]`
 - Nosotros › fundadores: `[semblanza por migrar]`
@@ -84,8 +87,6 @@ Objetivo de la propuesta en móvil: rendimiento de 90 o más y contenido princip
 - Nosotros › fundadores: `[semblanza por migrar]`
 - Nosotros › fundadores: `[semblanza por migrar]`
 - Nosotros › fundadores: `[semblanza por migrar]`
-- Nosotros › liderazgo: `[integrantes por migrar desde Inversionistas › Gobierno corporativo]`
-- Inversionistas › contacto: `[correo y teléfono por migrar desde Inversionistas › Contacto]`
 - Prensa › contacto: `[correo de prensa por confirmar]`
 - Carreras › vacantes: `[enlace pendiente]`
 - Carreras › vacantes: `[enlace pendiente]`

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { cifras } from "@/content/cifras";
+import { cifras, type Cifra } from "@/content/cifras";
 import type { Cta, Seccion as TSeccion } from "@/content/tipos";
 import Texto from "./Texto";
 
@@ -113,14 +113,14 @@ function Contenido({ s, primera }: { s: TSeccion; primera: boolean }) {
           {s.titulo && <Titulo>{s.titulo}</Titulo>}
           <dl className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-6">
             {s.ids.map((id) => {
-              const c = cifras[id];
+              const c: Cifra = cifras[id];
               return (
                 <div key={id} className="border-t border-neutral-300 pt-4">
                   <dt className="text-xs text-neutral-500">{c.etiqueta}</dt>
                   <dd className="mt-1 text-2xl font-bold text-neutral-900">
                     <Texto>{`{${id}}`}</Texto>
                   </dd>
-                  {"corte" in c && c.corte && <dd className="mt-1 text-[11px] text-neutral-400">Corte: {c.corte}</dd>}
+                  {c.corte ? <dd className="mt-1 text-[11px] text-neutral-400">Corte: {c.corte}</dd> : null}
                 </div>
               );
             })}

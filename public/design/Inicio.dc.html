@@ -72,8 +72,9 @@ a:hover{color:#0F2F51}
  [data-cm-dato] > div:first-child{font-size:clamp(44px, 12vw, 64px) !important}
  [data-cm-velo]{background:linear-gradient(to top, rgba(15,47,81,.92) 0%, rgba(15,47,81,.45) 42%, rgba(15,47,81,0) 62%), linear-gradient(to bottom, rgba(15,47,81,.65) 0%, rgba(15,47,81,0) 32%) !important}
 }
-/* 07b Mapa: arriba, una banda limpia para la Nav; el globo llena el resto de la pantalla hasta la cinta */
-@media (min-width: 768px){ [data-globo-raiz] [data-globo]{height:calc(100svh - var(--globo-top)) !important} }
+/* 07b Mapa: arriba, una banda limpia para la Nav; el globo llena el resto de la pantalla hasta la cinta, pero nunca
+   menos de 56rem: la parada «El mundo» (la de más datos) mide 53.8rem con su relleno, y así no toca la cinta */
+@media (min-width: 768px){ [data-globo-raiz] [data-globo]{height:max(calc(100svh - var(--globo-top)), 56rem) !important} }
 @media (max-width: 600px){ [data-bento] > *{grid-column:1 / -1 !important} [data-bento]{grid-template-columns:1fr !important} }
 </style>
 </helmet>

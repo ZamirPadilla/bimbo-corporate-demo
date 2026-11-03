@@ -106,11 +106,8 @@ La demo de este repositorio usa cifras y textos que no salen de fuentes pública
 | Footer | Prolongación Paseo de la Reforma 1000 | Las FAQ del sitio dan otra dirección (Alfonso Nápoles Gándara 1117, Santa Fe). Por confirmar cuál publicar |
 | Pilares | Bienestar, Planeta, Comunidad | Los pilares oficiales son Para Ti, Para la Vida y Para la Naturaleza, más los Cimientos |
 
-## 9 · Decisiones que necesitamos antes del copy final
+## 9 · Decisiones
 
-1. **Países totales:** ¿96 o 102? Proponemos 102, la cifra de la página de inversionistas, la más reciente.
-2. **Panaderías:** ¿251 «panaderías y plantas» o 250 «panaderías y botaneras»? Proponemos «más de 250» hasta confirmar.
-3. **Colaboradores:** ¿152 mil o 153 mil, y con qué fecha de corte?
-4. **Dirección corporativa** que se publica.
-5. **Regiones** para Marcas y Carreras: ¿las del informe anual?
-6. **Nutrición** como página propia o dentro de Para Ti.
+Las seis decisiones que este documento dejaba abiertas se resolvieron el 2 de noviembre de 2026 con el último reporte publicado, el **Informe Anual 2025** (septiembre de 2026). Detalle en [05-decisiones.md](05-decisiones.md).
+
+El informe confirma que el sitio actual también se contradice con su propio reporte: dice 96 y 102 países (el informe, 93), 1,600 centros de ventas (1,700), más de 10 mil productos (9,000) y «operadores eficientes» donde la creencia oficial dice «eficaces».

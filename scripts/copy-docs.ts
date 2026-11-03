@@ -5,6 +5,7 @@ import { cifras, porConfirmar, type Cifra } from "../content/cifras";
 import { paginas } from "../content/paginas";
 import { plano } from "../content/resolver";
 import type { Seccion } from "../content/tipos";
+import { benchmark, correccionesDelInforme, decisiones, documentos, dudas, estado, fuentes, marcadoresPendientes } from "../content/indice";
 
 const AVISO = "> Generado por `npm run copy:docs` desde `content/`. No editar a mano: editar `content/paginas.ts` o `content/cifras.ts`.\n";
 
@@ -17,7 +18,7 @@ function cifrasMd() {
     "# Fuente única de cifras",
     "",
     AVISO,
-    `${Object.keys(cifras).length} cifras; ${porConfirmar.length} por confirmar. Fuente: sitio público grupobimbo.com, leído el 2 de noviembre de 2026.`,
+    `${Object.keys(cifras).length} cifras; ${porConfirmar.length} por confirmar. Fuentes: Informe Anual 2025 y sitio público grupobimbo.com, leídos el 2 de noviembre de 2026.`,
     "",
     "| Cifra | Valor propuesto | Estado | Dónde aparece hoy | Nota |",
     "|---|---|---|---|---|",
@@ -107,6 +108,34 @@ function deckMd() {
   return out.join("\n");
 }
 
+function decisionesMd() {
+  const out = ["# Decisiones tomadas", "", AVISO, `Criterio: cuando las páginas del sitio no coinciden, manda el último reporte publicado, el Informe Anual 2025 (publicado en septiembre de 2026, cifras al cierre de 2025). Decidido el ${estado.actualizado}.`, ""];
+  decisiones.forEach((d, i) => out.push(`## ${i + 1}. ${d.pregunta}`, "", `**Decisión:** ${d.decision}  `, `**Fuente:** ${d.fuente}  `, `**Efecto:** ${d.efecto}`, ""));
+  out.push("## Otras correcciones que trajo el informe", "", ...correccionesDelInforme.map((c) => `- ${c}`), "");
+  return out.join("\n");
+}
+
+function indiceMd() {
+  const fmt = (n: number | null, suf = "") => (n === null ? "n/c" : `${n}${suf}`);
+  const marc = marcadoresPendientes();
+  return [
+    "# Índice de la demo", "", AVISO,
+    `**Estado:** ${estado.etapa} · Actualizado el ${estado.actualizado} · Rama \`${estado.rama}\` · [PR](${estado.pr}) · Versión navegable: \`npm run dev\` y abrir \`/demo\`.`, "",
+    "> Propuesta de sitio corporativo. No es el sitio oficial ni está afiliada a Grupo Bimbo.", "",
+    "## Documentación", "", ...documentos.map((d) => `- [${d.titulo}](${d.ruta.replace("docs/", "")}): ${d.descripcion}`), "",
+    "## Wireframes", "", ...paginas.map((p) => `- **${p.nombre}** · \`/wireframes/${p.slug}\` · ${p.secciones.length} secciones`), "",
+    "## Decisiones tomadas", "", "| Pregunta | Decisión | Fuente |", "|---|---|---|", ...decisiones.map((d) => `| ${d.pregunta} | ${d.decision} | ${d.fuente} |`), "",
+    "## Benchmark", "", benchmark.nota, "", "| Sitio | Móvil | Escritorio | Contenido principal en móvil | Peso | Peticiones |", "|---|---:|---:|---:|---:|---:|",
+    ...benchmark.filas.map((f) => `| ${f.sitio}${"nota" in f && f.nota ? ` (${f.nota})` : ""} | ${fmt(f.movil)} | ${fmt(f.escritorio)} | ${fmt(f.lcpMovil, " s")} | ${fmt(f.pesoMb, " MB")} | ${fmt(f.peticiones)} |`),
+    "", benchmark.metas, "",
+    `## Dudas vigentes (${dudas.length})`, "", "| Tema | Pregunta | A quién |", "|---|---|---|", ...dudas.map((d) => `| ${d.tema} | ${d.pregunta} | ${d.quien} |`), "",
+    `### Marcadores en el copy (${marc.length})`, "", ...marc.map((m) => `- ${m.pagina} › ${m.seccion}: \`${m.marcador}\``), "",
+    "## Fuentes", "", ...fuentes.map((f) => `- [${f.titulo}](${f.url})`), "",
+  ].join("\n");
+}
+
+writeFileSync("docs/copy/05-decisiones.md", decisionesMd());
+writeFileSync("docs/INDICE.md", indiceMd());
 writeFileSync("docs/copy/02-fuente-unica-de-cifras.md", cifrasMd());
 writeFileSync("docs/copy/04-copy-deck.md", deckMd());
-console.log("docs/copy/02-fuente-unica-de-cifras.md y docs/copy/04-copy-deck.md generados");
+console.log("docs/INDICE.md y docs/copy/02, 04 y 05 generados");

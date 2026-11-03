@@ -14,7 +14,7 @@ Wireframes navegables: `npm run dev` y abrir `/wireframes`.
 
 **Rótulo:** Grupo Bimbo · desde 1945  
 **Titular:** Alimentamos un mundo mejor  
-**Bajada:** Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 102 [por confirmar] países.  
+**Bajada:** Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 93 países.  
 **Botones:** Explora nuestras marcas · Conoce nuestra estrategia  
 **Visual:** Video a sangre: del horno a la mesa, sin audio. Póster inmediato; versión vertical para teléfono. Sin carrusel automático.  
 
@@ -40,9 +40,9 @@ Wireframes navegables: `npm run dev` y abrir `/wireframes`.
 **Título:** Bimbo en cifras
 
 - Países donde operamos: 39
-- Panaderías y plantas: Más de 250 [por confirmar]
+- Panaderías y plantas: 249
 - Marcas: Más de 100
-- Colaboradores: Más de 152,000 [por confirmar]
+- Colaboradores: Más de 153,000
 
 > Nota de diseño: Contadores al entrar en pantalla. Cada cifra muestra su fecha de corte; todas salen de content/cifras.ts.
 
@@ -51,7 +51,7 @@ Wireframes navegables: `npm run dev` y abrir `/wireframes`.
 **Rótulo:** Nuestra misión  
 **Título:** Alimentos deliciosos y nutritivos en las manos de todos
 
-Esa es nuestra misión desde que seis socios abrieron una panadería en la colonia Santa María Insurgentes, en 1945. Hoy la cumplimos con más de 10,000 productos y una filosofía que no ha cambiado: ser una empresa sustentable, altamente productiva y plenamente humana.
+Esa es nuestra misión desde que seis socios abrieron una panadería en la colonia Santa María Insurgentes, en 1945. Hoy la cumplimos con más de 9,000 productos y una filosofía que no ha cambiado: ser una empresa sustentable, altamente productiva y plenamente humana.
 
 **Botón:** Conoce quiénes somos
 
@@ -64,9 +64,9 @@ Esa es nuestra misión desde que seis socios abrieron una panadería en la colon
 Cinco etapas, una sola operación.
 
 1. **Campo.** Trabajamos con agricultores en agricultura regenerativa. Meta: 100% de ingredientes clave en 2050.
-2. **Panaderías.** Horneamos cada día en más de 250 [por confirmar] panaderías y plantas.
-3. **Distribución.** Llevamos el pan fresco con más de 54,000 rutas y más de 1,600 centros de ventas.
-4. **Tiendas.** Desde la tienda de la esquina hasta el supermercado, en 102 [por confirmar] países.
+2. **Panaderías.** Horneamos cada día en 249 panaderías y plantas.
+3. **Distribución.** Llevamos el pan fresco con más de 54,000 rutas y más de 1,700 centros de ventas.
+4. **Tiendas.** Desde la tienda de la esquina hasta el supermercado, en 93 países.
 5. **Tu mesa.** Llegamos con más de 100 marcas para cada momento del día.
 
 > Nota de diseño: Sección «ciclo completo»: avanza sola cada 3.4 s, se pausa con el cursor y con un botón visible (WCAG 2.2.2).
@@ -105,7 +105,7 @@ En 2021 lanzamos «Alimentamos un mundo mejor», con tres pilares y una base com
 **Rótulo:** Presencia  
 **Título:** Operamos en 39 países de cuatro continentes
 
-Y con socios estratégicos, nuestros productos llegan a 102 [por confirmar] países.
+Y con socios estratégicos, nuestros productos llegan a 93 países.
 
 **Botón:** Ver países y marcas
 
@@ -144,7 +144,7 @@ Y con socios estratégicos, nuestros productos llegan a 102 [por confirmar] paí
 
 **Rótulo:** Nosotros  
 **Titular:** Una panadería de 1945 que hoy hornea en 39 países  
-**Bajada:** Somos más de 152,000 [por confirmar] personas con una misma forma de trabajar. Esto es lo que creemos.  
+**Bajada:** Somos más de 153,000 personas con una misma forma de trabajar. Esto es lo que creemos.  
 **Visual:** Foto de archivo de la primera panadería junto a una planta actual.  
 
 ### identidad · tarjetas
@@ -152,10 +152,10 @@ Y con socios estratégicos, nuestros productos llegan a 102 [por confirmar] paí
 **Título:** Lo que nos guía
 
 - **Filosofía.** Ser una empresa sustentable, altamente productiva y plenamente humana.
-- **Misión.** Tener alimentos deliciosos y nutritivos en las manos de todos.
-- **Propósito.** Alimentar un mundo mejor.
+- **Misión.** Alimentos deliciosos y nutritivos en las manos de todos.
+- **Propósito.** Alimentamos un mundo mejor.
 
-> Nota de diseño: Texto oficial tomado del sitio actual, donde hoy solo existe dentro del texto alternativo de una imagen.
+> Nota de diseño: Redacción oficial del Informe Anual 2025. En el sitio actual solo existe dentro del texto alternativo de una imagen, y con otra redacción («Tener alimentos…», «alimentar un mundo mejor»).
 
 ### creencias · tarjetas
 
@@ -166,23 +166,23 @@ Siete ideas que orientan cada decisión.
 - **Valoramos a la persona.** La persona está al centro de lo que hacemos.
 - **Somos una comunidad.** Crecemos junto con quienes nos rodean.
 - **Conseguimos resultados.** Cumplimos lo que prometemos.
-- **Competimos y ganamos.** Buscamos ser la mejor opción para cada cliente.
-- **Somos operadores eficientes.** Cuidamos cada recurso.
+- **Competimos y ganamos con calidad superior.** Buscamos ser la mejor opción para cada cliente.
+- **Somos operadores eficaces.** Cuidamos cada recurso.
 - **Actuamos con integridad.** Hacemos lo correcto aunque nadie esté viendo.
-- **Trascendemos y permanecemos.** Construimos para las siguientes generaciones.
+- **Trascendemos y permanecemos en el tiempo.** Construimos para las siguientes generaciones.
 
-> Nota de diseño: Los siete títulos son oficiales. Las frases de apoyo son propuesta y deben validarse con el área de Cultura.
+> Nota de diseño: Los siete títulos siguen la redacción del Informe Anual 2025 (el sitio dice «operadores eficientes»; el informe, «eficaces»). Las frases de apoyo son propuesta y deben validarse con el área de Cultura.
 
 ### cifras · cifras
 
 **Título:** Hoy
 
 - Países donde operamos: 39
-- Países a los que llegan nuestros productos: 102 [por confirmar]
-- Panaderías y plantas: Más de 250 [por confirmar]
-- Centros de ventas: Más de 1,600
+- Países a los que llegan nuestros productos: 93
+- Panaderías y plantas: 249
+- Centros de ventas: Más de 1,700
 - Rutas de distribución: Más de 54,000
-- Productos: Más de 10,000
+- Productos: Más de 9,000
 
 ### categorias · lista
 
@@ -266,14 +266,14 @@ Filtros: Región, País, Categoría. Muestra: Bimbo, Marinela, Barcel, Takis, T�
 
 **Título:** Dónde operamos
 
-39 países agrupados como en nuestro informe anual [agrupación por confirmar].
+39 países, agrupados en las cuatro regiones con las que reportamos resultados.
 
 - **Norteamérica (2):** Canadá, Estados Unidos
 - **México (1):** México
-- **Latinoamérica (15):** Argentina, Brasil, Chile, Colombia, Costa Rica, Ecuador, El Salvador, Guatemala, Honduras, Nicaragua, Panamá, Paraguay, Perú, Uruguay, Venezuela
-- **Europa, Asia y África (21):** China, Corea del Sur, Croacia, Eslovenia, España, Francia, India, Italia, Kazajistán, Marruecos, Montenegro, Portugal, Reino Unido, Rumanía, Rusia, Serbia, Sudáfrica, Suiza, Túnez, Turquía, Ucrania
+- **Latinoamérica (Centro y Sudamérica) (15):** Argentina, Brasil, Chile, Colombia, Costa Rica, Ecuador, El Salvador, Guatemala, Honduras, Nicaragua, Panamá, Paraguay, Perú, Uruguay, Venezuela
+- **EAA (Europa, Asia y África) (21):** China, Corea del Sur, Croacia, Eslovenia, España, Francia, India, Italia, Kazajistán, Marruecos, Montenegro, Portugal, Reino Unido, Rumanía, Rusia, Serbia, Sudáfrica, Suiza, Túnez, Turquía, Ucrania
 
-> Nota de diseño: Corrige la agrupación actual, que pone a Colombia, Ecuador y Venezuela en «Centroamérica». Suma 39 países.
+> Nota de diseño: Regiones del Informe Anual 2025 y de los reportes trimestrales (Norteamérica, México, Latinoamérica, EAA). Corrige la agrupación actual, que pone a Colombia, Ecuador y Venezuela en «Centroamérica». Suma 39 países.
 
 ### cta · cta
 
@@ -307,7 +307,7 @@ Desde el inicio quisimos ser una empresa sustentable, altamente productiva y ple
 - **Para la Vida.** Fortalecer nuestras comunidades · Cuidar a nuestra gente. → *Ver Para la Vida*
 - **Para la Naturaleza.** Hacia cero desperdicios · Cero emisiones netas · Agricultura regenerativa. → *Ver Para la Naturaleza*
 
-> Nota de diseño: Reemplaza «8 principios básicos»: son 3 pilares con 8 temas, más 4 cimientos. La página de Nutrición se integra en Para Ti.
+> Nota de diseño: Reemplaza «8 principios básicos»: son 3 pilares con 8 temas, más 4 cimientos. Decidido: la página de Nutrición se integra en Para Ti, que es donde el Informe Anual 2025 reporta los perfiles nutrimentales; /nutricion redirige a /sustentabilidad#para-ti.
 
 ### metas · cifras
 
@@ -315,11 +315,12 @@ Desde el inicio quisimos ser una empresa sustentable, altamente productiva y ple
 
 - Meta de cero emisiones netas: 2050
 - Meta de agricultura regenerativa: 100% de ingredientes clave en 2050
-- Hectáreas con agricultura regenerativa: Más de 500 mil [por confirmar]
-- Empaques reciclables: 99% [por confirmar]
-- Energía renovable: 100% [por confirmar]
+- Hectáreas con agricultura regenerativa: Más de 500 mil
+- Empaques reciclables: 99%
+- Electricidad de fuentes renovables: 100%
+- Vehículos eléctricos: Más de 4,000
 
-> Nota de diseño: Cada meta muestra año objetivo, avance y fecha de corte. Las cifras de hectáreas, empaques y energía hoy solo aparecen en metadatos: confirmar fuente.
+> Nota de diseño: Avances del Informe Anual 2025. «100%» es de la electricidad, no de toda la energía: así debe decirse en el texto y en los metadatos.
 
 ### cimientos · lista
 
@@ -336,7 +337,7 @@ Lo que sostiene a los tres pilares.
 
 **Título:** Reportes y descargas
 
-- Informe anual integrado · [enlace pendiente] · PDF
+- Informe Anual 2025 «Celebramos» · 182 páginas · PDF
 - Análisis de doble materialidad 2025 · PDF
 - Planes de acción de agricultura y aceite de palma · 2023–2025 · PDF
 - Contribución a los ODS · PDF
@@ -353,7 +354,7 @@ Lo que sostiene a los tres pilares.
 
 **Rótulo:** Inversionistas  
 **Titular:** Resultados, reportes y gobierno corporativo  
-**Bajada:** Grupo Bimbo cotiza en la Bolsa Mexicana de Valores con la clave BIMBO.  
+**Bajada:** Cotizamos en la Bolsa Mexicana de Valores con la clave BIMBO y en el mercado extrabursátil de Estados Unidos con un programa de ADR Nivel 1, clave BMBOY.  
 **Botones:** Descarga el reporte 3T26  
 
 ### cifras · cifras
@@ -363,7 +364,7 @@ Lo que sostiene a los tres pilares.
 - Ventas netas últimos 12 meses: Ps. 420,168 millones
 - Países donde operamos: 39
 - Rutas de distribución: Más de 54,000
-- Productos: Más de 10,000
+- Productos: Más de 9,000
 
 ### tesis · tarjetas
 
@@ -442,8 +443,16 @@ Lo que sostiene a los tres pilares.
 
 **Rótulo:** Carreras  
 **Titular:** Haz carrera en la panificadora más grande del mundo  
-**Bajada:** Somos más de 152,000 [por confirmar] personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.  
+**Bajada:** Somos más de 153,000 personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.  
 **Botones:** Buscar vacantes en mi país  
+
+### cifras · cifras
+
+**Título:** Quiénes somos
+
+- Colaboradores: Más de 153,000
+- Países donde operamos: 39
+- Mujeres en posiciones de liderazgo: Más del 30%
 
 ### vacantes · distribuidor
 
@@ -530,4 +539,6 @@ No solicitamos pagos para procesos de selección ni vendemos automóviles por in
 
 **Título:** Oficinas corporativas
 
-Ciudad de México · [dirección por confirmar: hoy hay dos versiones publicadas] · Tel. +52 (55) 1638 9027
+Prolongación Paseo de la Reforma 1000, col. Peña Blanca Santa Fe, alcaldía Álvaro Obregón, C.P. 01210, Ciudad de México.
+
+> Nota de diseño: Dirección del Informe Anual 2025. Las preguntas frecuentes del sitio dan otra (Alfonso Nápoles Gándara 1117) y deben corregirse. El teléfono se publica cuando Bimbo confirme cuál.

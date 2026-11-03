@@ -1,6 +1,6 @@
 # Arquitectura del sitio y guía de voz
 
-> Propuesta. Depende de las decisiones abiertas al final de [01-revision-critica.md](01-revision-critica.md).
+> Propuesta. Las decisiones de cifras, dirección, regiones y Nutrición están en [05-decisiones.md](05-decisiones.md).
 
 ## Quién llega y a qué
 
@@ -52,7 +52,7 @@ Utilidades: Proveedores · Bimbo Ventures · BIDA (asistente) · ES / EN
 | Nutrición como página suelta | Dentro de Sustentabilidad › Para Ti | Un tema, una casa (revisión §4) |
 | «Contacto» abre un correo | Página Contacto con una ruta por audiencia | Hoy no hay forma de saber a quién escribir |
 | Comenta como botón destacado del pie | Dentro de Contacto, explicado como línea ética | Evita que lo usen para quejas de producto |
-| Regiones con Colombia, Ecuador y Venezuela en «Centroamérica» | Regiones del informe anual | Geografía correcta (revisión §3) |
+| Regiones con Colombia, Ecuador y Venezuela en «Centroamérica» | Norteamérica, México, Latinoamérica y EAA, como en el Informe Anual 2025 | Geografía correcta (revisión §3) |
 | Marcas sin directorio | Directorio filtrable | Hoy no se puede encontrar una marca concreta |
 | Cultura en una imagen | Quiénes somos en texto | Identidad legible por personas y buscadores |
 

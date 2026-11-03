@@ -1,7 +1,9 @@
 // Fuente única de cifras corporativas para el copy y los wireframes.
 // Regla: ninguna página escribe una cifra a mano; la toma de aquí.
-// estado "confirmada": el valor coincide en todas las fuentes públicas revisadas.
-// estado "por-confirmar": las fuentes no coinciden o el dato no tiene fuente pública; se muestra marcado.
+// Criterio (decidido el 2 nov 2026): cuando las páginas del sitio no coinciden, manda el último
+// reporte publicado: Informe Anual 2025 (publicado en sept. 2026, cifras al cierre de 2025).
+// estado "confirmada": tiene fuente en un reporte o coincide en todas las fuentes públicas.
+// estado "por-confirmar": no tiene fuente pública suficiente; se muestra marcado.
 
 export type EstadoCifra = "confirmada" | "por-confirmar";
 
@@ -19,6 +21,9 @@ export type Cifra = {
 };
 
 const GB = "https://www.grupobimbo.com";
+const IA25 = "https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf";
+const IA = { pagina: "Informe Anual 2025, «Nuestra empresa»", url: IA25 };
+const CORTE_IA = "Informe Anual 2025 (cierre de 2025)";
 
 export const cifras = {
   fundacion: {
@@ -27,7 +32,7 @@ export const cifras = {
     valor: "1945",
     estado: "confirmada",
     fuentes: [
-      { pagina: "Home (metadatos y JSON-LD)", url: `${GB}/es`, dice: "fundada en 1945" },
+      { ...IA, dice: "comenzó en 1945 como una pequeña panadería en México" },
       { pagina: "Preguntas frecuentes", url: `${GB}/es/faq/generales`, dice: "nació en México en 1945" },
     ],
   },
@@ -40,7 +45,7 @@ export const cifras = {
     nota: "81 años en 2026. Cimientos dice «Siete décadas»: desactualizado.",
     fuentes: [
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "más de 80 años" },
-      { pagina: "Preguntas frecuentes", url: `${GB}/es/faq/generales`, dice: "A lo largo de más de 80 años" },
+      { ...IA, dice: "Durante ocho décadas" },
     ],
   },
   paisesOperacion: {
@@ -49,21 +54,23 @@ export const cifras = {
     valor: "39",
     unidad: "países",
     estado: "confirmada",
-    nota: "Marcas dice «más de 39» en un titular; el resto del sitio dice 39.",
+    corte: CORTE_IA,
+    nota: "Marcas dice «más de 39» en un titular; el resto del sitio y el informe dicen 39.",
     fuentes: [
+      { ...IA, dice: "operamos directamente en 39" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "operamos directamente en 39" },
-      { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "opera directamente en 39" },
-      { pagina: "Marcas (listado)", url: `${GB}/es/marcas`, dice: "39 países enlazados" },
     ],
   },
   paisesPresencia: {
     id: "paisesPresencia",
     etiqueta: "Países a los que llegan nuestros productos",
-    valor: "102",
+    valor: "93",
     unidad: "países",
-    estado: "por-confirmar",
-    nota: "Nosotros dice 96 (39 + 57 con socios); Inversionistas dice 102 (39 + 63). Proponemos 102 por ser la más reciente.",
+    estado: "confirmada",
+    corte: CORTE_IA,
+    nota: "Decidido con el Informe Anual 2025: 93 (39 directos + 54 con socios). El sitio dice 96 en Nosotros y 102 en Inversionistas; ambas páginas deben actualizarse.",
     fuentes: [
+      { ...IA, dice: "Tenemos presencia en 93 países, operamos directamente en 39 y atendemos otros 54" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "presencia en 96 países" },
       { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "presencia en 102 países" },
     ],
@@ -71,27 +78,27 @@ export const cifras = {
   panaderias: {
     id: "panaderias",
     etiqueta: "Panaderías y plantas",
-    valor: "más de 250",
-    estado: "por-confirmar",
-    nota: "Cuatro valores distintos. «Más de 250» es seguro con los dos más recientes; falta definir si incluye plantas de botanas.",
+    valor: "249",
+    estado: "confirmada",
+    corte: CORTE_IA,
+    nota: "Decidido con el Informe Anual 2025: 75 en Norteamérica, 38 en México, 94 en EAA y 42 en Latinoamérica. El sitio también dice 251, 250 y 214.",
     fuentes: [
+      { ...IA, dice: "contamos con 249 panaderías y plantas" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "251 panaderías y plantas" },
       { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "250 panaderías y botaneras" },
-      { pagina: "Prensa y Únete (metadatos)", url: `${GB}/es/prensa`, dice: "249 panaderías" },
       { pagina: "Marcas (texto alternativo de la infografía)", url: `${GB}/es/marcas`, dice: "214 panaderías" },
     ],
   },
   colaboradores: {
     id: "colaboradores",
     etiqueta: "Colaboradores",
-    valor: "más de 152,000",
-    estado: "por-confirmar",
-    corte: "2026",
-    nota: "Home y Únete dicen 152 mil; Prensa y la búsqueda dicen 153 mil.",
+    valor: "más de 153,000",
+    estado: "confirmada",
+    corte: CORTE_IA,
+    nota: "Decidido con el Informe Anual 2025. Por región: +26 mil en Norteamérica, +77 mil en México, +18 mil en EAA y +28 mil en Latinoamérica. La Home y Únete dicen 152 mil.",
     fuentes: [
-      { pagina: "Únete", url: `${GB}/es/unete-a-nuestro-equipo`, dice: "Este 2026, ya somos una comunidad de más de 152 mil personas" },
-      { pagina: "Home (metadatos)", url: `${GB}/es`, dice: "más de 152,000 colaboradores" },
-      { pagina: "Prensa (metadatos)", url: `${GB}/es/prensa`, dice: "+153 mil colaboradores" },
+      { ...IA, dice: "más de 153,000 colaboradores" },
+      { pagina: "Únete", url: `${GB}/es/unete-a-nuestro-equipo`, dice: "más de 152 mil personas" },
     ],
   },
   marcas: {
@@ -101,26 +108,33 @@ export const cifras = {
     unidad: "marcas",
     estado: "confirmada",
     fuentes: [
+      { ...IA, dice: "más de 100 marcas" },
       { pagina: "Home", url: `${GB}/es`, dice: "más de 100 marcas" },
-      { pagina: "Marcas", url: `${GB}/es/marcas`, dice: "+ 100 marcas" },
     ],
   },
   productos: {
     id: "productos",
     etiqueta: "Productos",
-    valor: "más de 10,000",
+    valor: "más de 9,000",
     unidad: "productos",
     estado: "confirmada",
-    fuentes: [{ pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "Más de 10mil productos" }],
+    corte: CORTE_IA,
+    nota: "Inversionistas dice «Más de 10mil productos».",
+    fuentes: [
+      { ...IA, dice: "más de 9,000 productos" },
+      { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "Más de 10mil productos" },
+    ],
   },
   centrosVenta: {
     id: "centrosVenta",
     etiqueta: "Centros de ventas",
-    valor: "más de 1,600",
+    valor: "más de 1,700",
     estado: "confirmada",
+    corte: CORTE_IA,
+    nota: "Nosotros e Inversionistas dicen «más de 1,600».",
     fuentes: [
+      { ...IA, dice: "más de 1,700 centros de ventas" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "más de 1,600 centros de ventas" },
-      { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "más de 1,600 centros de ventas" },
     ],
   },
   rutas: {
@@ -129,7 +143,11 @@ export const cifras = {
     valor: "más de 54,000",
     unidad: "rutas",
     estado: "confirmada",
-    fuentes: [{ pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "más de 54,000 rutas" }],
+    corte: CORTE_IA,
+    fuentes: [
+      { ...IA, dice: "más de 54,000 rutas" },
+      { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "más de 54,000 rutas" },
+    ],
   },
   ventas: {
     id: "ventas",
@@ -157,35 +175,56 @@ export const cifras = {
     id: "hectareas",
     etiqueta: "Hectáreas con agricultura regenerativa",
     valor: "más de 500 mil",
-    estado: "por-confirmar",
-    nota: "Solo aparece en la meta description de Sustentabilidad, sin fecha ni fuente en el cuerpo.",
-    fuentes: [{ pagina: "Sustentabilidad (metadatos)", url: `${GB}/es/sustentabilidad`, dice: "+500 mil hectáreas con agricultura regenerativa" }],
+    estado: "confirmada",
+    corte: CORTE_IA,
+    fuentes: [
+      { ...IA, dice: "Más de 500 mil hectáreas se cultivan con prácticas de agricultura regenerativa" },
+      { pagina: "Sustentabilidad (metadatos)", url: `${GB}/es/sustentabilidad`, dice: "+500 mil hectáreas con agricultura regenerativa" },
+    ],
   },
   empaques: {
     id: "empaques",
     etiqueta: "Empaques reciclables",
     valor: "99%",
-    estado: "por-confirmar",
-    nota: "Solo en metadatos. Falta definir si es «reciclable por diseño» o «reciclado».",
-    fuentes: [{ pagina: "Sustentabilidad (metadatos)", url: `${GB}/es/sustentabilidad`, dice: "99% empaques reciclables" }],
+    estado: "confirmada",
+    corte: CORTE_IA,
+    fuentes: [{ ...IA, dice: "El 99% de nuestros empaques son reciclables" }],
   },
   energia: {
     id: "energia",
-    etiqueta: "Energía renovable",
+    etiqueta: "Electricidad de fuentes renovables",
     valor: "100%",
-    estado: "por-confirmar",
-    nota: "Metadatos dicen «100% energía renovable»; Historia dice «migración a energías limpias en todas nuestras operaciones». Falta precisar si es electricidad.",
+    estado: "confirmada",
+    corte: CORTE_IA,
+    nota: "Es electricidad, no toda la energía: el informe lo mide respecto a la línea base de 2020, con esquemas de abastecimiento y atributos renovables. Los metadatos de Sustentabilidad dicen «100% energía renovable»: hay que precisarlo.",
     fuentes: [
+      { ...IA, dice: "El 100%* del consumo de energía eléctrica, respecto a la línea base de 2020, proviene de fuentes renovables" },
       { pagina: "Sustentabilidad (metadatos)", url: `${GB}/es/sustentabilidad`, dice: "100% energía renovable" },
-      { pagina: "Historia", url: `${GB}/es/nosotros/historia`, dice: "concretamos la migración a energías limpias en todas nuestras operaciones" },
     ],
+  },
+  vehiculosElectricos: {
+    id: "vehiculosElectricos",
+    etiqueta: "Vehículos eléctricos",
+    valor: "más de 4,000",
+    estado: "confirmada",
+    corte: CORTE_IA,
+    fuentes: [{ ...IA, dice: "Más de 4,000 vehículos eléctricos forman parte de nuestras operaciones" }],
+  },
+  mujeresLiderazgo: {
+    id: "mujeresLiderazgo",
+    etiqueta: "Mujeres en posiciones de liderazgo",
+    valor: "más del 30%",
+    estado: "confirmada",
+    corte: CORTE_IA,
+    fuentes: [{ ...IA, dice: "más del 30% de participación de mujeres en posiciones de liderazgo" }],
   },
   bgr: {
     id: "bgr",
     etiqueta: "Bimbo Global Race 2026",
     valor: "29 ciudades de 23 países",
-    estado: "por-confirmar",
-    nota: "Marcas dice 28 ciudades de 22 países.",
+    estado: "confirmada",
+    corte: "Comunicado del 30 de septiembre de 2026",
+    nota: "Se toma el comunicado más reciente. Marcas dice 28 ciudades de 22 países (probablemente la edición anterior).",
     fuentes: [
       { pagina: "Prensa", url: `${GB}/es/prensa`, dice: "29 ciudades de 23 países" },
       { pagina: "Marcas", url: `${GB}/es/marcas`, dice: "22 países y 28 ciudades" },
@@ -194,19 +233,28 @@ export const cifras = {
   mexicoColaboradores: {
     id: "mexicoColaboradores",
     etiqueta: "Colaboradores en México",
-    valor: "más de 78,000",
+    valor: "más de 77,000",
     estado: "confirmada",
-    fuentes: [{ pagina: "Preguntas frecuentes", url: `${GB}/es/faq/generales`, dice: "más de 78,000 personas en México" }],
+    corte: CORTE_IA,
+    nota: "Las preguntas frecuentes dicen «más de 78,000».",
+    fuentes: [
+      { pagina: "Informe Anual 2025, presencia por región", url: IA25, dice: "COLABORADORES +77k (México)" },
+      { pagina: "Preguntas frecuentes", url: `${GB}/es/faq/generales`, dice: "más de 78,000 personas en México" },
+    ],
   },
   mexicoPlantas: {
     id: "mexicoPlantas",
-    etiqueta: "Plantas en México",
+    etiqueta: "Panaderías y plantas en México",
     valor: "38",
     estado: "confirmada",
-    fuentes: [{ pagina: "Preguntas frecuentes", url: `${GB}/es/faq/generales`, dice: "38 plantas de producción en México" }],
+    corte: CORTE_IA,
+    fuentes: [
+      { pagina: "Informe Anual 2025, presencia por región", url: IA25, dice: "PANADERÍAS Y PLANTAS 38 (México)" },
+      { pagina: "Preguntas frecuentes", url: `${GB}/es/faq/generales`, dice: "38 plantas de producción en México" },
+    ],
   },
 } satisfies Record<string, Cifra>;
 
 export type IdCifra = keyof typeof cifras;
 
-export const porConfirmar = Object.values(cifras).filter((c) => c.estado === "por-confirmar");
+export const porConfirmar: Cifra[] = Object.values(cifras).filter((c: Cifra) => c.estado === "por-confirmar");

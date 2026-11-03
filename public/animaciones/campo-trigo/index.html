@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campo de trigo · Bimbo</title>
+<style>
+  :root { --fondo: #1d140d; --texto: #f6e7cf; }
+  html, body { margin: 0; background: var(--fondo); color: var(--texto); font-family: system-ui, sans-serif; }
+  /* la escena: montarCampo() toma el tamaño de este contenedor */
+  .campo-3d { position: fixed; inset: 0; }
+  .campo-3d canvas { display: block; width: 100%; height: 100%; }
+  .campo-3d .cargando { position: absolute; inset: 0; display: grid; place-items: center; background: var(--fondo); transition: opacity .6s; font-size: 14px; letter-spacing: .08em; z-index: 2; }
+  .campo-3d .cargando.listo { opacity: 0; pointer-events: none; }
+  .campo-3d .depurar { position: absolute; left: 8px; top: 8px; font: 12px ui-monospace, monospace; z-index: 3; }
+  /* la altura de la pista es lo largo del recorrido: espiga -> parcela -> terracería */
+  #pista { position: relative; height: 500vh; }
+  #aviso { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
+           opacity: .85; transition: opacity .5s; pointer-events: none; z-index: 1; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+  #aviso::after { content: ''; display: block; width: 1px; height: 28px; margin: 8px auto 0; background: currentColor; animation: baja 1.6s ease-in-out infinite; transform-origin: top; }
+  #aviso.oculto { opacity: 0; }
+  @keyframes baja { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0); transform-origin: bottom; } }
+  @media (prefers-reduced-motion: reduce) { #aviso::after { animation: none; } }
+</style>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+               "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/" } }
+</script>
+</head>
+<body>
+<div class="campo-3d" role="img" aria-label="Espiga de trigo al atardecer; la vista se abre a la parcela y a la terracería por donde pasa un camión Bimbo">
+  <canvas></canvas>
+  <div class="cargando">Cargando el campo…</div>
+  <div class="depurar" hidden></div>
+</div>
+<div id="aviso">Desliza</div>
+<div id="pista"></div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

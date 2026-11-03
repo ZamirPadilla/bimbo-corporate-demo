@@ -53,7 +53,7 @@ a:hover{color:#0F2F51}
  [data-ico-line]{position:static !important;max-width:560px}
  [data-ico-word]{position:static !important;transform:none !important;font-size:12.5vw !important}
  [data-hist-stage]{grid-template-columns:1fr !important}
- [data-screen-label="07b Mapa"]{padding-top:76px !important}
+ [data-screen-label="07b Mapa"]{--globo-top:76px !important}
  [data-cm-texto]{left:20px !important;bottom:6vh !important;gap:12px !important}
  [data-cm-texto] h3{font-size:clamp(40px, 11vw, 64px) !important}
  [data-cm-texto] p{font-size:15.5px !important}
@@ -61,6 +61,8 @@ a:hover{color:#0F2F51}
  [data-cm-dato] > div:first-child{font-size:clamp(44px, 12vw, 64px) !important}
  [data-cm-velo]{background:linear-gradient(to top, rgba(15,47,81,.92) 0%, rgba(15,47,81,.45) 42%, rgba(15,47,81,0) 62%), linear-gradient(to bottom, rgba(15,47,81,.65) 0%, rgba(15,47,81,0) 32%) !important}
 }
+/* 07b Mapa: arriba, una banda limpia para la Nav; el globo llena el resto de la pantalla hasta la cinta */
+@media (min-width: 768px){ [data-globo-raiz] [data-globo]{height:calc(100svh - var(--globo-top)) !important} }
 @media (max-width: 600px){ [data-bento] > *{grid-column:1 / -1 !important} [data-bento]{grid-template-columns:1fr !important} }
 </style>
 </helmet>
@@ -161,8 +163,8 @@ a:hover{color:#0F2F51}
   </div>
 </section>
 
-<section id="presencia-globo" data-screen-label="07b Mapa" data-bg="#0E2A4F" style="position:relative;background:#0E2A4F">
-  <div ref="{{ globoRef }}" data-globo-raiz="" style="min-height:100svh"></div>
+<section id="presencia-globo" data-screen-label="07b Mapa" data-bg="#0E2A4F" style="position:relative;background:#0E2A4F;--globo-top:112px;padding-top:var(--globo-top)">
+  <div ref="{{ globoRef }}" data-globo-raiz=""></div>
 </section>
 
 <section data-screen-label="02 Cinta" data-bg="#15359D" style="overflow:hidden;padding:30px 0 34px;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14)">

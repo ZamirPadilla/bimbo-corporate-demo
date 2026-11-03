@@ -528,9 +528,9 @@ a:hover{color:#0F2F51}
         <div style="position:relative;display:flex;flex-direction:column;gap:6px;color:#fff"><span style="font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FAE5C5">▶ Video · Bimbo Ventures</span><span style="font-size:24px;font-weight:700;line-height:1.15">Cinco centros de innovación en el mundo</span></div>
       </a>
       <sc-for list="{{ innovStats }}" as="s" hint-placeholder-count="2">
-        <div data-rv="" style="grid-column:span {{ s.span }};background:{{ s.bg }};color:{{ s.fg }};border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:320px;box-sizing:border-box;min-width:0">
+        <div data-rv="" style="grid-column:span {{ s.span }};background:{{ s.bg }};color:{{ s.fg }};border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:320px;box-sizing:border-box;min-width:0;container-type:inline-size">
           <div style="font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.85">{{ s.label }}</div>
-          <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(36px, 3.4vw, 60px);letter-spacing:-.012em;line-height:.9;overflow-wrap:anywhere">{{ s.v }}</div>
+          <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:min(clamp(36px, 3.4vw, 60px), 24cqi);letter-spacing:-.012em;line-height:.9;overflow-wrap:normal;word-break:keep-all">{{ s.v }}</div>
           <div style="font-size:15px;opacity:.9">{{ s.sub }}</div>
         </div>
       </sc-for>

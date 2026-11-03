@@ -186,8 +186,8 @@ const arcoFS = /* glsl */ `
     float p = clamp((uProgreso - vRetraso) / 1.2, 0.0, 1.0);
     if (vT > p || uOpacidad <= 0.0) discard;
     float cabeza = smoothstep(p - 0.12, p, vT) * step(p, 0.999);
-    vec3 c = mix(uColor, vec3(1.0), cabeza);
-    gl_FragColor = vec4(c, uOpacidad * (0.35 + 0.65 * max(cabeza, vT * 0.7)));
+    // Son decenas de arcos: casi transparentes para que se entiendan sin hacer ruido; la cabeza brilla al trazarse.
+    gl_FragColor = vec4(uColor, uOpacidad * mix(0.2, 0.55, cabeza));
     #include <colorspace_fragment>
   }
 `;
@@ -417,7 +417,7 @@ export class EscenaGlobo {
       new THREE.ShaderMaterial({
         vertexShader: arcoVS,
         fragmentShader: arcoFS,
-        uniforms: { uProgreso: { value: 0 }, uOpacidad: { value: 0 }, uColor: { value: new THREE.Color(globo.rotulo) } },
+        uniforms: { uProgreso: { value: 0 }, uOpacidad: { value: 0 }, uColor: { value: new THREE.Color("#FFFFFF") } },
         transparent: true,
         depthWrite: false,
       }),

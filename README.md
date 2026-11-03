@@ -16,6 +16,12 @@ Demo pública de una página corporativa para **Grupo Bimbo**, construida con Ne
 
 Totalmente responsive, con paleta oficial Bimbo (rojo `#E30613`, azul `#003DA5`).
 
+### Propuesta de copy y wireframes
+
+- **Revisión del copy actual**, fuente única de cifras, arquitectura y copy deck en [`docs/copy/`](docs/copy/README.md).
+- **Wireframes navegables** de 8 páginas en `/wireframes` (`npm run dev` → <http://localhost:3000/wireframes>).
+- El copy vive en `content/` y alimenta a la vez los wireframes y los documentos (`npm run copy:docs`).
+
 ---
 
 ## 🛠 Stack

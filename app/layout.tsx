@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 /**
  * Outfit es la familia tipográfica confirmada en los materiales 2025 de Grupo Bimbo
- * (manual de identidad de referencia BMB-00334). Google Fonts, licencia libre.
+ * (manual de identidad de referencia BMB-00334). Google Fonts, licencia libre (OFL).
+ * Archivos locales en public/fonts/ para que el build sea reproducible y no dependa
+ * de la red del runner de CI.
+ *
  * Poleno (Adobe Fonts) se agregará como primaria cuando se asegure la licencia web.
  */
-const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const outfit = localFont({
+  src: [
+    { path: "../public/fonts/outfit-300.woff2", weight: "300", style: "normal" },
+    { path: "../public/fonts/outfit-400.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/outfit-500.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/outfit-600.woff2", weight: "600", style: "normal" },
+    { path: "../public/fonts/outfit-700.woff2", weight: "700", style: "normal" },
+    { path: "../public/fonts/outfit-800.woff2", weight: "800", style: "normal" },
+    { path: "../public/fonts/outfit-900.woff2", weight: "900", style: "normal" },
+  ],
   variable: "--font-outfit",
   display: "swap",
 });

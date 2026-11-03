@@ -65,7 +65,7 @@ if (og.tipo === 'mosaico') {
   h += `<div class="foto" style="background-image:${url(og.foto)};background-position:${og.posicion || 'center'}"></div><div class="velo"></div>`;
 }
 h += `<div class="logo">${LOGO}</div>`;
-if (og.tipo === 'plataforma') h += '<div class="marca">Ecosistema PRODI</div>';
+if (og.tipo === 'plataforma') h += '<div class="marca">Ecosistema</div>';
 h += `<div class="bloque"><div class="etiqueta"><i></i>${og.etiqueta}</div><h1>${og.titular}</h1>${og.pie ? `<div class="pie">${og.pie}</div>` : ''}</div>`;
 if (og.tipo === 'plataforma') h += `<div class="indice"><b>0${og.indice} <span>/ 04</span></b><div class="barras">${[1, 2, 3, 4].map(n => `<i class="${n === og.indice ? 'on' : ''}"></i>`).join('')}</div></div>`;
 document.getElementById('raiz').innerHTML = h;

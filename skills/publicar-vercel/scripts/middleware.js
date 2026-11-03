@@ -6,12 +6,12 @@
 export const config = { matcher: '/:path*' };
 
 // ── MARCA ───────────────────────────────────────────────────────────────────────────────────────────────────
-const MARCA = 'Grupo PRODI';                    // nombre visible y og:site_name
-const LOGO = '/assets/prodi-logo.svg';          // SVG de un solo color (se pinta con --papel vía mask)
+const MARCA = 'Cliente';                    // nombre visible y og:site_name
+const LOGO = '/assets/logo.svg';          // SVG de un solo color (se pinta con --papel vía mask)
 const LOGO_ASPECTO = '280/68';                  // ancho/alto del viewBox del logo
 const C = { tinta: '#171726', papel: '#F4F5F5', acento: '#9AA6FF', niebla: '#ADB3B5', gris: '#838889', resplandor: 'rgba(154,166,255,.16)' };
-const TITULO = 'Sitio Grupo PRODI';
-const COOKIE = 'prodi_acceso', DIAS = 14;       // cambiar COOKIE por cliente (p. ej. bimbo_acceso)
+const TITULO = 'Sitio del cliente';
+const COOKIE = 'cliente_acceso', DIAS = 14;       // cambiar COOKIE por cliente (p. ej. bimbo_acceso)
 const OG_GENERICA = '/assets/compartir/og-home-v1.jpg';
 // ────────────────────────────────────────────────────────────────────────────────────────────────────────────
 

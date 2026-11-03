@@ -1,13 +1,13 @@
 ---
 name: mapa-relieve
-description: Mapa de relieve 3D en nube de puntos (prodi-relieve.js) para mostrar presencia — el de México del sitio de Grupo PRODI (hero y sección Presencia) o el de cualquier otro país o región para otro prospecto (Bimbo en América, una constructora en Centroamérica) — con marcadores de proyectos, plantas u oficinas, etiquetas que rotan, clic en marcadores, filtro por categoría, encuadre centrado por su contorno real, comportamiento distinto en teléfono y un generador de la retícula de relieve para cualquier país. Úsala cuando pidan un mapa de presencia, "dónde estamos", plantas por país, cambiar, mover, centrar, filtrar o hacer interactivo el mapa, el "mapa del hero", sus etiquetas o marcadores, llevar el relieve a otra sección, página o país, o cuando el mapa salga en blanco, descentrado o "sucio" en móvil.
+description: Mapa de relieve 3D en nube de puntos (sitio-relieve.js) para mostrar presencia — el de México del sitio de referencia (hero y sección Presencia) o el de cualquier otro país o región para otro prospecto (Bimbo en América, una constructora en Centroamérica) — con marcadores de proyectos, plantas u oficinas, etiquetas que rotan, clic en marcadores, filtro por categoría, encuadre centrado por su contorno real, comportamiento distinto en teléfono y un generador de la retícula de relieve para cualquier país. Úsala cuando pidan un mapa de presencia, "dónde estamos", plantas por país, cambiar, mover, centrar, filtrar o hacer interactivo el mapa, el "mapa del hero", sus etiquetas o marcadores, llevar el relieve a otra sección, página o país, o cuando el mapa salga en blanco, descentrado o "sucio" en móvil.
 ---
 
-# Mapa de relieve (PRODI y otros prospectos)
+# Mapa de relieve (cualquier prospecto)
 
 Relieve real (ETOPO1, retícula 0.2° en `prototipo/assets/mx-relieve.json`) dibujado como nube de puntos en
 perspectiva sobre un `<canvas>`, con los proyectos del grupo como marcadores. Un solo archivo,
-`prototipo/prodi-relieve.js` (repo privado del sitio de PRODI; pedir el archivo al equipo de Nuclea), compartido por
+`prototipo/sitio-relieve.js` (repo privado del sitio de referencia; pedir el archivo al equipo de Nuclea), compartido por
 todas las páginas. El encuadre, la escala y la perspectiva salen del recuadro de la retícula, así que el mismo
 archivo sirve para otro país o región cambiando `src` (opción) por la retícula nueva.
 
@@ -24,17 +24,17 @@ python3 scripts/generar_relieve.py --paises 484,320,84,222,340,558,188,591 --pas
 - Regiones muy anchas: la proyección es equirectangular corregida por `cos(lat central)`; por arriba de ~60° de
   ancho (América completa mide ~120°) dividir en dos mapas (p. ej. Norteamérica y Sudamérica) o usar un mapa plano.
 - `--solo-contar` no pide elevaciones, pero sí baja el contorno de países (jsDelivr).
-- Después: `ProdiRelieve.start(cv, { src: 'assets/<region>.json', sites, … })` y renombrar el archivo JS y el
+- Después: `Relieve.start(cv, { src: 'assets/<region>.json', sites, … })` y renombrar el archivo JS y el
   objeto global para el cliente (p. ej. `bimbo-relieve.js`) si se lleva a otro repo.
 
 ## Dónde se usa
 | Lugar | Cómo | Etiquetas | Interacción |
 |---|---|---|---|
-| Hero de Home v3 (`startHero`, `Grupo PRODI Home v3.dc.html`, **solo en la rama `marlon`**; la Home de `fusion/sitio` usa video) | `R.start(heroCanvas, {...})` | **Ninguna** (`labelMinW: Infinity`): el nombre va en la ficha "En el mapa · NN / 22" | Rota sola (`state.site`) |
+| Hero de Home v3 (`startHero`, `Home v3.dc.html`, **solo en una rama anterior**; la Home de `fusion/sitio` usa video) | `R.start(heroCanvas, {...})` | **Ninguna** (`labelMinW: Infinity`): el nombre va en la ficha "En el mapa · NN / 22" | Rota sola (`state.site`) |
 | Presencia de Home | iframe `mapa-presencia.html?…&relieve=1` | Con mouse a cualquier ancho, o táctil desde 720 px: etiqueta junto al marcador activo | Igual: clic/toque en marcador + leyenda filtra |
 | Presencia en v2 y otras páginas | iframe sin `relieve=1` | — | Mapa plano D3 original (no se tocó) |
 
-## API (`ProdiRelieve.start(canvas, opciones) → { stop(), pick(x, y) }`)
+## API (`Relieve.start(canvas, opciones) → { stop(), pick(x, y) }`)
 - `sites: [{ n, ll:[lon,lat] }]`, `state: i => ({ on, active })` (se llama cada cuadro).
 - `labelMinW`: ancho mínimo del canvas para dibujar el nombre junto al marcador activo (`Infinity` = nunca).
 - `frame(W,H,narrow) → { left, right, cy }`: encuadre fijo (por defecto, el del hero; `narrow = W < 960`).
@@ -87,15 +87,15 @@ cv.addEventListener('mousemove',e=>{ cv.style.cursor = hit(e)>=0 ? 'pointer' : '
 // el intervalo de rotación hace `if (Date.now() < holdUntil) return;`
 ```
 
-## Al editar `prodi-relieve.js`
-- **Correr siempre** `node <esta skill>/scripts/smoke-test.js prototipo/prodi-relieve.js [NombreGlobal]` (si se renombró
+## Al editar `sitio-relieve.js`
+- **Correr siempre** `node <esta skill>/scripts/smoke-test.js prototipo/sitio-relieve.js [NombreGlobal]` (si se renombró
   el archivo, pasar su global, p. ej. `BimboRelieve`).
   Un error dentro de `requestAnimationFrame` no impide que el script cargue: solo deja el canvas en blanco,
   en **todas** las páginas a la vez. Ya pasó: un comentario `// …` añadido al final de una línea se tragó
   `const t0 = performance.now();` y desaparecieron el hero y Presencia.
 - Al reemplazar una línea con varias sentencias, comprobar que no quede código después de un `//`.
-- Subir la versión en los dos lugares que cargan el archivo (`<script src="./prodi-relieve.js?v=N">` en
-  la página y `s.src='prodi-relieve.js?v=N'` en `mapa-presencia.html`) y la del iframe (`relieve=1&v=N`):
+- Subir la versión en los dos lugares que cargan el archivo (`<script src="./sitio-relieve.js?v=N">` en
+  la página y `s.src='sitio-relieve.js?v=N'` en `mapa-presencia.html`) y la del iframe (`relieve=1&v=N`):
   el servidor local deja que el navegador cachee y se ven versiones viejas.
 - Cambios de comportamiento nuevos van como **opción** (`labelMinW`, `frame`, `fit`, `pick`…), con valor
   por defecto que no altere a quienes ya lo usan.

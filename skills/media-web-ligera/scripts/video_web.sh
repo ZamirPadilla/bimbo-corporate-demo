@@ -2,7 +2,7 @@
 # Video para web: H.264 sin audio, faststart, sin metadatos. Deja <nombre>-v2.mp4 (escritorio) y
 # <nombre>-movil-v2.mp4 (teléfono vertical, recorte central 540×720). Sube el CRF hasta quedar bajo la meta.
 # Uso: video_web.sh <entrada.mp4> [carpeta de salida] [meta escritorio bytes] [meta móvil bytes]
-#   Metas por defecto: 3.9 MB y 1.45 MB (las del sitio de PRODI; CLAUDE.md pide < 6 MB).
+#   Metas por defecto: 3.9 MB y 1.45 MB (las del sitio de referencia; CLAUDE.md pide < 6 MB).
 set -e
 src=$1; [ -f "$src" ] || { echo "uso: video_web.sh entrada.mp4 [salida] [meta] [meta_movil]"; exit 1; }
 dir=${2:-$(dirname "$src")}; meta=${3:-3900000}; metam=${4:-1450000}

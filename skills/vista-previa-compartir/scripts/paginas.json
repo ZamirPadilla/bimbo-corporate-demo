@@ -1,22 +1,22 @@
 {
-  "_nota": "Ejemplo real (PRODI). Copiar junto al sitio del cliente y ajustar. Si cambias una imagen, sube version: assets/ se cachea un año como immutable y WhatsApp guarda la vieja.",
+  "_nota": "Ejemplo genérico (sitio de referencia con cuatro unidades de negocio). Copiar junto al sitio del cliente y ajustar. Si cambias una imagen, sube version: assets/ se cachea un año como immutable y WhatsApp guarda la vieja.",
   "sitio_dir": "../../prototipo",
   "base": "https://tu-sitio.vercel.app",
-  "sitio": "Grupo PRODI",
+  "sitio": "Cliente de ejemplo",
   "version": 1,
-  "logo": "assets/prodi-logo.svg",
+  "logo": "assets/logo.svg",
   "colores": {
     "tinta": "#171726",
     "papel": "#F4F5F5",
     "niebla": "#ADB3B5",
     "acento": "#9AA6FF"
   },
-  "marca_plataforma": "Ecosistema PRODI",
+  "marca_plataforma": "Ecosistema",
   "mosaico": [
-    "logistica",
-    "energia",
-    "destinos",
-    "deporte"
+    "unidad-a",
+    "unidad-b",
+    "unidad-c",
+    "unidad-d"
   ],
   "icono": {
     "trazo_logo": "M0.19",
@@ -28,169 +28,102 @@
   },
   "paginas": [
     {
-      "archivo": "Grupo PRODI Home.dc.html",
+      "archivo": "Home.dc.html",
       "slug": "home",
       "ruta": "/",
-      "titulo": "Grupo PRODI · Construir país, impulsar el futuro",
-      "descripcion": "Grupo promotor de desarrollo e infraestructura con más de 80 años apostando por México: logística, energía, destinos y deporte.",
+      "titulo": "Cliente de ejemplo · Titular principal",
+      "descripcion": "Una frase que diga quién es el cliente, qué hace y dónde opera.",
       "og": {
         "tipo": "foto",
-        "foto": "assets/fotos/log-tepic-2.jpg",
+        "foto": "assets/fotos/hero.jpg",
         "posicion": "center 40%",
-        "etiqueta": "Grupo promotor de desarrollo e infraestructura",
-        "titular": "Construir País.<br>Impulsar el <em>Futuro.</em>",
-        "pie": "+80 años apostando por México"
+        "etiqueta": "Quién es el cliente",
+        "titular": "Titular principal.<br>Con <em>énfasis.</em>",
+        "pie": "Dato de escala verificable"
       }
     },
     {
       "archivo": "Ecosistema.dc.html",
       "slug": "ecosistema",
-      "titulo": "Nuestro ecosistema · Grupo PRODI",
-      "descripcion": "Cuatro plataformas que participan en todo el ciclo de la infraestructura: Logística y Movilidad, Energía y Petroquímica, Destinos y Desarrollos, Deporte y Entretenimiento.",
+      "titulo": "Nuestro ecosistema · Cliente de ejemplo",
+      "descripcion": "Las cuatro unidades de negocio y cómo se conectan.",
       "og": {
         "tipo": "mosaico",
-        "etiqueta": "Ecosistema PRODI",
+        "etiqueta": "Ecosistema",
         "titular": "Nuestro ecosistema."
       }
     },
     {
-      "archivo": "Logistica y Movilidad.dc.html",
-      "slug": "logistica",
-      "titulo": "Logística y Movilidad · Grupo PRODI",
-      "descripcion": "Aire, tierra, mar y ciudad: una sola red de infraestructura que conecta personas, mercancías, territorios y mercados.",
+      "archivo": "Unidad A.dc.html",
+      "slug": "unidad-a",
+      "titulo": "Unidad A · Cliente de ejemplo",
+      "descripcion": "Qué hace la unidad A y para quién.",
       "og": {
         "tipo": "plataforma",
         "indice": 1,
-        "foto": "assets/fotos/log-pe-5.jpg",
-        "posicion": "center 55%",
-        "etiqueta": "Logística y Movilidad",
-        "titular": "Conectamos lo que hace avanzar a México.",
-        "pie": "Aire · Tierra · Mar · Ciudad"
+        "foto": "assets/fotos/unidad-a.jpg",
+        "posicion": "center 50%",
+        "etiqueta": "Unidad A",
+        "titular": "Titular de la unidad A.",
+        "pie": "Tres · palabras · clave"
       }
     },
     {
-      "archivo": "Energia y Petroquimica.dc.html",
-      "slug": "energia",
-      "titulo": "Energía y Petroquímica · Grupo PRODI",
-      "descripcion": "Generación hidroeléctrica, ciclo combinado e ingeniería industrial con más de un siglo de operación.",
+      "archivo": "Unidad B.dc.html",
+      "slug": "unidad-b",
+      "titulo": "Unidad B · Cliente de ejemplo",
+      "descripcion": "Qué hace la unidad B y para quién.",
       "og": {
         "tipo": "plataforma",
         "indice": 2,
-        "foto": "assets/fotos/ene-necaxa.jpg",
-        "posicion": "70% center",
-        "etiqueta": "Energía y Petroquímica",
-        "titular": "Impulsamos la energía que mueve al país.",
-        "pie": "Hidroeléctrica · Ciclo combinado · Industria"
+        "foto": "assets/fotos/unidad-b.jpg",
+        "posicion": "center 50%",
+        "etiqueta": "Unidad B",
+        "titular": "Titular de la unidad B.",
+        "pie": "Tres · palabras · clave"
       }
     },
     {
-      "archivo": "Destinos y Desarrollos.dc.html",
-      "slug": "destinos",
-      "titulo": "Destinos y Desarrollos · Grupo PRODI",
-      "descripcion": "Comunidades turísticas, destinos de playa, desarrollos residenciales y proyectos urbanos que parten de la identidad de cada lugar.",
+      "archivo": "Unidad C.dc.html",
+      "slug": "unidad-c",
+      "titulo": "Unidad C · Cliente de ejemplo",
+      "descripcion": "Qué hace la unidad C y para quién.",
       "og": {
         "tipo": "plataforma",
         "indice": 3,
-        "foto": "assets/fotos/des-cc1.jpg",
-        "posicion": "center 60%",
-        "etiqueta": "Destinos y Desarrollos",
-        "titular": "Transformamos territorios en nuevas oportunidades.",
-        "pie": "Turismo · Playa · Residencial · Urbano"
+        "foto": "assets/fotos/unidad-c.jpg",
+        "posicion": "center 50%",
+        "etiqueta": "Unidad C",
+        "titular": "Titular de la unidad C.",
+        "pie": "Tres · palabras · clave"
       }
     },
     {
-      "archivo": "Deporte y Entretenimiento.dc.html",
-      "slug": "deporte",
-      "titulo": "Deporte y Entretenimiento · Grupo PRODI",
-      "descripcion": "Reunimos a millones de personas alrededor de lo que las identifica: clubes, ligas, torneos y espacios de entretenimiento.",
+      "archivo": "Unidad D.dc.html",
+      "slug": "unidad-d",
+      "titulo": "Unidad D · Cliente de ejemplo",
+      "descripcion": "Qué hace la unidad D y para quién.",
       "og": {
         "tipo": "plataforma",
         "indice": 4,
-        "foto": "assets/fotos/dep-est2.jpg",
-        "posicion": "65% center",
-        "etiqueta": "Deporte y Entretenimiento",
-        "titular": "Aquí jugamos de local.",
-        "pie": "Clubes · Ligas · Torneos · Estadios"
-      }
-    },
-    {
-      "archivo": "Nuestra Historia.dc.html",
-      "slug": "historia",
-      "titulo": "Nuestra historia · Grupo PRODI",
-      "descripcion": "Más de 80 años apostando por México: la historia de Grupo PRODI y de los proyectos que han construido país.",
-      "og": {
-        "tipo": "foto",
-        "foto": "assets/historia/h-1-1.jpg",
-        "posicion": "center",
-        "etiqueta": "Nuestra historia",
-        "titular": "+80 años apostando por México."
-      }
-    },
-    {
-      "archivo": "Liderazgo.dc.html",
-      "slug": "liderazgo",
-      "titulo": "Liderazgo · Grupo PRODI",
-      "descripcion": "Mensaje de José Miguel Bejos: construir país es más que construir infraestructura.",
-      "og": {
-        "tipo": "foto",
-        "foto": "assets/bejos-liderazgo.jpg",
-        "posicion": "70% 22%",
-        "etiqueta": "Liderazgo PRODI",
-        "titular": "Construir país es más que construir infraestructura.",
-        "pie": "Mensaje de José Miguel Bejos"
+        "foto": "assets/fotos/unidad-d.jpg",
+        "posicion": "center 50%",
+        "etiqueta": "Unidad D",
+        "titular": "Titular de la unidad D.",
+        "pie": "Tres · palabras · clave"
       }
     },
     {
       "archivo": "Activos.dc.html",
       "slug": "activos",
-      "titulo": "Activos · Del plano a la obra · Grupo PRODI",
-      "descripcion": "Del plano a la obra: aeropuertos, trenes, viaductos, estadios y desarrollos que Grupo PRODI imagina, financia, desarrolla y opera.",
+      "titulo": "Activos · Del plano a la obra · Cliente de ejemplo",
+      "descripcion": "Del plano a la obra: los proyectos emblemáticos del cliente.",
       "og": {
         "tipo": "plano-obra",
-        "plano": "assets/proyectos/aeropuerto-tepic-plano.jpg",
-        "obra": "assets/proyectos/aeropuerto-tepic-obra-hd.jpg",
-        "etiqueta": "Activos PRODI",
+        "plano": "assets/proyectos/proyecto-plano.jpg",
+        "obra": "assets/proyectos/proyecto-obra.jpg",
+        "etiqueta": "Activos",
         "titular": "Del plano a la obra."
-      }
-    },
-    {
-      "archivo": "Centro de Medios.dc.html",
-      "slug": "medios",
-      "titulo": "Centro de medios · Grupo PRODI",
-      "descripcion": "Recursos oficiales de Grupo PRODI: identidad, fotografía, video y documentos institucionales para prensa, aliados y medios de comunicación.",
-      "og": {
-        "tipo": "foto",
-        "foto": "assets/fotos/cm-hero-v2.jpg",
-        "posicion": "center 45%",
-        "etiqueta": "Centro de medios",
-        "titular": "Centro de medios."
-      }
-    },
-    {
-      "archivo": "Sala de Prensa.dc.html",
-      "slug": "prensa",
-      "titulo": "Sala de prensa · Grupo PRODI",
-      "descripcion": "Comunicados de prensa y noticias de Grupo PRODI y sus plataformas.",
-      "og": {
-        "tipo": "foto",
-        "foto": "assets/fotos/press-greentide-v2.jpg",
-        "posicion": "center 45%",
-        "etiqueta": "Sala de prensa",
-        "titular": "Comunicados de prensa."
-      }
-    },
-    {
-      "archivo": "Contacto.dc.html",
-      "slug": "contacto",
-      "titulo": "Contacto · Grupo PRODI",
-      "descripcion": "Alianzas e inversión, prensa, proveedores y talento: escríbenos y construyamos juntos.",
-      "og": {
-        "tipo": "foto",
-        "foto": "assets/fotos/home-modelo-2.jpg",
-        "posicion": "center 40%",
-        "etiqueta": "Contacto",
-        "titular": "Construyamos juntos.",
-        "pie": "contacto@grupoprodi.com"
       }
     }
   ]

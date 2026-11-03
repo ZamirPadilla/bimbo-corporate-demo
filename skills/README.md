@@ -1,7 +1,7 @@
 # Skills de sitios corporativos (Nuclea)
 
-Técnicas del sitio de Grupo PRODI (hecho por Nuclea Solutions) y del trabajo de copy de esta demo, empaquetadas para
-reutilizarlas con otros prospectos. El código del sitio de PRODI es privado; las skills traen lo necesario para aplicar cada técnica sin él. Cada carpeta es una
+Técnicas de un sitio de referencia hecho por Nuclea Solutions y del trabajo de copy de esta demo, empaquetadas para
+reutilizarlas con otros prospectos. El código del sitio de referencia es privado; las skills traen lo necesario para aplicar cada técnica sin él. Aquí solo van skills públicas y de páginas: las de producción 3D (gemelo desde foto, láminas técnicas) son internas de Nuclea. Cada carpeta es una
 skill (`SKILL.md` + `scripts/` + `references/`).
 
 | Skill | Qué cubre |
@@ -9,8 +9,6 @@ skill (`SKILL.md` + `scripts/` + `references/`).
 | `sitio-prospecto` | **Empieza aquí.** Flujo completo, catálogo de secciones, sistema visual, reglas de trabajo |
 | `paginas-claude-design` | Formato `.dc.html`, exportar, mover secciones, teléfono, patrones de interacción |
 | `fusion-disenos-git` | Fusionar el trabajo de dos personas (Claude Design + local) con git |
-| `gemelo-desde-foto` | Gemelo Blender desde una foto y sección "plano → obra" |
-| `lamina-tecnica` | Láminas técnicas estilo Palantir y planos territoriales |
 | `mapa-relieve` | Mapa de relieve de presencia y generador de retícula para cualquier país |
 | `media-web-ligera` | Video/foto ligeros, recolorear planos, respaldo en Supabase con manifiesto |
 | `verificar-en-navegador` | Probar animaciones, canvas, hover y teléfono midiendo con JS |

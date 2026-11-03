@@ -51,6 +51,6 @@ golpe en qué casa está.
   remate de la historia del motivo, y aparece una sola vez.
 
 ### Referencias
-- Benchmark de inspiración (local): `~/Factory/bimbo/benchmark-inspiracion/` — página interactiva y PDF.
+- Benchmark de inspiración: [`skills/benchmark-inspiracion`](../../skills/benchmark-inspiracion/SKILL.md) (método y ejemplo de Bimbo).
 - Morph de forma y producto que se arma con el scroll: TÒPAS (https://bar-topas.ch/) y Morpho Water
   (https://morphowater.com/), según el benchmark de Awwwards del 2 de noviembre de 2026.

@@ -40,8 +40,9 @@ a{color:#15359D}
 a:hover{color:#0F2F51}
 ::selection{background:#EEB14F;color:#0F2F51}
 @media (max-width: 960px){
- [data-pin]{height:auto !important}
- [data-pin] > [data-sticky]{position:relative !important;height:auto !important;overflow:visible !important}
+ /* el hero sigue anclado en teléfono (220vh, como en escritorio): sin eso la capa del video salta de golpe al primer scroll */
+ [data-pin]:not([data-screen-label="01 Hero"]){height:auto !important}
+ [data-pin] > [data-sticky]:not([data-hero-sticky]){position:relative !important;height:auto !important;overflow:visible !important}
  [data-pin] > [data-sticky][data-hero-sticky]{height:100svh !important;overflow:hidden !important}
 
  [data-pin] > [data-sticky][data-ico-sticky]{height:auto !important;padding:110px 20px 60px !important}
@@ -72,6 +73,44 @@ a:hover{color:#0F2F51}
  [data-cm-texto] p{font-size:15.5px !important}
  [data-cm-dato]{right:16px !important;top:88px !important;bottom:auto !important;padding:14px 16px 12px !important;border-radius:18px !important}
  [data-cm-dato] > div:first-child{font-size:clamp(44px, 12vw, 64px) !important}
+ [data-hero2]{padding:92px 20px 26px !important}
+ [data-hero2] h1{font-size:clamp(40px, 11.5vw, 58px) !important}
+ [data-hero2] p{font-size:16px !important;margin-top:14px !important}
+ [data-hero2] a{font-size:15px !important;padding:12px 22px !important}
+ [data-bento][data-hero-stats]{grid-template-columns:1fr 1fr !important;gap:12px 20px !important}
+ [data-bento][data-hero-stats] > *{grid-column:auto !important;padding-top:10px !important;gap:4px !important}
+ [data-hero-stats] > * > div:first-child{font-size:34px !important}
+ [data-hero-stats] > * > div:last-child{font-size:13px !important}
+ [data-ico-badge]{width:96px !important;height:96px !important}
+ [data-ico-badge] svg{width:100% !important;height:100% !important}
+ [data-acc-head]{position:static !important}
+ [data-acc]{grid-template-columns:28px minmax(0,1fr) auto !important;gap:12px !important;padding:20px 4px !important}
+ [data-acc-t]{font-size:clamp(24px, 7.4vw, 36px) !important}
+ [data-acc] > span:last-child > span:last-child{width:44px !important;height:44px !important;font-size:17px !important}
+ [data-acc-d]{display:none !important}
+ [data-mom-card]{padding:44px 20px !important;border-radius:28px !important}
+ [data-mom-dial]{width:calc(100% - 64px) !important}
+ [data-mom-chip]{padding:7px 12px !important}
+ [data-mom-dial] > div:last-child{inset:27% !important}
+ [data-mom-chip] > *:last-child{font-size:15px !important}
+ [data-sus-intro]{grid-template-columns:1fr !important;padding:30px 24px !important;gap:24px !important;min-height:0 !important}
+ [data-sus-intro] p{font-size:17px !important}
+ [data-reg-bar]{display:grid !important;grid-template-columns:1fr 1fr;height:auto !important}
+ [data-reg-bar] > button{min-height:60px;padding:0 12px !important}
+ [data-reg-bar] > button > span:first-child{font-size:13px !important}
+ [data-reg-bar] > button > span:last-child{font-size:24px !important}
+ [data-reg-card]{padding:28px 22px !important;gap:28px !important}
+ [data-reg-stats]{gap:10px !important}
+ [data-reg-stats] > * > div:first-child{font-size:26px !important;white-space:nowrap}
+ [data-reg-stats] > * > div:last-child{font-size:12.5px !important}
+ [data-inv-card]{padding:24px 14px 20px !important;border-radius:24px !important}
+ [data-inv-card] > div:first-child > div:first-child > div:first-child{font-size:22px !important}
+ [data-inv-card] > div:first-child > div:last-child{gap:22px !important}
+ [data-inv-bars]{gap:4px !important;height:240px !important}
+ [data-inv-bars] > * > div:first-child{font-size:10px !important;letter-spacing:-.03em !important}
+ [data-inv-bars] > * > div:first-child > div{font-size:10px !important}
+ [data-car-stats]{gap:10px !important}
+ [data-car-stats] > * > div:first-child{font-size:30px !important}
  [data-cm-velo]{background:linear-gradient(to top, rgba(15,47,81,.92) 0%, rgba(15,47,81,.45) 42%, rgba(15,47,81,0) 62%), linear-gradient(to bottom, rgba(15,47,81,.65) 0%, rgba(15,47,81,0) 32%) !important}
 }
 /* 07b Mapa: arriba, una banda limpia para la Nav; el globo llena el resto de la pantalla hasta la cinta, pero nunca
@@ -112,19 +151,19 @@ a:hover{color:#0F2F51}
       </div>
       </div>
     </div>
-    <div ref="{{ h1WrapRef }}" style="position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:max(110px, 13vh) 5vw 5vh;box-sizing:border-box;opacity:0;pointer-events:none;background:#15359D;overflow:hidden;text-align:center;color:#fff">
+    <div ref="{{ h1WrapRef }}" data-hero2="" style="position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:max(110px, 13vh) 5vw 5vh;box-sizing:border-box;opacity:0;pointer-events:none;background:#15359D;overflow:hidden;text-align:center;color:#fff">
       <video data-autoplay="" src="assets/pan-bimbo.mp4" autoplay="" muted="" loop="" playsinline="" preload="auto" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video>
       <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,.5) 75%, rgba(0,0,0,.88) 100%)"></div>
       <div style="position:relative;display:flex;flex-direction:column;align-items:center">
         <div style="display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:2.6vh;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:8px 18px">Nuestro propósito</div>
         <h1 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;text-transform:uppercase;line-height:.86;letter-spacing:-.01em;font-size:clamp(52px, min(9.4vw, 14vh), 196px);color:#fff">Alimentamos<br><span style="color:#FAE5C5">un mundo mejor</span></h1>
-        <p style="margin:2.8vh 0 0;max-width:760px;font-size:clamp(19px, 1.6vw, 26px);line-height:1.45;font-weight:400;color:#fff;text-wrap:pretty">Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 93.</p>
+        <p style="margin:2.8vh 0 0;max-width:760px;font-size:clamp(19px, 1.6vw, 26px);line-height:1.45;font-weight:400;color:#fff;text-wrap:pretty">Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 102.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:3vh">
           <a href="Marcas.dc.html" style="text-decoration:none;background:#fff;color:#15359D;font-weight:700;font-size:18px;padding:17px 30px;border-radius:999px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)" style-hover="transform:translateY(-3px);color:#15359D">Explora nuestras marcas →</a>
           <a href="Sustentabilidad.dc.html" style="text-decoration:none;color:#fff;font-weight:600;font-size:18px;padding:16px 28px;border-radius:999px;border:1.5px solid rgba(255,255,255,.7);transition:background .25s" style-hover="background:rgba(255,255,255,.14);color:#fff">Conoce nuestra estrategia</a>
         </div>
       </div>
-      <div data-bento="" style="position:relative;width:100%;max-width:1480px;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:0 36px;text-align:left">
+      <div data-bento="" data-hero-stats="" style="position:relative;width:100%;max-width:1480px;display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:0 36px;text-align:left">
         <sc-for list="{{ cifras }}" as="c" hint-placeholder-count="4">
           <div style="border-top:1.5px solid rgba(255,255,255,.6);padding-top:16px;display:flex;flex-direction:column;gap:6px">
             <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, min(5vw, 8vh), 92px);font-weight:900;line-height:.9;color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums">{{ c.pre }}{{ c.v }}<span style="font-size:.5em">{{ c.suf }}</span></div>
@@ -212,19 +251,19 @@ a:hover{color:#0F2F51}
 
 <section data-screen-label="04 Accesos" data-bg="#FBF7F0" style="padding:130px 32px 120px">
   <div style="max-width:1480px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:48px" data-g2="">
-    <div data-rv="" style="display:flex;flex-direction:column;gap:20px;align-self:start;position:sticky;top:120px">
+    <div data-rv="" data-acc-head="" style="display:flex;flex-direction:column;gap:20px;align-self:start;position:sticky;top:120px">
       <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#6E675C"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Accesos</div>
       <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, 4.6vw, 80px);font-weight:900;text-transform:uppercase;line-height:.9;color:#15359D">¿Qué estás buscando?</h2>
       <p style="margin:0;font-size:17px;line-height:1.5;font-weight:300;color:#3d4a5c;max-width:320px">Dinos quién eres y te llevamos directo a lo tuyo.</p>
     </div>
     <div style="display:flex;flex-direction:column;border-top:1.5px solid #15359D">
       <sc-for list="{{ accesos }}" as="a" hint-placeholder-count="6">
-        <a href="{{ a.href }}" onMouseEnter="{{ a.enter }}" onMouseLeave="{{ a.leave }}" style="text-decoration:none;position:relative;overflow:hidden;border-bottom:1.5px solid rgba(21,53,157,.25);padding:26px 22px;display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,auto);gap:20px;align-items:center;color:{{ a.fg }};transition:color .4s">
+        <a href="{{ a.href }}" onMouseEnter="{{ a.enter }}" onMouseLeave="{{ a.leave }}" data-acc="" style="text-decoration:none;position:relative;overflow:hidden;border-bottom:1.5px solid rgba(21,53,157,.25);padding:26px 22px;display:grid;grid-template-columns:48px minmax(0,1fr) minmax(0,auto);gap:20px;align-items:center;color:{{ a.fg }};transition:color .4s">
           <span aria-hidden="true" style="position:absolute;inset:0;background:#15359D;transform:scaleY({{ a.sy }});transform-origin:bottom;transition:transform .55s cubic-bezier(.65,0,.25,1)"></span>
           <span style="position:relative;font-size:14px;font-weight:700;opacity:.6">{{ a.n }}</span>
-          <span style="position:relative;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(34px, 4.2vw, 72px);font-weight:900;text-transform:uppercase;line-height:.9;transform:translateX({{ a.tx }});transition:transform .55s cubic-bezier(.2,.7,.2,1)">{{ a.frase }}</span>
+          <span data-acc-t="" style="position:relative;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(34px, 4.2vw, 72px);font-weight:900;text-transform:uppercase;line-height:.9;transform:translateX({{ a.tx }});transition:transform .55s cubic-bezier(.2,.7,.2,1)">{{ a.frase }}</span>
           <span style="position:relative;display:flex;align-items:center;gap:18px;justify-content:flex-end">
-            <span style="font-size:15px;line-height:1.4;max-width:260px;text-align:right;opacity:{{ a.op }};transform:translateY({{ a.ty }});transition:opacity .4s, transform .5s cubic-bezier(.2,.7,.2,1)">{{ a.d }}<br><strong>{{ a.cta }} →</strong></span>
+            <span data-acc-d="" style="font-size:15px;line-height:1.4;max-width:260px;text-align:right;opacity:{{ a.op }};transform:translateY({{ a.ty }});transition:opacity .4s, transform .5s cubic-bezier(.2,.7,.2,1)">{{ a.d }}<br><strong>{{ a.cta }} →</strong></span>
             <span style="flex:none;width:54px;height:54px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:20px;transform:rotate({{ a.rot }});transition:transform .5s cubic-bezier(.34,1.56,.64,1)">→</span>
           </span>
         </a>
@@ -237,7 +276,7 @@ a:hover{color:#0F2F51}
 
 <section data-screen-label="06 Marcas por momento" data-bg="#FBF7F0" ref="{{ momSecRef }}" data-pin="" style="height:480vh;position:relative;margin:160px 0 180px;padding:0 20px">
   <div data-sticky="" style="position:sticky;top:0;height:100vh;display:flex;align-items:center;padding-top:70px;box-sizing:border-box">
-  <div style="width:100%;max-width:1480px;margin:0 auto;border-radius:36px;background:#15359D;padding:64px 56px;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;overflow:hidden" data-g2="">
+  <div data-mom-card="" style="width:100%;max-width:1480px;margin:0 auto;border-radius:36px;background:#15359D;padding:64px 56px;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;overflow:hidden" data-g2="">
     <div style="display:flex;flex-direction:column;gap:26px;min-width:0">
       <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#FAE5C5"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Nuestras marcas · un día en México</div>
       <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(34px, 3.4vw, 56px);font-weight:900;text-transform:uppercase;line-height:.9;color:#fff">Una marca para cada momento del día</h2>
@@ -251,12 +290,12 @@ a:hover{color:#0F2F51}
         <a href="Marcas.dc.html" style="margin-left:12px;font-weight:700;font-size:15px;color:#fff">Directorio de marcas →</a>
       </div>
     </div>
-    <div style="position:relative;width:min(100%, 600px);aspect-ratio:1;justify-self:center">
+    <div data-mom-dial="" style="position:relative;width:min(100%, 600px);aspect-ratio:1;justify-self:center">
       <div style="position:absolute;inset:0;border-radius:50%;border:1.5px dashed rgba(250,229,197,.45)"></div>
       <div style="position:absolute;left:50%;top:-74px;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:18px solid #EE353A;z-index:3"></div>
       <div style="position:absolute;inset:0;transform:rotate({{ ringRot }});transition:transform 1.1s cubic-bezier(.34,1.3,.64,1)">
         <sc-for list="{{ momentos }}" as="m" hint-placeholder-count="5">
-          <button onClick="{{ m.go }}" style="all:unset;cursor:pointer;position:absolute;left:{{ m.x }};top:{{ m.y }};transform:translate(-50%,-50%) rotate({{ counterRot }});transition:transform 1.1s cubic-bezier(.34,1.3,.64,1);display:flex;flex-direction:column;align-items:center;gap:2px;background:{{ m.chipBg }};color:{{ m.chipFg }};padding:10px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.2)">
+          <button onClick="{{ m.go }}" data-mom-chip="" style="all:unset;cursor:pointer;position:absolute;left:{{ m.x }};top:{{ m.y }};transform:translate(-50%,-50%) rotate({{ counterRot }});transition:transform 1.1s cubic-bezier(.34,1.3,.64,1);display:flex;flex-direction:column;align-items:center;gap:2px;background:{{ m.chipBg }};color:{{ m.chipFg }};padding:10px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.2)">
             <span style="font-size:12px;font-weight:700">{{ m.hora }}</span><span style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:20px;font-weight:900;text-transform:uppercase">{{ m.nombre }}</span>
           </button>
         </sc-for>
@@ -304,7 +343,7 @@ a:hover{color:#0F2F51}
 
 <section id="sustentabilidad" data-screen-label="09 Sustentabilidad" data-bg="#FBF7F0" ref="{{ susRef }}" style="padding:120px 20px 110px">
   <div data-idx="" style="max-width:1480px;margin:0 auto;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:12px">
-    <div data-rv="" style="grid-column:1 / -1;background:#15359D;color:#fff;border-radius:28px;padding:44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end;position:relative;overflow:hidden;min-height:440px">
+    <div data-rv="" data-sus-intro="" style="grid-column:1 / -1;background:#15359D;color:#fff;border-radius:28px;padding:44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end;position:relative;overflow:hidden;min-height:440px">
       <div aria-hidden="true" style="position:absolute;inset:-12px;background-image:url(assets/trigo.png);background-size:cover;background-position:center;filter:blur(1.5px)"></div>
       <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(21,53,157,.88) 30%, rgba(21,53,157,.35))"></div>
       <div style="display:flex;flex-direction:column;gap:18px;position:relative">
@@ -393,7 +432,7 @@ a:hover{color:#0F2F51}
       <p data-rv="" style="margin:0;font-size:18px;line-height:1.5;color:#0F2F51;max-width:460px;justify-self:end">Reportamos resultados en cuatro regiones. Elige una para ver sus panaderías, su gente y los países donde operamos.</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <div style="display:flex;height:88px;gap:6px">
+      <div data-reg-bar="" style="display:flex;height:88px;gap:6px">
         <sc-for list="{{ regiones }}" as="r" hint-placeholder-count="4">
           <button onClick="{{ r.go }}" aria-pressed="{{ r.on }}" style="all:unset;cursor:pointer;flex:{{ r.plantas }};background:{{ r.bg }};color:{{ r.fg }};border-radius:18px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0;transition:background .35s, color .35s">
             <span style="font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ r.corto }}</span>
@@ -401,12 +440,12 @@ a:hover{color:#0F2F51}
           </button>
         </sc-for>
       </div>
-      <div style="font-size:13px;color:#0F2F51;opacity:.75">El ancho de cada región es proporcional a sus panaderías y plantas.</div>
+      <div data-hide-m="" style="font-size:13px;color:#0F2F51;opacity:.75">El ancho de cada región es proporcional a sus panaderías y plantas.</div>
     </div>
-    <div data-g2="" style="background:#FBF7F0;border-radius:32px;padding:44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px">
+    <div data-g2="" data-reg-card="" style="background:#FBF7F0;border-radius:32px;padding:44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px">
       <div style="display:flex;flex-direction:column;gap:28px">
         <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(40px, 4vw, 68px);text-transform:uppercase;letter-spacing:-.01em;line-height:.88;color:#15359D">{{ reg.nombre }}</div>
-        <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px">
+        <div data-reg-stats="" style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:16px">
           <div style="border-top:1px solid rgba(15,47,81,.18);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:46px;line-height:1;color:#0F2F51">{{ reg.plantas }}</div><div style="font-size:14px;color:#3d4a5c;margin-top:4px">panaderías y plantas</div></div>
           <div style="border-top:1px solid rgba(15,47,81,.18);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:46px;line-height:1;color:#0F2F51">{{ reg.gente }}</div><div style="font-size:14px;color:#3d4a5c;margin-top:4px">colaboradores</div></div>
           <div style="border-top:1px solid rgba(15,47,81,.18);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:46px;line-height:1;color:#15359D">{{ reg.crec }}</div><div style="font-size:14px;color:#3d4a5c;margin-top:4px">ventas 2025 en pesos</div></div>
@@ -446,7 +485,7 @@ a:hover{color:#0F2F51}
       </sc-for>
     </div>
     <div data-g2="" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:56px;align-items:end">
-      <div data-rv="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:32px;padding:36px 36px 28px">
+      <div data-rv="" data-inv-card="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:32px;padding:36px 36px 28px">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:28px">
           <div style="display:flex;flex-direction:column;gap:6px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:28px;text-transform:uppercase;line-height:1">Ventas netas, 1995–2025</div><div style="font-size:14px;color:#8FC9E6">Millones de pesos · Informe Anual 2025, p. 10</div></div>
           <div style="display:flex;gap:32px">
@@ -454,7 +493,7 @@ a:hover{color:#0F2F51}
             <div><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:40px;line-height:1">10%</div><div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8FC9E6;margin-top:4px">TCAC UAFIDA, 10 años</div></div>
           </div>
         </div>
-        <div style="display:flex;align-items:flex-end;gap:10px;height:300px">
+        <div data-inv-bars="" style="display:flex;align-items:flex-end;gap:10px;height:300px">
           <sc-for list="{{ crecimiento }}" as="c" hint-placeholder-count="7">
             <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:10px;height:100%;min-width:0">
               <div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-weight:900;font-size:clamp(14px, 1.4vw, 22px);letter-spacing:-.02em;line-height:1">{{ c.v }}<div style="font-family:Outfit, sans-serif;font-size:12px;font-weight:700;color:#8FC9E6;margin-top:4px">{{ c.y }}</div></div>
@@ -543,9 +582,9 @@ a:hover{color:#0F2F51}
       <div style="display:flex;flex-direction:column;gap:22px">
         <div style="display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8FC9E6"><span style="width:8px;height:8px;border-radius:50%;background:#EEB14F"></span>Carreras</div>
         <h2 style="margin:0;font-family:poleno, Lilita One, Outfit, sans-serif;font-size:clamp(44px, 5vw, 92px);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.86">Haz carrera en la panificadora <span style="color:#15359D;-webkit-text-stroke:4px #fff;paint-order:stroke fill">más grande</span> del mundo</h2>
-        <p style="margin:0;font-size:18px;line-height:1.5;max-width:480px;color:#dbe6f2">Somos más de 153,000 personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.</p>
+        <p style="margin:0;font-size:18px;line-height:1.5;max-width:480px;color:#dbe6f2">Somos más de 152,000 personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:14px">
+      <div data-car-stats="" style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:14px">
         <div style="border-top:1px solid rgba(255,255,255,.3);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;letter-spacing:-.01em;line-height:1">+30%</div><div style="font-size:13.5px;margin-top:4px;color:#dbe6f2">mujeres en liderazgo</div></div>
         <div style="border-top:1px solid rgba(255,255,255,.3);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;letter-spacing:-.01em;line-height:1">28 h</div><div style="font-size:13.5px;margin-top:4px;color:#dbe6f2">de capacitación promedio</div></div>
         <div style="border-top:1px solid rgba(255,255,255,.3);padding-top:12px"><div style="font-family:poleno, Lilita One, Outfit, sans-serif;font-size:44px;font-weight:900;letter-spacing:-.01em;line-height:1">+35 mil</div><div style="font-size:13.5px;margin-top:4px;color:#dbe6f2">cursos en GB University</div></div>
@@ -902,7 +941,7 @@ class Component extends DCLogic {
       ['Proveedores', 'Proveedores', 'Registro, portal y políticas para proveedores.', 'Ir al portal', 'https://proveedores.grupobimbo.com/'],
       ['Contacto', 'Todos', 'Dudas sobre un producto, denuncias éticas y más.', 'Elegir un canal', 'Contacto.dc.html'],
     ].map(([t, aud, d, cta, href], i) => { const on = S.accH === i; return { n: '0' + (i + 1), t, aud, d, cta, href, frase: ['Soy inversionista', 'Quiero trabajar aquí', 'Busco una marca', 'Soy periodista', 'Soy proveedor', 'Necesito ayuda'][i], fg: on ? '#fff' : '#15359D', sy: on ? 1 : 0, tx: on ? '14px' : '0px', op: on ? 1 : 0, ty: on ? '0px' : '10px', rot: on ? '-45deg' : '0deg', enter: () => this.setState({ accH: i }), leave: () => this.setState(s => (s.accH === i ? { accH: -1 } : null)) }; });
-    const cifras = [{ pre: '', v: '39', to: 39, suf: '', label: 'Países donde operamos', sub: 'Y nuestros productos llegan a 93.' }, { pre: '', v: '249', to: 249, suf: '', label: 'Panaderías y plantas', sub: '38 de ellas en México.' }, { pre: '+', v: '100', to: 100, suf: '', label: 'Marcas', sub: 'Más de 9,000 productos.' }, { pre: '+', v: '153', to: 153, suf: ' mil', label: 'Colaboradores', sub: 'Más de 77,000 en México.' }];
+    const cifras = [{ pre: '', v: '39', to: 39, suf: '', label: 'Países donde operamos', sub: 'Y nuestros productos llegan a 102.' }, { pre: '', v: '250', to: 250, suf: '', label: 'Panaderías y botaneras', sub: '38 de ellas en México.' }, { pre: '+', v: '100', to: 100, suf: '', label: 'Marcas', sub: 'Más de 9,000 productos.' }, { pre: '+', v: '152', to: 152, suf: ' mil', label: 'Colaboradores', sub: 'Más de 77,000 en México.' }];
     const palabras = 'Alimentos deliciosos y nutritivos en las manos de todos.'.split(' ');
     const rots = ['-4deg', '3deg', '-2deg'];
     const TIN = ['#FFF3D6', '#FFE6B8', '#FFD9C7', '#FFE0D1', '#DCE6F5'], PAL = ['#F6DFA6', '#F7CF8F', '#F6B9A8', '#F9BCAA', '#BFD0EA'];
@@ -996,7 +1035,7 @@ class Component extends DCLogic {
       cinta, accesos, cifras, palabras, momentos, mom, ringRot: `${-S.moT * 72}deg`, counterRot: `${S.moT * 72}deg`, momPrev: () => this.goMo(-1), momNext: () => this.goMo(1), dialEnter: () => this.setState({ dialH: true }), dialLeave: () => this.setState({ dialH: false }), icoTabs, momSecRef: this.momSecRef, iconos, icoTag: cur.fg, pilares, cimientos, eras, regiones, reg, finanzas, innovStats, noticias,
       recos: [...rc, ...rc],
       crecimiento: [[1995, '10,160', 10160], [2000, '31,477', 31477], [2005, '56,102', 56102], [2010, '117,163', 117163], [2015, '219,186', 219186], [2020, '331,051', 331051], [2025, '426,952', 426952]].map(([y, v, n], i) => ({ y, v, pct: Math.max(2, n / 426952 * 72), col: i === 6 ? '#8FC9E6' : '#2253B1' })),
-      de1945: [{ a: '1', t: 'Países', b: '93' }, { a: '1', t: 'Panaderías', b: '249' }, { a: '4', t: 'Productos', b: '+9 mil' }],
+      de1945: [{ a: '1', t: 'Países', b: '102' }, { a: '1', t: 'Panaderías', b: '250' }, { a: '4', t: 'Productos', b: '+9 mil' }],
     };
   }
 }

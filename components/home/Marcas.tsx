@@ -4,17 +4,18 @@ import Link from "next/link";
 import { paginaPorSlug } from "@/content/paginas";
 import { resolver } from "@/lib/copy";
 import { useReveal } from "@/lib/useReveal";
+import { Apilado } from "@/components/branding/Apilado";
 
 // Colores aproximados por marca (del logo). Validar con guías oficiales.
-const colorMarca: Record<string, string> = {
-  Bimbo: "#003DA5",
-  Marinela: "#E30613",
-  "Barcel · Takis": "#FF8C32",
-  "Thomas'": "#8B4513",
-  "Entenmann's": "#1F3A68",
-  Oroweat: "#C8873A",
-  "Sara Lee": "#B91C1C",
-  Donuts: "#F4A4C0",
+const estilos: Record<string, { bg: string; fg: string; icon: string }> = {
+  Bimbo: { bg: "#15359D", fg: "#F6EEDF", icon: "🍞" },
+  Marinela: { bg: "#EE353A", fg: "#F6EEDF", icon: "🧁" },
+  "Barcel · Takis": { bg: "#DF8A35", fg: "#1A1D24", icon: "🌶" },
+  "Thomas'": { bg: "#954F1E", fg: "#F6EEDF", icon: "🥯" },
+  "Entenmann's": { bg: "#0F2F51", fg: "#F6EEDF", icon: "🍩" },
+  Oroweat: { bg: "#BE973C", fg: "#1A1D24", icon: "🌾" },
+  "Sara Lee": { bg: "#A02949", fg: "#F6EEDF", icon: "🥪" },
+  Donuts: { bg: "#D33D66", fg: "#F6EEDF", icon: "🍩" },
 };
 
 export default function Marcas() {
@@ -25,23 +26,24 @@ export default function Marcas() {
   const ref = useReveal<HTMLDivElement>();
 
   return (
-    <section id="marcas" className="relative py-24 md:py-32 bg-migaja">
-      <div ref={ref} className="max-w-7xl mx-auto px-6 reveal">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div className="max-w-2xl">
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-accion-rojoBimbo mb-4">
-              {seccion.rotulo}
+    <section id="marcas" className="relative py-24 md:py-32 bg-hueso">
+      <div ref={ref} className="max-w-7xl mx-auto px-6 md:px-12 reveal">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+          <div className="max-w-3xl">
+            <p className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-rojo mb-4">
+              Nuestras marcas · +100 en el portafolio
             </p>
-            <h2 className="font-display font-black uppercase text-5xl md:text-7xl lg:text-8xl text-tinta leading-[0.9]">
-              {resolver(seccion.titulo)}
+            <Apilado silabas={["UNA", "MARCA"]} tamano="sm" variante="mixto" />
+            <h2 className="mt-4 font-display font-black uppercase text-silaba-sm leading-[0.9] text-tinta">
+              para cada momento del día
             </h2>
           </div>
           <Link
             href="/wireframes/marcas"
-            className="group inline-flex items-center gap-2 font-sans font-semibold text-tinta whitespace-nowrap"
+            className="group inline-flex items-center gap-2 font-sans font-semibold text-tinta whitespace-nowrap self-start md:self-end"
           >
             <span className="relative">
-              Ver todas
+              Explorar marcas por país
               <span className="absolute left-0 right-0 bottom-0 h-px bg-tinta transition-transform origin-left group-hover:scale-x-110" />
             </span>
             <span className="transition-transform group-hover:translate-x-1" aria-hidden>
@@ -50,40 +52,34 @@ export default function Marcas() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+        {/* Mosaico de categorías / marcas con color propio por bloque */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {seccion.items.map((item) => {
-            const color = colorMarca[item.titulo] ?? "#1E2230";
+            const e = estilos[item.titulo] ?? { bg: "#1A1D24", fg: "#F6EEDF", icon: "·" };
             return (
               <a
                 key={item.titulo}
                 href="#"
-                className="group relative overflow-hidden rounded-2xl aspect-[4/5] bg-harina border border-tinta/5 p-6 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-500"
-                style={{
-                  // tinte sutil del color de la marca en el fondo
-                  background: `linear-gradient(135deg, ${color}08 0%, #FFFDF9 60%)`,
-                }}
+                className="group relative overflow-hidden rounded-2xl aspect-[4/5] p-6 flex flex-col justify-between hover:-translate-y-1 transition-transform duration-500"
+                style={{ background: e.bg, color: e.fg }}
               >
-                <div
-                  className="absolute top-0 left-0 w-1 h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: color }}
-                  aria-hidden
-                />
-                <div className="relative">
-                  <span
-                    className="inline-block w-3 h-3 rounded-full mb-4"
-                    style={{ background: color }}
-                    aria-hidden
-                  />
-                  <h3 className="font-display font-black uppercase text-2xl md:text-3xl text-tinta leading-none">
-                    {item.titulo}
-                  </h3>
+                <div className="absolute inset-0 mantel-azul opacity-25" aria-hidden />
+                <div className="relative flex items-start justify-between gap-3">
+                  <span className="text-3xl md:text-4xl" aria-hidden>
+                    {e.icon}
+                  </span>
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest opacity-70">
+                    .{String(seccion.items.indexOf(item) + 1).padStart(2, "0")}
+                  </span>
                 </div>
                 <div className="relative">
-                  <p className="font-sans text-sm text-tinta/60 mb-3">{item.texto}</p>
-                  <span
-                    className="inline-flex items-center gap-1 text-xs font-sans font-semibold uppercase tracking-widest"
-                    style={{ color }}
-                  >
+                  <h3 className="font-display font-black uppercase text-xl md:text-2xl leading-none mb-2 break-words">
+                    {item.titulo}
+                  </h3>
+                  <p className="font-sans text-xs md:text-sm opacity-80 mb-4">
+                    {resolver(item.texto)}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-xs font-sans font-bold uppercase tracking-widest">
                     Visitar <span aria-hidden>→</span>
                   </span>
                 </div>
@@ -92,8 +88,8 @@ export default function Marcas() {
           })}
         </div>
 
-        <p className="mt-10 font-sans text-xs text-tinta/40 max-w-3xl">
-          Las categorías por confirmar con el catálogo. Enlaces apuntan al sitio de cada marca cuando esté verificado.
+        <p className="mt-10 font-sans text-xs text-tinta/40 max-w-3xl italic">
+          Categorías por confirmar con el catálogo oficial de marcas. Enlaces apuntan al sitio de cada marca cuando esté verificado.
         </p>
       </div>
     </section>

@@ -1,33 +1,23 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Fraunces, Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const display = Barlow_Condensed({
+/**
+ * Outfit es la familia tipográfica confirmada en los materiales 2025 de Grupo Bimbo
+ * (manual de identidad de referencia BMB-00334). Google Fonts, licencia libre.
+ * Poleno (Adobe Fonts) se agregará como primaria cuando se asegure la licencia web.
+ */
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800", "900"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const serif = Fraunces({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const sans = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-outfit",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Grupo Bimbo | Alimentamos un mundo mejor",
+  title: "Grupo Bimbo | Celebramos lo que nos une",
   description:
-    "La panificadora más grande del mundo: más de 100 marcas, 39 países de operación y una estrategia pública de sustentabilidad.",
+    "La panificadora más grande del mundo. 80 años horneando, +100 marcas, 39 países de operación. Alimentamos un mundo mejor.",
 };
 
 export default function RootLayout({
@@ -36,11 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="es"
-      className={`${display.variable} ${serif.variable} ${sans.variable}`}
-    >
-      <body className="antialiased bg-harina text-tinta">{children}</body>
+    <html lang="es" className={outfit.variable}>
+      <body className="antialiased bg-papel text-tinta font-sans">{children}</body>
     </html>
   );
 }

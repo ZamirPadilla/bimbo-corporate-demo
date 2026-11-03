@@ -1,22 +1,26 @@
 import Nav from "@/components/home/Nav";
 import Hero from "@/components/home/Hero";
+import CintaCifras from "@/components/home/CintaCifras";
+import Celebramos from "@/components/home/Celebramos";
+import Mision from "@/components/home/Mision";
 import Accesos from "@/components/home/Accesos";
 import Cifras from "@/components/home/Cifras";
-import Mision from "@/components/home/Mision";
 import Marcas from "@/components/home/Marcas";
-import Sostenibilidad from "@/components/home/Sostenibilidad";
+import Sustentabilidad from "@/components/home/Sustentabilidad";
 import Footer from "@/components/home/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-harina text-tinta">
+    <main className="min-h-screen bg-papel text-tinta">
       <Nav />
       <Hero />
+      <CintaCifras />
+      <Celebramos />
+      <Mision />
       <Accesos />
       <Cifras />
-      <Mision />
       <Marcas />
-      <Sostenibilidad />
+      <Sustentabilidad />
       <Footer />
     </main>
   );

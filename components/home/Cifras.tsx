@@ -1,65 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { paginaPorSlug } from "@/content/paginas";
 import { cifras, type Cifra } from "@/content/cifras";
 import { useReveal } from "@/lib/useReveal";
+import { CifraGrande } from "@/components/branding/CifraGrande";
+import { Apilado } from "@/components/branding/Apilado";
 
-function parseValor(valor: string): { prefijo: string; numero: number | null; sufijo: string } {
-  // Extrae "más de 153,000" → prefijo="más de ", numero=153000, sufijo=""
-  // "más de 100" → prefijo="más de ", numero=100
-  // "39" → numero=39
+function partirValor(valor: string): { prefijo: string; numero: number | null; sufijo: string } {
   const limpio = valor.replace(/\s+/g, " ").trim();
   const match = limpio.match(/^(.*?)([\d,]+)(.*)$/);
-  if (!match) return { prefijo: limpio, numero: null, sufijo: "" };
+  if (!match) return { prefijo: "", numero: null, sufijo: limpio };
+  const prefijoBruto = match[1].trim();
+  const n = parseInt(match[2].replace(/,/g, ""), 10);
   return {
-    prefijo: match[1].trim() ? match[1] : "",
-    numero: parseInt(match[2].replace(/,/g, ""), 10),
-    sufijo: match[3],
+    prefijo: prefijoBruto === "más de" ? "+" : prefijoBruto,
+    numero: n,
+    sufijo: match[3].trim(),
   };
-}
-
-function Contador({ hasta }: { hasta: number }) {
-  const [valor, setValor] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      setValor(hasta);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            observer.unobserve(entry.target);
-            const inicio = performance.now();
-            const duracion = 1800;
-            const tick = (ahora: number) => {
-              const t = Math.min((ahora - inicio) / duracion, 1);
-              const eased = 1 - Math.pow(1 - t, 3);
-              setValor(Math.floor(eased * hasta));
-              if (t < 1) requestAnimationFrame(tick);
-            };
-            requestAnimationFrame(tick);
-          }
-        });
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [hasta]);
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      {valor.toLocaleString("es-MX")}
-    </span>
-  );
 }
 
 export default function Cifras() {
@@ -70,58 +27,76 @@ export default function Cifras() {
   const ref = useReveal<HTMLDivElement>();
 
   return (
-    <section className="relative py-24 md:py-32 bg-tinta text-harina overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.03]" aria-hidden>
-        <div className="franja-marcas h-full" />
-      </div>
+    <section className="relative py-24 md:py-36 bg-azul-noche text-papel overflow-hidden">
+      {/* Mantel azul + textura de granos (como el mapa del informe) */}
+      <div className="absolute inset-0 mantel-azul opacity-80" aria-hidden />
+      <div className="absolute inset-0 textura-granos text-crema/30" aria-hidden />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, rgba(21, 53, 157, 0.5) 0%, transparent 60%)",
+        }}
+        aria-hidden
+      />
 
-      <div ref={ref} className="relative max-w-7xl mx-auto px-6 reveal">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
+      <div ref={ref} className="relative max-w-7xl mx-auto px-6 md:px-12 reveal">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16 md:mb-24">
           <div>
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-trigo-200 mb-4">
-              Bimbo en cifras
+            <p className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-cimientos-arena mb-6">
+              Grupo Bimbo en cifras · Informe Anual 2025
             </p>
-            <h2 className="font-display font-black uppercase text-5xl md:text-7xl lg:text-8xl leading-[0.9] max-w-3xl">
-              La panificadora más grande del mundo
+            <Apilado silabas={["ALIMEN", "TAMOS"]} tamano="sm" variante="mixto" />
+            <h2 className="mt-4 font-display font-black uppercase text-silaba-sm leading-[0.9] text-cimientos-arena">
+              un mundo mejor
             </h2>
           </div>
-          <p className="font-sans text-sm text-harina/60 md:max-w-xs">
-            Cifras del Informe Anual 2025 de Grupo Bimbo (cierre de 2025).
+          <p className="font-sans text-sm text-papel/60 max-w-xs leading-relaxed">
+            Cifras al cierre de 2025. Verificar con el cliente antes de publicar en producción.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 md:gap-y-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-14">
           {seccion.ids.map((id) => {
-            const cifra: Cifra = cifras[id];
-            const { prefijo, numero, sufijo } = parseValor(cifra.valor);
+            const c: Cifra = cifras[id];
+            const { prefijo, numero, sufijo } = partirValor(c.valor);
             return (
-              <div key={id} className="group">
-                <div className="font-display font-black text-trigo-200 leading-none mb-3">
-                  {prefijo && (
-                    <span className="block font-sans font-semibold text-sm uppercase tracking-widest text-harina/50 mb-2">
-                      {prefijo}
-                    </span>
-                  )}
-                  <span className="text-6xl md:text-7xl lg:text-8xl">
-                    {numero !== null ? <Contador hasta={numero} /> : cifra.valor}
-                  </span>
-                  {sufijo && (
-                    <span className="font-sans font-normal text-sm text-harina/50 ml-2">
-                      {sufijo}
-                    </span>
-                  )}
-                </div>
-                <p className="font-sans text-sm md:text-base text-harina/80 border-t border-harina/10 pt-4">
-                  {cifra.etiqueta}
-                </p>
-                {cifra.unidad && (
-                  <p className="font-sans text-xs text-harina/40 mt-1 uppercase tracking-wider">
-                    {cifra.unidad}
-                  </p>
-                )}
-              </div>
+              <CifraGrande
+                key={id}
+                numero={numero ?? c.valor}
+                prefijo={prefijo}
+                sufijo={sufijo}
+                etiqueta={c.etiqueta}
+                nota={c.corte}
+                color="#F6EEDF"
+                tamano="sm"
+              />
             );
           })}
+        </div>
+
+        <div className="mt-20 pt-8 border-t border-papel/15 grid md:grid-cols-3 gap-10 md:gap-14 text-papel/90">
+          <div>
+            <div className="font-display font-black text-4xl md:text-5xl text-cimientos-arena leading-none tabular-nums">
+              Ps. 420,168
+            </div>
+            <p className="mt-3 font-sans font-bold uppercase text-sm tracking-wider">Ventas netas U12M</p>
+            <p className="mt-1 font-sans text-xs text-papel/50">millones de pesos · 3T26</p>
+          </div>
+          <div>
+            <div className="font-display font-black text-4xl md:text-5xl text-cimientos-arena leading-none tabular-nums">
+              +4.6%
+            </div>
+            <p className="mt-3 font-sans font-bold uppercase text-sm tracking-wider">Crecimiento vs. 2024</p>
+            <p className="mt-1 font-sans text-xs text-papel/50">Informe Anual 2025</p>
+          </div>
+          <div>
+            <div className="font-display font-black text-4xl md:text-5xl text-cimientos-arena leading-none tabular-nums">
+              +7.2%
+            </div>
+            <p className="mt-3 font-sans font-bold uppercase text-sm tracking-wider">UAFIDA ajustada</p>
+            <p className="mt-1 font-sans text-xs text-papel/50">59,456 mdp · vs. 2024</p>
+          </div>
         </div>
       </div>
     </section>

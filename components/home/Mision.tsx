@@ -4,6 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { paginaPorSlug } from "@/content/paginas";
 import { resolver } from "@/lib/copy";
 
+/**
+ * Nuestra misión: texto grande revelado palabra por palabra con el scroll.
+ * El titular usa la técnica de "letras rellenas de foto" del manual (BMB-00334).
+ */
 export default function Mision() {
   const inicio = paginaPorSlug("inicio")!;
   const seccion = inicio.secciones.find((s) => s.id === "mision")!;
@@ -28,9 +32,7 @@ export default function Mision() {
     const onScroll = () => {
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Comienza cuando el top de la sección está a 70% del viewport
-      // Termina cuando el top está a 10% del viewport
-      const start = vh * 0.7;
+      const start = vh * 0.75;
       const end = vh * 0.1;
       const t = (start - rect.top) / (start - end);
       setProgreso(Math.max(0, Math.min(1, t)));
@@ -43,32 +45,37 @@ export default function Mision() {
   const palabrasRevelas = Math.floor(progreso * palabras.length);
 
   return (
-    <section id="nosotros" className="relative py-32 md:py-48 bg-harina">
-      <div ref={ref} className="max-w-5xl mx-auto px-6">
-        <p className="font-sans text-xs font-semibold uppercase tracking-[0.3em] text-accion-rojoBimbo mb-6">
+    <section id="nosotros" className="relative py-32 md:py-48 bg-papel">
+      <div ref={ref} className="max-w-6xl mx-auto px-6 md:px-12">
+        <p className="font-sans text-xs font-bold uppercase tracking-[0.3em] text-rojo mb-10">
           Nuestra misión
         </p>
-        <h2 className="font-display font-black uppercase text-4xl md:text-6xl lg:text-7xl text-tinta leading-[0.95] mb-16 max-w-4xl">
+
+        {/* Titular con letras rellenas de textura cálida */}
+        <h2 className="font-display font-black uppercase text-silaba-sm md:text-silaba leading-[0.88] mb-16 max-w-4xl letra-foto">
           {titulo}
         </h2>
-        <p className="font-serif text-2xl md:text-3xl lg:text-4xl leading-tight text-tinta/80 max-w-4xl">
+
+        {/* Texto grande revelado palabra por palabra */}
+        <p className="font-sans text-2xl md:text-3xl lg:text-4xl leading-tight text-tinta font-medium max-w-5xl">
           {palabras.map((w, i) => (
             <span
               key={i}
               className="transition-all duration-500 ease-out"
               style={{
-                opacity: i < palabrasRevelas ? 1 : 0.18,
-                filter: i < palabrasRevelas ? "blur(0)" : "blur(4px)",
+                opacity: i < palabrasRevelas ? 1 : 0.15,
+                filter: i < palabrasRevelas ? "blur(0)" : "blur(5px)",
               }}
             >
               {w}{" "}
             </span>
           ))}
         </p>
+
         {seccion.cta && (
           <a
             href={seccion.cta.destino}
-            className="mt-12 inline-flex items-center gap-3 group text-tinta font-sans font-semibold"
+            className="mt-16 inline-flex items-center gap-3 group text-tinta font-sans font-semibold"
           >
             <span className="relative">
               {seccion.cta.texto}

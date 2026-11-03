@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { LogoBimbo } from "@/components/branding/LogoBimbo";
 
 const enlaces = [
   { href: "#nosotros", label: "Nosotros" },
   { href: "#marcas", label: "Marcas" },
-  { href: "#sostenibilidad", label: "Sustentabilidad" },
+  { href: "#sustentabilidad", label: "Sustentabilidad" },
   { href: "#inversionistas", label: "Inversionistas" },
   { href: "#carreras", label: "Carreras" },
   { href: "#prensa", label: "Prensa" },
@@ -25,27 +26,24 @@ export default function Nav() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-harina/80 backdrop-blur-xl border-b border-tinta/5 py-3"
+          ? "bg-papel/85 backdrop-blur-xl border-b border-tinta/5 py-3"
           : "bg-transparent py-5"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5 group">
-          <span className="relative inline-block w-9 h-9">
-            <span className="absolute inset-0 rounded-full bg-accion-rojoBimbo transition-transform duration-500 group-hover:scale-110" />
-            <span className="absolute inset-[25%] rounded-full bg-harina" />
-          </span>
-          <span className="font-display font-bold text-tinta tracking-tight text-lg uppercase">
-            Grupo Bimbo
+      <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-8">
+        <a href="#" className="flex items-center gap-3 group">
+          <LogoBimbo size={72} className="transition-transform group-hover:scale-105" />
+          <span className="hidden sm:block font-display font-black uppercase text-xs tracking-widest text-tinta/60">
+            Grupo
           </span>
         </a>
 
-        <ul className="hidden lg:flex items-center gap-1 bg-migaja/60 backdrop-blur border border-tinta/5 rounded-full px-2 py-1.5">
+        <ul className="hidden lg:flex items-center gap-1 bg-hueso border border-tinta/5 rounded-full px-2 py-1.5">
           {enlaces.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="px-4 py-1.5 text-sm font-medium text-tinta/70 hover:text-tinta hover:bg-harina rounded-full transition-colors"
+                className="block px-4 py-1.5 text-sm font-sans font-medium text-tinta/70 hover:text-tinta hover:bg-papel rounded-full transition-colors"
               >
                 {l.label}
               </a>
@@ -55,9 +53,9 @@ export default function Nav() {
 
         <a
           href="#contacto"
-          className="hidden md:inline-flex items-center gap-2 rounded-full bg-tinta text-harina text-sm font-semibold font-sans px-5 py-2.5 hover:bg-azul-700 transition-colors"
+          className="hidden md:inline-flex items-center gap-2 rounded-full bg-tinta text-papel text-sm font-sans font-semibold px-5 py-2.5 hover:bg-azul-noche transition-colors"
         >
-          Hablemos
+          Escríbenos
           <span aria-hidden>→</span>
         </a>
       </nav>

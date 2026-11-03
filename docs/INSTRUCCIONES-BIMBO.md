@@ -51,26 +51,26 @@ usa su **lógica y sus reglas**, no su formato de archivo. Equivalencias:
 6. **Flujo del repo.** Rama `feat/…`/`fix/…`/`docs/…`, Conventional Commits, PR con la plantilla. Antes de abrir
    el PR: `npm run lint` y `npm run build` (los corre el CI).
 
-## Datos para empezar (de prensa 2025, por verificar)
-Las fuentes no coinciden entre sí; confirma cada dato en el informe anual más reciente.
+## Datos: usa `content/cifras.ts`
+Las cifras ya están validadas con el **Informe Anual 2025** de Grupo Bimbo (publicado en septiembre de 2026, con cifras al
+cierre de 2025). Cuando su sitio se contradice, manda el informe. No escribas cifras a mano en los componentes:
+impórtalas de `content/cifras.ts`, que trae el valor, la fecha de corte y la fuente de cada una.
 
-| Dato | Valor en prensa |
+| Dato | Valor (Informe Anual 2025) |
 |---|---|
 | Fundación | 1945, Ciudad de México |
-| Presencia | 91 países (39 con operación directa) según su sitio; 76 según un comunicado de sept. 2025 |
-| Plantas y panaderías | 245–249 |
-| Centros y puntos de venta | más de 1,500 centros; 3.3 millones de puntos de venta |
+| Presencia | 93 países: operación directa en 39 y otros 54 con socios estratégicos |
+| Panaderías y plantas | 249 (75 en Norteamérica, 38 en México, 94 en EAA, 42 en Latinoamérica) |
+| Centros de ventas | más de 1,700 |
 | Rutas de distribución | más de 54,000 |
-| Colaboradores | alrededor de 152,000–153,000 |
-| Portafolio | más de 100 marcas y 10,000 productos |
-| Ventas | más de 22,000 millones de USD |
+| Colaboradores | más de 153,000 |
+| Portafolio | más de 100 marcas y más de 9,000 productos |
 
-Ojo: `components/Hero.tsx` hoy dice "+30 países" y "más de 30 países", lo que no cuadra con estas fuentes.
-Verifícalo y corrígelo con su fuente.
+Las decisiones y su justificación están en `docs/copy/05-decisiones.md`. El copy de cada página propuesta está en
+`content/paginas.ts` (ver `/wireframes` y `/demo` en la app).
 
-Fuentes de partida: [perfil BMV de BIMBO](https://www.bmv.com.mx/en/issuers/profile/BIMBO-5163),
-[Expansión: marcas y países (nov. 2025)](https://expansion.mx/empresas/2025/11/08/marcas-de-grupo-bimbo-y-paises-en-los-que-opera),
-[Expansión: marcas y países donde vende](https://expansion.mx/empresas/2025/11/07/marcas-de-grupo-bimbo-y-paises-donde-vende).
+Ojo: `components/Hero.tsx` hoy dice "+30 países", "+140K colaboradores" y "Más de 75 años"; `components/Values.tsx`
+usa valores que no son las creencias oficiales. Corrígelos con `content/cifras.ts` y el copy de Nosotros.
 
 ## Propuesta de secciones (para validar en un issue)
 La Home actual tiene `Hero`, `Values`, `Brands`, `Sustainability` y `Footer`. Propuesta de orden y mejoras:
@@ -88,8 +88,8 @@ La Home actual tiene `Hero`, `Values`, `Brands`, `Sustainability` y `Footer`. Pr
 8. **Footer**.
 
 ## Primer paso
-1. Lee `skills/README.md`, `skills/sitio-prospecto/SKILL.md` y sus referencias.
-2. Llena `docs/investigacion.md` con los datos confirmados.
+1. Lee `skills/README.md`, `skills/sitio-prospecto/SKILL.md` y sus referencias, y `skills/benchmark-inspiracion/` antes de fijar el sistema visual.
+2. Lee `docs/INDICE.md` (decisiones, dudas vigentes y benchmark) y `docs/copy/` antes de escribir copy nuevo.
 3. Abre un issue con la propuesta de secciones, el guion de la Home (titular, texto y animación de cada sección)
    y la lista de material que necesitas: logo en vector, fotos o videos con derechos, foto aérea de una planta.
 4. Implementa sección por sección, un PR por sección, con capturas de escritorio y teléfono.

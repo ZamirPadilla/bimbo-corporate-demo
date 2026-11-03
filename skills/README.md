@@ -1,7 +1,7 @@
 # Skills de sitios corporativos (Nuclea)
 
-Técnicas del sitio de Grupo PRODI (hecho por Nuclea Solutions), empaquetadas para reutilizarlas con otros
-prospectos. El código del sitio de PRODI es privado; las skills traen lo necesario para aplicar cada técnica sin él. Cada carpeta es una
+Técnicas del sitio de Grupo PRODI (hecho por Nuclea Solutions) y del trabajo de copy de esta demo, empaquetadas para
+reutilizarlas con otros prospectos. El código del sitio de PRODI es privado; las skills traen lo necesario para aplicar cada técnica sin él. Cada carpeta es una
 skill (`SKILL.md` + `scripts/` + `references/`).
 
 | Skill | Qué cubre |
@@ -16,6 +16,9 @@ skill (`SKILL.md` + `scripts/` + `references/`).
 | `verificar-en-navegador` | Probar animaciones, canvas, hover y teléfono midiendo con JS |
 | `publicar-vercel` | URL privada del equipo y URL del cliente con contraseña |
 | `vista-previa-compartir` | Thumbnails Open Graph e íconos sin esquinas blancas |
+| `benchmark-inspiracion` | Referencias en Awwwards, léxico del cliente en motivos de marca y carácter de cada página |
+| `copy-corporativo` | Copy desde el sitio actual: inventario, revisión crítica, fuente única de cifras, arquitectura y voz, copy deck |
+| `wireframes-desde-copy` | Wireframes en grises e índice de la demo (`/demo`) generados desde el copy deck; plantilla Next.js + Tailwind |
 
 ## Instalar
 - **Claude Code:** desde esta carpeta, `for s in */; do ln -sfn "$PWD/${s%/}" ~/.claude/skills/${s%/}; done`
@@ -24,6 +27,10 @@ skill (`SKILL.md` + `scripts/` + `references/`).
 - **Otra IA:** darle a leer `sitio-prospecto/SKILL.md` y las skills que ese archivo indique en cada etapa; los
   scripts funcionan solos (Python 3, ffmpeg, Google Chrome, Node para el smoke test del mapa). Pensados para
   macOS: `generar.py` usa la ruta de Chrome de macOS y `sips`, y `video_web.sh` corre con zsh.
+
+## Orden sugerido
+`sitio-prospecto` (investigación) → `copy-corporativo` → `wireframes-desde-copy` → `benchmark-inspiracion` →
+diseño con el catálogo de `sitio-prospecto` → `verificar-en-navegador` → `vista-previa-compartir` → `publicar-vercel`.
 
 ## Prospectos
 - Bimbo: instrucciones de arranque en `../docs/INSTRUCCIONES-BIMBO.md` (este repo, Next.js).

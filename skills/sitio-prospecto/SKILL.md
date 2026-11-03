@@ -46,6 +46,8 @@ Estas reglas salen de correcciones reales; seguirlas ahorra vueltas:
 - Giro, historia (año de fundación, hitos), cifras públicas, presencia (países, plantas, oficinas), marcas o
   unidades de negocio, proyectos emblemáticos, tono de su comunicación.
 - Reunir fuentes con URL. Guardar un `investigacion.md` en el proyecto con cada dato y su fuente.
+- Leer el **último informe anual** del cliente: cuando su sitio se contradice, manda el informe (en Bimbo,
+  el sitio decía 96 y 102 países; el Informe Anual 2025, 93).
 - Pedir al usuario el material que solo él tiene: logo en vector, fotos o videos con derechos, renders.
 
 ### 2 · Mapa del sitio y guion
@@ -53,8 +55,13 @@ Estas reglas salen de correcciones reales; seguirlas ahorra vueltas:
   negocio del prospecto. Cada página es una secuencia de secciones del catálogo.
 - Escribir el guion de la Home sección por sección (titular, texto, qué animación) y validarlo con el
   usuario antes de diseñar.
+- Si el cliente ya tiene sitio, el copy sale de cuestionar el actual: `copy-corporativo` (inventario,
+  revisión crítica, fuente única de cifras, arquitectura y voz, copy deck). Los wireframes navegables se
+  generan desde ese copy con `wireframes-desde-copy`.
 
 ### 3 · Sistema visual
+- Antes de fijar color y tipografía: `benchmark-inspiracion` (referencias en Awwwards, léxico del cliente,
+  motivos abstractos y la intensidad de cada página: home clara, productos exploratorios, historia viva).
 - Adaptar `references/sistema-visual.md` a la marca del prospecto: conservar la estructura (fondo oscuro de
   tinta, texto claro, un acento, tipografía Geist + Geist Mono para rótulos) y cambiar acento y logo. Si la
   marca es clara y cálida, invertir a fondo papel con tinta y probar contraste.

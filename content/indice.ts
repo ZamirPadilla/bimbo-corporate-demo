@@ -80,7 +80,9 @@ export const correccionesDelInforme = [
   "Las acciones también cotizan en Estados Unidos con ADR Nivel 1 (BMBOY).",
 ];
 
-export const benchmark = {
+export type FilaBenchmark = { sitio: string; movil: number | null; escritorio: number | null; lcpMovil: number | null; pesoMb: number | null; peticiones: number | null; nota?: string };
+
+export const benchmark: { nota: string; filas: FilaBenchmark[]; metas: string } = {
   nota: "Página de inicio de cada empresa, medida desde México el 2 de noviembre de 2026 con Lighthouse 13.6; mediana de 3 corridas por dispositivo, misma red para todas. Sirve como línea base para la propuesta.",
   filas: [
     { sitio: "Grupo Bimbo · sitio actual", movil: 68, escritorio: 87, lcpMovil: 11.9, pesoMb: 8.4, peticiones: 112 },

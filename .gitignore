@@ -42,4 +42,3 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
-.github/workflows/ci.yml.disabled

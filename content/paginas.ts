@@ -65,7 +65,7 @@ const home: Pagina = {
       intro: "Cinco etapas, una sola operación.",
       items: [
         { titulo: "Campo", texto: "Trabajamos con agricultores en agricultura regenerativa. Meta: {agriculturaMeta}." },
-        { titulo: "Panaderías", texto: "Horneamos cada día en {panaderias} panaderías y plantas." },
+        { titulo: "Panaderías", texto: "Horneamos cada día en {panaderias} panaderías y botaneras." },
         { titulo: "Distribución", texto: "Llevamos el pan fresco con {rutas} rutas y {centrosVenta} centros de ventas." },
         { titulo: "Tiendas", texto: "Desde la tienda de la esquina hasta el supermercado, en {paisesPresencia} países." },
         { titulo: "Tu mesa", texto: "Llegamos con {marcas} marcas para cada momento del día." },
@@ -99,7 +99,7 @@ const home: Pagina = {
       items: [
         { titulo: "Para Ti", texto: "Mejores perfiles nutrimentales, etiquetas claras y más ingredientes de origen vegetal.", cta: { texto: "Ver Para Ti", destino: "/wireframes/sustentabilidad" } },
         { titulo: "Para la Vida", texto: "Comunidades más fuertes y un trabajo seguro, incluyente y bien pagado.", cta: { texto: "Ver Para la Vida", destino: "/wireframes/sustentabilidad" } },
-        { titulo: "Para la Naturaleza", texto: "Cero emisiones netas en {emisionesMeta}, cero desperdicios y agricultura regenerativa.", cta: { texto: "Ver Para la Naturaleza", destino: "/wireframes/sustentabilidad" } },
+        { titulo: "Para la Naturaleza", texto: "Cero emisiones de carbono en {emisionesMeta}, cero desperdicios y agricultura regenerativa.", cta: { texto: "Ver Para la Naturaleza", destino: "/wireframes/sustentabilidad" } },
       ],
       columnas: 3,
       nota: "Los tres pilares con su nombre oficial. Reemplaza la imagen con texto incrustado y las tres anclas que hoy van al mismo lugar.",
@@ -214,7 +214,7 @@ const nosotros: Pagina = {
         { periodo: "1980–1990", titulo: "Empresa pública", texto: "El 15% de las acciones empieza a cotizar en la Bolsa Mexicana de Valores." },
         { periodo: "1990–2000", titulo: "Rumbo a Latinoamérica", texto: "La Organización Latinoamérica lleva nuestras panaderías más allá de México." },
         { periodo: "2000–2010", titulo: "Un nuevo continente", texto: "Llegamos a Asia, a la costa oeste de Estados Unidos y sumamos El Globo y Chocolates La Corona." },
-        { periodo: "2010–hoy", titulo: "La panificadora más grande del mundo", texto: "Sumamos operaciones en Norteamérica, Europa, África y Asia, lanzamos la estrategia de sustentabilidad y la meta de cero emisiones netas." },
+        { periodo: "2010–hoy", titulo: "La panificadora más grande del mundo", texto: "Sumamos operaciones en Norteamérica, Europa, África y Asia, lanzamos la estrategia de sustentabilidad y la meta de cero emisiones de carbono." },
       ],
       nota: "Línea por eras con fotos de archivo. Cada era abre las historias que hoy existen como notas sueltas.",
     },
@@ -332,7 +332,7 @@ const sustentabilidad: Pagina = {
       items: [
         { titulo: "Para Ti", texto: "Mejores perfiles nutrimentales para todos · Marcas sustentables y transparentes · Dietas más saludables a base de plantas.", cta: { texto: "Ver Para Ti", destino: "#para-ti" } },
         { titulo: "Para la Vida", texto: "Fortalecer nuestras comunidades · Cuidar a nuestra gente.", cta: { texto: "Ver Para la Vida", destino: "#para-la-vida" } },
-        { titulo: "Para la Naturaleza", texto: "Hacia cero desperdicios · Cero emisiones netas · Agricultura regenerativa.", cta: { texto: "Ver Para la Naturaleza", destino: "#para-la-naturaleza" } },
+        { titulo: "Para la Naturaleza", texto: "Hacia cero desperdicios · Avanzando hacia cero emisiones de carbono · Agricultura regenerativa.", cta: { texto: "Ver Para la Naturaleza", destino: "#para-la-naturaleza" } },
       ],
       columnas: 3,
       nota: "Reemplaza «8 principios básicos»: son 3 pilares con 8 temas, más 4 cimientos. Decidido: la página de Nutrición se integra en Para Ti, que es donde el Informe Anual 2025 reporta los perfiles nutrimentales; /nutricion redirige a /sustentabilidad#para-ti.",

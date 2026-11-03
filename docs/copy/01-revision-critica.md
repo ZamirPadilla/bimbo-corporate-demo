@@ -102,12 +102,12 @@ La demo de este repositorio usa cifras y textos que no salen de fuentes pública
 | Hero | «+30 países», «+140K colaboradores» | 39 países de operación; más de 152 mil colaboradores (2026) |
 | Valores | «Más de 75 años»; Pasión, Confianza, Rentabilidad, Trabajo en equipo | 81 años; las creencias publicadas son otras siete (ver §1) |
 | Marcas | Incluye Ricolino entre las 12 marcas globales | Ricolino no aparece en ninguna página de marcas del sitio actual; por confirmar antes de usarla. Rainbo sí aparece, en Norteamérica |
-| Sostenibilidad | «0 residuos a vertedero», «+1M personas», «100% reformulados para 2030» | Sin fuente en el sitio. Las metas públicas son cero emisiones netas en 2050 y 100% de ingredientes clave de agricultura regenerativa en 2050 |
+| Sostenibilidad | «0 residuos a vertedero», «+1M personas», «100% reformulados para 2030» | Sin fuente en el sitio. Las metas públicas son cero emisiones de carbono en 2050 y 100% de ingredientes clave de agricultura regenerativa en 2050 |
 | Footer | Prolongación Paseo de la Reforma 1000 | Las FAQ del sitio dan otra dirección (Alfonso Nápoles Gándara 1117, Santa Fe). Por confirmar cuál publicar |
 | Pilares | Bienestar, Planeta, Comunidad | Los pilares oficiales son Para Ti, Para la Vida y Para la Naturaleza, más los Cimientos |
 
 ## 9 · Decisiones
 
-Las seis decisiones que este documento dejaba abiertas se resolvieron el 2 de noviembre de 2026 con el último reporte publicado, el **Informe Anual 2025** (septiembre de 2026). Detalle en [05-decisiones.md](05-decisiones.md).
+Las seis decisiones que este documento dejaba abiertas se resolvieron con el último reporte publicado: el **reporte del 3T26** (22 de octubre de 2026) para las cifras de escala y el **Informe Anual 2025** (septiembre de 2026) para la identidad, la dirección y las metas. La primera versión, del 2 de noviembre, usó solo el informe anual; se corrigió el 3 de noviembre. Detalle en [05-decisiones.md](05-decisiones.md).
 
-El informe confirma que el sitio actual también se contradice con su propio reporte: dice 96 y 102 países (el informe, 93), 1,600 centros de ventas (1,700), más de 10 mil productos (9,000) y «operadores eficientes» donde la creencia oficial dice «eficaces».
+Los dos reportes no coinciden entre sí (93 o 102 países, 249 o 250 panaderías, 1,700 o 1,600 centros, 153 o 152 mil colaboradores), y la duda queda abierta para Bimbo. Lo que sí está claro: Nosotros (96 países) e Inversionistas (más de 10 mil productos, frente a 9,000 del informe) están desactualizados, y el sitio dice «operadores eficientes» donde la creencia oficial dice «eficaces».

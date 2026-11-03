@@ -14,7 +14,7 @@ Wireframes navegables: `npm run dev` y abrir `/wireframes`.
 
 **Rótulo:** Grupo Bimbo · desde 1945  
 **Titular:** Alimentamos un mundo mejor  
-**Bajada:** Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 93 países.  
+**Bajada:** Somos la panificadora más grande del mundo. Horneamos pan, pan dulce, galletas, tortillas y botanas en 39 países, y nuestros productos llegan a 102 países.  
 **Botones:** Explora nuestras marcas · Conoce nuestra estrategia  
 **Visual:** Video a sangre: del horno a la mesa, sin audio. Póster inmediato; versión vertical para teléfono. Sin carrusel automático.  
 
@@ -40,9 +40,9 @@ Wireframes navegables: `npm run dev` y abrir `/wireframes`.
 **Título:** Bimbo en cifras
 
 - Países donde operamos: 39
-- Panaderías y plantas: 249
+- Panaderías y botaneras: 250
 - Marcas: Más de 100
-- Colaboradores: Más de 153,000
+- Colaboradores: Más de 152,000
 
 > Nota de diseño: Contadores al entrar en pantalla. Cada cifra muestra su fecha de corte; todas salen de content/cifras.ts.
 
@@ -64,9 +64,9 @@ Esa es nuestra misión desde que seis socios abrieron una panadería en la colon
 Cinco etapas, una sola operación.
 
 1. **Campo.** Trabajamos con agricultores en agricultura regenerativa. Meta: 100% de ingredientes clave en 2050.
-2. **Panaderías.** Horneamos cada día en 249 panaderías y plantas.
-3. **Distribución.** Llevamos el pan fresco con más de 54,000 rutas y más de 1,700 centros de ventas.
-4. **Tiendas.** Desde la tienda de la esquina hasta el supermercado, en 93 países.
+2. **Panaderías.** Horneamos cada día en 250 panaderías y botaneras.
+3. **Distribución.** Llevamos el pan fresco con más de 54,000 rutas y más de 1,600 centros de ventas.
+4. **Tiendas.** Desde la tienda de la esquina hasta el supermercado, en 102 países.
 5. **Tu mesa.** Llegamos con más de 100 marcas para cada momento del día.
 
 > Nota de diseño: Sección «ciclo completo»: avanza sola cada 3.4 s, se pausa con el cursor y con un botón visible (WCAG 2.2.2).
@@ -96,7 +96,7 @@ En 2021 lanzamos «Alimentamos un mundo mejor», con tres pilares y una base com
 
 - **Para Ti.** Mejores perfiles nutrimentales, etiquetas claras y más ingredientes de origen vegetal. → *Ver Para Ti*
 - **Para la Vida.** Comunidades más fuertes y un trabajo seguro, incluyente y bien pagado. → *Ver Para la Vida*
-- **Para la Naturaleza.** Cero emisiones netas en 2050, cero desperdicios y agricultura regenerativa. → *Ver Para la Naturaleza*
+- **Para la Naturaleza.** Cero emisiones de carbono en 2050, cero desperdicios y agricultura regenerativa. → *Ver Para la Naturaleza*
 
 > Nota de diseño: Los tres pilares con su nombre oficial. Reemplaza la imagen con texto incrustado y las tres anclas que hoy van al mismo lugar.
 
@@ -105,7 +105,7 @@ En 2021 lanzamos «Alimentamos un mundo mejor», con tres pilares y una base com
 **Rótulo:** Presencia  
 **Título:** Operamos en 39 países de cuatro continentes
 
-Y con socios estratégicos, nuestros productos llegan a 93 países.
+Y con socios estratégicos, nuestros productos llegan a 102 países.
 
 **Botón:** Ver países y marcas
 
@@ -144,7 +144,7 @@ Y con socios estratégicos, nuestros productos llegan a 93 países.
 
 **Rótulo:** Nosotros  
 **Titular:** Una panadería de 1945 que hoy hornea en 39 países  
-**Bajada:** Somos más de 153,000 personas con una misma forma de trabajar. Esto es lo que creemos.  
+**Bajada:** Somos más de 152,000 personas con una misma forma de trabajar. Esto es lo que creemos.  
 **Visual:** Foto de archivo de la primera panadería junto a una planta actual.  
 
 ### identidad · tarjetas
@@ -178,9 +178,9 @@ Siete ideas que orientan cada decisión.
 **Título:** Hoy
 
 - Países donde operamos: 39
-- Países a los que llegan nuestros productos: 93
-- Panaderías y plantas: 249
-- Centros de ventas: Más de 1,700
+- Países a los que llegan nuestros productos: 102
+- Panaderías y botaneras: 250
+- Centros de ventas: Más de 1,600
 - Rutas de distribución: Más de 54,000
 - Productos: Más de 9,000
 
@@ -210,7 +210,7 @@ Siete ideas que orientan cada decisión.
 - **1980–1990 · Empresa pública.** El 15% de las acciones empieza a cotizar en la Bolsa Mexicana de Valores.
 - **1990–2000 · Rumbo a Latinoamérica.** La Organización Latinoamérica lleva nuestras panaderías más allá de México.
 - **2000–2010 · Un nuevo continente.** Llegamos a Asia, a la costa oeste de Estados Unidos y sumamos El Globo y Chocolates La Corona.
-- **2010–hoy · La panificadora más grande del mundo.** Sumamos operaciones en Norteamérica, Europa, África y Asia, lanzamos la estrategia de sustentabilidad y la meta de cero emisiones netas.
+- **2010–hoy · La panificadora más grande del mundo.** Sumamos operaciones en Norteamérica, Europa, África y Asia, lanzamos la estrategia de sustentabilidad y la meta de cero emisiones de carbono.
 
 > Nota de diseño: Línea por eras con fotos de archivo. Cada era abre las historias que hoy existen como notas sueltas.
 
@@ -305,7 +305,7 @@ Desde el inicio quisimos ser una empresa sustentable, altamente productiva y ple
 
 - **Para Ti.** Mejores perfiles nutrimentales para todos · Marcas sustentables y transparentes · Dietas más saludables a base de plantas. → *Ver Para Ti*
 - **Para la Vida.** Fortalecer nuestras comunidades · Cuidar a nuestra gente. → *Ver Para la Vida*
-- **Para la Naturaleza.** Hacia cero desperdicios · Cero emisiones netas · Agricultura regenerativa. → *Ver Para la Naturaleza*
+- **Para la Naturaleza.** Hacia cero desperdicios · Avanzando hacia cero emisiones de carbono · Agricultura regenerativa. → *Ver Para la Naturaleza*
 
 > Nota de diseño: Reemplaza «8 principios básicos»: son 3 pilares con 8 temas, más 4 cimientos. Decidido: la página de Nutrición se integra en Para Ti, que es donde el Informe Anual 2025 reporta los perfiles nutrimentales; /nutricion redirige a /sustentabilidad#para-ti.
 
@@ -313,7 +313,7 @@ Desde el inicio quisimos ser una empresa sustentable, altamente productiva y ple
 
 **Título:** Metas y avance
 
-- Meta de cero emisiones netas: 2050
+- Meta de cero emisiones de carbono: 2050
 - Meta de agricultura regenerativa: 100% de ingredientes clave en 2050
 - Hectáreas con agricultura regenerativa: Más de 500 mil
 - Empaques reciclables: 99%
@@ -443,14 +443,14 @@ Lo que sostiene a los tres pilares.
 
 **Rótulo:** Carreras  
 **Titular:** Haz carrera en la panificadora más grande del mundo  
-**Bajada:** Somos más de 153,000 personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.  
+**Bajada:** Somos más de 152,000 personas en 39 países. Valoramos a la persona y la ponemos al centro de lo que hacemos.  
 **Botones:** Buscar vacantes en mi país  
 
 ### cifras · cifras
 
 **Título:** Quiénes somos
 
-- Colaboradores: Más de 153,000
+- Colaboradores: Más de 152,000
 - Países donde operamos: 39
 - Mujeres en posiciones de liderazgo: Más del 30%
 

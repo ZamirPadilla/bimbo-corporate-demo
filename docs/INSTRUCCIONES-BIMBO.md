@@ -51,19 +51,24 @@ usa su **lógica y sus reglas**, no su formato de archivo. Equivalencias:
    el PR: `npm run lint` y `npm run build` (los corre el CI).
 
 ## Datos: usa `content/cifras.ts`
-Las cifras ya están validadas con el **Informe Anual 2025** de Grupo Bimbo (publicado en septiembre de 2026, con cifras al
-cierre de 2025). Cuando su sitio se contradice, manda el informe. No escribas cifras a mano en los componentes:
-impórtalas de `content/cifras.ts`, que trae el valor, la fecha de corte y la fuente de cada una.
+Las cifras están validadas con los dos últimos reportes de Grupo Bimbo: el **reporte del 3T26** (22 de octubre de 2026)
+para las cifras de escala y el **Informe Anual 2025** (septiembre de 2026) para los resultados y las metas del año. Cuando su
+sitio se contradice, manda el reporte más reciente. No escribas cifras a mano en los componentes: impórtalas de
+`content/cifras.ts`, que trae el valor, la fecha de corte y la fuente de cada una.
 
-| Dato | Valor (Informe Anual 2025) |
-|---|---|
-| Fundación | 1945, Ciudad de México |
-| Presencia | 93 países: operación directa en 39 y otros 54 con socios estratégicos |
-| Panaderías y plantas | 249 (75 en Norteamérica, 38 en México, 94 en EAA, 42 en Latinoamérica) |
-| Centros de ventas | más de 1,700 |
-| Rutas de distribución | más de 54,000 |
-| Colaboradores | más de 153,000 |
-| Portafolio | más de 100 marcas y más de 9,000 productos |
+| Dato | Valor | Fuente |
+|---|---|---|
+| Fundación | 1945, Ciudad de México | Informe Anual 2025 |
+| Presencia | 102 países: operación directa en 39 y otros 63 con socios estratégicos | 3T26 |
+| Panaderías y botaneras | 250 | 3T26 |
+| Centros de ventas | más de 1,600 | 3T26 |
+| Rutas de distribución | más de 54,000 | 3T26 |
+| Colaboradores | más de 152,000 | 3T26 |
+| Portafolio | más de 100 marcas y más de 9,000 productos | Informe Anual 2025 |
+
+El Informe Anual 2025 da otras cifras al cierre de 2025 (93 países, 249 panaderías y plantas, más de 1,700 centros, más
+de 153,000 colaboradores). Úsalas solo con esa fecha. La meta climática es «cero emisiones de carbono» en 2050; no
+escribas «netas».
 
 Las decisiones y su justificación están en `docs/copy/05-decisiones.md`. El copy de cada página propuesta está en
 `content/paginas.ts` (ver `/wireframes` y `/demo` en la app).

@@ -1,7 +1,8 @@
 // Fuente única de cifras corporativas para el copy y los wireframes.
 // Regla: ninguna página escribe una cifra a mano; la toma de aquí.
-// Criterio (decidido el 2 nov 2026): cuando las páginas del sitio no coinciden, manda el último
-// reporte publicado: Informe Anual 2025 (publicado en sept. 2026, cifras al cierre de 2025).
+// Criterio (2 nov 2026, corregido el 3 nov): cuando las páginas del sitio no coinciden, manda el último
+// reporte publicado. Cifras de escala (países, panaderías, centros, colaboradores): reporte del 3T26
+// (22 oct 2026, «Acerca de Grupo Bimbo»). Resultados y metas de 2025: Informe Anual 2025 (sept. 2026).
 // estado "confirmada": tiene fuente en un reporte o coincide en todas las fuentes públicas.
 // estado "por-confirmar": no tiene fuente pública suficiente; se muestra marcado.
 
@@ -24,6 +25,9 @@ const GB = "https://www.grupobimbo.com";
 const IA25 = "https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/IA25_GB_Celebramos_ESP_VF_28%20de%20septiembre%2026.pdf";
 const IA = { pagina: "Informe Anual 2025, «Nuestra empresa»", url: IA25 };
 const CORTE_IA = "Informe Anual 2025 (cierre de 2025)";
+const T326 = "https://d2rwhogv2mrkk6.cloudfront.net/s3fs-public/reportes-2026/Grupo%20Bimbo%20Reporta%20Resultados%20del%203T26_0.pdf";
+const RT = { pagina: "Reporte de resultados 3T26, «Acerca de Grupo Bimbo»", url: T326 };
+const CORTE_RT = "Reporte 3T26 (22 de octubre de 2026)";
 
 export const cifras = {
   fundacion: {
@@ -57,6 +61,7 @@ export const cifras = {
     corte: CORTE_IA,
     nota: "Marcas dice «más de 39» en un titular; el resto del sitio y el informe dicen 39.",
     fuentes: [
+      { ...RT, dice: "opera directamente en 39" },
       { ...IA, dice: "operamos directamente en 39" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "operamos directamente en 39" },
     ],
@@ -64,12 +69,13 @@ export const cifras = {
   paisesPresencia: {
     id: "paisesPresencia",
     etiqueta: "Países a los que llegan nuestros productos",
-    valor: "93",
+    valor: "102",
     unidad: "países",
     estado: "confirmada",
-    corte: CORTE_IA,
-    nota: "Decidido con el Informe Anual 2025: 93 (39 directos + 54 con socios). El sitio dice 96 en Nosotros y 102 en Inversionistas; ambas páginas deben actualizarse.",
+    corte: CORTE_RT,
+    nota: "Último reporte: 102 (39 directos + 63 con socios). El Informe Anual 2025 dice 93 al cierre de 2025 y Nosotros dice 96; Nosotros debe actualizarse.",
     fuentes: [
+      { ...RT, dice: "Tiene presencia en 102 países alrededor del mundo, de los cuales opera directamente en 39 y sirve a otros 63" },
       { ...IA, dice: "Tenemos presencia en 93 países, operamos directamente en 39 y atendemos otros 54" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "presencia en 96 países" },
       { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "presencia en 102 países" },
@@ -77,12 +83,13 @@ export const cifras = {
   },
   panaderias: {
     id: "panaderias",
-    etiqueta: "Panaderías y plantas",
-    valor: "249",
+    etiqueta: "Panaderías y botaneras",
+    valor: "250",
     estado: "confirmada",
-    corte: CORTE_IA,
-    nota: "Decidido con el Informe Anual 2025: 75 en Norteamérica, 38 en México, 94 en EAA y 42 en Latinoamérica. El sitio también dice 251, 250 y 214.",
+    corte: CORTE_RT,
+    nota: "Último reporte: 250 «panaderías y botaneras». El Informe Anual 2025 dice 249 «panaderías y plantas» al cierre de 2025 (75 en Norteamérica, 38 en México, 94 en EAA y 42 en Latinoamérica). El sitio también dice 251 y 214.",
     fuentes: [
+      { ...RT, dice: "cuenta con 250 panaderías y botaneras" },
       { ...IA, dice: "contamos con 249 panaderías y plantas" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "251 panaderías y plantas" },
       { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "250 panaderías y botaneras" },
@@ -92,11 +99,12 @@ export const cifras = {
   colaboradores: {
     id: "colaboradores",
     etiqueta: "Colaboradores",
-    valor: "más de 153,000",
+    valor: "más de 152,000",
     estado: "confirmada",
-    corte: CORTE_IA,
-    nota: "Decidido con el Informe Anual 2025. Por región: +26 mil en Norteamérica, +77 mil en México, +18 mil en EAA y +28 mil en Latinoamérica. La Home y Únete dicen 152 mil.",
+    corte: CORTE_RT,
+    nota: "Último reporte: más de 152,000, igual que la Home y Únete. El Informe Anual 2025 dice más de 153,000 al cierre de 2025 (por región: +26 mil en Norteamérica, +77 mil en México, +18 mil en EAA y +28 mil en Latinoamérica).",
     fuentes: [
+      { ...RT, dice: "más de 152,000 colaboradores" },
       { ...IA, dice: "más de 153,000 colaboradores" },
       { pagina: "Únete", url: `${GB}/es/unete-a-nuestro-equipo`, dice: "más de 152 mil personas" },
     ],
@@ -128,11 +136,12 @@ export const cifras = {
   centrosVenta: {
     id: "centrosVenta",
     etiqueta: "Centros de ventas",
-    valor: "más de 1,700",
+    valor: "más de 1,600",
     estado: "confirmada",
-    corte: CORTE_IA,
-    nota: "Nosotros e Inversionistas dicen «más de 1,600».",
+    corte: CORTE_RT,
+    nota: "Último reporte: más de 1,600, igual que Nosotros e Inversionistas. El Informe Anual 2025 dice más de 1,700 al cierre de 2025.",
     fuentes: [
+      { ...RT, dice: "más de 1,600 centros de ventas" },
       { ...IA, dice: "más de 1,700 centros de ventas" },
       { pagina: "Nosotros", url: `${GB}/es/nosotros`, dice: "más de 1,600 centros de ventas" },
     ],
@@ -143,8 +152,9 @@ export const cifras = {
     valor: "más de 54,000",
     unidad: "rutas",
     estado: "confirmada",
-    corte: CORTE_IA,
+    corte: CORTE_RT,
     fuentes: [
+      { ...RT, dice: "más de 54,000 rutas" },
       { ...IA, dice: "más de 54,000 rutas" },
       { pagina: "Inversionistas › Quiénes somos", url: `${GB}/es/inversionistas/quienes-somos`, dice: "más de 54,000 rutas" },
     ],
@@ -159,10 +169,14 @@ export const cifras = {
   },
   emisionesMeta: {
     id: "emisionesMeta",
-    etiqueta: "Meta de cero emisiones netas",
+    etiqueta: "Meta de cero emisiones de carbono",
     valor: "2050",
     estado: "confirmada",
-    fuentes: [{ pagina: "Sustentabilidad", url: `${GB}/es/sustentabilidad`, dice: "alcanzar emisiones netas cero para 2050" }],
+    nota: "El informe dice «emisiones cero» y «Cero Emisiones de Carbono», nunca «netas»; el sitio actual sí dice «netas».",
+    fuentes: [
+      { pagina: "Informe Anual 2025, «Avanzando hacia cero emisiones de carbono»", url: IA25, dice: "Reforzamos nuestro compromiso de alcanzar emisiones cero al 2050" },
+      { pagina: "Sustentabilidad", url: `${GB}/es/sustentabilidad`, dice: "alcanzar emisiones netas cero para 2050" },
+    ],
   },
   agriculturaMeta: {
     id: "agriculturaMeta",

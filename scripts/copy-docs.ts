@@ -18,7 +18,7 @@ function cifrasMd() {
     "# Fuente única de cifras",
     "",
     AVISO,
-    `${Object.keys(cifras).length} cifras; ${porConfirmar.length} por confirmar. Fuentes: Informe Anual 2025 y sitio público grupobimbo.com, leídos el 2 de noviembre de 2026.`,
+    `${Object.keys(cifras).length} cifras; ${porConfirmar.length} por confirmar. Fuentes: reporte del 3T26, Informe Anual 2025 y sitio público grupobimbo.com, leídos el 2 y 3 de noviembre de 2026.`,
     "",
     "| Cifra | Valor propuesto | Estado | Dónde aparece hoy | Nota |",
     "|---|---|---|---|---|",
@@ -109,7 +109,7 @@ function deckMd() {
 }
 
 function decisionesMd() {
-  const out = ["# Decisiones tomadas", "", AVISO, `Criterio: cuando las páginas del sitio no coinciden, manda el último reporte publicado, el Informe Anual 2025 (publicado en septiembre de 2026, cifras al cierre de 2025). Decidido el ${estado.actualizado}.`, ""];
+  const out = ["# Decisiones tomadas", "", AVISO, `Criterio: cuando las páginas del sitio no coinciden, manda el último reporte publicado. Las cifras de escala salen del reporte del 3T26 (22 de octubre de 2026); los resultados y las metas de 2025, del Informe Anual 2025 (septiembre de 2026). Actualizado el ${estado.actualizado}.`, ""];
   decisiones.forEach((d, i) => out.push(`## ${i + 1}. ${d.pregunta}`, "", `**Decisión:** ${d.decision}  `, `**Fuente:** ${d.fuente}  `, `**Efecto:** ${d.efecto}`, ""));
   out.push("## Otras correcciones que trajo el informe", "", ...correccionesDelInforme.map((c) => `- ${c}`), "");
   return out.join("\n");
